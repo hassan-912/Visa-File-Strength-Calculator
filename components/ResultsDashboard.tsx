@@ -405,19 +405,11 @@ export default function ResultsDashboard({
           <img src="/Logo W.png" alt="Watermark" className="filter invert" />
         </div>
 
-        {/* Print-only Header */}
-        <div className="mb-8 text-center border-b-2 pb-6 border-slate-200 print:mt-0 relative z-10 print-content-row pt-4">
-          <img src="/Logo W.png" alt="MG Visa" className="h-16 mx-auto mb-4 object-contain filter invert" />
-          <h1 className="text-2xl font-bold mb-2">Official Visa File Strength Assessment</h1>
-          <p className="text-lg font-medium">Prepared for: {clientName || "Client"}</p>
-          <p className="text-sm text-gray-500 mt-1">Date: {reportDate}</p>
-        </div>
-
         {/* Print Hero Card */}
-        <div className="flex flex-col items-center justify-center mb-10 pb-10 border-b-2 border-slate-200 relative z-10 print-content-row">
+        <div className="flex flex-col items-center justify-center mb-6 pb-6 border-b-2 border-slate-200 relative z-10 print-content-row pt-4">
           <div className="text-7xl font-bold mb-2" style={{ color: status.colorVar }}>{finalScore}%</div>
-          <div className="text-2xl font-semibold mb-4 text-black">{status.label}</div>
-          <p className="text-slate-700 text-center max-w-xl">{status.sublabel}</p>
+          <div className="text-2xl font-semibold mb-2 text-black">{status.label}</div>
+          <p className="text-slate-700 text-center max-w-xl text-sm">{status.sublabel}</p>
           
           <div className="grid grid-cols-3 gap-8 mt-8 w-full max-w-lg">
             <div className="text-center">
@@ -436,18 +428,18 @@ export default function ResultsDashboard({
         </div>
 
         {/* Print Category Grid */}
-        <div className="w-full mb-8 z-10 relative print-content-row">
-          <h3 className="text-xl font-bold mb-4 text-black border-b-2 border-slate-200 pb-2">Score Breakdown</h3>
+        <div className="w-full mb-4 z-10 relative print-content-row">
+          <h3 className="text-lg font-bold mb-3 text-black border-b-2 border-slate-200 pb-2">Score Breakdown</h3>
           <div className="flex flex-col">
             {CATEGORIES.map((cat) => {
               const { earned, max } = categoryScores[cat.id] || { earned: 0, max: cat.maxScore };
               const pct = max > 0 ? (earned / max) * 100 : 0;
               const strengthLabel = pct === 100 ? "Full marks" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : earned === 0 ? "Not scored" : "Weak";
               return (
-                <div key={cat.id} className="print:mb-4 print:break-inside-avoid print:border-b print:border-gray-300 print:pb-2 flex justify-between items-center">
-                  <div className="text-base font-medium text-black">{cat.title}</div>
-                  <div className="text-base text-black font-bold">
-                    {earned} / {max} <span className="ml-4 text-sm font-normal text-slate-500 uppercase">{strengthLabel}</span>
+                <div key={cat.id} className="print:mb-2 print:break-inside-avoid print:border-b print:border-gray-200 print:pb-1 flex justify-between items-center">
+                  <div className="text-sm font-medium text-black">{cat.title}</div>
+                  <div className="text-sm text-black font-bold">
+                    {earned} / {max} <span className="ml-3 text-xs font-normal text-slate-500 uppercase">{strengthLabel}</span>
                   </div>
                 </div>
               );
@@ -458,10 +450,10 @@ export default function ResultsDashboard({
               const agePct = AGE_MAX_SCORE > 0 ? (ageData.earned / AGE_MAX_SCORE) * 100 : 0;
               const ageLabel = age === null ? "Not entered" : agePct === 100 ? "Full marks" : agePct > 0 ? "Scored" : "No score";
               return (
-                <div className="print:mb-4 print:break-inside-avoid print:border-b print:border-gray-300 print:pb-2 flex justify-between items-center">
-                  <div className="text-base font-medium text-black">Age {age !== null ? `(${age} years)` : ""}</div>
-                  <div className="text-base text-black font-bold">
-                    {ageData.earned} / {AGE_MAX_SCORE} <span className="ml-4 text-sm font-normal text-slate-500 uppercase">{ageLabel}</span>
+                <div className="print:mb-2 print:break-inside-avoid print:border-b print:border-gray-200 print:pb-1 flex justify-between items-center">
+                  <div className="text-sm font-medium text-black">Age {age !== null ? `(${age} years)` : ""}</div>
+                  <div className="text-sm text-black font-bold">
+                    {ageData.earned} / {AGE_MAX_SCORE} <span className="ml-3 text-xs font-normal text-slate-500 uppercase">{ageLabel}</span>
                   </div>
                 </div>
               )
@@ -471,24 +463,17 @@ export default function ResultsDashboard({
 
         {/* Print Active Penalties */}
         {activePenaltyList.length > 0 && (
-          <div className="w-full mb-8 z-10 relative print-content-row print:break-inside-avoid">
-            <h3 className="text-xl font-bold mb-4 text-red-700 border-b-2 border-red-200 pb-2">Risk Factors Detected</h3>
-            <ul className="space-y-2">
+          <div className="w-full mb-4 z-10 relative print-content-row print:break-inside-avoid">
+            <h3 className="text-lg font-bold mb-3 text-red-700 border-b-2 border-red-200 pb-2">Risk Factors Detected</h3>
+            <ul className="space-y-1">
               {activePenaltyList.map((p) => (
-                <li key={p.id} className="print:mb-2 text-base font-medium text-black flex gap-2">
+                <li key={p.id} className="print:mb-1 text-sm font-medium text-black flex gap-2">
                   <span className="text-red-600 font-bold">-</span> {p.label}
                 </li>
               ))}
             </ul>
           </div>
         )}
-
-        {/* Print Footer */}
-        <div className="mt-12 pt-8 border-t-2 border-slate-200 text-center text-sm text-slate-600 relative z-10 print-content-row">
-          <p className="font-bold text-slate-800 mb-2 text-base">MG International Visa Consultancy</p>
-          <p>Cairo | Dubai | Zayed</p>
-          <p>Phone: 17621 | Email: Info@mg-visa.com</p>
-        </div>
 
       </div>
     </>
