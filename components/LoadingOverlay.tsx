@@ -149,14 +149,8 @@ export default function LoadingOverlay({
                 <div className="absolute right-32 w-16 h-16 bg-slate-200/10 rounded-full blur-[6px] translate-y-1" />
               </div>
 
-              {/* BIGGER Commercial Airplane Badge -> Now MG Visa Logo */}
-              <div 
-                className="w-16 h-16 rounded-full shadow-2xl flex items-center justify-center border-4 border-white bg-white overflow-hidden"
-                style={{ 
-                  backgroundColor: '#FFFFFF',
-                  boxShadow: '0 8px 24px rgba(40, 56, 64, 0.3)' 
-                }}
-              >
+              {/* BIGGER Commercial Airplane Badge -> Now ONLY MG Visa Logo */}
+              <div className="flex items-center justify-center">
                 <img src="/Logo W.png" alt="MG Visa" className="w-12 h-12 object-contain" />
               </div>
             </div>

@@ -92,22 +92,13 @@ export default function ResultsDashboard({
   const activePenaltyList = PENALTIES.filter((p) => activePenalties[p.id]);
 
   return (
-    <div className="animate-fadeInUp max-w-3xl mx-auto print:max-w-none print:w-full print:bg-white print:text-black print:m-0 print:p-0">
-      
-      {/* ── Print Watermark ── */}
-      <img src="/Logo W.png" className="hidden print:block fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5 w-3/5 z-[-1] pointer-events-none filter invert" alt="Watermark" />
-      
-      {/* ── Print-only Header ── */}
-      <div className="hidden print:block mb-8 text-center border-b-2 pb-6 border-slate-200">
-        <img src="/Logo W.png" alt="MG Visa" className="h-16 mx-auto mb-4 object-contain filter invert" />
-        <h1 className="text-2xl font-bold mb-2">Official Visa File Strength Assessment</h1>
-        <p className="text-lg font-medium">Prepared for: {clientName || "Client"}</p>
-        <p className="text-sm text-gray-500 mt-1">Date: {reportDate}</p>
-      </div>
+    <>
+      {/* ── Screen Layout (Hidden on Print) ── */}
+      <div id="web-layout-wrapper" className="animate-fadeInUp max-w-3xl mx-auto print:hidden">
 
       {/* ── Screen Hero Result Card ── */}
       <div
-        className="rounded-3xl overflow-hidden shadow-2xl mb-6 print:hidden"
+        className="rounded-3xl overflow-hidden shadow-2xl mb-6"
         style={{
           background: "linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-mid) 100%)",
         }}
@@ -225,31 +216,9 @@ export default function ResultsDashboard({
         </div>
       </div>
 
-      {/* ── Print Hero Card ── */}
-      <div className="hidden print:flex flex-col items-center justify-center mb-10 pb-10 border-b-2 border-slate-200">
-        <div className="text-7xl font-bold mb-2" style={{ color: status.colorVar }}>{finalScore}%</div>
-        <div className="text-2xl font-semibold mb-4 text-black">{status.label}</div>
-        <p className="text-slate-700 text-center max-w-xl">{status.sublabel}</p>
-        
-        <div className="grid grid-cols-3 gap-8 mt-8 w-full max-w-lg">
-          <div className="text-center">
-            <p className="text-sm text-slate-500 mb-1">Base Score</p>
-            <p className="text-xl font-bold">{baseScore}%</p>
-          </div>
-          <div className="text-center">
-            <p className="text-sm text-slate-500 mb-1">Penalties</p>
-            <p className="text-xl font-bold text-red-600">{totalDeductions > 0 ? `-${totalDeductions}%` : "None"}</p>
-          </div>
-          <div className="text-center">
-            <p className="text-sm text-slate-500 mb-1">Final Score</p>
-            <p className="text-xl font-bold" style={{ color: status.colorVar }}>{finalScore}%</p>
-          </div>
-        </div>
-      </div>
-
       {/* ── Screen Score Breakdown ── */}
       <div
-        className="rounded-2xl border p-6 mb-5 shadow-sm print:hidden"
+        className="rounded-2xl border p-6 mb-5 shadow-sm"
         style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border-light)" }}
       >
         <h3
@@ -336,54 +305,10 @@ export default function ResultsDashboard({
         </div>
       </div>
 
-      {/* ── Print Score Breakdown (Clean Table) ── */}
-      <div className="hidden print:block w-full mb-8 z-10 relative bg-white page-break-inside-avoid">
-        <h3 className="text-xl font-bold mb-4 text-black border-b-2 border-slate-200 pb-2">Score Breakdown</h3>
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="border-b border-slate-300">
-              <th className="py-2 text-sm font-semibold text-slate-600 uppercase">Category</th>
-              <th className="py-2 text-sm font-semibold text-slate-600 uppercase">Score</th>
-              <th className="py-2 text-sm font-semibold text-slate-600 uppercase">Max</th>
-              <th className="py-2 text-sm font-semibold text-slate-600 uppercase text-right">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {CATEGORIES.map((cat) => {
-              const { earned, max } = categoryScores[cat.id] || { earned: 0, max: cat.maxScore };
-              const pct = max > 0 ? (earned / max) * 100 : 0;
-              const strengthLabel = pct === 100 ? "Full marks" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : earned === 0 ? "Not scored" : "Weak";
-              return (
-                <tr key={cat.id} className="border-b border-slate-100">
-                  <td className="py-3 text-base font-medium text-black">{cat.title}</td>
-                  <td className="py-3 text-base text-black">{earned}</td>
-                  <td className="py-3 text-base text-black">{max}</td>
-                  <td className="py-3 text-base text-right font-bold text-black">{strengthLabel}</td>
-                </tr>
-              );
-            })}
-            {/* Age */}
-            {(() => {
-              const ageData = categoryScores["age_input"] || { earned: ageScore, max: AGE_MAX_SCORE };
-              const agePct = AGE_MAX_SCORE > 0 ? (ageData.earned / AGE_MAX_SCORE) * 100 : 0;
-              const ageLabel = age === null ? "Not entered" : agePct === 100 ? "Full marks" : agePct > 0 ? "Scored" : "No score";
-              return (
-                <tr className="border-b border-slate-100">
-                  <td className="py-3 text-base font-medium text-black">Age {age !== null ? `(${age} years)` : ""}</td>
-                  <td className="py-3 text-base text-black">{ageData.earned}</td>
-                  <td className="py-3 text-base text-black">{AGE_MAX_SCORE}</td>
-                  <td className="py-3 text-base text-right font-bold text-black">{ageLabel}</td>
-                </tr>
-              )
-            })()}
-          </tbody>
-        </table>
-      </div>
-
       {/* ── Screen Active Penalties ── */}
       {activePenaltyList.length > 0 && (
         <div
-          className="rounded-2xl border p-6 mb-5 shadow-sm print:hidden"
+          className="rounded-2xl border p-6 mb-5 shadow-sm"
           style={{ backgroundColor: "#FFF5F5", borderColor: "#FECACA" }}
         >
           <div className="flex items-center gap-2 mb-3">
@@ -406,23 +331,8 @@ export default function ResultsDashboard({
         </div>
       )}
 
-      {/* ── Print Active Penalties ── */}
-      {activePenaltyList.length > 0 && (
-        <div className="hidden print:block w-full mb-8 z-10 relative bg-white page-break-inside-avoid">
-          <h3 className="text-xl font-bold mb-4 text-red-700 border-b-2 border-red-200 pb-2">Risk Factors Detected</h3>
-          <ul className="space-y-2">
-            {activePenaltyList.map((p) => (
-              <li key={p.id} className="py-2 text-base font-medium text-black flex gap-2">
-                <span className="text-red-600 font-bold">-</span> {p.label}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-
       {/* ── Buttons ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 print:hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <button
           type="button"
           onClick={onEdit}
@@ -451,16 +361,9 @@ export default function ResultsDashboard({
         </button>
       </div>
 
-      {/* ── Print Footer ── */}
-      <div className="hidden print:block mt-12 pt-8 border-t-2 border-slate-200 text-center text-sm text-slate-600">
-        <p className="font-bold text-slate-800 mb-2 text-base">MG International Visa Consultancy</p>
-        <p>Cairo | Dubai | Zayed</p>
-        <p>Phone: 17621 | Email: Info@mg-visa.com</p>
-      </div>
-
       {/* ── PDF Generation Modal ── */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 print:hidden" style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
           <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl animate-fadeInUp">
             <h3 className="text-xl font-bold text-slate-800 mb-2">Generate PDF Report</h3>
             <p className="text-sm text-slate-500 mb-6">Enter the client's full name to generate an official MG Visa assessment document.</p>
@@ -491,7 +394,102 @@ export default function ResultsDashboard({
             </div>
           </div>
         </div>
-      )}
-    </div>
+      </div>
+
+      {/* ── Print Layout (Hidden on Screen) ── */}
+      <div className="hidden print:block print:absolute print:top-0 print:left-0 print:w-full print:m-0 print:p-0 print:bg-white print:text-black">
+        
+        {/* Print Watermark */}
+        <div className="print-watermark">
+          <img src="/Logo W.png" alt="Watermark" className="filter invert" />
+        </div>
+
+        {/* Print-only Header */}
+        <div className="mb-8 text-center border-b-2 pb-6 border-slate-200 print:mt-0 relative z-10 bg-white pt-4">
+          <img src="/Logo W.png" alt="MG Visa" className="h-16 mx-auto mb-4 object-contain filter invert" />
+          <h1 className="text-2xl font-bold mb-2">Official Visa File Strength Assessment</h1>
+          <p className="text-lg font-medium">Prepared for: {clientName || "Client"}</p>
+          <p className="text-sm text-gray-500 mt-1">Date: {reportDate}</p>
+        </div>
+
+        {/* Print Hero Card */}
+        <div className="flex flex-col items-center justify-center mb-10 pb-10 border-b-2 border-slate-200 relative z-10 bg-white">
+          <div className="text-7xl font-bold mb-2" style={{ color: status.colorVar }}>{finalScore}%</div>
+          <div className="text-2xl font-semibold mb-4 text-black">{status.label}</div>
+          <p className="text-slate-700 text-center max-w-xl">{status.sublabel}</p>
+          
+          <div className="grid grid-cols-3 gap-8 mt-8 w-full max-w-lg">
+            <div className="text-center">
+              <p className="text-sm text-slate-500 mb-1">Base Score</p>
+              <p className="text-xl font-bold">{baseScore}%</p>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-slate-500 mb-1">Penalties</p>
+              <p className="text-xl font-bold text-red-600">{totalDeductions > 0 ? `-${totalDeductions}%` : "None"}</p>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-slate-500 mb-1">Final Score</p>
+              <p className="text-xl font-bold" style={{ color: status.colorVar }}>{finalScore}%</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Print Category Grid */}
+        <div className="w-full mb-8 z-10 relative bg-white">
+          <h3 className="text-xl font-bold mb-4 text-black border-b-2 border-slate-200 pb-2">Score Breakdown</h3>
+          <div className="flex flex-col">
+            {CATEGORIES.map((cat) => {
+              const { earned, max } = categoryScores[cat.id] || { earned: 0, max: cat.maxScore };
+              const pct = max > 0 ? (earned / max) * 100 : 0;
+              const strengthLabel = pct === 100 ? "Full marks" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : earned === 0 ? "Not scored" : "Weak";
+              return (
+                <div key={cat.id} className="print:mb-4 print:break-inside-avoid print:border-b print:border-gray-300 print:pb-2 flex justify-between items-center">
+                  <div className="text-base font-medium text-black">{cat.title}</div>
+                  <div className="text-base text-black font-bold">
+                    {earned} / {max} <span className="ml-4 text-sm font-normal text-slate-500 uppercase">{strengthLabel}</span>
+                  </div>
+                </div>
+              );
+            })}
+            {/* Age */}
+            {(() => {
+              const ageData = categoryScores["age_input"] || { earned: ageScore, max: AGE_MAX_SCORE };
+              const agePct = AGE_MAX_SCORE > 0 ? (ageData.earned / AGE_MAX_SCORE) * 100 : 0;
+              const ageLabel = age === null ? "Not entered" : agePct === 100 ? "Full marks" : agePct > 0 ? "Scored" : "No score";
+              return (
+                <div className="print:mb-4 print:break-inside-avoid print:border-b print:border-gray-300 print:pb-2 flex justify-between items-center">
+                  <div className="text-base font-medium text-black">Age {age !== null ? `(${age} years)` : ""}</div>
+                  <div className="text-base text-black font-bold">
+                    {ageData.earned} / {AGE_MAX_SCORE} <span className="ml-4 text-sm font-normal text-slate-500 uppercase">{ageLabel}</span>
+                  </div>
+                </div>
+              )
+            })()}
+          </div>
+        </div>
+
+        {/* Print Active Penalties */}
+        {activePenaltyList.length > 0 && (
+          <div className="w-full mb-8 z-10 relative bg-white print:break-inside-avoid">
+            <h3 className="text-xl font-bold mb-4 text-red-700 border-b-2 border-red-200 pb-2">Risk Factors Detected</h3>
+            <ul className="space-y-2">
+              {activePenaltyList.map((p) => (
+                <li key={p.id} className="print:mb-2 text-base font-medium text-black flex gap-2">
+                  <span className="text-red-600 font-bold">-</span> {p.label}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Print Footer */}
+        <div className="mt-12 pt-8 border-t-2 border-slate-200 text-center text-sm text-slate-600 relative z-10 bg-white">
+          <p className="font-bold text-slate-800 mb-2 text-base">MG International Visa Consultancy</p>
+          <p>Cairo | Dubai | Zayed</p>
+          <p>Phone: 17621 | Email: Info@mg-visa.com</p>
+        </div>
+
+      </div>
+    </>
   );
 }
