@@ -176,3 +176,10 @@ body {
 .animate-fadeIn   { animation: fadeIn 0.35s ease both; }
 .animate-spin-slow    { animation: spin-slow 3s linear infinite; }
 .animate-spin-reverse { animation: spin-reverse 2s linear infinite; }
+
+@media print {
+  @page {
+    size: A4;
+    margin: 2cm;
+  }
+}

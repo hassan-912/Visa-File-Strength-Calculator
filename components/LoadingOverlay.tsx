@@ -23,14 +23,18 @@ export default function LoadingOverlay({
   const [msgIndex, setMsgIndex] = useState(0);
   const [fadeMsg, setFadeMsg] = useState(true);
 
-  // Cycle through messages every 3 seconds (3000ms)
+  // Cycle through messages every 3 seconds (3000ms) - using a ref or closure variable to avoid state batching freezes
   useEffect(() => {
+    let currentIdx = 0;
     const interval = setInterval(() => {
-      setFadeMsg(false);
-      setTimeout(() => {
-        setMsgIndex((prev) => Math.min(prev + 1, MESSAGES.length - 1));
-        setFadeMsg(true);
-      }, 300);
+      if (currentIdx < MESSAGES.length - 1) {
+        setFadeMsg(false);
+        setTimeout(() => {
+          currentIdx++;
+          setMsgIndex(currentIdx);
+          setFadeMsg(true);
+        }, 300);
+      }
     }, 3000);
 
     return () => clearInterval(interval);
@@ -147,9 +151,9 @@ export default function LoadingOverlay({
 
               {/* BIGGER Commercial Airplane Badge -> Now MG Visa Logo */}
               <div 
-                className="w-16 h-16 rounded-full shadow-2xl flex items-center justify-center border-4 border-white overflow-hidden"
+                className="w-16 h-16 rounded-full shadow-2xl flex items-center justify-center border-4 border-white bg-white overflow-hidden"
                 style={{ 
-                  backgroundColor: 'var(--color-surface, #FFFFFF)',
+                  backgroundColor: '#FFFFFF',
                   boxShadow: '0 8px 24px rgba(40, 56, 64, 0.3)' 
                 }}
               >

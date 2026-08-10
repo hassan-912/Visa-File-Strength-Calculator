@@ -92,7 +92,10 @@ export default function ResultsDashboard({
   const activePenaltyList = PENALTIES.filter((p) => activePenalties[p.id]);
 
   return (
-    <div className="animate-fadeInUp max-w-3xl mx-auto print:max-w-none print:w-full print:bg-white print:text-black">
+    <div className="animate-fadeInUp max-w-3xl mx-auto print:max-w-none print:w-full print:bg-white print:text-black print:m-0 print:p-0">
+      
+      {/* ── Print Watermark ── */}
+      <img src="/Logo W.png" className="hidden print:block fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5 w-3/5 z-[-1] pointer-events-none filter invert" alt="Watermark" />
       
       {/* ── Print-only Header ── */}
       <div className="hidden print:block mb-8 text-center border-b-2 pb-6 border-slate-200">
@@ -244,9 +247,9 @@ export default function ResultsDashboard({
         </div>
       </div>
 
-      {/* ── Score Breakdown ── */}
+      {/* ── Screen Score Breakdown ── */}
       <div
-        className="rounded-2xl border p-6 mb-5 shadow-sm print:shadow-none print:border-none print:p-0 print:mb-8"
+        className="rounded-2xl border p-6 mb-5 shadow-sm print:hidden"
         style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border-light)" }}
       >
         <h3
@@ -333,10 +336,54 @@ export default function ResultsDashboard({
         </div>
       </div>
 
-      {/* ── Active Penalties ── */}
+      {/* ── Print Score Breakdown (Clean Table) ── */}
+      <div className="hidden print:block w-full mb-8 z-10 relative bg-white page-break-inside-avoid">
+        <h3 className="text-xl font-bold mb-4 text-black border-b-2 border-slate-200 pb-2">Score Breakdown</h3>
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="border-b border-slate-300">
+              <th className="py-2 text-sm font-semibold text-slate-600 uppercase">Category</th>
+              <th className="py-2 text-sm font-semibold text-slate-600 uppercase">Score</th>
+              <th className="py-2 text-sm font-semibold text-slate-600 uppercase">Max</th>
+              <th className="py-2 text-sm font-semibold text-slate-600 uppercase text-right">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {CATEGORIES.map((cat) => {
+              const { earned, max } = categoryScores[cat.id] || { earned: 0, max: cat.maxScore };
+              const pct = max > 0 ? (earned / max) * 100 : 0;
+              const strengthLabel = pct === 100 ? "Full marks" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : earned === 0 ? "Not scored" : "Weak";
+              return (
+                <tr key={cat.id} className="border-b border-slate-100">
+                  <td className="py-3 text-base font-medium text-black">{cat.title}</td>
+                  <td className="py-3 text-base text-black">{earned}</td>
+                  <td className="py-3 text-base text-black">{max}</td>
+                  <td className="py-3 text-base text-right font-bold text-black">{strengthLabel}</td>
+                </tr>
+              );
+            })}
+            {/* Age */}
+            {(() => {
+              const ageData = categoryScores["age_input"] || { earned: ageScore, max: AGE_MAX_SCORE };
+              const agePct = AGE_MAX_SCORE > 0 ? (ageData.earned / AGE_MAX_SCORE) * 100 : 0;
+              const ageLabel = age === null ? "Not entered" : agePct === 100 ? "Full marks" : agePct > 0 ? "Scored" : "No score";
+              return (
+                <tr className="border-b border-slate-100">
+                  <td className="py-3 text-base font-medium text-black">Age {age !== null ? `(${age} years)` : ""}</td>
+                  <td className="py-3 text-base text-black">{ageData.earned}</td>
+                  <td className="py-3 text-base text-black">{AGE_MAX_SCORE}</td>
+                  <td className="py-3 text-base text-right font-bold text-black">{ageLabel}</td>
+                </tr>
+              )
+            })()}
+          </tbody>
+        </table>
+      </div>
+
+      {/* ── Screen Active Penalties ── */}
       {activePenaltyList.length > 0 && (
         <div
-          className="rounded-2xl border p-6 mb-5 shadow-sm print:shadow-none print:border-none print:p-0 print:bg-transparent"
+          className="rounded-2xl border p-6 mb-5 shadow-sm print:hidden"
           style={{ backgroundColor: "#FFF5F5", borderColor: "#FECACA" }}
         >
           <div className="flex items-center gap-2 mb-3">
@@ -353,6 +400,20 @@ export default function ResultsDashboard({
               <li key={p.id} className="flex items-center gap-3 p-3 rounded-xl" style={{ backgroundColor: "rgba(220,38,38,0.06)" }}>
                 <span className="text-red-500 shrink-0">●</span>
                 <p className="text-sm font-medium" style={{ color: "#991B1B" }}>{p.label}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* ── Print Active Penalties ── */}
+      {activePenaltyList.length > 0 && (
+        <div className="hidden print:block w-full mb-8 z-10 relative bg-white page-break-inside-avoid">
+          <h3 className="text-xl font-bold mb-4 text-red-700 border-b-2 border-red-200 pb-2">Risk Factors Detected</h3>
+          <ul className="space-y-2">
+            {activePenaltyList.map((p) => (
+              <li key={p.id} className="py-2 text-base font-medium text-black flex gap-2">
+                <span className="text-red-600 font-bold">-</span> {p.label}
               </li>
             ))}
           </ul>
