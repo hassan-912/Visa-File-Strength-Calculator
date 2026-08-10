@@ -397,49 +397,62 @@ export default function ResultsDashboard({
       )}
     </div>
 
-      {/* ── Print Layout (Hidden on Screen) ── */}
-      <div className="hidden print:block print:absolute print:top-0 print:left-0 print:w-full print:m-0 print:p-0 print:bg-white print:text-black">
+      {/* ── Print Layout (Hidden on Screen, Single Page Certificate Design) ── */}
+      <div className="hidden print:flex print:flex-col print:absolute print:top-0 print:left-0 print:w-full print:h-[297mm] print:m-0 print:p-0 print:bg-white print:text-black overflow-hidden relative">
         
         {/* Print Watermark */}
         <div className="print-watermark">
           <img src="/Logo W.png" alt="Watermark" className="filter invert" />
         </div>
 
-        {/* Print Hero Card */}
-        <div className="flex flex-col items-center justify-center mb-6 pb-6 border-b-2 border-slate-200 relative z-10 print-content-row pt-4">
-          <div className="text-7xl font-bold mb-2" style={{ color: status.colorVar }}>{finalScore}%</div>
-          <div className="text-2xl font-semibold mb-2 text-black">{status.label}</div>
-          <p className="text-slate-700 text-center max-w-xl text-sm">{status.sublabel}</p>
+        {/* Header: Logo & Client Info */}
+        <div className="flex justify-between items-start mb-6 relative z-10 print-content-row pt-2">
+          <img src="/Logo W.png" alt="MG Visa" className="h-12 object-contain filter invert" />
+          <div className="text-right">
+            <p className="text-sm font-bold text-slate-800 uppercase tracking-widest">Prepared For</p>
+            <p className="text-xl font-bold text-black">{clientName || "Client"}</p>
+            <p className="text-xs text-slate-500 mt-1">{reportDate}</p>
+          </div>
+        </div>
+
+        {/* Title */}
+        <div className="text-center border-b-2 border-slate-800 pb-4 mb-6 relative z-10 print-content-row">
+          <h1 className="text-3xl font-black uppercase tracking-wide text-slate-900">Visa File Strength Assessment</h1>
+        </div>
+
+        {/* Hero Section */}
+        <div className="flex items-center justify-between mb-8 relative z-10 print-content-row bg-slate-50 rounded-2xl p-6 border border-slate-200">
+          <div>
+            <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Final Score</p>
+            <div className="text-6xl font-black" style={{ color: status.colorVar }}>{finalScore}%</div>
+            <div className="text-xl font-bold mt-2 text-slate-800">{status.label}</div>
+          </div>
           
-          <div className="grid grid-cols-3 gap-8 mt-8 w-full max-w-lg">
-            <div className="text-center">
-              <p className="text-sm text-slate-500 mb-1">Base Score</p>
-              <p className="text-xl font-bold">{baseScore}%</p>
+          <div className="flex gap-6 text-right">
+            <div>
+              <p className="text-xs text-slate-500 uppercase font-bold mb-1">Base Score</p>
+              <p className="text-2xl font-bold text-slate-800">{baseScore}%</p>
             </div>
-            <div className="text-center">
-              <p className="text-sm text-slate-500 mb-1">Penalties</p>
-              <p className="text-xl font-bold text-red-600">{totalDeductions > 0 ? `-${totalDeductions}%` : "None"}</p>
-            </div>
-            <div className="text-center">
-              <p className="text-sm text-slate-500 mb-1">Final Score</p>
-              <p className="text-xl font-bold" style={{ color: status.colorVar }}>{finalScore}%</p>
+            <div>
+              <p className="text-xs text-slate-500 uppercase font-bold mb-1">Penalties</p>
+              <p className="text-2xl font-bold text-red-600">{totalDeductions > 0 ? `-${totalDeductions}%` : "None"}</p>
             </div>
           </div>
         </div>
 
-        {/* Print Category Grid */}
-        <div className="w-full mb-4 z-10 relative print-content-row">
-          <h3 className="text-lg font-bold mb-3 text-black border-b-2 border-slate-200 pb-2">Score Breakdown</h3>
-          <div className="flex flex-col">
+        {/* Score Breakdown (2-Column Grid to save vertical space) */}
+        <div className="w-full mb-6 relative z-10 print-content-row flex-grow">
+          <h3 className="text-lg font-bold mb-4 text-black border-b border-slate-300 pb-2 uppercase tracking-wider">Score Breakdown</h3>
+          <div className="grid grid-cols-2 gap-x-12 gap-y-3">
             {CATEGORIES.map((cat) => {
               const { earned, max } = categoryScores[cat.id] || { earned: 0, max: cat.maxScore };
               const pct = max > 0 ? (earned / max) * 100 : 0;
               const strengthLabel = pct === 100 ? "Full marks" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : earned === 0 ? "Not scored" : "Weak";
               return (
-                <div key={cat.id} className="print:mb-2 print:break-inside-avoid print:border-b print:border-gray-200 print:pb-1 flex justify-between items-center">
-                  <div className="text-sm font-medium text-black">{cat.title}</div>
+                <div key={cat.id} className="flex justify-between items-center border-b border-slate-100 pb-1">
+                  <div className="text-sm font-semibold text-slate-800">{cat.title}</div>
                   <div className="text-sm text-black font-bold">
-                    {earned} / {max} <span className="ml-3 text-xs font-normal text-slate-500 uppercase">{strengthLabel}</span>
+                    {earned} / {max} <span className="ml-2 text-[10px] font-bold text-slate-400 uppercase">{strengthLabel}</span>
                   </div>
                 </div>
               );
@@ -450,10 +463,10 @@ export default function ResultsDashboard({
               const agePct = AGE_MAX_SCORE > 0 ? (ageData.earned / AGE_MAX_SCORE) * 100 : 0;
               const ageLabel = age === null ? "Not entered" : agePct === 100 ? "Full marks" : agePct > 0 ? "Scored" : "No score";
               return (
-                <div className="print:mb-2 print:break-inside-avoid print:border-b print:border-gray-200 print:pb-1 flex justify-between items-center">
-                  <div className="text-sm font-medium text-black">Age {age !== null ? `(${age} years)` : ""}</div>
+                <div className="flex justify-between items-center border-b border-slate-100 pb-1">
+                  <div className="text-sm font-semibold text-slate-800">Age {age !== null ? `(${age} years)` : ""}</div>
                   <div className="text-sm text-black font-bold">
-                    {ageData.earned} / {AGE_MAX_SCORE} <span className="ml-3 text-xs font-normal text-slate-500 uppercase">{ageLabel}</span>
+                    {ageData.earned} / {AGE_MAX_SCORE} <span className="ml-2 text-[10px] font-bold text-slate-400 uppercase">{ageLabel}</span>
                   </div>
                 </div>
               )
@@ -463,12 +476,12 @@ export default function ResultsDashboard({
 
         {/* Print Active Penalties */}
         {activePenaltyList.length > 0 && (
-          <div className="w-full mb-4 z-10 relative print-content-row print:break-inside-avoid">
-            <h3 className="text-lg font-bold mb-3 text-red-700 border-b-2 border-red-200 pb-2">Risk Factors Detected</h3>
-            <ul className="space-y-1">
+          <div className="w-full relative z-10 print-content-row bg-red-50 p-4 rounded-xl border border-red-100">
+            <h3 className="text-sm font-bold mb-2 text-red-800 uppercase tracking-wider">Risk Factors Detected</h3>
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-1">
               {activePenaltyList.map((p) => (
-                <li key={p.id} className="print:mb-1 text-sm font-medium text-black flex gap-2">
-                  <span className="text-red-600 font-bold">-</span> {p.label}
+                <li key={p.id} className="text-xs font-semibold text-red-900 flex gap-2 items-start">
+                  <span className="text-red-600 mt-[2px]">•</span> {p.label}
                 </li>
               ))}
             </ul>
