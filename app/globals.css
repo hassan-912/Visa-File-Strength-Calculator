@@ -1,0 +1,178 @@
+/*
+ * ─────────────────────────────────────────────────────────────────
+ * MG Visa — Brand Design System (globals.css)
+ *
+ * STRICT NAVY BLUE THEME — No gold or yellow.
+ * Based on mg-visa.com corporate identity.
+ *
+ * PRIMARY COLOR PALETTE:
+ *   --color-primary:      #0A192F  ← Deep Navy (main brand color)
+ *   --color-accent:       #1E3A8A  ← Royal/Ocean Blue (interactive accent)
+ *   --color-accent-hover: #1D4ED8  ← Brighter blue for hover states
+ *
+ * To update with exact hex codes from mg-visa.com, replace the
+ * values in :root below. The entire UI will update instantly.
+ * ─────────────────────────────────────────────────────────────────
+ */
+
+@import "tailwindcss";
+
+:root {
+  /* ── Primary Brand Colors (Dark Slate family) ── */
+  --color-primary:       #283840;   /* Brand Dark Slate — headers, primary buttons, borders */
+  --color-primary-mid:   #1E2B31;   /* Darker Slate — hover on primary */
+  --color-primary-dark:  #141C21;   /* Darkest Slate — pressed states */
+
+  /* ── Accent Color (Hover/Active highlights) ── */
+  --color-accent:        #3A505C;   /* Slightly lighter slate — hover states, active highlights */
+  --color-accent-hover:  #3A505C;   /* Same as accent as requested */
+  --color-accent-light:  #516F7F;   /* Lighter slate for icons */
+  --color-accent-bg:     #E6EAEC;   /* Very light slate background tint */
+  --color-accent-border: #C8D1D5;   /* Light slate border */
+
+  /* ── Backgrounds & Surfaces ── */
+  --color-bg:            #F8F8F8;   /* Whitesmoke — page background */
+  --color-surface:       #FFFFFF;   /* Pure white — card surface */
+  --color-surface-2:     #F1F3F5;   /* Alternate surface */
+  --color-surface-3:     #E2E6E9;   /* Subtle divider / track */
+
+  /* ── Text ── */
+  --color-text-main:     #1E293B;   /* Dark slate — primary text */
+  --color-text-body:     #334155;   /* Slate 700 — body text */
+  --color-text-muted:    #64748B;   /* Slate 500 — secondary/muted text */
+  --color-text-light:    #94A3B8;   /* Slate 400 — placeholder / footer */
+  --color-text-on-dark:  #FFFFFF;   /* White — text on dark backgrounds */
+
+  /* ── Borders ── */
+  --color-border:        #CBD5E1;   /* Slate 300 */
+  --color-border-light:  #E2E8F0;   /* Slate 200 */
+
+  /* ── Status Colors ── */
+  --color-strong:        #16A34A;   /* Green 600 */
+  --color-strong-bg:     #DCFCE7;   /* Green 100 */
+  --color-strong-border: #BBF7D0;   /* Green 200 */
+  --color-moderate:      #EA580C;   /* Orange 600 */
+  --color-moderate-bg:   #FFEDD5;   /* Orange 100 */
+  --color-moderate-border:#FED7AA;  /* Orange 200 */
+  --color-weak:          #DC2626;   /* Red 600 */
+  --color-weak-bg:       #FEE2E2;   /* Red 100 */
+  --color-weak-border:   #FECACA;   /* Red 200 */
+}
+
+@theme inline {
+  /* Primary */
+  --color-primary:       var(--color-primary);
+  --color-primary-mid:   var(--color-primary-mid);
+  --color-primary-dark:  var(--color-primary-dark);
+
+  /* Accent */
+  --color-accent:        var(--color-accent);
+  --color-accent-hover:  var(--color-accent-hover);
+  --color-accent-light:  var(--color-accent-light);
+  --color-accent-bg:     var(--color-accent-bg);
+  --color-accent-border: var(--color-accent-border);
+
+  /* Backgrounds */
+  --color-bg:            var(--color-bg);
+  --color-surface:       var(--color-surface);
+  --color-surface-2:     var(--color-surface-2);
+  --color-surface-3:     var(--color-surface-3);
+
+  /* Text */
+  --color-text-main:     var(--color-text-main);
+  --color-text-body:     var(--color-text-body);
+  --color-text-muted:    var(--color-text-muted);
+  --color-text-light:    var(--color-text-light);
+  --color-text-on-dark:  var(--color-text-on-dark);
+
+  /* Borders */
+  --color-border:        var(--color-border);
+  --color-border-light:  var(--color-border-light);
+
+  /* Status */
+  --color-strong:        var(--color-strong);
+  --color-strong-bg:     var(--color-strong-bg);
+  --color-strong-border: var(--color-strong-border);
+  --color-moderate:      var(--color-moderate);
+  --color-moderate-bg:   var(--color-moderate-bg);
+  --color-moderate-border:var(--color-moderate-border);
+  --color-weak:          var(--color-weak);
+  --color-weak-bg:       var(--color-weak-bg);
+  --color-weak-border:   var(--color-weak-border);
+
+  /* Typography */
+  --font-montserrat:     var(--font-montserrat);
+  --font-inter:          var(--font-inter);
+  --font-sans:           var(--font-montserrat), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ─── Base ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-body);
+  font-family: var(--font-montserrat), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface-2); }
+::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-hover); }
+
+/* ─── Focus ──────────────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid var(--color-accent-hover);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Selection ──────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50%       { transform: scale(1.18); opacity: 0.15; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes spin-reverse {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+  40%            { transform: scale(1); opacity: 1; }
+}
+
+/* ─── Utility Classes ────────────────────────────────────────────── */
+.font-montserrat {
+  font-family: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+}
+.animate-fadeInUp { animation: fadeInUp 0.45s ease both; }
+.animate-fadeIn   { animation: fadeIn 0.35s ease both; }
+.animate-spin-slow    { animation: spin-slow 3s linear infinite; }
+.animate-spin-reverse { animation: spin-reverse 2s linear infinite; }
