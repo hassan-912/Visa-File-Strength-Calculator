@@ -12,34 +12,29 @@ const MESSAGES = [
 
 interface LoadingOverlayProps {
   onComplete: () => void;
-  durationMs?: number; // Should be 25000
+  durationMs?: number; // Should be 15000
 }
 
 export default function LoadingOverlay({
   onComplete,
-  durationMs = 25000,
+  durationMs = 15000,
 }: LoadingOverlayProps) {
   const [progress, setProgress] = useState(0);
   const [msgIndex, setMsgIndex] = useState(0);
   const [fadeMsg, setFadeMsg] = useState(true);
 
-  // Determine current message index based on progress (5 messages)
+  // Cycle through messages every 3 seconds (3000ms)
   useEffect(() => {
-    // 0-20% = msg 0
-    // 20-40% = msg 1
-    // 40-60% = msg 2
-    // 60-80% = msg 3
-    // 80-100% = msg 4
-    const newIndex = Math.min(Math.floor((progress / 100) * 5), 4);
-    if (newIndex !== msgIndex) {
+    const interval = setInterval(() => {
       setFadeMsg(false);
-      const timer = setTimeout(() => {
-        setMsgIndex(newIndex);
+      setTimeout(() => {
+        setMsgIndex((prev) => Math.min(prev + 1, MESSAGES.length - 1));
         setFadeMsg(true);
       }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [progress, msgIndex]);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Smooth Progress & Timer
   useEffect(() => {
@@ -150,23 +145,15 @@ export default function LoadingOverlay({
                 <div className="absolute right-32 w-16 h-16 bg-slate-200/10 rounded-full blur-[6px] translate-y-1" />
               </div>
 
-              {/* BIGGER Commercial Airplane Badge */}
+              {/* BIGGER Commercial Airplane Badge -> Now MG Visa Logo */}
               <div 
-                className="w-16 h-16 rounded-full shadow-2xl flex items-center justify-center border-4 border-white"
+                className="w-16 h-16 rounded-full shadow-2xl flex items-center justify-center border-4 border-white overflow-hidden"
                 style={{ 
                   backgroundColor: 'var(--color-surface, #FFFFFF)',
                   boxShadow: '0 8px 24px rgba(40, 56, 64, 0.3)' 
                 }}
               >
-                {/* Boeing/Airbus Commercial Flight SVG (Enlarged) */}
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  viewBox="0 0 24 24" 
-                  fill="var(--color-primary, #283840)" 
-                  className="w-10 h-10 transform rotate-90"
-                >
-                  <path d="M21.5 12c0-.42-.23-.8-.59-.99l-7.41-3.71V3.5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v3.8L3.09 11.01c-.36.19-.59.57-.59.99 0 .61.49 1.1 1.1 1.1h5.9v4.5l-1.8 1.35c-.21.16-.33.4-.33.65v.9c0 .41.34.75.75.75l3.38-.85 3.38.85c.41 0 .75-.34.75-.75v-.9c0-.25-.12-.49-.33-.65l-1.8-1.35v-4.5h5.9c.61 0 1.1-.49 1.1-1.1z"/>
-                </svg>
+                <img src="/Logo W.png" alt="MG Visa" className="w-12 h-12 object-contain" />
               </div>
             </div>
           </div>

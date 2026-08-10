@@ -49,6 +49,17 @@ export default function ResultsDashboard({
   const status = getScoreStatus(finalScore);
   const displayScore = useCountUp(finalScore, 1800);
   const [barsVisible, setBarsVisible] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [clientName, setClientName] = useState("");
+  const [reportDate, setReportDate] = useState("");
+
+  const handleGeneratePdf = () => {
+    setReportDate(new Date().toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }));
+    setShowModal(false);
+    setTimeout(() => {
+      window.print();
+    }, 100);
+  };
 
   useEffect(() => {
     const t = setTimeout(() => setBarsVisible(true), 500);
@@ -81,10 +92,19 @@ export default function ResultsDashboard({
   const activePenaltyList = PENALTIES.filter((p) => activePenalties[p.id]);
 
   return (
-    <div className="animate-fadeInUp max-w-3xl mx-auto">
-      {/* ── Hero Result Card ── */}
+    <div className="animate-fadeInUp max-w-3xl mx-auto print:max-w-none print:w-full print:bg-white print:text-black">
+      
+      {/* ── Print-only Header ── */}
+      <div className="hidden print:block mb-8 text-center border-b-2 pb-6 border-slate-200">
+        <img src="/Logo W.png" alt="MG Visa" className="h-16 mx-auto mb-4 object-contain filter invert" />
+        <h1 className="text-2xl font-bold mb-2">Official Visa File Strength Assessment</h1>
+        <p className="text-lg font-medium">Prepared for: {clientName || "Client"}</p>
+        <p className="text-sm text-gray-500 mt-1">Date: {reportDate}</p>
+      </div>
+
+      {/* ── Screen Hero Result Card ── */}
       <div
-        className="rounded-3xl overflow-hidden shadow-2xl mb-6"
+        className="rounded-3xl overflow-hidden shadow-2xl mb-6 print:hidden"
         style={{
           background: "linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-mid) 100%)",
         }}
@@ -202,9 +222,31 @@ export default function ResultsDashboard({
         </div>
       </div>
 
+      {/* ── Print Hero Card ── */}
+      <div className="hidden print:flex flex-col items-center justify-center mb-10 pb-10 border-b-2 border-slate-200">
+        <div className="text-7xl font-bold mb-2" style={{ color: status.colorVar }}>{finalScore}%</div>
+        <div className="text-2xl font-semibold mb-4 text-black">{status.label}</div>
+        <p className="text-slate-700 text-center max-w-xl">{status.sublabel}</p>
+        
+        <div className="grid grid-cols-3 gap-8 mt-8 w-full max-w-lg">
+          <div className="text-center">
+            <p className="text-sm text-slate-500 mb-1">Base Score</p>
+            <p className="text-xl font-bold">{baseScore}%</p>
+          </div>
+          <div className="text-center">
+            <p className="text-sm text-slate-500 mb-1">Penalties</p>
+            <p className="text-xl font-bold text-red-600">{totalDeductions > 0 ? `-${totalDeductions}%` : "None"}</p>
+          </div>
+          <div className="text-center">
+            <p className="text-sm text-slate-500 mb-1">Final Score</p>
+            <p className="text-xl font-bold" style={{ color: status.colorVar }}>{finalScore}%</p>
+          </div>
+        </div>
+      </div>
+
       {/* ── Score Breakdown ── */}
       <div
-        className="rounded-2xl border p-6 mb-5 shadow-sm"
+        className="rounded-2xl border p-6 mb-5 shadow-sm print:shadow-none print:border-none print:p-0 print:mb-8"
         style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border-light)" }}
       >
         <h3
@@ -294,7 +336,7 @@ export default function ResultsDashboard({
       {/* ── Active Penalties ── */}
       {activePenaltyList.length > 0 && (
         <div
-          className="rounded-2xl border p-6 mb-5 shadow-sm"
+          className="rounded-2xl border p-6 mb-5 shadow-sm print:shadow-none print:border-none print:p-0 print:bg-transparent"
           style={{ backgroundColor: "#FFF5F5", borderColor: "#FECACA" }}
         >
           <div className="flex items-center gap-2 mb-3">
@@ -318,27 +360,77 @@ export default function ResultsDashboard({
       )}
 
 
+      {/* ── Buttons ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 print:hidden">
+        <button
+          type="button"
+          onClick={onEdit}
+          id="edit-profile-button"
+          aria-label="Edit application profile and re-analyse"
+          className="w-full py-4 px-6 rounded-2xl font-semibold text-sm tracking-wide transition-all duration-200 border-2"
+          style={{
+            backgroundColor: "var(--color-surface)",
+            borderColor: "var(--color-primary)",
+            color: "var(--color-primary)",
+            fontFamily: "var(--font-montserrat)",
+          }}
+        >
+          Edit Profile
+        </button>
+        <button
+          type="button"
+          onClick={() => setShowModal(true)}
+          className="w-full py-4 px-6 rounded-2xl font-semibold text-sm tracking-wide transition-all duration-200 text-white shadow-lg"
+          style={{
+            backgroundColor: "var(--color-primary)",
+            fontFamily: "var(--font-montserrat)",
+          }}
+        >
+          Generate Official PDF Report
+        </button>
+      </div>
 
-      {/* ── Edit Button ── */}
-      <button
-        type="button"
-        onClick={onEdit}
-        id="edit-profile-button"
-        aria-label="Edit application profile and re-analyse"
-        className="w-full py-4 px-8 rounded-2xl font-semibold text-sm tracking-wide transition-all duration-200 flex items-center justify-center gap-3 border-2"
-        style={{
-          backgroundColor: "var(--color-surface)",
-          borderColor: "var(--color-primary)",
-          color: "var(--color-primary)",
-          fontFamily: "var(--font-montserrat)",
-        }}
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
-          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-          <path fillRule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clipRule="evenodd" />
-        </svg>
-        Edit Application Profile &amp; Re-Analyse
-      </button>
+      {/* ── Print Footer ── */}
+      <div className="hidden print:block mt-12 pt-8 border-t-2 border-slate-200 text-center text-sm text-slate-600">
+        <p className="font-bold text-slate-800 mb-2 text-base">MG International Visa Consultancy</p>
+        <p>Cairo | Dubai | Zayed</p>
+        <p>Phone: 17621 | Email: Info@mg-visa.com</p>
+      </div>
+
+      {/* ── PDF Generation Modal ── */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 print:hidden" style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
+          <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl animate-fadeInUp">
+            <h3 className="text-xl font-bold text-slate-800 mb-2">Generate PDF Report</h3>
+            <p className="text-sm text-slate-500 mb-6">Enter the client's full name to generate an official MG Visa assessment document.</p>
+            
+            <input 
+              type="text" 
+              placeholder="e.g. John Doe"
+              value={clientName}
+              onChange={(e) => setClientName(e.target.value)}
+              className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-slate-800 focus:outline-none mb-6 text-slate-800 bg-white"
+            />
+
+            <div className="flex gap-3">
+              <button 
+                onClick={() => setShowModal(false)}
+                className="flex-1 py-3 rounded-xl font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleGeneratePdf}
+                disabled={!clientName.trim()}
+                className="flex-1 py-3 rounded-xl font-semibold text-white transition-colors disabled:opacity-50"
+                style={{ backgroundColor: "var(--color-primary)" }}
+              >
+                Generate
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
