@@ -177,30 +177,49 @@ body {
 .animate-spin-slow    { animation: spin-slow 3s linear infinite; }
 .animate-spin-reverse { animation: spin-reverse 2s linear infinite; }
 
-@media print {
-  @page {
-    size: A4;
-    margin: 2cm;
-  }
+@page {
+  size: A4 portrait;
+  margin: 8mm 10mm; /* Tight margins to guarantee 1 page */
 }
 
 @media print {
-  .print-watermark {
-    position: fixed !important;
+  /* Hide the web application completely */
+  body * {
+    visibility: hidden;
+  }
+  
+  /* Show ONLY the single-page print wrapper */
+  #printable-pdf-area, #printable-pdf-area * {
+    visibility: visible;
+  }
+
+  #printable-pdf-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-height: 275mm; /* Hard limit to prevent 2nd page creation */
+    overflow: hidden !important;
+    background-color: white !important;
+    color: #1E293B !important;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  /* Single-Page Watermark (Behind Content) */
+  .pdf-watermark {
+    position: absolute !important;
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    width: 65% !important;
-    opacity: 0.08 !important;
-    z-index: -50 !important; /* Forces it behind text */
+    width: 320px !important;
+    opacity: 0.06 !important;
+    z-index: 0 !important;
     pointer-events: none !important;
   }
-  /* Ensure content containers don't block the watermark */
-  .print-content-row {
-    background-color: transparent !important;
-  }
-  body, html {
-    height: 100%;
-    background-color: white !important;
+
+  .pdf-content-layer {
+    position: relative !important;
+    z-index: 10 !important;
   }
 }

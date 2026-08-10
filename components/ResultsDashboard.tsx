@@ -398,15 +398,15 @@ export default function ResultsDashboard({
     </div>
 
       {/* ── Print Layout (Hidden on Screen, Invoice Structure) ── */}
-      <div className="hidden print:flex print:flex-col print:absolute print:top-0 print:left-0 print:w-full print:h-[297mm] print:m-0 print:p-0 print:bg-white print:text-black overflow-hidden relative font-sans">
+      <div id="printable-pdf-area" className="hidden print:flex print:flex-col print:absolute print:top-0 print:left-0 print:w-full print:m-0 print:p-0 print:bg-white print:text-black font-sans">
         
         {/* Print Watermark */}
-        <div className="print-watermark">
+        <div className="pdf-watermark">
           <img src="/Logo W.png" alt="Watermark" className="filter invert" />
         </div>
 
         {/* Invoice Header */}
-        <div className="flex justify-between items-start mb-10 border-b-4 border-slate-800 pb-6 relative z-10 print-content-row pt-4">
+        <div className="flex justify-between items-start mb-10 border-b-4 border-slate-800 pb-6 relative z-10 pdf-content-layer pt-4">
           <div className="flex flex-col">
             <img src="/Logo W.png" alt="MG Visa" className="h-14 object-contain filter invert mb-4 w-32" />
             <h2 className="text-xl font-black text-slate-800 tracking-wider">MG International Visa Consultancy</h2>
@@ -432,7 +432,7 @@ export default function ResultsDashboard({
         </div>
 
         {/* Itemized Table */}
-        <div className="w-full mb-8 relative z-10 print-content-row flex-grow">
+        <div className="w-full mb-8 relative z-10 pdf-content-layer flex-grow">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-800 text-white">
@@ -448,7 +448,7 @@ export default function ResultsDashboard({
                 const pct = max > 0 ? (earned / max) * 100 : 0;
                 const strengthLabel = pct === 100 ? "Full marks" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : earned === 0 ? "Not scored" : "Weak";
                 return (
-                  <tr key={cat.id} className={`border-b border-slate-200 ${idx % 2 === 0 ? 'bg-slate-50' : 'bg-white'} print-content-row`}>
+                  <tr key={cat.id} className={`border-b border-slate-200 ${idx % 2 === 0 ? 'bg-slate-50' : 'bg-white'} pdf-content-layer`}>
                     <td className="py-4 px-4 text-sm font-bold text-slate-800">{cat.title}</td>
                     <td className="py-4 px-4 text-sm text-slate-600 text-center">{max}</td>
                     <td className="py-4 px-4 text-sm font-black text-slate-900 text-center">{earned}</td>
@@ -462,7 +462,7 @@ export default function ResultsDashboard({
                 const agePct = AGE_MAX_SCORE > 0 ? (ageData.earned / AGE_MAX_SCORE) * 100 : 0;
                 const ageLabel = age === null ? "Not entered" : agePct === 100 ? "Full marks" : agePct > 0 ? "Scored" : "No score";
                 return (
-                  <tr className="border-b border-slate-200 bg-white print-content-row">
+                  <tr className="border-b border-slate-200 bg-white pdf-content-layer">
                     <td className="py-4 px-4 text-sm font-bold text-slate-800">Age {age !== null ? `(${age} years)` : ""}</td>
                     <td className="py-4 px-4 text-sm text-slate-600 text-center">{AGE_MAX_SCORE}</td>
                     <td className="py-4 px-4 text-sm font-black text-slate-900 text-center">{ageData.earned}</td>
@@ -473,7 +473,7 @@ export default function ResultsDashboard({
               
               {/* Penalties as Deductions */}
               {activePenaltyList.map((p) => (
-                <tr key={p.id} className="border-b border-slate-200 bg-red-50 print-content-row">
+                <tr key={p.id} className="border-b border-slate-200 bg-red-50 pdf-content-layer">
                   <td className="py-3 px-4 text-sm font-semibold text-red-800">Deduction: {p.label}</td>
                   <td className="py-3 px-4 text-sm text-red-600 text-center">-</td>
                   <td className="py-3 px-4 text-sm font-black text-red-700 text-center">-{p.deduction || 10}</td>
@@ -485,7 +485,7 @@ export default function ResultsDashboard({
         </div>
 
         {/* Totals Block */}
-        <div className="flex justify-end relative z-10 print-content-row mt-4">
+        <div className="flex justify-end relative z-10 pdf-content-layer mt-4">
           <div className="w-2/5 border-t-4 border-slate-800 pt-4">
             <div className="flex justify-between text-sm mb-2">
               <span className="font-bold text-slate-600 uppercase">Subtotal (Base Score)</span>
