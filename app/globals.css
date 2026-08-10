@@ -187,19 +187,17 @@ body {
 @media print {
   .print-watermark {
     position: fixed !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    z-index: -999 !important;
-    opacity: 0.05 !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 65% !important;
+    opacity: 0.08 !important;
+    z-index: -50 !important; /* Forces it behind text */
+    pointer-events: none !important;
   }
-  .print-watermark img {
-    width: 60%;
-    object-fit: contain;
+  /* Ensure content containers don't block the watermark */
+  .print-content-row {
+    background-color: transparent !important;
   }
   body, html {
     height: 100%;

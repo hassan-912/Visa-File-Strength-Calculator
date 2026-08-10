@@ -149,9 +149,9 @@ export default function LoadingOverlay({
                 <div className="absolute right-32 w-16 h-16 bg-slate-200/10 rounded-full blur-[6px] translate-y-1" />
               </div>
 
-              {/* BIGGER Commercial Airplane Badge -> Now ONLY MG Visa Logo */}
+              {/* BIGGER Commercial Airplane Badge -> Now ONLY MG Visa Logo (Rotated horizontally) */}
               <div className="flex items-center justify-center">
-                <img src="/Logo W.png" alt="MG Visa" className="w-12 h-12 object-contain" />
+                <img src="/Logo W.png" alt="MG Visa" className="w-12 h-12 object-contain transform rotate-90" />
               </div>
             </div>
           </div>

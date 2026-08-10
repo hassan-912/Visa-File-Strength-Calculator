@@ -406,7 +406,7 @@ export default function ResultsDashboard({
         </div>
 
         {/* Print-only Header */}
-        <div className="mb-8 text-center border-b-2 pb-6 border-slate-200 print:mt-0 relative z-10 bg-white pt-4">
+        <div className="mb-8 text-center border-b-2 pb-6 border-slate-200 print:mt-0 relative z-10 print-content-row pt-4">
           <img src="/Logo W.png" alt="MG Visa" className="h-16 mx-auto mb-4 object-contain filter invert" />
           <h1 className="text-2xl font-bold mb-2">Official Visa File Strength Assessment</h1>
           <p className="text-lg font-medium">Prepared for: {clientName || "Client"}</p>
@@ -414,7 +414,7 @@ export default function ResultsDashboard({
         </div>
 
         {/* Print Hero Card */}
-        <div className="flex flex-col items-center justify-center mb-10 pb-10 border-b-2 border-slate-200 relative z-10 bg-white">
+        <div className="flex flex-col items-center justify-center mb-10 pb-10 border-b-2 border-slate-200 relative z-10 print-content-row">
           <div className="text-7xl font-bold mb-2" style={{ color: status.colorVar }}>{finalScore}%</div>
           <div className="text-2xl font-semibold mb-4 text-black">{status.label}</div>
           <p className="text-slate-700 text-center max-w-xl">{status.sublabel}</p>
@@ -436,7 +436,7 @@ export default function ResultsDashboard({
         </div>
 
         {/* Print Category Grid */}
-        <div className="w-full mb-8 z-10 relative bg-white">
+        <div className="w-full mb-8 z-10 relative print-content-row">
           <h3 className="text-xl font-bold mb-4 text-black border-b-2 border-slate-200 pb-2">Score Breakdown</h3>
           <div className="flex flex-col">
             {CATEGORIES.map((cat) => {
@@ -471,7 +471,7 @@ export default function ResultsDashboard({
 
         {/* Print Active Penalties */}
         {activePenaltyList.length > 0 && (
-          <div className="w-full mb-8 z-10 relative bg-white print:break-inside-avoid">
+          <div className="w-full mb-8 z-10 relative print-content-row print:break-inside-avoid">
             <h3 className="text-xl font-bold mb-4 text-red-700 border-b-2 border-red-200 pb-2">Risk Factors Detected</h3>
             <ul className="space-y-2">
               {activePenaltyList.map((p) => (
@@ -484,7 +484,7 @@ export default function ResultsDashboard({
         )}
 
         {/* Print Footer */}
-        <div className="mt-12 pt-8 border-t-2 border-slate-200 text-center text-sm text-slate-600 relative z-10 bg-white">
+        <div className="mt-12 pt-8 border-t-2 border-slate-200 text-center text-sm text-slate-600 relative z-10 print-content-row">
           <p className="font-bold text-slate-800 mb-2 text-base">MG International Visa Consultancy</p>
           <p>Cairo | Dubai | Zayed</p>
           <p>Phone: 17621 | Email: Info@mg-visa.com</p>
