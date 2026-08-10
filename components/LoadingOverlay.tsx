@@ -195,8 +195,7 @@ export default function LoadingOverlay({
           >
             <span className="text-2xl shrink-0">{MESSAGES[msgIndex].icon}</span>
             <p
-              className="text-sm font-medium leading-relaxed"
-              style={{ color: "var(--color-accent-border)" }}
+              className="text-sm font-medium leading-relaxed text-white shadow-sm"
             >
               {MESSAGES[msgIndex].text}
             </p>

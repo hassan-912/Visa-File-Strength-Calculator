@@ -18,6 +18,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Visa File Strength Calculator | MG Visa",
+  icons: {
+    icon: "/Logo W.png",
+  },
   description:
     "Assess your visa application file strength instantly using MG Visa's AI-powered scoring engine. Analyse travel history, financial health, employment, assets, and more.",
   keywords: [
