@@ -394,7 +394,8 @@ export default function ResultsDashboard({
             </div>
           </div>
         </div>
-      </div>
+      )}
+    </div>
 
       {/* ── Print Layout (Hidden on Screen) ── */}
       <div className="hidden print:block print:absolute print:top-0 print:left-0 print:w-full print:m-0 print:p-0 print:bg-white print:text-black">
