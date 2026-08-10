@@ -405,27 +405,15 @@ export default function ResultsDashboard({
           <img src="/Logo W.png" alt="Watermark" className="filter invert" />
         </div>
 
-        {/* Header: Logo & Client Info */}
-        <div className="flex justify-between items-start mb-6 relative z-10 print-content-row pt-2">
-          <img src="/Logo W.png" alt="MG Visa" className="h-12 object-contain filter invert" />
-          <div className="text-right">
-            <p className="text-sm font-bold text-slate-800 uppercase tracking-widest">Prepared For</p>
-            <p className="text-xl font-bold text-black">{clientName || "Client"}</p>
-            <p className="text-xs text-slate-500 mt-1">{reportDate}</p>
-          </div>
-        </div>
-
-        {/* Title */}
-        <div className="text-center border-b-2 border-slate-800 pb-4 mb-6 relative z-10 print-content-row">
-          <h1 className="text-3xl font-black uppercase tracking-wide text-slate-900">Visa File Strength Assessment</h1>
-        </div>
-
-        {/* Hero Section */}
-        <div className="flex items-center justify-between mb-8 relative z-10 print-content-row bg-slate-50 rounded-2xl p-6 border border-slate-200">
+        {/* Ultra-Compact Hero Section with Client Name */}
+        <div className="flex items-center justify-between mb-4 relative z-10 print-content-row bg-slate-50 rounded-xl p-4 border border-slate-200 mt-4">
           <div>
-            <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-1">Final Score</p>
-            <div className="text-6xl font-black" style={{ color: status.colorVar }}>{finalScore}%</div>
-            <div className="text-xl font-bold mt-2 text-slate-800">{status.label}</div>
+            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Prepared For</p>
+            <p className="text-lg font-black text-slate-900 mb-4">{clientName || "Client"} <span className="font-normal text-slate-500 text-xs ml-2">{reportDate}</span></p>
+            
+            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Final Score</p>
+            <div className="text-5xl font-black leading-none" style={{ color: status.colorVar }}>{finalScore}%</div>
+            <div className="text-lg font-bold mt-1 text-slate-800">{status.label}</div>
           </div>
           
           <div className="flex gap-6 text-right">
@@ -440,10 +428,10 @@ export default function ResultsDashboard({
           </div>
         </div>
 
-        {/* Score Breakdown (2-Column Grid to save vertical space) */}
-        <div className="w-full mb-6 relative z-10 print-content-row flex-grow">
-          <h3 className="text-lg font-bold mb-4 text-black border-b border-slate-300 pb-2 uppercase tracking-wider">Score Breakdown</h3>
-          <div className="grid grid-cols-2 gap-x-12 gap-y-3">
+        {/* Score Breakdown (Ultra Compact 2-Column Grid) */}
+        <div className="w-full mb-4 relative z-10 print-content-row flex-grow">
+          <h3 className="text-base font-bold mb-2 text-black border-b border-slate-300 pb-1 uppercase tracking-wider">Score Breakdown</h3>
+          <div className="grid grid-cols-2 gap-x-8 gap-y-1">
             {CATEGORIES.map((cat) => {
               const { earned, max } = categoryScores[cat.id] || { earned: 0, max: cat.maxScore };
               const pct = max > 0 ? (earned / max) * 100 : 0;
