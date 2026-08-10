@@ -397,84 +397,113 @@ export default function ResultsDashboard({
       )}
     </div>
 
-      {/* ── Print Layout (Hidden on Screen, Single Page Certificate Design) ── */}
-      <div className="hidden print:flex print:flex-col print:absolute print:top-0 print:left-0 print:w-full print:h-[297mm] print:m-0 print:p-0 print:bg-white print:text-black overflow-hidden relative">
+      {/* ── Print Layout (Hidden on Screen, Invoice Structure) ── */}
+      <div className="hidden print:flex print:flex-col print:absolute print:top-0 print:left-0 print:w-full print:h-[297mm] print:m-0 print:p-0 print:bg-white print:text-black overflow-hidden relative font-sans">
         
         {/* Print Watermark */}
         <div className="print-watermark">
           <img src="/Logo W.png" alt="Watermark" className="filter invert" />
         </div>
 
-        {/* Ultra-Compact Hero Section with Client Name */}
-        <div className="flex items-center justify-between mb-4 relative z-10 print-content-row bg-slate-50 rounded-xl p-4 border border-slate-200 mt-4">
-          <div>
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Prepared For</p>
-            <p className="text-lg font-black text-slate-900 mb-4">{clientName || "Client"} <span className="font-normal text-slate-500 text-xs ml-2">{reportDate}</span></p>
-            
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Final Score</p>
-            <div className="text-5xl font-black leading-none" style={{ color: status.colorVar }}>{finalScore}%</div>
-            <div className="text-lg font-bold mt-1 text-slate-800">{status.label}</div>
+        {/* Invoice Header */}
+        <div className="flex justify-between items-start mb-10 border-b-4 border-slate-800 pb-6 relative z-10 print-content-row pt-4">
+          <div className="flex flex-col">
+            <img src="/Logo W.png" alt="MG Visa" className="h-14 object-contain filter invert mb-4 w-32" />
+            <h2 className="text-xl font-black text-slate-800 tracking-wider">MG International Visa Consultancy</h2>
+            <p className="text-sm text-slate-600 mt-1">Cairo | Dubai | Zayed</p>
+            <p className="text-sm text-slate-600">Info@mg-visa.com</p>
           </div>
           
-          <div className="flex gap-6 text-right">
-            <div>
-              <p className="text-xs text-slate-500 uppercase font-bold mb-1">Base Score</p>
-              <p className="text-2xl font-bold text-slate-800">{baseScore}%</p>
-            </div>
-            <div>
-              <p className="text-xs text-slate-500 uppercase font-bold mb-1">Penalties</p>
-              <p className="text-2xl font-bold text-red-600">{totalDeductions > 0 ? `-${totalDeductions}%` : "None"}</p>
+          <div className="text-right flex flex-col justify-end h-full">
+            <h1 className="text-4xl font-black text-slate-900 uppercase tracking-widest mb-4">Assessment Report</h1>
+            <div className="bg-slate-50 p-4 border border-slate-200 rounded-lg text-left inline-block self-end min-w-[250px]">
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Prepared For</p>
+              <p className="text-xl font-bold text-black mb-2">{clientName || "Client"}</p>
+              <div className="flex justify-between text-sm text-slate-600">
+                <span className="font-semibold">Date:</span>
+                <span>{reportDate}</span>
+              </div>
+              <div className="flex justify-between text-sm text-slate-600 mt-1">
+                <span className="font-semibold">Report ID:</span>
+                <span className="uppercase">{Math.random().toString(36).substr(2, 8)}</span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Score Breakdown (Ultra Compact 2-Column Grid) */}
-        <div className="w-full mb-4 relative z-10 print-content-row flex-grow">
-          <h3 className="text-base font-bold mb-2 text-black border-b border-slate-300 pb-1 uppercase tracking-wider">Score Breakdown</h3>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-1">
-            {CATEGORIES.map((cat) => {
-              const { earned, max } = categoryScores[cat.id] || { earned: 0, max: cat.maxScore };
-              const pct = max > 0 ? (earned / max) * 100 : 0;
-              const strengthLabel = pct === 100 ? "Full marks" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : earned === 0 ? "Not scored" : "Weak";
-              return (
-                <div key={cat.id} className="flex justify-between items-center border-b border-slate-100 pb-1">
-                  <div className="text-sm font-semibold text-slate-800">{cat.title}</div>
-                  <div className="text-sm text-black font-bold">
-                    {earned} / {max} <span className="ml-2 text-[10px] font-bold text-slate-400 uppercase">{strengthLabel}</span>
-                  </div>
-                </div>
-              );
-            })}
-            {/* Age */}
-            {(() => {
-              const ageData = categoryScores["age_input"] || { earned: ageScore, max: AGE_MAX_SCORE };
-              const agePct = AGE_MAX_SCORE > 0 ? (ageData.earned / AGE_MAX_SCORE) * 100 : 0;
-              const ageLabel = age === null ? "Not entered" : agePct === 100 ? "Full marks" : agePct > 0 ? "Scored" : "No score";
-              return (
-                <div className="flex justify-between items-center border-b border-slate-100 pb-1">
-                  <div className="text-sm font-semibold text-slate-800">Age {age !== null ? `(${age} years)` : ""}</div>
-                  <div className="text-sm text-black font-bold">
-                    {ageData.earned} / {AGE_MAX_SCORE} <span className="ml-2 text-[10px] font-bold text-slate-400 uppercase">{ageLabel}</span>
-                  </div>
-                </div>
-              )
-            })()}
-          </div>
-        </div>
-
-        {/* Print Active Penalties */}
-        {activePenaltyList.length > 0 && (
-          <div className="w-full relative z-10 print-content-row bg-red-50 p-4 rounded-xl border border-red-100">
-            <h3 className="text-sm font-bold mb-2 text-red-800 uppercase tracking-wider">Risk Factors Detected</h3>
-            <ul className="grid grid-cols-2 gap-x-8 gap-y-1">
+        {/* Itemized Table */}
+        <div className="w-full mb-8 relative z-10 print-content-row flex-grow">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-slate-800 text-white">
+                <th className="py-3 px-4 text-sm font-bold uppercase tracking-wider w-1/2">Description</th>
+                <th className="py-3 px-4 text-sm font-bold uppercase tracking-wider text-center">Max Score</th>
+                <th className="py-3 px-4 text-sm font-bold uppercase tracking-wider text-center">Earned Score</th>
+                <th className="py-3 px-4 text-sm font-bold uppercase tracking-wider text-right">Status / Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              {CATEGORIES.map((cat, idx) => {
+                const { earned, max } = categoryScores[cat.id] || { earned: 0, max: cat.maxScore };
+                const pct = max > 0 ? (earned / max) * 100 : 0;
+                const strengthLabel = pct === 100 ? "Full marks" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : earned === 0 ? "Not scored" : "Weak";
+                return (
+                  <tr key={cat.id} className={`border-b border-slate-200 ${idx % 2 === 0 ? 'bg-slate-50' : 'bg-white'} print-content-row`}>
+                    <td className="py-4 px-4 text-sm font-bold text-slate-800">{cat.title}</td>
+                    <td className="py-4 px-4 text-sm text-slate-600 text-center">{max}</td>
+                    <td className="py-4 px-4 text-sm font-black text-slate-900 text-center">{earned}</td>
+                    <td className="py-4 px-4 text-xs font-bold text-slate-500 uppercase text-right">{strengthLabel}</td>
+                  </tr>
+                );
+              })}
+              {/* Age */}
+              {(() => {
+                const ageData = categoryScores["age_input"] || { earned: ageScore, max: AGE_MAX_SCORE };
+                const agePct = AGE_MAX_SCORE > 0 ? (ageData.earned / AGE_MAX_SCORE) * 100 : 0;
+                const ageLabel = age === null ? "Not entered" : agePct === 100 ? "Full marks" : agePct > 0 ? "Scored" : "No score";
+                return (
+                  <tr className="border-b border-slate-200 bg-white print-content-row">
+                    <td className="py-4 px-4 text-sm font-bold text-slate-800">Age {age !== null ? `(${age} years)` : ""}</td>
+                    <td className="py-4 px-4 text-sm text-slate-600 text-center">{AGE_MAX_SCORE}</td>
+                    <td className="py-4 px-4 text-sm font-black text-slate-900 text-center">{ageData.earned}</td>
+                    <td className="py-4 px-4 text-xs font-bold text-slate-500 uppercase text-right">{ageLabel}</td>
+                  </tr>
+                )
+              })()}
+              
+              {/* Penalties as Deductions */}
               {activePenaltyList.map((p) => (
-                <li key={p.id} className="text-xs font-semibold text-red-900 flex gap-2 items-start">
-                  <span className="text-red-600 mt-[2px]">•</span> {p.label}
-                </li>
+                <tr key={p.id} className="border-b border-slate-200 bg-red-50 print-content-row">
+                  <td className="py-3 px-4 text-sm font-semibold text-red-800">Deduction: {p.label}</td>
+                  <td className="py-3 px-4 text-sm text-red-600 text-center">-</td>
+                  <td className="py-3 px-4 text-sm font-black text-red-700 text-center">-{p.deduction || 10}</td>
+                  <td className="py-3 px-4 text-xs font-bold text-red-500 uppercase text-right">Penalty</td>
+                </tr>
               ))}
-            </ul>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Totals Block */}
+        <div className="flex justify-end relative z-10 print-content-row mt-4">
+          <div className="w-2/5 border-t-4 border-slate-800 pt-4">
+            <div className="flex justify-between text-sm mb-2">
+              <span className="font-bold text-slate-600 uppercase">Subtotal (Base Score)</span>
+              <span className="font-black text-slate-800">{baseScore}</span>
+            </div>
+            <div className="flex justify-between text-sm mb-4">
+              <span className="font-bold text-slate-600 uppercase">Deductions (Fees)</span>
+              <span className="font-black text-red-600">{totalDeductions > 0 ? `-${totalDeductions}` : "0"}</span>
+            </div>
+            <div className="flex justify-between items-center border-t border-slate-200 pt-4">
+              <span className="text-xl font-black uppercase text-slate-900">Final Assessment</span>
+              <span className="text-4xl font-black" style={{ color: status.colorVar }}>{finalScore}%</span>
+            </div>
+            <div className="text-right mt-2">
+              <span className="text-sm font-bold text-slate-500 uppercase tracking-widest">{status.label}</span>
+            </div>
           </div>
-        )}
+        </div>
 
       </div>
     </>
