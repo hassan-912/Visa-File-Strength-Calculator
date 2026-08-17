@@ -33,227 +33,136 @@ export interface Penalty {
 
 export const CATEGORIES: Category[] = [
   {
-    id: "travel_history",
-    title: "Travel History",
-    icon: "✈️",
-    description: "Select all countries or regions you have previously visited",
-    maxScore: 25,
-    inputType: "radio",
-    options: [
-      {
-        id: "travel_opt_0",
-        label: "US / CA / UK / Schengen (Multiple Visits)",
-        value: 25,
-      },
-      {
-        id: "travel_opt_1",
-        label: "Single Schengen / JP / AU",
-        value: 20,
-      },
-      {
-        id: "travel_opt_2",
-        label: "Asian / OECD / Gulf",
-        value: 12,
-      },
-      {
-        id: "travel_opt_3",
-        label: "Regional",
-        value: 5,
-      },
-      {
-        id: "travel_opt_4",
-        label: "None",
-        value: 0,
-      },
-    ],
-  },
-  {
-    id: "financial_health",
-    title: "Financial Health & Banking",
-    icon: "🏦",
-    description: "Select all statements that accurately describe your banking situation",
-    maxScore: 20,
-    inputType: "radio",
-    options: [
-      {
-        id: "financial_opt_0",
-        label: "Dual Currency + Active Flow",
-        value: 20,
-      },
-      {
-        id: "financial_opt_1",
-        label: "High Local Turnover >250k",
-        value: 15,
-      },
-      {
-        id: "financial_opt_2",
-        label: "USD Account >$3k",
-        value: 15,
-      },
-      {
-        id: "financial_opt_3",
-        label: "Low Movement",
-        value: 5,
-      },
-      {
-        id: "financial_opt_4",
-        label: "None",
-        value: 0,
-      },
-    ],
-  },
-  {
-    id: "employment",
-    title: "Employment & Professional Status",
-    icon: "💼",
-    description: "Select all options that apply to your current professional situation",
-    maxScore: 15,
-    inputType: "radio",
-    options: [
-      {
-        id: "employment_opt_0",
-        label: "Business Owner / Partner (Active > 2 years)",
-        value: 15,
-      },
-      {
-        id: "employment_opt_1",
-        label: "Senior Professional / Doctor / Engineer / Executive (> 1 year)",
-        value: 15,
-      },
-      {
-        id: "employment_opt_2",
-        label: "Mid-Level Employee in registered company (> 1 year)",
-        value: 10,
-      },
-      {
-        id: "employment_opt_3",
-        label: "Junior Employee / Working < 1 year",
-        value: 5,
-      },
-      {
-        id: "employment_opt_4",
-        label: "Freelancer / Unemployed / Unregistered",
-        value: 0,
-      },
-    ],
-  },
-  {
-    id: "property_assets",
-    title: "Property & Registered Assets",
-    icon: "🏠",
-    description: "Select all assets you own that are officially registered in your name",
-    maxScore: 15,
-    options: [
-      {
-        id: "property_opt_0",
-        label: "Multiple registered assets — Real estate plus land and/or a vehicle",
-        value: 15,
-      },
-      {
-        id: "property_opt_1",
-        label: "Registered real estate — Apartment, house, or commercial property",
-        value: 10,
-      },
-      {
-        id: "property_opt_2",
-        label: "Registered land plot or recently purchased vehicle",
-        value: 5,
-      },
-      {
-        id: "property_opt_3",
-        label: "None",
-        value: 0,
-      },
-    ],
-  },
-  {
-    id: "social_ties",
-    title: "Purpose of Travel & Social Ties",
-    icon: "👨‍👩‍👧",
-    description: "Select the option that best describes your travel situation and ties to your home country",
-    maxScore: 10,
-    inputType: "radio",
-    options: [
-      {
-        id: "social_opt_0",
-        label: "Married with children (Traveling alone)",
-        value: 10,
-      },
-      {
-        id: "social_opt_1",
-        label: "Married without children (Traveling alone)",
-        value: 7,
-      },
-      {
-        id: "social_opt_2",
-        label: "Family trip (Traveling with spouse & children)",
-        value: 5,
-      },
-      {
-        id: "social_opt_3",
-        label: "Single / Single traveling alone",
-        value: 3,
-      },
-    ],
-  },
-  {
     id: "education",
     title: "Education Level",
     icon: "🎓",
     description: "Select your highest completed academic qualification",
-    maxScore: 8,
+    maxScore: 9,
     inputType: "radio",
     options: [
-      {
-        id: "education_opt_0",
-        label: "Higher Education (Bachelor's / Master's / PhD)",
-        value: 8,
-      },
-      {
-        id: "education_opt_1",
-        label: "Intermediate Education / Diploma",
-        value: 4,
-      },
-      {
-        id: "education_opt_2",
-        label: "None / No Formal Education",
-        value: -4,
-      },
+      { id: "edu_opt_1", label: "Higher degree", value: 9 },
+      { id: "edu_opt_2", label: "Intermediate degree", value: 4 },
+      { id: "edu_opt_3", label: "No degree", value: 0 },
     ],
   },
+  {
+    id: "employment",
+    title: "Employment Status",
+    icon: "💼",
+    description: "Select your current employment situation",
+    maxScore: 5,
+    inputType: "radio",
+    options: [
+      { id: "emp_opt_1", label: "Employed at a company for 1+ years", value: 5 },
+      { id: "emp_opt_2", label: "Business owner for 6+ months", value: 5 },
+      { id: "emp_opt_3", label: "Employed at a company for less than 1 year", value: 0 },
+    ],
+  },
+  {
+    id: "marital",
+    title: "Marital Status",
+    icon: "💍",
+    description: "Select your marital status",
+    maxScore: 5,
+    inputType: "radio",
+    options: [
+      { id: "mar_opt_1", label: "Married with children", value: 5 },
+      { id: "mar_opt_2", label: "Married without children", value: 3 },
+      { id: "mar_opt_3", label: "Single", value: 0 },
+    ],
+  },
+  {
+    id: "travel",
+    title: "Travel History",
+    icon: "✈️",
+    description: "Select your travel history",
+    maxScore: 29,
+    inputType: "radio",
+    options: [
+      { id: "trav_opt_1", label: "USA, Canada, or UK history", value: 29 },
+      { id: "trav_opt_2", label: "European countries (Schengen) history", value: 20 },
+      { id: "trav_opt_3", label: "Asian countries history", value: 10 },
+      { id: "trav_opt_4", label: "Arab countries history", value: 5 },
+      { id: "trav_opt_5", label: "No travel history", value: 0 },
+    ],
+  },
+  {
+    id: "bank",
+    title: "Bank Account (With Activity)",
+    icon: "🏦",
+    description: "Select your banking details",
+    maxScore: 19,
+    inputType: "radio",
+    options: [
+      { id: "bank_opt_1", label: "Local + Foreign currency account (6+ months)", value: 19 },
+      { id: "bank_opt_2", label: "Local bank account (6+ months, balance 250k+)", value: 15 },
+      { id: "bank_opt_3", label: "Foreign currency account only (6+ months, balance $3,000+)", value: 15 },
+      { id: "bank_opt_4", label: "No bank account", value: 0 },
+    ],
+  },
+  {
+    id: "asset",
+    title: "Asset Ownership",
+    icon: "🏠",
+    description: "Select all assets you own",
+    maxScore: 19,
+    inputType: "checkbox",
+    options: [
+      { id: "asset_opt_1", label: "House", value: 5 },
+      { id: "asset_opt_2", label: "Land", value: 5 },
+      { id: "asset_opt_3", label: "Apartment", value: 5 },
+      { id: "asset_opt_4", label: "Vehicle", value: 4 },
+      { id: "asset_opt_5", label: "No assets", value: 0 },
+    ],
+  },
+  {
+    id: "purpose",
+    title: "Purpose of Travel",
+    icon: "👨‍👩‍👧",
+    description: "Select your travel purpose",
+    maxScore: 10,
+    inputType: "radio",
+    options: [
+      { id: "purp_opt_1", label: "Traveling alone (Married)", value: 10 },
+      { id: "purp_opt_2", label: "Traveling alone (Single)", value: 0 },
+      { id: "purp_opt_3", label: "Traveling with spouse", value: 0 },
+      { id: "purp_opt_4", label: "Traveling with spouse and children", value: 0 },
+      { id: "purp_opt_5", label: "Traveling with children", value: 0 },
+    ],
+  }
 ];
 
 // ─── Risk Penalty Deductions ───────────────────────────────────────────────────
 
 export const PENALTIES: Penalty[] = [
   {
-    id: "overstay",
-    label: "Previous Visa Overstay",
+    id: "personal_overstay",
+    label: "Personal Visa Overstay History",
     description: "I have previously overstayed a visa or resided illegally in any country",
     deduction: 70,
   },
   {
     id: "relative_overstay",
-    label: "First-Degree Relative Overstay",
+    label: "First-Degree Relatives Overstay",
     description: "A parent, sibling, or child has a prior overstay or illegal stay on record",
     deduction: 50,
   },
   {
-    id: "shell_company",
-    label: "Inactive or Shell Company",
-    description: "My registered business is currently inactive, dissolved, or considered a shell company",
+    id: "no_hr_letter",
+    label: "No HR Letter Provided",
+    description: "I cannot provide an official HR letter, employment contract, or proof of employment",
+    deduction: 50,
+  },
+  {
+    id: "inactive_business",
+    label: "No Active Business Operations",
+    description: "My registered business is currently inactive, dissolved, or I do not operate one",
     deduction: 30,
   },
   {
-    id: "no_hr_letter",
-    label: "No HR Letter or Work Proof",
-    description: "I cannot provide an official HR letter, employment contract, or proof of employment",
-    deduction: 20,
-  },
-  {
-    id: "visa_refusal",
-    label: "Recent Visa Refusal",
-    description: "I received a visa refusal from any embassy within the last 1 to 2 years",
+    id: "previous_rejection",
+    label: "Previous Rejection History",
+    description: "I received a visa refusal from any embassy previously",
     deduction: 10,
   },
 ];
@@ -262,13 +171,13 @@ export const PENALTIES: Penalty[] = [
 // Age is entered as a number; this function returns the internal score contribution.
 // The returned value is NEVER displayed in the UI.
 
-export const AGE_MAX_SCORE = 7;
+export const AGE_MAX_SCORE = 4;
 
 export function getAgeScore(age: number | null): number {
   if (age === null || age < 18) return 0;
-  if (age >= 45) return 7;
-  if (age >= 25) return 5; // 25 – 44
-  return 2;                // 18 – 24
+  if (age >= 45) return 0; // 45+
+  if (age >= 25) return 4; // 25 – 44
+  return 0;                // 18 – 24
 }
 
 // ─── Types ────────────────────────────────────────────────────────────────────
