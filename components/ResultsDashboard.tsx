@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CATEGORIES,
   PENALTIES,
-  AGE_MAX_SCORE,
   calculateScore,
   getScoreStatus,
-  getAgeScore,
 } from "@/lib/scoring";
 import type { SelectionsMap, PenaltiesMap } from "@/lib/scoring";
 
@@ -43,7 +41,7 @@ export default function ResultsDashboard({
   age,
   onEdit,
 }: ResultsDashboardProps) {
-  const { baseScore, totalDeductions, finalScore, ageScore, categoryScores } =
+  const { baseScore, totalDeductions, finalScore, categoryScores } =
     calculateScore(selections, activePenalties, age);
 
   const status = getScoreStatus(finalScore);
@@ -266,42 +264,6 @@ export default function ResultsDashboard({
               </div>
             );
           })}
-
-          {/* Age row */}
-          {(() => {
-            const ageData = categoryScores["age_input"] || { earned: ageScore, max: AGE_MAX_SCORE };
-            const agePct = AGE_MAX_SCORE > 0 ? (ageData.earned / AGE_MAX_SCORE) * 100 : 0;
-            return (
-              <div style={{ animationDelay: `${CATEGORIES.length * 80}ms` }}>
-                <div className="flex items-center justify-between mb-1.5">
-                  <div className="flex items-center gap-2">
-                    <span className="text-base">🧑</span>
-                    <span className="text-sm font-semibold" style={{ color: "var(--color-text-main)" }}>
-                      Age {age !== null ? `(${age} years)` : ""}
-                    </span>
-                  </div>
-                  <span
-                    className="text-xs font-bold"
-                    style={{
-                      color: agePct >= 70 ? "var(--color-strong)" : agePct >= 40 ? "var(--color-moderate)" : "var(--color-text-muted)",
-                    }}
-                  >
-                    {age === null ? "Not entered" : agePct === 100 ? "Full marks" : agePct > 0 ? "Scored" : "No score"}
-                  </span>
-                </div>
-                <div className="h-2.5 rounded-full overflow-hidden" style={{ backgroundColor: "var(--color-surface-3)" }}>
-                  <div
-                    className="h-full rounded-full transition-all ease-out"
-                    style={{
-                      width: barsVisible ? `${agePct}%` : "0%",
-                      transitionDuration: `${600 + CATEGORIES.length * 100}ms`,
-                      backgroundColor: agePct >= 70 ? "var(--color-strong)" : agePct >= 40 ? "var(--color-moderate)" : agePct > 0 ? "var(--color-weak)" : "var(--color-border)",
-                    }}
-                  />
-                </div>
-              </div>
-            );
-          })()}
         </div>
       </div>
 
@@ -456,21 +418,6 @@ export default function ResultsDashboard({
                   </tr>
                 );
               })}
-              {/* Age */}
-              {(() => {
-                const ageData = categoryScores["age_input"] || { earned: ageScore, max: AGE_MAX_SCORE };
-                const agePct = AGE_MAX_SCORE > 0 ? (ageData.earned / AGE_MAX_SCORE) * 100 : 0;
-                const ageLabel = age === null ? "Not entered" : agePct === 100 ? "Full marks" : agePct > 0 ? "Scored" : "No score";
-                return (
-                  <tr className="border-b border-slate-200 bg-white pdf-content-layer">
-                    <td className="py-4 px-4 text-sm font-bold text-slate-800">Age {age !== null ? `(${age} years)` : ""}</td>
-                    <td className="py-4 px-4 text-sm text-slate-600 text-center">{AGE_MAX_SCORE}</td>
-                    <td className="py-4 px-4 text-sm font-black text-slate-900 text-center">{ageData.earned}</td>
-                    <td className="py-4 px-4 text-xs font-bold text-slate-500 uppercase text-right">{ageLabel}</td>
-                  </tr>
-                )
-              })()}
-              
               {/* Penalties as Deductions */}
               {activePenaltyList.map((p) => (
                 <tr key={p.id} className="border-b border-slate-200 bg-red-50 pdf-content-layer">

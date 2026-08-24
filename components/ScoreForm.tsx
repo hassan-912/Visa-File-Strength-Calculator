@@ -1,52 +1,78 @@
-"use client";
+﻿"use client";
 
-import { CATEGORIES, PENALTIES, AGE_MAX_SCORE } from "@/lib/scoring";
+import { CATEGORIES, PENALTIES } from "@/lib/scoring";
 import type { SelectionsMap, PenaltiesMap } from "@/lib/scoring";
 
 interface ScoreFormProps {
   selections: SelectionsMap;
   activePenalties: PenaltiesMap;
-  age: number | null;
   onSelectionToggle: (categoryId: string, optionId: string, isSingleChoice?: boolean) => void;
   onPenaltyChange: (penaltyId: string, active: boolean) => void;
-  onAgeChange: (value: number | null) => void;
   onSubmit: () => void;
+  /** When true (Immigration tab), all inputs are disabled and an overlay is shown */
+  disabled?: boolean;
 }
 
 export default function ScoreForm({
   selections,
   activePenalties,
-  age,
   onSelectionToggle,
   onPenaltyChange,
-  onAgeChange,
   onSubmit,
+  disabled = false,
 }: ScoreFormProps) {
-  // A section is "answered" if at least one checkbox is checked
   const answeredCategories = CATEGORIES.filter(
     (cat) => (selections[cat.id]?.length ?? 0) > 0
   ).length;
-  const ageAnswered = age !== null && age >= 1;
-  // Total sections = categories + age field
-  const totalSections = CATEGORIES.length + 1;
-  const answeredCount = answeredCategories + (ageAnswered ? 1 : 0);
+  const totalSections = CATEGORIES.length;
+  const answeredCount = answeredCategories;
   const isComplete = answeredCount === totalSections;
 
-  function handleAgeInput(e: React.ChangeEvent<HTMLInputElement>) {
-    const raw = e.target.value;
-    if (raw === "") {
-      onAgeChange(null);
-    } else {
-      const parsed = parseInt(raw, 10);
-      if (!isNaN(parsed) && parsed >= 0) {
-        onAgeChange(parsed);
-      }
-    }
-  }
-
   return (
-    <div className="animate-fadeInUp">
-      {/* ── Section Header ── */}
+    <div className="animate-fadeInUp relative">
+      {/* Immigration Under-Construction Overlay */}
+      {disabled && (
+        <div
+          className="absolute inset-0 z-20 flex flex-col items-center justify-center rounded-2xl"
+          style={{
+            backgroundColor: "rgba(255,255,255,0.92)",
+            backdropFilter: "blur(4px)",
+          }}
+        >
+          <div
+            className="flex flex-col items-center gap-4 p-8 rounded-2xl text-center max-w-sm"
+            style={{
+              backgroundColor: "var(--color-surface)",
+              border: "1px solid var(--color-border-light)",
+              boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
+            }}
+          >
+            <span className="text-5xl">🏗️</span>
+            <h3
+              className="text-xl font-bold"
+              style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
+            >
+              Under Construction
+            </h3>
+            <p className="text-sm leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+              The Immigration calculator is currently being developed. Please check back soon, or
+              use the Tourism calculator in the meantime.
+            </p>
+            <div
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full"
+              style={{
+                backgroundColor: "var(--color-accent-bg)",
+                color: "var(--color-accent)",
+                border: "1px solid var(--color-accent-border)",
+              }}
+            >
+              Coming Soon
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Section Header */}
       <div className="mb-8">
         <div
           className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3"
@@ -56,10 +82,7 @@ export default function ScoreForm({
             border: "1px solid var(--color-accent-border)",
           }}
         >
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ backgroundColor: "var(--color-accent-hover)" }}
-          />
+          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--color-accent-hover)" }} />
           Complete Your Profile
         </div>
 
@@ -67,11 +90,10 @@ export default function ScoreForm({
           className="text-2xl sm:text-3xl font-bold leading-tight mb-2"
           style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
         >
-          Visa Application Profile
+          Tourism Visa Profile
         </h2>
         <p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
-          Select all that apply in each section for the most accurate assessment.
-          Your responses are strictly confidential.
+          Select the most accurate option in each section. Your responses are strictly confidential.
         </p>
 
         {/* Progress bar */}
@@ -99,22 +121,16 @@ export default function ScoreForm({
         </div>
       </div>
 
-      {/* ── Application Parameters Divider ── */}
+      {/* Application Parameters Divider */}
       <div className="flex items-center gap-3 mb-5">
-        <div
-          className="h-px flex-1"
-          style={{ background: "linear-gradient(to right, var(--color-accent), transparent)" }}
-        />
+        <div className="h-px flex-1" style={{ background: "linear-gradient(to right, var(--color-accent), transparent)" }} />
         <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "var(--color-accent)" }}>
           Application Parameters
         </span>
-        <div
-          className="h-px flex-1"
-          style={{ background: "linear-gradient(to left, var(--color-accent), transparent)" }}
-        />
+        <div className="h-px flex-1" style={{ background: "linear-gradient(to left, var(--color-accent), transparent)" }} />
       </div>
 
-      {/* ── Base Score Categories (Checkboxes) ── */}
+      {/* Base Score Categories */}
       <div className="space-y-4 mb-8">
         {CATEGORIES.map((category, catIdx) => {
           const selectedIds = selections[category.id] ?? [];
@@ -138,9 +154,7 @@ export default function ScoreForm({
                 <div className="flex items-center gap-3">
                   <div
                     className="flex items-center justify-center w-9 h-9 rounded-xl text-lg shrink-0"
-                    style={{
-                      backgroundColor: isAnswered ? "var(--color-accent-bg)" : "var(--color-surface-2)",
-                    }}
+                    style={{ backgroundColor: isAnswered ? "var(--color-accent-bg)" : "var(--color-surface-2)" }}
                   >
                     {category.icon}
                   </div>
@@ -169,7 +183,7 @@ export default function ScoreForm({
                 )}
               </div>
 
-              {/* Checkbox / Radio options — key uses option.id, NOT option.value */}
+              {/* Options */}
               <div className="px-5 pb-5 space-y-2">
                 {category.options.map((option) => {
                   const isChecked = selectedIds.includes(option.id);
@@ -192,10 +206,10 @@ export default function ScoreForm({
                           checked={isChecked}
                           onChange={() => onSelectionToggle(category.id, option.id, isRadio)}
                           className="sr-only"
+                          disabled={disabled}
                         />
-                        {/* Custom checkbox/radio indicator */}
                         <div
-                          className={`w-4 h-4 border-2 flex items-center justify-center transition-all duration-150 ${isRadio ? 'rounded-full' : 'rounded'}`}
+                          className={`w-4 h-4 border-2 flex items-center justify-center transition-all duration-150 ${isRadio ? "rounded-full" : "rounded"}`}
                           style={{
                             borderColor: isChecked ? "var(--color-accent)" : "var(--color-border)",
                             backgroundColor: isChecked ? "var(--color-accent)" : "transparent",
@@ -206,9 +220,7 @@ export default function ScoreForm({
                               <path fillRule="evenodd" d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                           )}
-                          {isChecked && isRadio && (
-                            <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                          )}
+                          {isChecked && isRadio && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                         </div>
                       </div>
                       <span
@@ -229,79 +241,7 @@ export default function ScoreForm({
         })}
       </div>
 
-      {/* ── Age Number Input ── */}
-      <div
-        className="rounded-2xl border mb-8 transition-all duration-200"
-        style={{
-          borderColor: ageAnswered ? "var(--color-accent)" : "var(--color-border-light)",
-          backgroundColor: "var(--color-surface)",
-          boxShadow: ageAnswered
-            ? "0 0 0 3px rgba(30,58,138,0.08)"
-            : "0 1px 3px rgba(0,0,0,0.05)",
-        }}
-      >
-        <div className="flex items-center justify-between px-5 pt-5 pb-3">
-          <div className="flex items-center gap-3">
-            <div
-              className="flex items-center justify-center w-9 h-9 rounded-xl text-lg shrink-0"
-              style={{
-                backgroundColor: ageAnswered ? "var(--color-accent-bg)" : "var(--color-surface-2)",
-              }}
-            >
-              🧑
-            </div>
-            <div>
-              <h3
-                className="font-bold text-sm leading-tight"
-                style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
-              >
-                Age
-              </h3>
-              <p className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
-                Enter your current age in years
-              </p>
-            </div>
-          </div>
-
-          {ageAnswered && (
-            <div
-              className="shrink-0 flex items-center justify-center w-6 h-6 rounded-full"
-              style={{ backgroundColor: "var(--color-accent)", color: "#fff" }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3.5 h-3.5">
-                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-              </svg>
-            </div>
-          )}
-        </div>
-
-        <div className="px-5 pb-5">
-          <input
-            type="number"
-            id="age-input"
-            min={1}
-            max={120}
-            value={age ?? ""}
-            onChange={handleAgeInput}
-            placeholder="Enter your age (e.g. 34)"
-            className="w-full px-4 py-3 rounded-xl border text-sm transition-all duration-150 outline-none"
-            style={{
-              borderColor: ageAnswered ? "var(--color-accent)" : "var(--color-border)",
-              backgroundColor: ageAnswered ? "var(--color-accent-bg)" : "var(--color-surface-2)",
-              color: "var(--color-text-main)",
-              fontFamily: "var(--font-montserrat)",
-            }}
-            aria-label="Your current age"
-          />
-          {age !== null && age < 18 && (
-            <p className="text-xs mt-2" style={{ color: "var(--color-text-muted)" }}>
-              Applicants under 18 do not receive age bracket points, but may still apply with a guardian.
-            </p>
-          )}
-        </div>
-      </div>
-
-      {/* ── Risk Factors Divider ── */}
+      {/* Risk Factors Divider */}
       <div className="flex items-center gap-3 mb-5">
         <div className="h-px flex-1" style={{ background: "linear-gradient(to right, #DC2626, transparent)" }} />
         <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#DC2626" }}>
@@ -314,7 +254,7 @@ export default function ScoreForm({
         Check all risk factors that apply. These are assessed by embassies and may significantly impact your outcome.
       </p>
 
-      {/* ── Penalties ── */}
+      {/* Penalties */}
       <div
         className="rounded-2xl border overflow-hidden mb-8"
         style={{
@@ -342,6 +282,7 @@ export default function ScoreForm({
                   checked={isActive}
                   onChange={(e) => onPenaltyChange(penalty.id, e.target.checked)}
                   className="sr-only"
+                  disabled={disabled}
                 />
                 <div
                   className="w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-150"
@@ -376,7 +317,7 @@ export default function ScoreForm({
         })}
       </div>
 
-      {/* ── Disclaimer ── */}
+      {/* Disclaimer */}
       <div
         className="rounded-xl p-4 mb-8 text-xs leading-relaxed"
         style={{
@@ -392,23 +333,23 @@ export default function ScoreForm({
         advice. For personalised consultation, please contact an MG Visa licensed advisor.
       </div>
 
-      {/* ── Submit Button ── */}
+      {/* Submit Button */}
       <button
         type="button"
         onClick={onSubmit}
-        disabled={!isComplete}
+        disabled={!isComplete || disabled}
         id="analyse-button"
         aria-label="Analyse my visa file"
         className="w-full py-4 px-8 rounded-2xl font-bold text-base tracking-wide transition-all duration-200 flex items-center justify-center gap-3"
         style={{
-          backgroundColor: isComplete ? "var(--color-primary)" : "var(--color-surface-3)",
-          color: isComplete ? "#FFFFFF" : "var(--color-text-light)",
+          backgroundColor: isComplete && !disabled ? "var(--color-primary)" : "var(--color-surface-3)",
+          color: isComplete && !disabled ? "#FFFFFF" : "var(--color-text-light)",
           fontFamily: "var(--font-montserrat)",
-          cursor: isComplete ? "pointer" : "not-allowed",
-          boxShadow: isComplete ? "0 4px 20px rgba(10,25,47,0.3)" : "none",
+          cursor: isComplete && !disabled ? "pointer" : "not-allowed",
+          boxShadow: isComplete && !disabled ? "0 4px 20px rgba(10,25,47,0.3)" : "none",
         }}
       >
-        {isComplete ? (
+        {isComplete && !disabled ? (
           <>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
               <path fillRule="evenodd" d="M12 2a10 10 0 100 20A10 10 0 0012 2zm3.707 8.707a1 1 0 00-1.414-1.414L11 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -423,8 +364,9 @@ export default function ScoreForm({
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
             </svg>
-            Complete all {totalSections - answeredCount} remaining section
-            {totalSections - answeredCount !== 1 ? "s" : ""} to continue
+            {disabled
+              ? "Select Tourism tab to use the calculator"
+              : `Complete all ${totalSections - answeredCount} remaining section${totalSections - answeredCount !== 1 ? "s" : ""} to continue`}
           </>
         )}
       </button>

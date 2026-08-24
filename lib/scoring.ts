@@ -1,12 +1,12 @@
-// ─── Scoring Data Model ───────────────────────────────────────────────────────
+// --- Scoring Data Model ---
 // IMPORTANT: Percentage scores are NEVER shown in the UI.
 // These weights are internal calculation values only.
-// Age is handled separately via a number input — not a category.
+// Age is now a radio-button category (age_bracket) - no separate number input.
 
 export interface Option {
-  id: string;       // Unique string ID — used as React key (NOT the value)
-  label: string;    // Display label — NO % shown in UI
-  value: number;    // Internal scoring weight (hidden from UI)
+  id: string;
+  label: string;
+  value: number;
 }
 
 export interface Category {
@@ -14,8 +14,8 @@ export interface Category {
   title: string;
   icon: string;
   description: string;
-  maxScore: number;   // Internal max — hidden from UI. Category score is capped at this.
-  inputType?: "radio" | "checkbox"; // UI input control type
+  maxScore: number;
+  inputType?: "radio" | "checkbox";
   options: Option[];
 }
 
@@ -23,15 +23,23 @@ export interface Penalty {
   id: string;
   label: string;
   description: string;
-  deduction: number; // Internal deduction (hidden from UI)
+  deduction: number;
 }
 
-// ─── Base Score Categories ─────────────────────────────────────────────────────
-// Note: "Age Bracket" has been removed — age is now a <input type="number"> field.
-// Note: "None / 0%" options removed — unchecked = 0 contribution automatically.
-// Each option has a unique `id` to safely serve as React key.
-
 export const CATEGORIES: Category[] = [
+  {
+    id: "age_bracket",
+    title: "Age",
+    icon: "🧑",
+    description: "Select your current age bracket",
+    maxScore: 4,
+    inputType: "radio",
+    options: [
+      { id: "age_opt_1", label: "18-24 years", value: 3 },
+      { id: "age_opt_2", label: "25-44 years", value: 4 },
+      { id: "age_opt_3", label: "45+ years", value: 4 },
+    ],
+  },
   {
     id: "education",
     title: "Education Level",
@@ -40,9 +48,9 @@ export const CATEGORIES: Category[] = [
     maxScore: 9,
     inputType: "radio",
     options: [
-      { id: "edu_opt_1", label: "Higher degree", value: 9 },
-      { id: "edu_opt_2", label: "Intermediate degree", value: 4 },
-      { id: "edu_opt_3", label: "No degree", value: 0 },
+      { id: "edu_opt_1", label: "Higher Education", value: 9 },
+      { id: "edu_opt_2", label: "Intermediate", value: 6 },
+      { id: "edu_opt_3", label: "No qualification", value: 0 },
     ],
   },
   {
@@ -53,14 +61,14 @@ export const CATEGORIES: Category[] = [
     maxScore: 5,
     inputType: "radio",
     options: [
-      { id: "emp_opt_1", label: "Employed at a company for 1+ years", value: 5 },
+      { id: "emp_opt_1", label: "Employed in a company for 1+ year", value: 5 },
       { id: "emp_opt_2", label: "Business owner for 6+ months", value: 5 },
-      { id: "emp_opt_3", label: "Employed at a company for less than 1 year", value: 0 },
+      { id: "emp_opt_3", label: "Employed in a company for less than 1 year", value: 0 },
     ],
   },
   {
     id: "marital",
-    title: "Marital Status",
+    title: "Marital Status & Social Ties",
     icon: "💍",
     description: "Select your marital status",
     maxScore: 5,
@@ -75,123 +83,110 @@ export const CATEGORIES: Category[] = [
     id: "travel",
     title: "Travel History",
     icon: "✈️",
-    description: "Select your travel history",
+    description: "Select all countries / regions you have previously visited",
     maxScore: 29,
-    inputType: "radio",
+    inputType: "checkbox",
     options: [
-      { id: "trav_opt_1", label: "USA, Canada, or UK history", value: 29 },
-      { id: "trav_opt_2", label: "European countries (Schengen) history", value: 20 },
-      { id: "trav_opt_3", label: "Asian countries history", value: 10 },
-      { id: "trav_opt_4", label: "Arab countries history", value: 5 },
+      { id: "trav_opt_1", label: "US / Canada / UK", value: 29 },
+      { id: "trav_opt_2", label: "Europe", value: 25 },
+      { id: "trav_opt_3", label: "Asian countries", value: 15 },
+      { id: "trav_opt_4", label: "Gulf / Arab countries", value: 10 },
       { id: "trav_opt_5", label: "No travel history", value: 0 },
     ],
   },
   {
     id: "bank",
-    title: "Bank Account (With Activity)",
+    title: "Financial Health & Banking",
     icon: "🏦",
-    description: "Select your banking details",
-    maxScore: 19,
+    description: "Select your banking situation",
+    maxScore: 29,
     inputType: "radio",
     options: [
-      { id: "bank_opt_1", label: "Local + Foreign currency account (6+ months)", value: 19 },
-      { id: "bank_opt_2", label: "Local bank account (6+ months, balance 250k+)", value: 15 },
-      { id: "bank_opt_3", label: "Foreign currency account only (6+ months, balance $3,000+)", value: 15 },
+      { id: "bank_opt_1", label: "Local & USD account (6+ months active)", value: 29 },
+      { id: "bank_opt_2", label: "Local account (6+ months, 250k+ balance)", value: 25 },
+      { id: "bank_opt_3", label: "USD account only (6+ months, $3,000+ balance)", value: 25 },
       { id: "bank_opt_4", label: "No bank account", value: 0 },
     ],
   },
   {
-    id: "asset",
-    title: "Asset Ownership",
-    icon: "🏠",
-    description: "Select all assets you own",
-    maxScore: 19,
-    inputType: "checkbox",
-    options: [
-      { id: "asset_opt_1", label: "House", value: 5 },
-      { id: "asset_opt_2", label: "Land", value: 5 },
-      { id: "asset_opt_3", label: "Apartment", value: 5 },
-      { id: "asset_opt_4", label: "Vehicle", value: 4 },
-      { id: "asset_opt_5", label: "No assets", value: 0 },
-    ],
-  },
-  {
     id: "purpose",
-    title: "Purpose of Travel",
-    icon: "👨‍👩‍👧",
-    description: "Select your travel purpose",
+    title: "Current Trip / Purpose of Travel",
+    icon: "🧳",
+    description: "Select your travel arrangement",
     maxScore: 10,
     inputType: "radio",
     options: [
-      { id: "purp_opt_1", label: "Traveling alone (Married)", value: 10 },
-      { id: "purp_opt_2", label: "Traveling alone (Single)", value: 0 },
+      { id: "purp_opt_1", label: "Traveling alone (applicant is married)", value: 10 },
+      { id: "purp_opt_2", label: "Traveling alone (single)", value: 0 },
       { id: "purp_opt_3", label: "Traveling with spouse", value: 0 },
-      { id: "purp_opt_4", label: "Traveling with spouse and children", value: 0 },
-      { id: "purp_opt_5", label: "Traveling with children", value: 0 },
+      { id: "purp_opt_4", label: "Traveling with family / kids", value: 0 },
     ],
-  }
+  },
+  {
+    id: "asset",
+    title: "Property & Assets",
+    icon: "🏠",
+    description: "Select all assets you own",
+    maxScore: 9,
+    inputType: "checkbox",
+    options: [
+      { id: "asset_opt_1", label: "House", value: 3 },
+      { id: "asset_opt_2", label: "Land", value: 2 },
+      { id: "asset_opt_3", label: "Apartment", value: 2 },
+      { id: "asset_opt_4", label: "Car", value: 2 },
+      { id: "asset_opt_5", label: "No assets", value: 0 },
+    ],
+  },
 ];
-
-// ─── Risk Penalty Deductions ───────────────────────────────────────────────────
 
 export const PENALTIES: Penalty[] = [
   {
-    id: "personal_overstay",
-    label: "Personal Visa Overstay History",
-    description: "I have previously overstayed a visa or resided illegally in any country",
-    deduction: 70,
+    id: "previous_rejection",
+    label: "Previous Visa Refusal",
+    description: "I have previously received a visa refusal from any embassy",
+    deduction: 5,
   },
   {
     id: "relative_overstay",
-    label: "First-Degree Relatives Overstay",
+    label: "1st-Degree Relative Has Overstayed a Visa",
     description: "A parent, sibling, or child has a prior overstay or illegal stay on record",
     deduction: 50,
   },
   {
+    id: "personal_overstay",
+    label: "Applicant Has Previously Overstayed a Visa",
+    description: "I have previously overstayed a visa or resided illegally in any country",
+    deduction: 70,
+  },
+  {
     id: "no_hr_letter",
-    label: "No HR Letter Provided",
+    label: "Cannot Provide an Official HR Letter",
     description: "I cannot provide an official HR letter, employment contract, or proof of employment",
     deduction: 50,
   },
   {
     id: "inactive_business",
-    label: "No Active Business Operations",
-    description: "My registered business is currently inactive, dissolved, or I do not operate one",
+    label: "Business Is Not Actively Operating",
+    description: "My registered business is currently inactive, dissolved, or not actively operating (for business owners)",
     deduction: 30,
-  },
-  {
-    id: "previous_rejection",
-    label: "Previous Rejection History",
-    description: "I received a visa refusal from any embassy previously",
-    deduction: 10,
   },
 ];
 
-// ─── Age Score Calculation ────────────────────────────────────────────────────
-// Age is entered as a number; this function returns the internal score contribution.
-// The returned value is NEVER displayed in the UI.
-
-export const AGE_MAX_SCORE = 4;
-
-export function getAgeScore(age: number | null): number {
-  if (age === null || age < 18) return 0;
-  if (age >= 45) return 0; // 45+
-  if (age >= 25) return 4; // 25 – 44
-  return 0;                // 18 – 24
-}
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-// Each category stores an array of selected option IDs
 export type SelectionsMap = Record<string, string[]>;
 export type PenaltiesMap = Record<string, boolean>;
 
-// ─── Score Calculation ─────────────────────────────────────────────────────────
+/** @deprecated Age is now a radio category (age_bracket). Kept for API compat. */
+export const AGE_MAX_SCORE = 4;
+
+/** @deprecated No-op. Age now comes from selections["age_bracket"]. */
+export function getAgeScore(_age: number | null): number {
+  return 0;
+}
 
 export function calculateScore(
   selections: SelectionsMap,
   activePenalties: PenaltiesMap,
-  age: number | null
+  _age: number | null
 ): {
   baseScore: number;
   totalDeductions: number;
@@ -204,7 +199,6 @@ export function calculateScore(
 
   for (const cat of CATEGORIES) {
     const selectedIds = selections[cat.id] ?? [];
-    // Sum values of all checked options, then cap at the category's max
     const rawSum = cat.options
       .filter((opt) => selectedIds.includes(opt.id))
       .reduce((sum, opt) => sum + opt.value, 0);
@@ -213,10 +207,7 @@ export function calculateScore(
     baseScore += earned;
   }
 
-  // Add age score
-  const ageScore = getAgeScore(age);
-  baseScore += ageScore;
-  categoryScores["age_input"] = { earned: ageScore, max: AGE_MAX_SCORE };
+  categoryScores["age_input"] = { earned: 0, max: 0 };
 
   const totalDeductions = PENALTIES.filter((p) => activePenalties[p.id]).reduce(
     (sum, p) => sum + p.deduction,
@@ -225,10 +216,8 @@ export function calculateScore(
 
   const finalScore = Math.min(100, Math.max(0, baseScore - totalDeductions));
 
-  return { baseScore, totalDeductions, finalScore, ageScore, categoryScores };
+  return { baseScore, totalDeductions, finalScore, ageScore: 0, categoryScores };
 }
-
-// ─── Status Label ─────────────────────────────────────────────────────────────
 
 export function getScoreStatus(score: number): {
   label: string;

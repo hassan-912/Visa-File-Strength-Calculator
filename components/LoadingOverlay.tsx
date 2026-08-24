@@ -41,22 +41,35 @@ export default function LoadingOverlay({
   }, []);
 
   // Smooth Progress & Timer
+  // Phase 1 (0 → SLOW_MS): slow quadratic ease-in covering 0% → SLOW_SHARE%
+  // Phase 2 (SLOW_MS → durationMs): fast linear covering SLOW_SHARE% → 100%
   useEffect(() => {
-    // Update every 50ms
+    const SLOW_MS = 2000;          // how long the slow phase lasts
+    const SLOW_SHARE = 22;         // % of bar covered during the slow phase
     const intervalMs = 50;
-    const totalSteps = durationMs / intervalMs;
-    const stepAmount = 100 / totalSteps;
+    const startTime = Date.now();
+
+    function computeProgress(elapsed: number): number {
+      if (elapsed >= durationMs) return 100;
+      if (elapsed <= SLOW_MS) {
+        // quadratic ease-in: t^2
+        const t = elapsed / SLOW_MS;
+        return SLOW_SHARE * t * t;
+      } else {
+        // linear fast phase
+        const t = (elapsed - SLOW_MS) / (durationMs - SLOW_MS);
+        return SLOW_SHARE + (100 - SLOW_SHARE) * t;
+      }
+    }
 
     const tick = setInterval(() => {
-      setProgress((p) => {
-        const next = p + stepAmount;
-        return next >= 100 ? 100 : next;
-      });
+      const elapsed = Date.now() - startTime;
+      setProgress(computeProgress(elapsed));
     }, intervalMs);
 
     const timer = setTimeout(() => {
       setProgress(100);
-      setTimeout(onComplete, 400); // Small delay at 100% before transitioning
+      setTimeout(onComplete, 400);
     }, durationMs);
 
     return () => {
