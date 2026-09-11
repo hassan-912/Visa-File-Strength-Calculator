@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-const MESSAGES = [
+// Default messages (Tourism)
+const TOURISM_MESSAGES = [
   { icon: "🛫", text: "Profile Submitted: Initializing MG Visa AI Assessment..." },
   { icon: "🌍", text: "Verifying international travel history & passport records..." },
   { icon: "💳", text: "Auditing financial health, liquidity & transaction stability..." },
@@ -10,15 +11,28 @@ const MESSAGES = [
   { icon: "🛬", text: "Finalizing: Generating MG Visa File Strength Index..." },
 ];
 
+// CRS-specific messages, synced to 0s / 3s / 6s / 9s / 12s
+const CRS_MESSAGES = [
+  { icon: "🍁", text: "Initializing Canada Express Entry CRS Profile..." },
+  { icon: "🎓", text: "Evaluating Core Human Capital & Education Credentials..." },
+  { icon: "🗣️", text: "Assessing CLB Language Benchmark Scores..." },
+  { icon: "💼", text: "Calculating Skill Transferability & Foreign Experience Factors..." },
+  { icon: "🇨🇦", text: "Finalizing: Computing Comprehensive Ranking System (CRS) Score..." },
+];
+
 interface LoadingOverlayProps {
   onComplete: () => void;
-  durationMs?: number; // Should be 15000
+  durationMs?: number;
+  /** Pass "crs" to show Canada Express Entry messages instead of the default tourism set */
+  variant?: "tourism" | "crs";
 }
 
 export default function LoadingOverlay({
   onComplete,
   durationMs = 15000,
+  variant = "tourism",
 }: LoadingOverlayProps) {
+  const MESSAGES = variant === "crs" ? CRS_MESSAGES : TOURISM_MESSAGES;
   const [progress, setProgress] = useState(0);
   const [msgIndex, setMsgIndex] = useState(0);
   const [fadeMsg, setFadeMsg] = useState(true);
@@ -40,43 +54,50 @@ export default function LoadingOverlay({
     return () => clearInterval(interval);
   }, []);
 
-  // Smooth Progress & Timer
-  // Phase 1 (0 → SLOW_MS): slow quadratic ease-in covering 0% → SLOW_SHARE%
-  // Phase 2 (SLOW_MS → durationMs): fast linear covering SLOW_SHARE% → 100%
+  // Smooth Progress — wall-clock based so stale closures can never cause drift.
+  // The interval reads Date.now() each tick instead of accumulating a counter,
+  // which guarantees we hit exactly 100 % at exactly durationMs regardless of
+  // JS scheduling jitter or React batching.
   useEffect(() => {
-    const SLOW_MS = 2000;          // how long the slow phase lasts
-    const SLOW_SHARE = 22;         // % of bar covered during the slow phase
+    const SLOW_MS = 2000;   // slow quadratic phase duration
+    const SLOW_SHARE = 22;  // % covered during the slow phase
     const intervalMs = 50;
     const startTime = Date.now();
+    let rafId: ReturnType<typeof setInterval>;
 
     function computeProgress(elapsed: number): number {
       if (elapsed >= durationMs) return 100;
       if (elapsed <= SLOW_MS) {
-        // quadratic ease-in: t^2
         const t = elapsed / SLOW_MS;
-        return SLOW_SHARE * t * t;
-      } else {
-        // linear fast phase
-        const t = (elapsed - SLOW_MS) / (durationMs - SLOW_MS);
-        return SLOW_SHARE + (100 - SLOW_SHARE) * t;
+        return SLOW_SHARE * t * t;          // quadratic ease-in
       }
+      const t = (elapsed - SLOW_MS) / (durationMs - SLOW_MS);
+      return SLOW_SHARE + (100 - SLOW_SHARE) * t; // linear fast phase
     }
 
-    const tick = setInterval(() => {
+    rafId = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      setProgress(computeProgress(elapsed));
+      const next = computeProgress(elapsed);
+      setProgress(next);
+      if (next >= 100) {
+        clearInterval(rafId);
+        setTimeout(onComplete, 400);
+      }
     }, intervalMs);
 
-    const timer = setTimeout(() => {
+    // Hard deadline: guarantee completion even if the interval fires late
+    const deadline = setTimeout(() => {
+      clearInterval(rafId);
       setProgress(100);
       setTimeout(onComplete, 400);
-    }, durationMs);
+    }, durationMs + 200);
 
     return () => {
-      clearInterval(tick);
-      clearTimeout(timer);
+      clearInterval(rafId);
+      clearTimeout(deadline);
     };
   }, [durationMs, onComplete]);
+
 
   return (
     <div
@@ -122,26 +143,32 @@ export default function LoadingOverlay({
           className="text-2xl font-bold mb-2 text-white"
           style={{ fontFamily: "var(--font-montserrat)" }}
         >
-          MG Visa AI Analysis
+          {variant === "crs" ? "Canada Express Entry" : "MG Visa AI Analysis"}
         </h2>
         <p className="text-sm mb-12" style={{ color: "rgba(255,255,255,0.5)" }}>
-          Please wait while we process your application profile
+          {variant === "crs"
+            ? "Calculating your Comprehensive Ranking System (CRS) score…"
+            : "Please wait while we process your application profile"}
         </p>
 
         {/* ── Animated Flight Path ── */}
         <div className="relative w-full max-w-lg mx-auto mb-16">
           {/* EXTRA LARGE Real Flight Progress Bar with Realistic Smoke Trail */}
           <div className="relative h-24 flex items-center w-full my-10">
-            {/* Background Track Line */}
-            <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-2 bg-slate-200 rounded-full" />
+            {/* Background Track Line — white/15% so it's visible on the dark gradient */}
+            <div
+              className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-2 rounded-full"
+              style={{ backgroundColor: "rgba(255,255,255,0.15)" }}
+            />
 
-            {/* Active Completed Flight Line */}
-            <div 
-              className="absolute left-0 top-1/2 -translate-y-1/2 h-2 rounded-full transition-all duration-100 ease-linear shadow-[0_0_12px_rgba(40,56,64,0.4)]"
-              style={{ 
-                backgroundColor: 'var(--color-primary, #283840)', 
-                width: `${progress}%` 
-              }} 
+            {/* Active Completed Flight Line — pure white with a white glow */}
+            <div
+              className="absolute left-0 top-1/2 -translate-y-1/2 h-2 rounded-full transition-all duration-100 ease-linear"
+              style={{
+                backgroundColor: "rgba(255,255,255,0.9)",
+                width: `${progress}%`,
+                boxShadow: "0 0 12px rgba(255,255,255,0.5)",
+              }}
             />
 
             {/* Plane & Smoke Trail Wrapper */}
@@ -149,17 +176,17 @@ export default function LoadingOverlay({
               className="absolute top-1/2 -translate-y-1/2 -ml-8 flex items-center justify-center transition-all duration-100 ease-linear pointer-events-none"
               style={{ left: `${progress}%`, zIndex: 10 }}
             >
-              {/* REALISTIC Smoke Trail (Larger, layered, fading expanding clouds) */}
+              {/* Smoke Trail — white/semi-transparent for contrast on dark background */}
               <div className="absolute right-12 top-1/2 -translate-y-1/2 w-48 h-16 pointer-events-none flex items-center justify-end overflow-visible">
                 {/* Main engine exhaust stream */}
-                <div className="w-full h-3 bg-gradient-to-l from-slate-400/90 via-slate-300/40 to-transparent rounded-full blur-[2px]" />
-                
-                {/* Expanding smoke clouds (layered for realism) */}
-                <div className="absolute right-2 w-4 h-4 bg-slate-300/80 rounded-full blur-[2px] animate-ping opacity-60" />
-                <div className="absolute right-6 w-6 h-6 bg-slate-300/60 rounded-full blur-[3px] -translate-y-2 animate-pulse" />
-                <div className="absolute right-12 w-8 h-8 bg-slate-200/50 rounded-full blur-[4px] translate-y-2" />
-                <div className="absolute right-20 w-12 h-12 bg-slate-200/30 rounded-full blur-[5px] -translate-y-1" />
-                <div className="absolute right-32 w-16 h-16 bg-slate-200/10 rounded-full blur-[6px] translate-y-1" />
+                <div className="w-full h-3 rounded-full blur-[2px]" style={{ background: "linear-gradient(to left, rgba(255,255,255,0.7), rgba(255,255,255,0.2), transparent)" }} />
+
+                {/* Expanding smoke clouds */}
+                <div className="absolute right-2 w-4 h-4 rounded-full blur-[2px] animate-ping opacity-60" style={{ backgroundColor: "rgba(255,255,255,0.70)" }} />
+                <div className="absolute right-6 w-6 h-6 rounded-full blur-[3px] -translate-y-2 animate-pulse" style={{ backgroundColor: "rgba(255,255,255,0.50)" }} />
+                <div className="absolute right-12 w-8 h-8 rounded-full blur-[4px] translate-y-2" style={{ backgroundColor: "rgba(255,255,255,0.30)" }} />
+                <div className="absolute right-20 w-12 h-12 rounded-full blur-[5px] -translate-y-1" style={{ backgroundColor: "rgba(255,255,255,0.15)" }} />
+                <div className="absolute right-32 w-16 h-16 rounded-full blur-[6px] translate-y-1" style={{ backgroundColor: "rgba(255,255,255,0.06)" }} />
               </div>
 
               {/* BIGGER Commercial Airplane Badge -> Now ONLY MG Visa Logo (Rotated horizontally) */}
@@ -218,7 +245,8 @@ export default function LoadingOverlay({
               className="h-full rounded-full transition-all duration-75"
               style={{
                 width: `${progress}%`,
-                backgroundColor: "var(--color-primary)",
+                backgroundColor: "rgba(255,255,255,0.9)",
+                boxShadow: "0 0 8px rgba(255,255,255,0.4)",
               }}
             />
           </div>

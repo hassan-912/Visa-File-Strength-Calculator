@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { CATEGORIES, PENALTIES } from "@/lib/scoring";
 import type { SelectionsMap, PenaltiesMap } from "@/lib/scoring";
@@ -9,8 +9,6 @@ interface ScoreFormProps {
   onSelectionToggle: (categoryId: string, optionId: string, isSingleChoice?: boolean) => void;
   onPenaltyChange: (penaltyId: string, active: boolean) => void;
   onSubmit: () => void;
-  /** When true (Immigration tab), all inputs are disabled and an overlay is shown */
-  disabled?: boolean;
 }
 
 export default function ScoreForm({
@@ -19,7 +17,6 @@ export default function ScoreForm({
   onSelectionToggle,
   onPenaltyChange,
   onSubmit,
-  disabled = false,
 }: ScoreFormProps) {
   const answeredCategories = CATEGORIES.filter(
     (cat) => (selections[cat.id]?.length ?? 0) > 0
@@ -30,48 +27,6 @@ export default function ScoreForm({
 
   return (
     <div className="animate-fadeInUp relative">
-      {/* Immigration Under-Construction Overlay */}
-      {disabled && (
-        <div
-          className="absolute inset-0 z-20 flex flex-col items-center justify-center rounded-2xl"
-          style={{
-            backgroundColor: "rgba(255,255,255,0.92)",
-            backdropFilter: "blur(4px)",
-          }}
-        >
-          <div
-            className="flex flex-col items-center gap-4 p-8 rounded-2xl text-center max-w-sm"
-            style={{
-              backgroundColor: "var(--color-surface)",
-              border: "1px solid var(--color-border-light)",
-              boxShadow: "0 8px 40px rgba(0,0,0,0.08)",
-            }}
-          >
-            <span className="text-5xl">🏗️</span>
-            <h3
-              className="text-xl font-bold"
-              style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
-            >
-              Under Construction
-            </h3>
-            <p className="text-sm leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
-              The Immigration calculator is currently being developed. Please check back soon, or
-              use the Tourism calculator in the meantime.
-            </p>
-            <div
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full"
-              style={{
-                backgroundColor: "var(--color-accent-bg)",
-                color: "var(--color-accent)",
-                border: "1px solid var(--color-accent-border)",
-              }}
-            >
-              Coming Soon
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Section Header */}
       <div className="mb-8">
         <div
@@ -206,7 +161,6 @@ export default function ScoreForm({
                           checked={isChecked}
                           onChange={() => onSelectionToggle(category.id, option.id, isRadio)}
                           className="sr-only"
-                          disabled={disabled}
                         />
                         <div
                           className={`w-4 h-4 border-2 flex items-center justify-center transition-all duration-150 ${isRadio ? "rounded-full" : "rounded"}`}
@@ -282,7 +236,6 @@ export default function ScoreForm({
                   checked={isActive}
                   onChange={(e) => onPenaltyChange(penalty.id, e.target.checked)}
                   className="sr-only"
-                  disabled={disabled}
                 />
                 <div
                   className="w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-150"
@@ -337,19 +290,19 @@ export default function ScoreForm({
       <button
         type="button"
         onClick={onSubmit}
-        disabled={!isComplete || disabled}
+        disabled={!isComplete}
         id="analyse-button"
         aria-label="Analyse my visa file"
         className="w-full py-4 px-8 rounded-2xl font-bold text-base tracking-wide transition-all duration-200 flex items-center justify-center gap-3"
         style={{
-          backgroundColor: isComplete && !disabled ? "var(--color-primary)" : "var(--color-surface-3)",
-          color: isComplete && !disabled ? "#FFFFFF" : "var(--color-text-light)",
+          backgroundColor: isComplete ? "var(--color-primary)" : "var(--color-surface-3)",
+          color: isComplete ? "#FFFFFF" : "var(--color-text-light)",
           fontFamily: "var(--font-montserrat)",
-          cursor: isComplete && !disabled ? "pointer" : "not-allowed",
-          boxShadow: isComplete && !disabled ? "0 4px 20px rgba(10,25,47,0.3)" : "none",
+          cursor: isComplete ? "pointer" : "not-allowed",
+          boxShadow: isComplete ? "0 4px 20px rgba(10,25,47,0.3)" : "none",
         }}
       >
-        {isComplete && !disabled ? (
+        {isComplete ? (
           <>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
               <path fillRule="evenodd" d="M12 2a10 10 0 100 20A10 10 0 0012 2zm3.707 8.707a1 1 0 00-1.414-1.414L11 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -364,9 +317,7 @@ export default function ScoreForm({
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
             </svg>
-            {disabled
-              ? "Select Tourism tab to use the calculator"
-              : `Complete all ${totalSections - answeredCount} remaining section${totalSections - answeredCount !== 1 ? "s" : ""} to continue`}
+            {`Complete all ${totalSections - answeredCount} remaining section${totalSections - answeredCount !== 1 ? "s" : ""} to continue`}
           </>
         )}
       </button>

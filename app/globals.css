@@ -178,48 +178,154 @@ body {
 .animate-spin-reverse { animation: spin-reverse 2s linear infinite; }
 
 @page {
-  size: A4 portrait;
-  margin: 8mm 10mm; /* Tight margins to guarantee 1 page */
+  /* Let the browser/printer handle the size automatically */
+  margin: 12mm;
 }
 
 @media print {
-  /* Hide the web application completely */
+  /* ── 1. Hide everything on screen ── */
   body * {
     visibility: hidden;
   }
-  
-  /* Show ONLY the single-page print wrapper */
-  #printable-pdf-area, #printable-pdf-area * {
+
+  /* ── 1b. Print body reset ── */
+  body {
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ── 2. Reveal only the active PDF container ── */
+  #printable-pdf-area,
+  #printable-pdf-area *,
+  #printable-crs-pdf,
+  #printable-crs-pdf * {
     visibility: visible;
   }
 
+  /* ── 3. Tourism PDF container (position:absolute legacy) ── */
   #printable-pdf-area {
-    position: absolute;
+    position: absolute !important;
     left: 0;
     top: 0;
     width: 100%;
-    max-height: 275mm; /* Hard limit to prevent 2nd page creation */
-    overflow: hidden !important;
-    background-color: white !important;
+    background: #ffffff !important;
     color: #1E293B !important;
     padding: 10px;
     box-sizing: border-box;
+    z-index: 1 !important;
   }
 
-  /* Single-Page Watermark (Behind Content) */
+  /* ── 4. CRS PDF container — Fluid Table Layout ── */
+  #printable-crs-pdf {
+    display: table !important;
+    position: relative !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+    background: transparent !important;
+    color: #1e293b !important;
+    font-size: 11px;
+    line-height: 1.35;
+    z-index: 1 !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+  }
+
+  /* Master Table Repeating Header/Footer */
+  .print-table-header {
+    display: table-header-group !important;
+  }
+  
+  .print-table-footer {
+    display: table-footer-group !important;
+  }
+
+  /* Reset table cell padding inside the master container */
+  .print-table-header th, .print-table-header td,
+  .print-table-footer th, .print-table-footer td,
+  #printable-crs-pdf > tbody > tr > td {
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  /* CSS Page Counters for Print */
+  body {
+    counter-reset: print-page;
+  }
+  
+  .page-number::after {
+    counter-increment: print-page;
+    content: counter(print-page);
+  }
+
+  /* ── 5. Fixed background watermark — strictly behind all content ── */
+  .pdf-watermark-bg {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 450px !important;
+    opacity: 0.05 !important;
+    z-index: -10 !important;
+    pointer-events: none !important;
+  }
+
+  /* Legacy alias kept for Tourism PDF watermark */
   .pdf-watermark {
-    position: absolute !important;
+    position: fixed !important;
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
     width: 320px !important;
-    opacity: 0.06 !important;
-    z-index: 0 !important;
+    opacity: 0.04 !important;
+    z-index: -1 !important;
     pointer-events: none !important;
   }
 
+  /* ── 6. Content flow wrapper — all text/tables sit above watermark ── */
+  .print-content-flow,
+  .print-content-flow * {
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  /* Legacy content layer helper */
   .pdf-content-layer {
     position: relative !important;
-    z-index: 10 !important;
+    z-index: 2 !important;
+  }
+
+  /* ── 7. Prevent sections from breaking across pages ── */
+  .print-avoid-break {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* ── 8. Table cells: transparent bg so watermark shows through tint ── */
+  table,
+  tr,
+  td,
+  th,
+  tbody,
+  thead {
+    background-color: transparent !important;
+  }
+
+  /* Header rows keep their accent fill and force colour rendering */
+  thead th {
+    background-color: #283840 !important;
+    color: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Sub-total rows keep light fill */
+  tfoot tr,
+  tbody tr.subtotal {
+    background-color: #f1f5f9 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }

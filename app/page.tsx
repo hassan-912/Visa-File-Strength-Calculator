@@ -1,14 +1,95 @@
-﻿"use client";
+"use client";
 
 import { useState, useCallback } from "react";
 import Header from "@/components/Header";
 import ScoreForm from "@/components/ScoreForm";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import ResultsDashboard from "@/components/ResultsDashboard";
+import CanadaCRSForm from "@/components/CanadaCRSForm";
+import AustraliaPlaceholder from "@/components/AustraliaPlaceholder";
 import type { SelectionsMap, PenaltiesMap } from "@/lib/scoring";
 
 type AppStep = "form" | "loading" | "results";
 type ActiveTab = "tourism" | "immigration";
+type ImmigrationSubTab = "canada" | "australia";
+
+function ImmigrationSection() {
+  const [subTab, setSubTab] = useState<ImmigrationSubTab>("canada");
+  const [crsLoading, setCrsLoading] = useState(false);
+  const [crsLoadingDone, setCrsLoadingDone] = useState(false);
+
+  // The overlay renders here — OUTSIDE the animate-fadeInUp div — so
+  // position:fixed is never trapped inside a CSS-transform ancestor.
+  const handleCrsCalculate = () => {
+    setCrsLoading(true);
+    setCrsLoadingDone(false);
+  };
+
+  const handleCrsLoadingComplete = () => {
+    setCrsLoading(false);
+    setCrsLoadingDone(true);
+  };
+
+  return (
+    <>
+      {/* Full-viewport CRS overlay rendered at THIS level, not inside CanadaCRSForm */}
+      {crsLoading && (
+        <LoadingOverlay
+          onComplete={handleCrsLoadingComplete}
+          durationMs={15000}
+          variant="crs"
+        />
+      )}
+
+      <div className="animate-fadeInUp">
+        {/* Sub-tab toggle */}
+        <div className="flex items-center justify-center mb-8">
+          <div
+            className="inline-flex rounded-2xl p-1 gap-1"
+            style={{
+              backgroundColor: "var(--color-surface)",
+              border: "1px solid var(--color-border-light)",
+              boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+            }}
+          >
+            {(["canada", "australia"] as const).map((tab) => {
+              const isActive = subTab === tab;
+              return (
+                <button
+                  key={tab}
+                  type="button"
+                  id={`immigration-subtab-${tab}`}
+                  onClick={() => setSubTab(tab)}
+                  className="relative px-7 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
+                  style={{
+                    backgroundColor: isActive ? "#283840" : "transparent",
+                    color: isActive ? "#FFFFFF" : "#283840",
+                    border: isActive ? "1.5px solid #283840" : "1.5px solid transparent",
+                    fontFamily: "var(--font-montserrat)",
+                    boxShadow: isActive ? "0 4px 16px rgba(40,56,64,0.25)" : "none",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  {tab === "canada" ? "🍁 Canada" : "🦘 Australia"}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Sub-tab content */}
+        {subTab === "canada" ? (
+          <CanadaCRSForm
+            onCalculate={handleCrsCalculate}
+            externalLoadingDone={crsLoadingDone}
+          />
+        ) : (
+          <AustraliaPlaceholder />
+        )}
+      </div>
+    </>
+  );
+}
 
 export default function HomePage() {
   const [step, setStep] = useState<AppStep>("form");
@@ -65,7 +146,7 @@ export default function HomePage() {
 
   return (
     <>
-      {step === "loading" && (
+      {step === "loading" && activeTab === "tourism" && (
         <LoadingOverlay onComplete={handleLoadingComplete} durationMs={6000} />
       )}
 
@@ -149,22 +230,27 @@ export default function HomePage() {
         {/* Main Content */}
         <main className="flex-1">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            {step === "form" || step === "loading" ? (
-              <ScoreForm
-                selections={selections}
-                activePenalties={activePenalties}
-                onSelectionToggle={handleSelectionToggle}
-                onPenaltyChange={handlePenaltyChange}
-                onSubmit={handleSubmit}
-                disabled={activeTab === "immigration"}
-              />
+            {activeTab === "tourism" ? (
+              // ── Tourism flow ──
+              step === "form" || step === "loading" ? (
+                <ScoreForm
+                  selections={selections}
+                  activePenalties={activePenalties}
+                  onSelectionToggle={handleSelectionToggle}
+                  onPenaltyChange={handlePenaltyChange}
+                  onSubmit={handleSubmit}
+                />
+              ) : (
+                <ResultsDashboard
+                  selections={selections}
+                  activePenalties={activePenalties}
+                  age={null}
+                  onEdit={handleEdit}
+                />
+              )
             ) : (
-              <ResultsDashboard
-                selections={selections}
-                activePenalties={activePenalties}
-                age={null}
-                onEdit={handleEdit}
-              />
+              // ── Immigration flow ──
+              <ImmigrationSection />
             )}
           </div>
         </main>
