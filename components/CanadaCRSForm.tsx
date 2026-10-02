@@ -833,14 +833,17 @@ function isAdditionalComplete(_f: CRSForm) { return true; } // always defaults f
 
 type AppStep = "form" | "results";
 
+// Props kept for backwards compat — both are intentionally ignored in the
+// new instant-results flow. Callers on the old tab-based page.tsx that still
+// pass onCalculate / externalLoadingDone will compile without changes.
 interface CanadaCRSFormProps {
-  /** Called when the user clicks Calculate — parent shows the overlay */
+  /** @deprecated — no longer used; results are instant */
   onCalculate?: () => void;
-  /** Set to true by the parent once the overlay's animation completes */
+  /** @deprecated — no longer used; results are instant */
   externalLoadingDone?: boolean;
 }
 
-export default function CanadaCRSForm({ onCalculate, externalLoadingDone }: CanadaCRSFormProps) {
+export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
   const [form, setForm] = useState<CRSForm>(DEFAULT_CRS_FORM);
   const [openSection, setOpenSection] = useState<number>(0);
   const [step, setStep] = useState<AppStep>("form");
@@ -852,13 +855,8 @@ export default function CanadaCRSForm({ onCalculate, externalLoadingDone }: Cana
     setProfileComplete(form.withSpouse !== undefined);
   }, [form.withSpouse]);
 
-  // When the parent's overlay completes, transition to results
-  useEffect(() => {
-    if (externalLoadingDone && breakdown) {
-      setStep("results");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [externalLoadingDone, breakdown]);
+  // ── Real-time live score (recalculated on every render) ──────────
+  const liveScore = calculateCRS(form).total;
 
   function update(key: keyof CRSForm, value: string | boolean) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -867,9 +865,9 @@ export default function CanadaCRSForm({ onCalculate, externalLoadingDone }: Cana
   function handleSubmit() {
     const result = calculateCRS(form);
     setBreakdown(result);
-    // Notify parent to start the overlay; we stay on "form" view until
-    // externalLoadingDone flips to true.
-    onCalculate?.();
+    // Instant transition — no overlay, no artificial delay.
+    setStep("results");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function handleEdit() {
@@ -883,7 +881,48 @@ export default function CanadaCRSForm({ onCalculate, externalLoadingDone }: Cana
     return <CRSResults form={form} breakdown={breakdown} onEdit={handleEdit} />;
   }
 
+  // ── Live score colour ──
+  const liveBg  = liveScore >= 470 ? "#16A34A" : liveScore >= 380 ? "#EA580C" : "#283840";
+
   return (
+    <>
+      {/* ── Fixed real-time CRS badge (top-left) ── */}
+      <div
+        id="live-crs-badge"
+        aria-live="polite"
+        aria-label={`Live CRS Score: ${liveScore} out of 1200`}
+        className="fixed z-50 flex flex-col items-start"
+        style={{ top: "80px", left: "16px", pointerEvents: "none" }}
+      >
+        <div
+          className="rounded-xl px-3 py-2 shadow-2xl"
+          style={{
+            backgroundColor: liveBg,
+            transition: "background-color 0.4s ease",
+            minWidth: "120px",
+          }}
+        >
+          <p
+            className="text-[9px] font-bold uppercase tracking-widest mb-0.5"
+            style={{ color: "rgba(255,255,255,0.55)", fontFamily: "var(--font-montserrat)" }}
+          >
+            Live CRS Score
+          </p>
+          <p
+            className="text-xl font-extrabold leading-none"
+            style={{ color: "#FFFFFF", fontFamily: "var(--font-montserrat)" }}
+          >
+            {liveScore}
+            <span
+              className="text-[10px] font-semibold ml-1"
+              style={{ color: "rgba(255,255,255,0.5)" }}
+            >
+              / 1,200
+            </span>
+          </p>
+        </div>
+      </div>
+
     <div className="animate-fadeInUp">
       {/* Header */}
       <div className="mb-8">
@@ -1195,5 +1234,6 @@ export default function CanadaCRSForm({ onCalculate, externalLoadingDone }: Cana
         )}
       </button>
     </div>
+    </>
   );
 }

@@ -5,95 +5,12 @@ import Header from "@/components/Header";
 import ScoreForm from "@/components/ScoreForm";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import ResultsDashboard from "@/components/ResultsDashboard";
-import CanadaCRSForm from "@/components/CanadaCRSForm";
-import AustraliaPlaceholder from "@/components/AustraliaPlaceholder";
 import type { SelectionsMap, PenaltiesMap } from "@/lib/scoring";
 
 type AppStep = "form" | "loading" | "results";
-type ActiveTab = "tourism" | "immigration";
-type ImmigrationSubTab = "canada" | "australia";
-
-function ImmigrationSection() {
-  const [subTab, setSubTab] = useState<ImmigrationSubTab>("canada");
-  const [crsLoading, setCrsLoading] = useState(false);
-  const [crsLoadingDone, setCrsLoadingDone] = useState(false);
-
-  // The overlay renders here — OUTSIDE the animate-fadeInUp div — so
-  // position:fixed is never trapped inside a CSS-transform ancestor.
-  const handleCrsCalculate = () => {
-    setCrsLoading(true);
-    setCrsLoadingDone(false);
-  };
-
-  const handleCrsLoadingComplete = () => {
-    setCrsLoading(false);
-    setCrsLoadingDone(true);
-  };
-
-  return (
-    <>
-      {/* Full-viewport CRS overlay rendered at THIS level, not inside CanadaCRSForm */}
-      {crsLoading && (
-        <LoadingOverlay
-          onComplete={handleCrsLoadingComplete}
-          durationMs={15000}
-          variant="crs"
-        />
-      )}
-
-      <div className="animate-fadeInUp">
-        {/* Sub-tab toggle */}
-        <div className="flex items-center justify-center mb-8">
-          <div
-            className="inline-flex rounded-2xl p-1 gap-1"
-            style={{
-              backgroundColor: "var(--color-surface)",
-              border: "1px solid var(--color-border-light)",
-              boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-            }}
-          >
-            {(["canada", "australia"] as const).map((tab) => {
-              const isActive = subTab === tab;
-              return (
-                <button
-                  key={tab}
-                  type="button"
-                  id={`immigration-subtab-${tab}`}
-                  onClick={() => setSubTab(tab)}
-                  className="relative px-7 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
-                  style={{
-                    backgroundColor: isActive ? "#283840" : "transparent",
-                    color: isActive ? "#FFFFFF" : "#283840",
-                    border: isActive ? "1.5px solid #283840" : "1.5px solid transparent",
-                    fontFamily: "var(--font-montserrat)",
-                    boxShadow: isActive ? "0 4px 16px rgba(40,56,64,0.25)" : "none",
-                    letterSpacing: "0.06em",
-                  }}
-                >
-                  {tab === "canada" ? "🍁 Canada" : "🦘 Australia"}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Sub-tab content */}
-        {subTab === "canada" ? (
-          <CanadaCRSForm
-            onCalculate={handleCrsCalculate}
-            externalLoadingDone={crsLoadingDone}
-          />
-        ) : (
-          <AustraliaPlaceholder />
-        )}
-      </div>
-    </>
-  );
-}
 
 export default function HomePage() {
   const [step, setStep] = useState<AppStep>("form");
-  const [activeTab, setActiveTab] = useState<ActiveTab>("tourism");
   const [selections, setSelections] = useState<SelectionsMap>({});
   const [activePenalties, setActivePenalties] = useState<PenaltiesMap>({});
 
@@ -137,23 +54,15 @@ export default function HomePage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const handleTabChange = useCallback((tab: ActiveTab) => {
-    setActiveTab(tab);
-    setStep("form");
-    setSelections({});
-    setActivePenalties({});
-  }, []);
-
   return (
     <>
-      {step === "loading" && activeTab === "tourism" && (
+      {step === "loading" && (
         <LoadingOverlay onComplete={handleLoadingComplete} durationMs={6000} />
       )}
 
       <div className="min-h-screen flex flex-col" style={{ backgroundColor: "var(--color-bg)" }}>
         <Header />
 
-        {/* Hero Banner */}
         <section
           className="relative overflow-hidden border-b"
           style={{
@@ -165,7 +74,6 @@ export default function HomePage() {
             className="absolute top-0 left-0 right-0 h-0.5"
             style={{ background: "linear-gradient(90deg, transparent, var(--color-accent), transparent)" }}
           />
-
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
             <div
               className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-4"
@@ -178,9 +86,8 @@ export default function HomePage() {
               <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--color-accent-hover)" }} />
               MG Visa Assessment Tool
             </div>
-
             <h1
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-6"
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4"
               style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
             >
               Visa File{" "}
@@ -189,73 +96,33 @@ export default function HomePage() {
               </span>{" "}
               Calculator
             </h1>
-
-            {/* Tab Toggle */}
-            <div className="flex items-center justify-center">
-              <div
-                className="inline-flex rounded-2xl p-1 gap-1"
-                style={{
-                  backgroundColor: "var(--color-surface)",
-                  border: "1px solid var(--color-border-light)",
-                  boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
-                }}
-              >
-                {(["tourism", "immigration"] as const).map((tab) => {
-                  const isActive = activeTab === tab;
-                  return (
-                    <button
-                      key={tab}
-                      type="button"
-                      id={`tab-${tab}`}
-                      onClick={() => handleTabChange(tab)}
-                      className="relative px-8 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
-                      style={{
-                        backgroundColor: isActive ? "#283840" : "transparent",
-                        color: isActive ? "#FFFFFF" : "#283840",
-                        border: isActive ? "1.5px solid #283840" : "1.5px solid transparent",
-                        fontFamily: "var(--font-montserrat)",
-                        boxShadow: isActive ? "0 4px 16px rgba(40,56,64,0.25)" : "none",
-                        letterSpacing: "0.06em",
-                      }}
-                    >
-                      {tab === "tourism" ? "🏖 Tourism" : "🏛 Immigration"}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+            <p className="text-sm sm:text-base max-w-xl mx-auto" style={{ color: "var(--color-text-muted)" }}>
+              Tourism visa file assessment powered by the MG AI Scoring Engine.
+            </p>
           </div>
         </section>
 
-        {/* Main Content */}
         <main className="flex-1">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            {activeTab === "tourism" ? (
-              // ── Tourism flow ──
-              step === "form" || step === "loading" ? (
-                <ScoreForm
-                  selections={selections}
-                  activePenalties={activePenalties}
-                  onSelectionToggle={handleSelectionToggle}
-                  onPenaltyChange={handlePenaltyChange}
-                  onSubmit={handleSubmit}
-                />
-              ) : (
-                <ResultsDashboard
-                  selections={selections}
-                  activePenalties={activePenalties}
-                  age={null}
-                  onEdit={handleEdit}
-                />
-              )
+            {step === "form" || step === "loading" ? (
+              <ScoreForm
+                selections={selections}
+                activePenalties={activePenalties}
+                onSelectionToggle={handleSelectionToggle}
+                onPenaltyChange={handlePenaltyChange}
+                onSubmit={handleSubmit}
+              />
             ) : (
-              // ── Immigration flow ──
-              <ImmigrationSection />
+              <ResultsDashboard
+                selections={selections}
+                activePenalties={activePenalties}
+                age={null}
+                onEdit={handleEdit}
+              />
             )}
           </div>
         </main>
 
-        {/* Footer */}
         <footer
           className="border-t py-12"
           style={{
@@ -273,13 +140,11 @@ export default function HomePage() {
                   <p className="text-xs text-slate-300">Your trusted partner for global visa and immigration services.</p>
                 </div>
               </div>
-
               <div className="flex-1 flex flex-col gap-4 text-sm text-slate-300 text-center md:text-left">
-                <div><strong className="text-white">Cairo:</strong> Cairo – Nasr City – Makram Ebeid St – Delta Towers, Building 4, Section 2, 3rd Floor</div>
-                <div><strong className="text-white">Dubai:</strong> M G I PORTAL: UAE – Dubai – Abuhail – Horalanz East – City Bay Business Center – Office 216 – Beside Canadian Hospital</div>
-                <div><strong className="text-white">Zayed:</strong> TRIVIUM ZAYED Building, Trivium Zayed Complex, Services Land (2), 3rd Neighborhood – 2nd District, in front of Capital Business, 2nd Floor, Unit A231</div>
+                <div><strong className="text-white">Cairo:</strong> Cairo - Nasr City - Makram Ebeid St - Delta Towers, Building 4, Section 2, 3rd Floor</div>
+                <div><strong className="text-white">Dubai:</strong> UAE - Dubai - Abuhail - Horalanz East - City Bay Business Center - Office 216</div>
+                <div><strong className="text-white">Zayed:</strong> TRIVIUM ZAYED Building, Trivium Zayed Complex, Services Land (2), 3rd Neighborhood - 2nd District, Unit A231</div>
               </div>
-
               <div className="flex flex-col gap-2 text-sm text-slate-300 text-center md:text-right">
                 <div><strong className="text-white">Phone:</strong> 17621</div>
                 <div><strong className="text-white">Email:</strong> Info@mg-visa.com</div>
@@ -291,9 +156,8 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-
             <div className="mt-12 pt-6 border-t border-slate-600/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-              <p>© {new Date().getFullYear()} MG International Visa Consultancy. All rights reserved.</p>
+              <p>{`c ${new Date().getFullYear()} MG International Visa Consultancy. All rights reserved.`}</p>
               <p className="text-center sm:text-right max-w-md">
                 This tool is for informational purposes only and does not constitute legal or immigration advice.
               </p>
