@@ -94,274 +94,274 @@ export default function ResultsDashboard({
       {/* ── Screen Layout (Hidden on Print) ── */}
       <div id="web-layout-wrapper" className="animate-fadeInUp max-w-3xl mx-auto print:hidden">
 
-      {/* ── Screen Hero Result Card ── */}
-      <div
-        className="rounded-3xl overflow-hidden shadow-2xl mb-6"
-        style={{
-          background: "linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-mid) 100%)",
-        }}
-      >
-        {/* Top status color bar */}
+        {/* ── Screen Hero Result Card ── */}
         <div
-          className="h-1"
+          className="rounded-3xl overflow-hidden shadow-2xl mb-6"
           style={{
-            background: `linear-gradient(90deg, transparent, ${status.colorVar}, transparent)`,
+            background: "linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-mid) 100%)",
           }}
-        />
+        >
+          {/* Top status color bar */}
+          <div
+            className="h-1"
+            style={{
+              background: `linear-gradient(90deg, transparent, ${status.colorVar}, transparent)`,
+            }}
+          />
 
-        <div className="p-6 sm:p-8">
-          {/* Header row */}
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <p
-                className="text-xs font-bold uppercase tracking-widest mb-1"
-                style={{ color: "rgba(255,255,255,0.45)" }}
-              >
-                MG Visa AI Analysis — Complete
-              </p>
-              <h2
-                className="text-xl font-bold text-white"
-                style={{ fontFamily: "var(--font-montserrat)" }}
-              >
-                Your Visa File Assessment
-              </h2>
-            </div>
-            <div
-              className="flex items-center justify-center w-11 h-11 rounded-xl font-bold text-sm"
-              style={{
-                backgroundColor: "rgba(255,255,255,0.15)",
-                color: "#FFFFFF",
-                fontFamily: "var(--font-montserrat)",
-              }}
-            >
-              MG
-            </div>
-          </div>
-
-          {/* Score + Gauge */}
-          <div className="flex flex-col sm:flex-row items-center gap-8">
-            {/* SVG Gauge */}
-            <div className="shrink-0">
-              <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} aria-label={`Score: ${finalScore}%`}>
-                <defs>
-                  <linearGradient id="fillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor={status.colorVar} stopOpacity="0.5" />
-                    <stop offset="100%" stopColor={status.colorVar} stopOpacity="1" />
-                  </linearGradient>
-                  <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="blur" />
-                    <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                  </filter>
-                </defs>
-                <path d={trackD} fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth={STROKE} strokeLinecap="round" />
-                {displayScore > 0 && (
-                  <path d={fillD} fill="none" stroke="url(#fillGrad)" strokeWidth={STROKE} strokeLinecap="round" filter="url(#glow)" />
-                )}
-                <text x={C} y={C - 8} textAnchor="middle" dominantBaseline="middle" fontSize="48" fontWeight="800" fontFamily="Montserrat, sans-serif" fill={status.colorVar}>
-                  {displayScore}
-                </text>
-                <text x={C} y={C + 24} textAnchor="middle" dominantBaseline="middle" fontSize="12" fontWeight="500" fontFamily="Montserrat, sans-serif" fill="rgba(255,255,255,0.35)">
-                  out of 100
-                </text>
-              </svg>
-            </div>
-
-            {/* Status text */}
-            <div className="flex-1 text-center sm:text-left">
+          <div className="p-6 sm:p-8">
+            {/* Header row */}
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <p
+                  className="text-xs font-bold uppercase tracking-widest mb-1"
+                  style={{ color: "rgba(255,255,255,0.45)" }}
+                >
+                  MG Visa AI Analysis — Complete
+                </p>
+                <h2
+                  className="text-xl font-bold text-white"
+                  style={{ fontFamily: "var(--font-montserrat)" }}
+                >
+                  Your Visa File Assessment
+                </h2>
+              </div>
               <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold mb-4"
+                className="flex items-center justify-center w-11 h-11 rounded-xl font-bold text-sm"
                 style={{
-                  backgroundColor: `${status.colorVar}22`,
-                  border: `1.5px solid ${status.colorVar}66`,
-                  color: status.colorVar,
+                  backgroundColor: "rgba(255,255,255,0.15)",
+                  color: "#FFFFFF",
+                  fontFamily: "var(--font-montserrat)",
                 }}
               >
-                <span>{status.emoji}</span>
-                <span style={{ fontFamily: "var(--font-montserrat)" }}>{status.label}</span>
+                MG
+              </div>
+            </div>
+
+            {/* Score + Gauge */}
+            <div className="flex flex-col sm:flex-row items-center gap-8">
+              {/* SVG Gauge */}
+              <div className="shrink-0">
+                <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} aria-label={`Score: ${finalScore}%`}>
+                  <defs>
+                    <linearGradient id="fillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor={status.colorVar} stopOpacity="0.5" />
+                      <stop offset="100%" stopColor={status.colorVar} stopOpacity="1" />
+                    </linearGradient>
+                    <filter id="glow">
+                      <feGaussianBlur stdDeviation="3" result="blur" />
+                      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                    </filter>
+                  </defs>
+                  <path d={trackD} fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth={STROKE} strokeLinecap="round" />
+                  {displayScore > 0 && (
+                    <path d={fillD} fill="none" stroke="url(#fillGrad)" strokeWidth={STROKE} strokeLinecap="round" filter="url(#glow)" />
+                  )}
+                  <text x={C} y={C - 8} textAnchor="middle" dominantBaseline="middle" fontSize="48" fontWeight="800" fontFamily="Montserrat, sans-serif" fill={status.colorVar}>
+                    {displayScore}
+                  </text>
+                  <text x={C} y={C + 24} textAnchor="middle" dominantBaseline="middle" fontSize="12" fontWeight="500" fontFamily="Montserrat, sans-serif" fill="rgba(255,255,255,0.35)">
+                    out of 100
+                  </text>
+                </svg>
               </div>
 
-              <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.6)" }}>
-                {status.sublabel}
-              </p>
+              {/* Status text */}
+              <div className="flex-1 text-center sm:text-left">
+                <div
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold mb-4"
+                  style={{
+                    backgroundColor: `${status.colorVar}22`,
+                    border: `1.5px solid ${status.colorVar}66`,
+                    color: status.colorVar,
+                  }}
+                >
+                  <span>{status.emoji}</span>
+                  <span style={{ fontFamily: "var(--font-montserrat)" }}>{status.label}</span>
+                </div>
 
-              {/* Stat pills */}
-              <div className="grid grid-cols-3 gap-3">
-                {[
-                  { label: "Base Score", value: `${baseScore}%`, warn: false },
-                  { label: "Penalties", value: totalDeductions > 0 ? `-${totalDeductions}%` : "None", warn: totalDeductions > 0 },
-                  { label: "Final Score", value: `${finalScore}%`, highlight: true },
-                ].map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="rounded-xl p-3 text-center"
-                    style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
-                  >
-                    <p className="text-[11px] mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>{stat.label}</p>
-                    <p
-                      className="text-base font-bold"
-                      style={{
-                        color: stat.warn ? "#f87171" : stat.highlight ? status.colorVar : "#FFFFFF",
-                        fontFamily: "var(--font-montserrat)",
-                      }}
+                <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.6)" }}>
+                  {status.sublabel}
+                </p>
+
+                {/* Stat pills */}
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { label: "Base Score", value: `${baseScore}%`, warn: false },
+                    { label: "Penalties", value: totalDeductions > 0 ? `-${totalDeductions}%` : "None", warn: totalDeductions > 0 },
+                    { label: "Final Score", value: `${finalScore}%`, highlight: true },
+                  ].map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="rounded-xl p-3 text-center"
+                      style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
                     >
-                      {stat.value}
-                    </p>
-                  </div>
-                ))}
+                      <p className="text-[11px] mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>{stat.label}</p>
+                      <p
+                        className="text-base font-bold"
+                        style={{
+                          color: stat.warn ? "#f87171" : stat.highlight ? status.colorVar : "#FFFFFF",
+                          fontFamily: "var(--font-montserrat)",
+                        }}
+                      >
+                        {stat.value}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* ── Screen Score Breakdown ── */}
-      <div
-        className="rounded-2xl border p-6 mb-5 shadow-sm"
-        style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border-light)" }}
-      >
-        <h3
-          className="text-base font-bold mb-5"
-          style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
-        >
-          Score Breakdown by Category
-        </h3>
-
-        <div className="space-y-4">
-          {/* Standard categories */}
-          {CATEGORIES.map((cat, idx) => {
-            const { earned, max } = categoryScores[cat.id] || { earned: 0, max: cat.maxScore };
-            const pct = max > 0 ? (earned / max) * 100 : 0;
-            const strengthLabel = pct === 100 ? "Full marks" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : earned === 0 ? "Not scored" : "Weak";
-
-            return (
-              <div key={cat.id} style={{ animationDelay: `${idx * 80}ms` }}>
-                <div className="flex items-center justify-between mb-1.5">
-                  <div className="flex items-center gap-2">
-                    <span className="text-base">{cat.icon}</span>
-                    <span className="text-sm font-semibold" style={{ color: "var(--color-text-main)" }}>
-                      {cat.title}
-                    </span>
-                  </div>
-                  <span
-                    className="text-xs font-bold"
-                    style={{
-                      color: pct >= 70 ? "var(--color-strong)" : pct >= 40 ? "var(--color-moderate)" : "var(--color-text-muted)",
-                    }}
-                  >
-                    {strengthLabel}
-                  </span>
-                </div>
-                <div className="h-2.5 rounded-full overflow-hidden" style={{ backgroundColor: "var(--color-surface-3)" }}>
-                  <div
-                    className="h-full rounded-full transition-all ease-out"
-                    style={{
-                      width: barsVisible ? `${pct}%` : "0%",
-                      transitionDuration: `${600 + idx * 100}ms`,
-                      backgroundColor: pct >= 70 ? "var(--color-strong)" : pct >= 40 ? "var(--color-moderate)" : pct > 0 ? "var(--color-weak)" : "var(--color-border)",
-                    }}
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* ── Screen Active Penalties ── */}
-      {activePenaltyList.length > 0 && (
+        {/* ── Screen Score Breakdown ── */}
         <div
           className="rounded-2xl border p-6 mb-5 shadow-sm"
-          style={{ backgroundColor: "#FFF5F5", borderColor: "#FECACA" }}
+          style={{ backgroundColor: "var(--color-surface)", borderColor: "var(--color-border-light)" }}
         >
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-lg">⚠️</span>
-            <h3 className="text-base font-bold" style={{ color: "#991B1B", fontFamily: "var(--font-montserrat)" }}>
-              Risk Factors Detected
-            </h3>
+          <h3
+            className="text-base font-bold mb-5"
+            style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
+          >
+            Score Breakdown by Category
+          </h3>
+
+          <div className="space-y-4">
+            {/* Standard categories */}
+            {CATEGORIES.map((cat, idx) => {
+              const { earned, max } = categoryScores[cat.id] || { earned: 0, max: cat.maxScore };
+              const pct = max > 0 ? (earned / max) * 100 : 0;
+              const strengthLabel = pct === 100 ? "Full marks" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : earned === 0 ? "Not scored" : "Weak";
+
+              return (
+                <div key={cat.id} style={{ animationDelay: `${idx * 80}ms` }}>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center gap-2">
+                      <span className="text-base">{cat.icon}</span>
+                      <span className="text-sm font-semibold" style={{ color: "var(--color-text-main)" }}>
+                        {cat.title}
+                      </span>
+                    </div>
+                    <span
+                      className="text-xs font-bold"
+                      style={{
+                        color: pct >= 70 ? "var(--color-strong)" : pct >= 40 ? "var(--color-moderate)" : "var(--color-text-muted)",
+                      }}
+                    >
+                      {strengthLabel}
+                    </span>
+                  </div>
+                  <div className="h-2.5 rounded-full overflow-hidden" style={{ backgroundColor: "var(--color-surface-3)" }}>
+                    <div
+                      className="h-full rounded-full transition-all ease-out"
+                      style={{
+                        width: barsVisible ? `${pct}%` : "0%",
+                        transitionDuration: `${600 + idx * 100}ms`,
+                        backgroundColor: pct >= 70 ? "var(--color-strong)" : pct >= 40 ? "var(--color-moderate)" : pct > 0 ? "var(--color-weak)" : "var(--color-border)",
+                      }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
           </div>
-          <p className="text-sm mb-4" style={{ color: "#7F1D1D" }}>
-            The following factors significantly reduce your visa file score. An MG Visa consultant can help you address these.
-          </p>
-          <ul className="space-y-2">
-            {activePenaltyList.map((p) => (
-              <li key={p.id} className="flex items-center gap-3 p-3 rounded-xl" style={{ backgroundColor: "rgba(220,38,38,0.06)" }}>
-                <span className="text-red-500 shrink-0">●</span>
-                <p className="text-sm font-medium" style={{ color: "#991B1B" }}>{p.label}</p>
-              </li>
-            ))}
-          </ul>
         </div>
-      )}
 
-      {/* ── Buttons ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <button
-          type="button"
-          onClick={onEdit}
-          id="edit-profile-button"
-          aria-label="Edit application profile and re-analyse"
-          className="w-full py-4 px-6 rounded-2xl font-semibold text-sm tracking-wide transition-all duration-200 border-2"
-          style={{
-            backgroundColor: "var(--color-surface)",
-            borderColor: "var(--color-primary)",
-            color: "var(--color-primary)",
-            fontFamily: "var(--font-montserrat)",
-          }}
-        >
-          Edit Profile
-        </button>
-        <button
-          type="button"
-          onClick={() => setShowModal(true)}
-          className="w-full py-4 px-6 rounded-2xl font-semibold text-sm tracking-wide transition-all duration-200 text-white shadow-lg"
-          style={{
-            backgroundColor: "var(--color-primary)",
-            fontFamily: "var(--font-montserrat)",
-          }}
-        >
-          Generate Official PDF Report
-        </button>
-      </div>
+        {/* ── Screen Active Penalties ── */}
+        {activePenaltyList.length > 0 && (
+          <div
+            className="rounded-2xl border p-6 mb-5 shadow-sm"
+            style={{ backgroundColor: "#FFF5F5", borderColor: "#FECACA" }}
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-lg">⚠️</span>
+              <h3 className="text-base font-bold" style={{ color: "#991B1B", fontFamily: "var(--font-montserrat)" }}>
+                Risk Factors Detected
+              </h3>
+            </div>
+            <p className="text-sm mb-4" style={{ color: "#7F1D1D" }}>
+              The following factors significantly reduce your visa file score. An MG Visa consultant can help you address these.
+            </p>
+            <ul className="space-y-2">
+              {activePenaltyList.map((p) => (
+                <li key={p.id} className="flex items-center gap-3 p-3 rounded-xl" style={{ backgroundColor: "rgba(220,38,38,0.06)" }}>
+                  <span className="text-red-500 shrink-0">●</span>
+                  <p className="text-sm font-medium" style={{ color: "#991B1B" }}>{p.label}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-      {/* ── PDF Generation Modal ── */}
-      {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
-          <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl animate-fadeInUp">
-            <h3 className="text-xl font-bold text-slate-800 mb-2">Generate PDF Report</h3>
-            <p className="text-sm text-slate-500 mb-6">Enter the client's full name to generate an official MG Visa assessment document.</p>
-            
-            <input 
-              type="text" 
-              placeholder="e.g. John Doe"
-              value={clientName}
-              onChange={(e) => setClientName(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-slate-800 focus:outline-none mb-6 text-slate-800 bg-white"
-            />
+        {/* ── Buttons ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <button
+            type="button"
+            onClick={onEdit}
+            id="edit-profile-button"
+            aria-label="Edit application profile and re-analyse"
+            className="w-full py-4 px-6 rounded-2xl font-semibold text-sm tracking-wide transition-all duration-200 border-2"
+            style={{
+              backgroundColor: "var(--color-surface)",
+              borderColor: "var(--color-primary)",
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-montserrat)",
+            }}
+          >
+            Edit Profile
+          </button>
+          <button
+            type="button"
+            onClick={() => setShowModal(true)}
+            className="w-full py-4 px-6 rounded-2xl font-semibold text-sm tracking-wide transition-all duration-200 text-white shadow-lg"
+            style={{
+              backgroundColor: "var(--color-primary)",
+              fontFamily: "var(--font-montserrat)",
+            }}
+          >
+            Generate Official PDF Report
+          </button>
+        </div>
 
-            <div className="flex gap-3">
-              <button 
-                onClick={() => setShowModal(false)}
-                className="flex-1 py-3 rounded-xl font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors"
-              >
-                Cancel
-              </button>
-              <button 
-                onClick={handleGeneratePdf}
-                disabled={!clientName.trim()}
-                className="flex-1 py-3 rounded-xl font-semibold text-white transition-colors disabled:opacity-50"
-                style={{ backgroundColor: "var(--color-primary)" }}
-              >
-                Generate
-              </button>
+        {/* ── PDF Generation Modal ── */}
+        {showModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
+            <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl animate-fadeInUp">
+              <h3 className="text-xl font-bold text-slate-800 mb-2">Generate PDF Report</h3>
+              <p className="text-sm text-slate-500 mb-6">Enter the client's full name to generate an official MG Visa assessment document.</p>
+
+              <input
+                type="text"
+                placeholder="e.g. John Doe"
+                value={clientName}
+                onChange={(e) => setClientName(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-slate-800 focus:outline-none mb-6 text-slate-800 bg-white"
+              />
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="flex-1 py-3 rounded-xl font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleGeneratePdf}
+                  disabled={!clientName.trim()}
+                  className="flex-1 py-3 rounded-xl font-semibold text-white transition-colors disabled:opacity-50"
+                  style={{ backgroundColor: "var(--color-primary)" }}
+                >
+                  Generate
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
 
       {/* ── Print Layout (Hidden on Screen, Invoice Structure) ── */}
       <div id="printable-pdf-area" className="hidden print:flex print:flex-col print:absolute print:top-0 print:left-0 print:w-full print:m-0 print:p-0 print:bg-white print:text-black font-sans">
-        
+
         {/* Print Watermark */}
         <div className="pdf-watermark">
           <img src="/Logo W.png" alt="Watermark" className="filter invert" />
@@ -375,7 +375,7 @@ export default function ResultsDashboard({
             <p className="text-sm text-slate-600 mt-1">Cairo | Dubai | Zayed</p>
             <p className="text-sm text-slate-600">Info@mg-visa.com</p>
           </div>
-          
+
           <div className="text-right flex flex-col justify-end h-full">
             <h1 className="text-4xl font-black text-slate-900 uppercase tracking-widest mb-4">Assessment Report</h1>
             <div className="bg-slate-50 p-4 border border-slate-200 rounded-lg text-left inline-block self-end min-w-[250px]">
@@ -451,6 +451,7 @@ export default function ResultsDashboard({
             </div>
           </div>
         </div>
+
 
       </div>
     </>

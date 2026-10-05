@@ -178,7 +178,7 @@ body {
 .animate-spin-reverse { animation: spin-reverse 2s linear infinite; }
 
 @page {
-  /* Let the browser/printer handle the size automatically */
+  /* Fluid margins — no forced A4 height so content flows naturally */
   margin: 12mm;
 }
 
@@ -193,6 +193,7 @@ body {
     background: #ffffff !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    counter-reset: print-page;
   }
 
   /* ── 2. Reveal only the active PDF container ── */
@@ -216,48 +217,17 @@ body {
     z-index: 1 !important;
   }
 
-  /* ── 4. CRS PDF container — Fluid Table Layout ── */
+  /* ── 4. CRS PDF container — Fluid Flex Layout ── */
   #printable-crs-pdf {
-    display: table !important;
-    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
     width: 100% !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    box-sizing: border-box;
+    position: relative !important;
+    z-index: 1 !important;
     background: transparent !important;
     color: #1e293b !important;
     font-size: 11px;
     line-height: 1.35;
-    z-index: 1 !important;
-    border-collapse: collapse !important;
-    border-spacing: 0 !important;
-  }
-
-  /* Master Table Repeating Header/Footer */
-  .print-table-header {
-    display: table-header-group !important;
-  }
-  
-  .print-table-footer {
-    display: table-footer-group !important;
-  }
-
-  /* Reset table cell padding inside the master container */
-  .print-table-header th, .print-table-header td,
-  .print-table-footer th, .print-table-footer td,
-  #printable-crs-pdf > tbody > tr > td {
-    padding: 0 !important;
-    border: none !important;
-  }
-
-  /* CSS Page Counters for Print */
-  body {
-    counter-reset: print-page;
-  }
-  
-  .page-number::after {
-    counter-increment: print-page;
-    content: counter(print-page);
   }
 
   /* ── 5. Fixed background watermark — strictly behind all content ── */
@@ -266,7 +236,7 @@ body {
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    width: 450px !important;
+    width: 440px !important;
     opacity: 0.05 !important;
     z-index: -10 !important;
     pointer-events: none !important;
@@ -327,5 +297,11 @@ body {
     background-color: #f1f5f9 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+  }
+
+  /* CSS Page Counters */
+  .page-number::after {
+    counter-increment: print-page;
+    content: counter(print-page);
   }
 }

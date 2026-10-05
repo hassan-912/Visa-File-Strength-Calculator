@@ -1,21 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   calculateCRS,
   DEFAULT_CRS_FORM,
   AGE_OPTIONS,
   EDUCATION_OPTIONS,
-  LANG1_OPTIONS,
-  LANG2_OPTIONS,
   CAN_WORK_EXP_OPTIONS,
   SPOUSE_LANG1_OPTIONS,
   FOREIGN_WORK_EXP_OPTIONS,
   FRENCH_CLB_OPTIONS,
   POST_SECONDARY_CANADA_OPTIONS,
   ARRANGED_EMPLOYMENT_OPTIONS,
+  getTestScoreOptions,
+  convertTestScoreToCLB,
+  rawScoreToLang1Key,
+  rawScoreToLang2Key,
+  testTypeName,
 } from "@/lib/canada-crs";
-import type { CRSForm, CRSBreakdown } from "@/lib/canada-crs";
+import type { CRSForm, CRSBreakdown, LangTestType, LangAbility } from "@/lib/canada-crs";
 
 // ─────────────────────────────────────────────────────────────────
 // Tiny reusable components
@@ -257,29 +260,148 @@ function AccordionSection({ stepNum, title, icon, isOpen, isComplete, onToggle, 
 }
 
 // ─────────────────────────────────────────────────────────────────
-// CLB ability grid (4 abilities as dropdowns)
+// Language ability constants
 // ─────────────────────────────────────────────────────────────────
 
-const ABILITIES: Array<{ key: keyof CRSForm; label: string }> = [
-  { key: "lang1_reading",   label: "Reading" },
-  { key: "lang1_writing",   label: "Writing" },
-  { key: "lang1_speaking",  label: "Speaking" },
-  { key: "lang1_listening", label: "Listening" },
-];
-
-const ABILITIES_LANG2: Array<{ key: keyof CRSForm; label: string }> = [
-  { key: "lang2_reading",   label: "Reading" },
-  { key: "lang2_writing",   label: "Writing" },
-  { key: "lang2_speaking",  label: "Speaking" },
-  { key: "lang2_listening", label: "Listening" },
-];
+const LANG_ABILITIES: LangAbility[] = ["reading", "writing", "speaking", "listening"];
+const ABILITY_LABELS: Record<LangAbility, string> = {
+  reading: "Reading",
+  writing: "Writing",
+  speaking: "Speaking",
+  listening: "Listening",
+};
 
 const SPOUSE_ABILITIES: Array<{ key: keyof CRSForm; label: string }> = [
-  { key: "spouse_lang1_reading",   label: "Reading" },
-  { key: "spouse_lang1_writing",   label: "Writing" },
-  { key: "spouse_lang1_speaking",  label: "Speaking" },
+  { key: "spouse_lang1_reading", label: "Reading" },
+  { key: "spouse_lang1_writing", label: "Writing" },
+  { key: "spouse_lang1_speaking", label: "Speaking" },
   { key: "spouse_lang1_listening", label: "Listening" },
 ];
+
+// Test selector options
+const LANG1_TEST_OPTIONS: { value: LangTestType; label: string }[] = [
+  { value: "IELTS", label: "IELTS" },
+  { value: "PTE_Core", label: "PTE Core" },
+  { value: "TCF_Canada", label: "TCF Canada" },
+  { value: "TEF_Canada", label: "TEF Canada" },
+  { value: "CELPIP_G", label: "CELPIP-G" },
+  { value: "CLB_Direct", label: "CLB (Direct Input)" },
+];
+
+const LANG2_TEST_OPTIONS: { value: LangTestType | "none"; label: string }[] = [
+  { value: "none", label: "None / No Second Language" },
+  { value: "IELTS", label: "IELTS" },
+  { value: "PTE_Core", label: "PTE Core" },
+  { value: "TCF_Canada", label: "TCF Canada" },
+  { value: "TEF_Canada", label: "TEF Canada" },
+  { value: "CELPIP_G", label: "CELPIP-G" },
+  { value: "CLB_Direct", label: "CLB (Direct Input)" },
+];
+
+type RawScores = Record<LangAbility, string>;
+
+// ─────────────────────────────────────────────────────────────────
+// TestLangSection — test selector + dynamic per-ability dropdowns
+// ─────────────────────────────────────────────────────────────────
+interface TestLangSectionProps {
+  sectionId: "lang1" | "lang2";
+  testType: LangTestType | "none";
+  rawScores: RawScores;
+  onTestChange: (t: LangTestType | "none") => void;
+  onScoreChange: (ability: LangAbility, rawValue: string) => void;
+}
+
+function TestLangSection({
+  sectionId,
+  testType,
+  rawScores,
+  onTestChange,
+  onScoreChange,
+}: TestLangSectionProps) {
+  const isLang1 = sectionId === "lang1";
+  const testOptions = isLang1 ? LANG1_TEST_OPTIONS : LANG2_TEST_OPTIONS;
+  const hasTest = testType !== "none";
+
+  return (
+    <div className="mb-2">
+      {/* Test selector */}
+      <div className="mb-4">
+        <label
+          htmlFor={`${sectionId}-test-select`}
+          className="block text-sm font-semibold mb-1.5"
+          style={{ color: "var(--color-text-main)", fontFamily: "var(--font-montserrat)" }}
+        >
+          {isLang1
+            ? "Which language test did you take for your first official language?"
+            : "Which language test did you take for your second official language?"}
+        </label>
+        <select
+          id={`${sectionId}-test-select`}
+          value={testType}
+          onChange={(e) => onTestChange(e.target.value as LangTestType | "none")}
+          className="w-full px-4 py-3 rounded-xl border-2 text-sm transition-all duration-150"
+          style={{
+            borderColor: hasTest ? "var(--color-primary)" : "var(--color-border-light)",
+            backgroundColor: "var(--color-surface)",
+            color: hasTest ? "var(--color-text-main)" : "var(--color-text-muted)",
+            fontFamily: "var(--font-montserrat)",
+            outline: "none",
+          }}
+        >
+          {isLang1 && <option value="" disabled>Select test...</option>}
+          {testOptions.map((opt) => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Per-ability score dropdowns — hidden when no test selected */}
+      {hasTest && (
+        <div className="grid grid-cols-2 gap-3">
+          {LANG_ABILITIES.map((ability) => {
+            const activeTest = testType as LangTestType;
+            const opts = getTestScoreOptions(activeTest, ability);
+            const currentVal = rawScores[ability];
+            return (
+              <div key={ability}>
+                <label
+                  className="block text-xs font-semibold mb-1"
+                  style={{ color: "var(--color-text-muted)" }}
+                >
+                  {ABILITY_LABELS[ability]}
+                </label>
+                <select
+                  value={currentVal}
+                  onChange={(e) => onScoreChange(ability, e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl border-2 text-sm transition-all duration-150"
+                  style={{
+                    borderColor: currentVal ? "var(--color-primary)" : "var(--color-border-light)",
+                    backgroundColor: "var(--color-surface)",
+                    color: "var(--color-text-main)",
+                    fontFamily: "var(--font-montserrat)",
+                    outline: "none",
+                  }}
+                >
+                  <option value="" disabled>Select score...</option>
+                  {opts.map((opt) => (
+                    <option key={opt.rawValue} value={opt.rawValue}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+                {currentVal && (
+                  <p className="text-[10px] mt-1" style={{ color: "var(--color-text-muted)" }}>
+                    CLB {convertTestScoreToCLB(activeTest, ability, currentVal)}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
 
 // ─────────────────────────────────────────────────────────────────
 // Results Dashboard
@@ -304,14 +426,14 @@ function useCountUp(target: number, duration = 1800) {
 }
 
 const BREAKDOWN_ITEMS: Array<{ key: keyof CRSBreakdown; label: string; maxPoints: number; icon: string }> = [
-  { key: "ageScore",           label: "Age",                            maxPoints: 110, icon: "🧑" },
-  { key: "educationScore",     label: "Education",                      maxPoints: 150, icon: "🎓" },
-  { key: "lang1Score",         label: "Official Language 1",            maxPoints: 136, icon: "🗣️" },
-  { key: "lang2Score",         label: "Official Language 2",            maxPoints: 24,  icon: "🌐" },
-  { key: "canWorkExpScore",    label: "Canadian Work Experience",       maxPoints: 80,  icon: "💼" },
-  { key: "spouseScore",        label: "Spouse / Partner Factors",       maxPoints: 40,  icon: "💍" },
-  { key: "skillTransferScore", label: "Skill Transferability (max 100)",maxPoints: 100, icon: "⚡" },
-  { key: "additionalScore",    label: "Additional Points (max 600)",    maxPoints: 600, icon: "🏆" },
+  { key: "ageScore", label: "Age", maxPoints: 110, icon: "🧑" },
+  { key: "educationScore", label: "Education", maxPoints: 150, icon: "🎓" },
+  { key: "lang1Score", label: "Official Language 1", maxPoints: 136, icon: "🗣️" },
+  { key: "lang2Score", label: "Official Language 2", maxPoints: 24, icon: "🌐" },
+  { key: "canWorkExpScore", label: "Canadian Work Experience", maxPoints: 80, icon: "💼" },
+  { key: "spouseScore", label: "Spouse / Partner Factors", maxPoints: 40, icon: "💍" },
+  { key: "skillTransferScore", label: "Skill Transferability (max 100)", maxPoints: 100, icon: "⚡" },
+  { key: "additionalScore", label: "Additional Points (max 600)", maxPoints: 600, icon: "🏆" },
 ];
 
 function getCRSStatus(score: number) {
@@ -324,9 +446,13 @@ interface ResultsProps {
   form: CRSForm;
   breakdown: CRSBreakdown;
   onEdit: () => void;
+  lang1TestType?: LangTestType;
+  lang2TestType?: LangTestType;
+  lang1RawScores?: RawScores;
+  lang2RawScores?: RawScores;
 }
 
-function CRSResults({ form, breakdown, onEdit }: ResultsProps) {
+function CRSResults({ form, breakdown, onEdit, lang1TestType, lang2TestType, lang1RawScores, lang2RawScores }: ResultsProps) {
   const [barsVisible, setBarsVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [clientName, setClientName] = useState("");
@@ -353,7 +479,7 @@ function CRSResults({ form, breakdown, onEdit }: ResultsProps) {
   function arcPath(cx: number, cy: number, r: number, startDeg: number, endDeg: number) {
     const toRad = (d: number) => ((d - 90) * Math.PI) / 180;
     const x1 = cx + r * Math.cos(toRad(startDeg)), y1 = cy + r * Math.sin(toRad(startDeg));
-    const x2 = cx + r * Math.cos(toRad(endDeg)),   y2 = cy + r * Math.sin(toRad(endDeg));
+    const x2 = cx + r * Math.cos(toRad(endDeg)), y2 = cy + r * Math.sin(toRad(endDeg));
     const large = endDeg - startDeg > 180 ? 1 : 0;
     return `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2}`;
   }
@@ -544,226 +670,208 @@ function CRSResults({ form, breakdown, onEdit }: ResultsProps) {
         )}
       </div>
 
-      {/* ── Print Layout — IRCC-Style, Isolated from Tourism PDF ── */}
-      {/*
-        Uses id="printable-crs-pdf" (NOT printable-pdf-area) so that:
-        - The Tourism @media print rule does NOT accidentally reveal this block.
-        - globals.css targets both IDs independently.
-        - Content flows naturally across A4 pages (no max-height clip).
-      */}
-      {/* ── Fixed Background Watermark — z-index below all content ── */}
+      {/* ── Fixed Background Watermark ── */}
       <div className="hidden print:block pdf-watermark-bg">
         <img src="/Logo W.png" alt="" aria-hidden="true" className="filter invert" />
       </div>
 
-      <table
+      <div
         id="printable-crs-pdf"
-        className="hidden print:table w-full bg-transparent text-slate-900 font-sans border-collapse m-0 p-0"
-        style={{ printColorAdjust: "exact" } as React.CSSProperties}
+        className="hidden print:flex w-full bg-transparent text-slate-900 font-sans"
+        style={{ printColorAdjust: "exact", flexDirection: "column" } as React.CSSProperties}
       >
-        {/* ── Repeating Header ── */}
-        <thead className="print-table-header">
-          <tr>
-            <td>
-              <div className="pdf-content-layer flex justify-between items-end border-b-4 border-slate-800 pb-4 mb-6 pt-2">
-                <div className="flex flex-col">
-                  <img src="/Logo W.png" alt="MG Visa" className="h-10 object-contain filter invert mb-2 w-24" />
-                  <p className="text-base font-black text-slate-800 tracking-wider">MG International Visa Consultancy</p>
-                  <p className="text-[10px] text-slate-500 mt-0.5">Cairo | Dubai | Zayed &nbsp;·&nbsp; Info@mg-visa.com</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Immigration Assessment</p>
-                  <h1 className="text-xl font-black text-slate-900 uppercase tracking-widest mb-1">Canada Express Entry</h1>
-                  <p className="text-sm font-bold text-slate-600">Comprehensive Ranking System (CRS) Report</p>
-                </div>
-              </div>
-            </td>
-          </tr>
-        </thead>
-
-        {/* ── Main Content Body ── */}
-        <tbody>
-          <tr>
-            <td>
-              <div className="print-content-flow">
-                {/* ── Client Info Banner (First Page Only) ── */}
-                <div className="flex justify-between items-center bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6">
-                  <div>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Prepared For</p>
-                    <p className="text-lg font-black text-black">{clientName || "Client"}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-xs text-slate-500 mb-1">
-                      <span className="font-semibold">Assessment Date:</span> {reportDate}
-                    </p>
-                    <p className="text-xs text-slate-500">
-                      <span className="font-semibold">Total CRS Score:</span> <span className="font-black text-slate-900">{breakdown.total} / 1,200</span>
-                    </p>
-                  </div>
-                </div>
-
-        {/* ── Score Summary Banner ── */}
-        <div className="pdf-content-layer bg-slate-800 text-white rounded-lg px-5 py-4 mb-8 flex items-center justify-between">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">Total CRS Score</p>
-            <p className="text-4xl font-black" style={{ color: getCRSStatus(breakdown.total).color }}>{breakdown.total}</p>
-            <p className="text-xs opacity-50 mt-0.5">out of 1,200 maximum points</p>
+        {/* ── PDF Header ── */}
+        <div className="pdf-content-layer flex justify-between items-end border-b-4 border-slate-800 pb-4 mb-6 pt-2 print-avoid-break">
+          <div className="flex flex-col">
+            <img src="/Logo W.png" alt="MG Visa" className="h-10 object-contain filter invert mb-2 w-24" />
+            <p className="text-base font-black text-slate-800 tracking-wider">MG International Visa Consultancy</p>
+            <p className="text-[10px] text-slate-500 mt-0.5">Cairo | Dubai | Zayed &nbsp;·&nbsp; Info@mg-visa.com</p>
           </div>
           <div className="text-right">
-            <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">Assessment</p>
-            <p className="text-xl font-black" style={{ color: getCRSStatus(breakdown.total).color }}>
-              {getCRSStatus(breakdown.total).label}
-            </p>
-            <p className="text-xs opacity-50 mt-1 max-w-xs">{getCRSStatus(breakdown.total).sublabel}</p>
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Immigration Assessment</p>
+            <h1 className="text-xl font-black text-slate-900 uppercase tracking-widest mb-1">Canada Express Entry</h1>
+            <p className="text-sm font-bold text-slate-600">Comprehensive Ranking System (CRS) Report</p>
           </div>
         </div>
 
-        {/* ── Helper for section tables ── */}
-        {[
-          {
-            section: "A",
-            title: "Core / Human Capital Factors",
-            subtitle: "Scored on a per-applicant basis (single or with spouse scale)",
-            rows: [
-              { label: "Age", max: 110, earned: breakdown.ageScore },
-              { label: "Education Level", max: 150, earned: breakdown.educationScore },
-              { label: "Official Language 1 (4 abilities × CLB scale)", max: 136, earned: breakdown.lang1Score },
-              { label: "Official Language 2 (4 abilities × CLB scale)", max: 24, earned: breakdown.lang2Score },
-              { label: "Canadian Work Experience", max: 80, earned: breakdown.canWorkExpScore },
-            ],
-          },
-          ...(form.withSpouse ? [{
-            section: "B",
-            title: "Spouse / Common-Law Partner Factors",
-            subtitle: "Applicable only when applying with an accompanying partner",
-            rows: [
-              { label: "Spouse Education Level", max: 10, earned: breakdown.spouseScore > 0 ? Math.min(10, breakdown.spouseScore) : 0 },
-              { label: "Spouse Official Language 1 (4 abilities)", max: 20, earned: 0 },
-              { label: "Spouse Canadian Work Experience", max: 10, earned: 0 },
-            ],
-          }] : []),
-          {
-            section: form.withSpouse ? "C" : "B",
-            title: "Skill Transferability Factors",
-            subtitle: "Combinations of education, language & experience (capped at 100 pts)",
-            rows: [
-              { label: "Skill Transferability (combined sub-factors)", max: 100, earned: breakdown.skillTransferScore },
-            ],
-          },
-          {
-            section: form.withSpouse ? "D" : "C",
-            title: "Additional Points",
-            subtitle: "Sibling in Canada, French bonus, arranged employment, provincial nomination (capped at 600 pts)",
-            rows: [
-              { label: "Additional Points (combined sub-factors)", max: 600, earned: breakdown.additionalScore },
-            ],
-          },
-        ].map((sec) => {
-          const secTotal = sec.rows.reduce((s, r) => s + r.earned, 0);
-          const secMax = sec.rows.reduce((s, r) => s + r.max, 0);
-          return (
-            <div key={sec.section} className="pdf-content-layer print-avoid-break mb-7">
-              {/* Section header */}
-              <div className="flex items-center gap-3 mb-2">
-                <div className="flex items-center justify-center w-7 h-7 rounded bg-slate-800 text-white text-xs font-black shrink-0">
-                  {sec.section}
-                </div>
-                <div>
-                  <p className="text-sm font-black text-slate-800 uppercase tracking-wide">{sec.title}</p>
-                  <p className="text-[10px] text-slate-400">{sec.subtitle}</p>
-                </div>
-              </div>
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr style={{ backgroundColor: "#283840", color: "white" }}>
-                    <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider w-1/2">Factor</th>
-                    <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider text-center">Max</th>
-                    <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider text-center">Score</th>
-                    <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider text-right">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {sec.rows.map((row, i) => {
-                    const pct = row.max > 0 ? (row.earned / row.max) * 100 : 0;
-                    const status = pct === 100 ? "Full" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : row.earned === 0 ? "—" : "Low";
-                    return (
-                      <tr key={row.label} className={`border-b border-slate-100 ${i % 2 === 0 ? "" : "bg-slate-50"}`}>
-                        <td className="py-2.5 px-3 text-xs font-semibold text-slate-800">{row.label}</td>
-                        <td className="py-2.5 px-3 text-xs text-slate-500 text-center">{row.max}</td>
-                        <td className="py-2.5 px-3 text-xs font-black text-slate-900 text-center">{row.earned}</td>
-                        <td className="py-2.5 px-3 text-[10px] font-bold text-slate-400 uppercase text-right">{status}</td>
-                      </tr>
-                    );
-                  })}
-                  {/* Section sub-total */}
-                  <tr style={{ backgroundColor: "#f1f5f9" }}>
-                    <td className="py-2 px-3 text-xs font-black text-slate-700 uppercase">Section {sec.section} Sub-total</td>
-                    <td className="py-2 px-3 text-xs font-bold text-slate-500 text-center">{secMax}</td>
-                    <td className="py-2 px-3 text-xs font-black text-slate-900 text-center">{secTotal}</td>
-                    <td />
-                  </tr>
-                </tbody>
-              </table>
+        {/* ── PDF Content ── */}
+        <div className="print-content-flow">
+          {/* Client Info Banner */}
+          <div className="flex justify-between items-center bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6 print-avoid-break">
+            <div>
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Prepared For</p>
+              <p className="text-lg font-black text-black">{clientName || "Client"}</p>
             </div>
-          );
-        })}
+            <div className="text-right">
+              <p className="text-xs text-slate-500 mb-1">
+                <span className="font-semibold">Assessment Date:</span> {reportDate}
+              </p>
+              <p className="text-xs text-slate-500">
+                <span className="font-semibold">Total CRS Score:</span> <span className="font-black text-slate-900">{breakdown.total} / 1,200</span>
+              </p>
+            </div>
+          </div>
 
-                {/* ── Grand Total ── */}
-                <div className="pdf-content-layer flex justify-end mt-4 mb-2">
-                  <div className="w-1/2 border-t-4 border-slate-800 pt-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-base font-black uppercase text-slate-900">Total CRS Score</span>
-                      <span className="text-3xl font-black" style={{ color: getCRSStatus(breakdown.total).color }}>{breakdown.total}</span>
-                    </div>
-                    <div className="flex justify-between mt-1">
-                      <span className="text-xs text-slate-400 font-semibold">Maximum possible</span>
-                      <span className="text-xs font-bold text-slate-600">1,200 points</span>
-                    </div>
-                    <div className="text-right mt-1">
-                      <span className="text-xs font-bold uppercase tracking-widest" style={{ color: getCRSStatus(breakdown.total).color }}>
-                        {getCRSStatus(breakdown.total).label}
-                      </span>
-                    </div>
+          {/* Score Summary Banner */}
+          <div className="pdf-content-layer bg-slate-800 text-white rounded-lg px-5 py-4 mb-8 flex items-center justify-between print-avoid-break">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">Total CRS Score</p>
+              <p className="text-4xl font-black" style={{ color: getCRSStatus(breakdown.total).color }}>{breakdown.total}</p>
+              <p className="text-xs opacity-50 mt-0.5">out of 1,200 maximum points</p>
+            </div>
+            <div className="text-right">
+              <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">Assessment</p>
+              <p className="text-xl font-black" style={{ color: getCRSStatus(breakdown.total).color }}>
+                {getCRSStatus(breakdown.total).label}
+              </p>
+              <p className="text-xs opacity-50 mt-1 max-w-xs">{getCRSStatus(breakdown.total).sublabel}</p>
+            </div>
+          </div>
+
+          {/* Section Tables */}
+          {[
+            {
+              section: "A",
+              title: "Core / Human Capital Factors",
+              subtitle: "Scored on a per-applicant basis (single or with spouse scale)",
+              rows: [
+                { label: "Age", max: 110, earned: breakdown.ageScore },
+                { label: "Education Level", max: 150, earned: breakdown.educationScore },
+                {
+                  label: lang1TestType
+                    ? `Official Language 1 — ${testTypeName(lang1TestType)} (4 abilities × CLB scale)`
+                    : "Official Language 1 (4 abilities × CLB scale)",
+                  max: 136,
+                  earned: breakdown.lang1Score,
+                },
+                {
+                  label: lang2TestType
+                    ? `Official Language 2 — ${testTypeName(lang2TestType)} (4 abilities × CLB scale)`
+                    : "Official Language 2 (4 abilities × CLB scale)",
+                  max: 24,
+                  earned: breakdown.lang2Score,
+                },
+                { label: "Canadian Work Experience", max: 80, earned: breakdown.canWorkExpScore },
+              ],
+            },
+            ...(form.withSpouse ? [{
+              section: "B",
+              title: "Spouse / Common-Law Partner Factors",
+              subtitle: "Applicable only when applying with an accompanying partner",
+              rows: [
+                { label: "Spouse Education Level", max: 10, earned: breakdown.spouseEduScore },
+                { label: "Spouse Official Language 1 (4 abilities)", max: 20, earned: breakdown.spouseLangScore },
+                { label: "Spouse Canadian Work Experience", max: 10, earned: breakdown.spouseExpScore },
+              ],
+            }] : []),
+            {
+              section: form.withSpouse ? "C" : "B",
+              title: "Skill Transferability Factors",
+              subtitle: "Combinations of education, language & experience (capped at 100 pts)",
+              rows: [
+                { label: "Skill Transferability (combined sub-factors)", max: 100, earned: breakdown.skillTransferScore },
+              ],
+            },
+            {
+              section: form.withSpouse ? "D" : "C",
+              title: "Additional Points",
+              subtitle: "Sibling in Canada, French bonus, arranged employment, provincial nomination (capped at 600 pts)",
+              rows: [
+                { label: "Additional Points (combined sub-factors)", max: 600, earned: breakdown.additionalScore },
+              ],
+            },
+          ].map((sec) => {
+            const secTotal = sec.rows.reduce((s, r) => s + r.earned, 0);
+            const secMax = sec.rows.reduce((s, r) => s + r.max, 0);
+            return (
+              <div key={sec.section} className="pdf-content-layer print-avoid-break mb-7">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center justify-center w-7 h-7 rounded bg-slate-800 text-white text-xs font-black shrink-0">
+                    {sec.section}
+                  </div>
+                  <div>
+                    <p className="text-sm font-black text-slate-800 uppercase tracking-wide">{sec.title}</p>
+                    <p className="text-[10px] text-slate-400">{sec.subtitle}</p>
                   </div>
                 </div>
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr style={{ backgroundColor: "#283840", color: "white" }}>
+                      <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider w-1/2">Factor</th>
+                      <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider text-center">Max</th>
+                      <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider text-center">Score</th>
+                      <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider text-right">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sec.rows.map((row, i) => {
+                      const pct = row.max > 0 ? (row.earned / row.max) * 100 : 0;
+                      const status = pct === 100 ? "Full" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : row.earned === 0 ? "—" : "Low";
+                      return (
+                        <tr key={row.label} className={`border-b border-slate-100 ${i % 2 === 0 ? "" : "bg-slate-50"}`}>
+                          <td className="py-2.5 px-3 text-xs font-semibold text-slate-800">{row.label}</td>
+                          <td className="py-2.5 px-3 text-xs text-slate-500 text-center">{row.max}</td>
+                          <td className="py-2.5 px-3 text-xs font-black text-slate-900 text-center">{row.earned}</td>
+                          <td className="py-2.5 px-3 text-[10px] font-bold text-slate-400 uppercase text-right">{status}</td>
+                        </tr>
+                      );
+                    })}
+                    <tr style={{ backgroundColor: "#f1f5f9" }}>
+                      <td className="py-2 px-3 text-xs font-black text-slate-700 uppercase">Section {sec.section} Sub-total</td>
+                      <td className="py-2 px-3 text-xs font-bold text-slate-500 text-center">{secMax}</td>
+                      <td className="py-2 px-3 text-xs font-black text-slate-900 text-center">{secTotal}</td>
+                      <td />
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-              {/* end .print-content-flow */}
-            </td>
-          </tr>
-        </tbody>
+            );
+          })}
 
-        {/* ── Repeating Footer ── */}
-        <tfoot className="print-table-footer">
-          <tr>
-            <td>
-              <div className="pdf-content-layer border-t-2 border-slate-200 pt-3 mt-4 pb-2 flex justify-between items-end">
-                <div className="text-left max-w-2xl">
-                  <p className="text-[10px] font-bold text-slate-600 tracking-widest uppercase mb-1">
-                    Confidential — Prepared for {clientName || "Client"}
-                  </p>
-                  <p className="text-[9px] text-slate-400 leading-relaxed">
-                    This CRS assessment is indicative only and relies on the official IRCC Comprehensive Ranking System grid.
-                    It does not constitute legal or immigration advice. For personalised guidance, contact an MG Visa licensed advisor.
-                    <br/><strong>mg-visa.com</strong> · Info@mg-visa.com · 17621
-                  </p>
-                </div>
-                <div className="text-right">
-                  <p className="text-[10px] font-bold text-slate-500 mb-1">MG International Visa Consultancy</p>
-                  <p className="text-[9px] text-slate-400">Page <span className="page-number"></span></p>
-                </div>
+          {/* Grand Total */}
+          <div className="pdf-content-layer flex justify-end mt-4 mb-2 print-avoid-break">
+            <div className="w-1/2 border-t-4 border-slate-800 pt-3">
+              <div className="flex justify-between items-center">
+                <span className="text-base font-black uppercase text-slate-900">Total CRS Score</span>
+                <span className="text-3xl font-black" style={{ color: getCRSStatus(breakdown.total).color }}>{breakdown.total}</span>
               </div>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+              <div className="flex justify-between mt-1">
+                <span className="text-xs text-slate-400 font-semibold">Maximum possible</span>
+                <span className="text-xs font-bold text-slate-600">1,200 points</span>
+              </div>
+              <div className="text-right mt-1">
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: getCRSStatus(breakdown.total).color }}>
+                  {getCRSStatus(breakdown.total).label}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* end .print-content-flow */}
+
+        {/* ── PDF Footer ── */}
+        <div className="pdf-content-layer border-t-2 border-slate-200 pt-3 mt-6 pb-2 flex justify-between items-end print-avoid-break">
+          <div className="text-left max-w-2xl">
+            <p className="text-[10px] font-bold text-slate-600 tracking-widest uppercase mb-1">
+              Confidential — Prepared for {clientName || "Client"}
+            </p>
+            <p className="text-[9px] text-slate-400 leading-relaxed">
+              This CRS assessment is indicative only and relies on the official IRCC Comprehensive Ranking System grid.
+              It does not constitute legal or immigration advice. For personalised guidance, contact an MG Visa licensed advisor.
+              <br /><strong>mg-visa.com</strong> · Info@mg-visa.com · 17621
+            </p>
+          </div>
+          <div className="text-right">
+            <p className="text-[10px] font-bold text-slate-500 mb-1">MG International Visa Consultancy</p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
 
-// ─────────────────────────────────────────────────────────────────
-// Language ability grid
-// ─────────────────────────────────────────────────────────────────
 
+// LangAbilityGrid kept for spouse section (uses direct CLB keys)
 function LangAbilityGrid({
   title,
   abilities,
@@ -843,6 +951,9 @@ interface CanadaCRSFormProps {
   externalLoadingDone?: boolean;
 }
 
+// Default raw score state (all abilities unset)
+const DEFAULT_RAW_SCORES: RawScores = { reading: "", writing: "", speaking: "", listening: "" };
+
 export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
   const [form, setForm] = useState<CRSForm>(DEFAULT_CRS_FORM);
   const [openSection, setOpenSection] = useState<number>(0);
@@ -850,10 +961,91 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
   const [breakdown, setBreakdown] = useState<CRSBreakdown | null>(null);
   const [profileComplete, setProfileComplete] = useState(false);
 
+  // ── Language test state ──────────────────────────────────────────
+  const [lang1TestType, setLang1TestType] = useState<LangTestType | "none">("IELTS");
+  const [lang2TestType, setLang2TestType] = useState<LangTestType | "none">("none");
+  const [lang1RawScores, setLang1RawScores] = useState<RawScores>(DEFAULT_RAW_SCORES);
+  const [lang2RawScores, setLang2RawScores] = useState<RawScores>(DEFAULT_RAW_SCORES);
+
   // Profile section is step 0 — required before anything else
   useEffect(() => {
     setProfileComplete(form.withSpouse !== undefined);
   }, [form.withSpouse]);
+
+  // ── Sync raw lang1 scores → CRS form keys ───────────────────────
+  const syncLang1 = useCallback(
+    (testType: LangTestType | "none", scores: RawScores) => {
+      if (testType === "none") return;
+      setForm((prev) => ({
+        ...prev,
+        lang1_reading: rawScoreToLang1Key(testType, "reading", scores.reading),
+        lang1_writing: rawScoreToLang1Key(testType, "writing", scores.writing),
+        lang1_speaking: rawScoreToLang1Key(testType, "speaking", scores.speaking),
+        lang1_listening: rawScoreToLang1Key(testType, "listening", scores.listening),
+      }));
+    },
+    []
+  );
+
+  // ── Sync raw lang2 scores → CRS form keys ───────────────────────
+  const syncLang2 = useCallback(
+    (testType: LangTestType | "none", scores: RawScores) => {
+      if (testType === "none") {
+        // No second language — zero out lang2 in form
+        setForm((prev) => ({
+          ...prev,
+          lang2_reading: "clb4_or_less",
+          lang2_writing: "clb4_or_less",
+          lang2_speaking: "clb4_or_less",
+          lang2_listening: "clb4_or_less",
+        }));
+        return;
+      }
+      setForm((prev) => ({
+        ...prev,
+        lang2_reading: rawScoreToLang2Key(testType, "reading", scores.reading),
+        lang2_writing: rawScoreToLang2Key(testType, "writing", scores.writing),
+        lang2_speaking: rawScoreToLang2Key(testType, "speaking", scores.speaking),
+        lang2_listening: rawScoreToLang2Key(testType, "listening", scores.listening),
+      }));
+    },
+    []
+  );
+
+  // Handle lang1 test type change
+  function handleLang1TestChange(t: LangTestType | "none") {
+    setLang1TestType(t);
+    // Reset raw scores when test changes
+    const fresh = DEFAULT_RAW_SCORES;
+    setLang1RawScores(fresh);
+    syncLang1(t, fresh);
+  }
+
+  // Handle lang1 individual ability score change
+  function handleLang1ScoreChange(ability: LangAbility, rawValue: string) {
+    setLang1RawScores((prev) => {
+      const next = { ...prev, [ability]: rawValue };
+      syncLang1(lang1TestType, next);
+      return next;
+    });
+  }
+
+  // Handle lang2 test type change
+  function handleLang2TestChange(t: LangTestType | "none") {
+    setLang2TestType(t);
+    const fresh = DEFAULT_RAW_SCORES;
+    setLang2RawScores(fresh);
+    syncLang2(t, fresh);
+  }
+
+  // Handle lang2 individual ability score change
+  function handleLang2ScoreChange(ability: LangAbility, rawValue: string) {
+    setLang2RawScores((prev) => {
+      const next = { ...prev, [ability]: rawValue };
+      syncLang2(lang2TestType, next);
+      return next;
+    });
+  }
 
   // ── Real-time live score (recalculated on every render) ──────────
   const liveScore = calculateCRS(form).total;
@@ -878,11 +1070,21 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
   const canSubmit = isCoreComplete(form) && isSpouseComplete(form);
 
   if (step === "results" && breakdown) {
-    return <CRSResults form={form} breakdown={breakdown} onEdit={handleEdit} />;
+    return (
+      <CRSResults
+        form={form}
+        breakdown={breakdown}
+        onEdit={handleEdit}
+        lang1TestType={lang1TestType !== "none" ? lang1TestType : undefined}
+        lang2TestType={lang2TestType !== "none" ? lang2TestType : undefined}
+        lang1RawScores={lang1RawScores}
+        lang2RawScores={lang2RawScores}
+      />
+    );
   }
 
   // ── Live score colour ──
-  const liveBg  = liveScore >= 470 ? "#16A34A" : liveScore >= 380 ? "#EA580C" : "#283840";
+  const liveBg = liveScore >= 470 ? "#16A34A" : liveScore >= 380 ? "#EA580C" : "#283840";
 
   return (
     <>
@@ -923,169 +1125,51 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
         </div>
       </div>
 
-    <div className="animate-fadeInUp">
-      {/* Header */}
-      <div className="mb-8">
-        <div
-          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3"
-          style={{ backgroundColor: "var(--color-accent-bg)", color: "var(--color-accent)", border: "1px solid var(--color-accent-border)" }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--color-accent-hover)" }} />
-          🍁 Canada Express Entry
-        </div>
-        <h2
-          className="text-2xl sm:text-3xl font-bold leading-tight mb-2"
-          style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
-        >
-          CRS Score Calculator
-        </h2>
-        <p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
-          Complete all sections below. Your answers will be used to calculate your official Comprehensive Ranking System (CRS) score out of 1,200 points.
-        </p>
-      </div>
-
-      {/* ── Step 0 — Profile ── */}
-      <AccordionSection
-        stepNum={1}
-        title="Applicant Profile"
-        icon="👤"
-        isOpen={openSection === 0}
-        isComplete={profileComplete}
-        onToggle={() => setOpenSection(openSection === 0 ? -1 : 0)}
-      >
-        <RadioGroup
-          label="Are you applying with an accompanying spouse or common-law partner?"
-          name="withSpouse"
-          options={[
-            { value: "yes", label: "Yes — I have an accompanying spouse / common-law partner" },
-            { value: "no",  label: "No — I am applying without a spouse / partner" },
-          ]}
-          value={form.withSpouse ? "yes" : "no"}
-          onChange={(v) => update("withSpouse", v === "yes")}
-          hint="This determines the scoring scale for all core human capital factors."
-        />
-        <div className="mt-4 flex justify-end">
-          <button
-            type="button"
-            onClick={() => setOpenSection(1)}
-            className="px-6 py-2.5 rounded-xl font-bold text-sm text-white transition-all"
-            style={{ backgroundColor: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
+      <div className="animate-fadeInUp">
+        {/* Header */}
+        <div className="mb-8">
+          <div
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3"
+            style={{ backgroundColor: "var(--color-accent-bg)", color: "var(--color-accent)", border: "1px solid var(--color-accent-border)" }}
           >
-            Next →
-          </button>
-        </div>
-      </AccordionSection>
-
-      {/* ── Step 1 — Core Factors ── */}
-      <AccordionSection
-        stepNum={2}
-        title="Core / Human Capital Factors"
-        icon="⚙️"
-        isOpen={openSection === 1}
-        isComplete={isCoreComplete(form)}
-        onToggle={() => setOpenSection(openSection === 1 ? -1 : 1)}
-      >
-        <SelectGroup
-          label="Age"
-          name="age"
-          options={AGE_OPTIONS}
-          value={form.age}
-          onChange={(v) => update("age", v)}
-        />
-
-        <SelectGroup
-          label="Education Level"
-          name="education"
-          options={EDUCATION_OPTIONS}
-          value={form.education}
-          onChange={(v) => update("education", v)}
-        />
-
-        <SectionDivider label="First Official Language" />
-        <p className="text-xs mb-3 -mt-2 leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
-          Select your CLB level for each ability in your first official language (English or French).
-        </p>
-        <LangAbilityGrid
-          title="First Official Language — CLB per ability"
-          abilities={ABILITIES}
-          options={LANG1_OPTIONS}
-          form={form}
-          onUpdate={update}
-        />
-
-        <SectionDivider label="Second Official Language" />
-        <p className="text-xs mb-3 -mt-2 leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
-          If you have test results in a second official language, enter your CLB level per ability.
-        </p>
-        <LangAbilityGrid
-          title="Second Official Language — CLB per ability"
-          abilities={ABILITIES_LANG2}
-          options={LANG2_OPTIONS}
-          form={form}
-          onUpdate={update}
-        />
-
-        <SectionDivider label="Canadian Work Experience" />
-        <SelectGroup
-          label="How many years of skilled Canadian work experience do you have?"
-          name="canWorkExp"
-          options={CAN_WORK_EXP_OPTIONS}
-          value={form.canWorkExp}
-          onChange={(v) => update("canWorkExp", v)}
-        />
-
-        <div className="flex justify-end">
-          <button
-            type="button"
-            onClick={() => setOpenSection(form.withSpouse ? 2 : 3)}
-            className="px-6 py-2.5 rounded-xl font-bold text-sm text-white transition-all"
-            style={{ backgroundColor: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
+            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--color-accent-hover)" }} />
+            🍁 Canada Express Entry
+          </div>
+          <h2
+            className="text-2xl sm:text-3xl font-bold leading-tight mb-2"
+            style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
           >
-            Next →
-          </button>
+            CRS Score Calculator
+          </h2>
+          <p className="text-sm" style={{ color: "var(--color-text-muted)" }}>
+            Complete all sections below. Your answers will be used to calculate your official Comprehensive Ranking System (CRS) score out of 1,200 points.
+          </p>
         </div>
-      </AccordionSection>
 
-      {/* ── Step 2 — Spouse Factors (conditional) ── */}
-      {form.withSpouse && (
+        {/* ── Step 0 — Profile ── */}
         <AccordionSection
-          stepNum={3}
-          title="Spouse / Common-Law Partner Factors"
-          icon="💍"
-          isOpen={openSection === 2}
-          isComplete={isSpouseComplete(form)}
-          onToggle={() => setOpenSection(openSection === 2 ? -1 : 2)}
+          stepNum={1}
+          title="Applicant Profile"
+          icon="👤"
+          isOpen={openSection === 0}
+          isComplete={profileComplete}
+          onToggle={() => setOpenSection(openSection === 0 ? -1 : 0)}
         >
-          <SelectGroup
-            label="Spouse's Education Level"
-            name="spouse_education"
-            options={EDUCATION_OPTIONS}
-            value={form.spouse_education}
-            onChange={(v) => update("spouse_education", v)}
+          <RadioGroup
+            label="Are you applying with an accompanying spouse or common-law partner?"
+            name="withSpouse"
+            options={[
+              { value: "yes", label: "Yes — I have an accompanying spouse / common-law partner" },
+              { value: "no", label: "No — I am applying without a spouse / partner" },
+            ]}
+            value={form.withSpouse ? "yes" : "no"}
+            onChange={(v) => update("withSpouse", v === "yes")}
+            hint="This determines the scoring scale for all core human capital factors."
           />
-
-          <SectionDivider label="Spouse's First Official Language" />
-          <LangAbilityGrid
-            title="Spouse's CLB per ability"
-            abilities={SPOUSE_ABILITIES}
-            options={SPOUSE_LANG1_OPTIONS}
-            form={form}
-            onUpdate={update}
-          />
-
-          <SectionDivider label="Spouse's Canadian Work Experience" />
-          <SelectGroup
-            label="Spouse's years of skilled Canadian work experience"
-            name="spouse_canWorkExp"
-            options={CAN_WORK_EXP_OPTIONS}
-            value={form.spouse_canWorkExp}
-            onChange={(v) => update("spouse_canWorkExp", v)}
-          />
-
-          <div className="flex justify-end">
+          <div className="mt-4 flex justify-end">
             <button
               type="button"
-              onClick={() => setOpenSection(3)}
+              onClick={() => setOpenSection(1)}
               className="px-6 py-2.5 rounded-xl font-bold text-sm text-white transition-all"
               style={{ backgroundColor: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
             >
@@ -1093,147 +1177,267 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
             </button>
           </div>
         </AccordionSection>
-      )}
 
-      {/* ── Step 3 — Skill Transferability ── */}
-      <AccordionSection
-        stepNum={form.withSpouse ? 4 : 3}
-        title="Skill Transferability Factors (max 100 pts)"
-        icon="⚡"
-        isOpen={openSection === 3}
-        isComplete={isTransferComplete(form)}
-        onToggle={() => setOpenSection(openSection === 3 ? -1 : 3)}
-      >
-        <p className="text-xs mb-4 leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
-          These factors reward combinations of skills. Points are calculated automatically from your answers above plus the fields below.
-        </p>
+        {/* ── Step 1 — Core Factors ── */}
+        <AccordionSection
+          stepNum={2}
+          title="Core / Human Capital Factors"
+          icon="⚙️"
+          isOpen={openSection === 1}
+          isComplete={isCoreComplete(form)}
+          onToggle={() => setOpenSection(openSection === 1 ? -1 : 1)}
+        >
+          <SelectGroup
+            label="Age"
+            name="age"
+            options={AGE_OPTIONS}
+            value={form.age}
+            onChange={(v) => update("age", v)}
+          />
 
-        <SelectGroup
-          label="Foreign Work Experience outside Canada"
-          name="foreignWorkExp"
-          options={FOREIGN_WORK_EXP_OPTIONS}
-          value={form.foreignWorkExp}
-          onChange={(v) => update("foreignWorkExp", v)}
-        />
+          <SelectGroup
+            label="Education Level"
+            name="education"
+            options={EDUCATION_OPTIONS}
+            value={form.education}
+            onChange={(v) => update("education", v)}
+          />
 
-        <CheckboxItem
-          id="tradesCert"
-          label="Certificate of Qualification in a trade occupation"
-          description="Issued by a Canadian provincial or territorial authority."
-          checked={form.tradesCertificate}
-          onChange={(v) => update("tradesCertificate", v)}
-        />
+          <SectionDivider label="First Official Language" />
+          <p className="text-xs mb-3 -mt-2 leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+            Select your language test and scores for your first official language (English or French).
+            Scores are automatically converted to CLB levels.
+          </p>
+          <TestLangSection
+            sectionId="lang1"
+            testType={lang1TestType}
+            rawScores={lang1RawScores}
+            onTestChange={handleLang1TestChange}
+            onScoreChange={handleLang1ScoreChange}
+          />
 
-        <div className="flex justify-end mt-2">
-          <button
-            type="button"
-            onClick={() => setOpenSection(4)}
-            className="px-6 py-2.5 rounded-xl font-bold text-sm text-white transition-all"
-            style={{ backgroundColor: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
+          <SectionDivider label="Second Official Language" />
+          <p className="text-xs mb-3 -mt-2 leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+            If you were tested in a second official language, select the test and enter your scores.
+            Select &quot;None&quot; if not applicable.
+          </p>
+          <TestLangSection
+            sectionId="lang2"
+            testType={lang2TestType}
+            rawScores={lang2RawScores}
+            onTestChange={handleLang2TestChange}
+            onScoreChange={handleLang2ScoreChange}
+          />
+
+          <SectionDivider label="Canadian Work Experience" />
+          <SelectGroup
+            label="How many years of skilled Canadian work experience do you have?"
+            name="canWorkExp"
+            options={CAN_WORK_EXP_OPTIONS}
+            value={form.canWorkExp}
+            onChange={(v) => update("canWorkExp", v)}
+          />
+
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() => setOpenSection(form.withSpouse ? 2 : 3)}
+              className="px-6 py-2.5 rounded-xl font-bold text-sm text-white transition-all"
+              style={{ backgroundColor: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
+            >
+              Next →
+            </button>
+          </div>
+        </AccordionSection>
+
+        {/* ── Step 2 — Spouse Factors (conditional) ── */}
+        {form.withSpouse && (
+          <AccordionSection
+            stepNum={3}
+            title="Spouse / Common-Law Partner Factors"
+            icon="💍"
+            isOpen={openSection === 2}
+            isComplete={isSpouseComplete(form)}
+            onToggle={() => setOpenSection(openSection === 2 ? -1 : 2)}
           >
-            Next →
-          </button>
-        </div>
-      </AccordionSection>
+            <SelectGroup
+              label="Spouse's Education Level"
+              name="spouse_education"
+              options={EDUCATION_OPTIONS}
+              value={form.spouse_education}
+              onChange={(v) => update("spouse_education", v)}
+            />
 
-      {/* ── Step 4 — Additional Points ── */}
-      <AccordionSection
-        stepNum={form.withSpouse ? 5 : 4}
-        title="Additional Points (max 600 pts)"
-        icon="🏆"
-        isOpen={openSection === 4}
-        isComplete={isAdditionalComplete(form)}
-        onToggle={() => setOpenSection(openSection === 4 ? -1 : 4)}
-      >
-        <p className="text-xs mb-4 leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
-          Select all that apply. Provincial Nomination alone awards 600 points.
-        </p>
+            <SectionDivider label="Spouse's First Official Language" />
+            <LangAbilityGrid
+              title="Spouse's CLB per ability"
+              abilities={SPOUSE_ABILITIES}
+              options={SPOUSE_LANG1_OPTIONS}
+              form={form}
+              onUpdate={update}
+            />
 
-        <CheckboxItem
-          id="sibling"
-          label="Brother or sister living in Canada (+15 pts)"
-          description="Who is a Canadian citizen or permanent resident aged 18 or older."
-          checked={form.siblingInCanada}
-          onChange={(v) => update("siblingInCanada", v)}
-        />
+            <SectionDivider label="Spouse's Canadian Work Experience" />
+            <SelectGroup
+              label="Spouse's years of skilled Canadian work experience"
+              name="spouse_canWorkExp"
+              options={CAN_WORK_EXP_OPTIONS}
+              value={form.spouse_canWorkExp}
+              onChange={(v) => update("spouse_canWorkExp", v)}
+            />
 
-        <SelectGroup
-          label="French language ability bonus"
-          name="frenchClb"
-          options={FRENCH_CLB_OPTIONS}
-          value={form.frenchClb}
-          onChange={(v) => update("frenchClb", v)}
-        />
-
-        <SelectGroup
-          label="Post-secondary education completed in Canada"
-          name="postSecondaryCanada"
-          options={POST_SECONDARY_CANADA_OPTIONS}
-          value={form.postSecondaryCanada}
-          onChange={(v) => update("postSecondaryCanada", v)}
-        />
-
-        <SelectGroup
-          label="Arranged employment in Canada"
-          name="arrangedEmployment"
-          options={ARRANGED_EMPLOYMENT_OPTIONS}
-          value={form.arrangedEmployment}
-          onChange={(v) => update("arrangedEmployment", v)}
-        />
-
-        <CheckboxItem
-          id="provNom"
-          label="Provincial or Territorial Nomination (+600 pts)"
-          description="A valid nomination certificate from a Canadian province or territory."
-          checked={form.provincialNomination}
-          onChange={(v) => update("provincialNomination", v)}
-        />
-      </AccordionSection>
-
-      {/* Disclaimer */}
-      <div
-        className="rounded-xl p-4 mb-6 mt-2 text-xs leading-relaxed"
-        style={{ backgroundColor: "var(--color-accent-bg)", color: "var(--color-text-muted)", borderLeft: "3px solid var(--color-accent)" }}
-      >
-        <strong style={{ color: "var(--color-text-main)" }}>Disclaimer:</strong>{" "}
-        This tool uses the official IRCC CRS grid. Results are indicative only and may not reflect actual draw cut-offs, which vary by draw type and date.
-        For personalised immigration advice, contact an MG Visa licensed advisor.
-      </div>
-
-      {/* Submit */}
-      <button
-        type="button"
-        onClick={handleSubmit}
-        disabled={!canSubmit}
-        id="calculate-crs-button"
-        aria-label="Calculate my Canada CRS Score"
-        className="w-full py-4 px-8 rounded-2xl font-bold text-base tracking-wide transition-all duration-200 flex items-center justify-center gap-3"
-        style={{
-          backgroundColor: canSubmit ? "var(--color-primary)" : "var(--color-surface-3)",
-          color: canSubmit ? "#FFFFFF" : "var(--color-text-light)",
-          fontFamily: "var(--font-montserrat)",
-          cursor: canSubmit ? "pointer" : "not-allowed",
-          boxShadow: canSubmit ? "0 4px 20px rgba(40,56,64,0.3)" : "none",
-        }}
-      >
-        {canSubmit ? (
-          <>
-            <span>🍁</span>
-            Calculate My CRS Score
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 opacity-70">
-              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-            </svg>
-          </>
-        ) : (
-          <>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-            </svg>
-            Complete Step 1 (Profile) and Step 2 (Core Factors) to continue
-          </>
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={() => setOpenSection(3)}
+                className="px-6 py-2.5 rounded-xl font-bold text-sm text-white transition-all"
+                style={{ backgroundColor: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
+              >
+                Next →
+              </button>
+            </div>
+          </AccordionSection>
         )}
-      </button>
-    </div>
+
+        {/* ── Step 3 — Skill Transferability ── */}
+        <AccordionSection
+          stepNum={form.withSpouse ? 4 : 3}
+          title="Skill Transferability Factors (max 100 pts)"
+          icon="⚡"
+          isOpen={openSection === 3}
+          isComplete={isTransferComplete(form)}
+          onToggle={() => setOpenSection(openSection === 3 ? -1 : 3)}
+        >
+          <p className="text-xs mb-4 leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+            These factors reward combinations of skills. Points are calculated automatically from your answers above plus the fields below.
+          </p>
+
+          <SelectGroup
+            label="Foreign Work Experience outside Canada"
+            name="foreignWorkExp"
+            options={FOREIGN_WORK_EXP_OPTIONS}
+            value={form.foreignWorkExp}
+            onChange={(v) => update("foreignWorkExp", v)}
+          />
+
+          <CheckboxItem
+            id="tradesCert"
+            label="Certificate of Qualification in a trade occupation"
+            description="Issued by a Canadian provincial or territorial authority."
+            checked={form.tradesCertificate}
+            onChange={(v) => update("tradesCertificate", v)}
+          />
+
+          <div className="flex justify-end mt-2">
+            <button
+              type="button"
+              onClick={() => setOpenSection(4)}
+              className="px-6 py-2.5 rounded-xl font-bold text-sm text-white transition-all"
+              style={{ backgroundColor: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
+            >
+              Next →
+            </button>
+          </div>
+        </AccordionSection>
+
+        {/* ── Step 4 — Additional Points ── */}
+        <AccordionSection
+          stepNum={form.withSpouse ? 5 : 4}
+          title="Additional Points (max 600 pts)"
+          icon="🏆"
+          isOpen={openSection === 4}
+          isComplete={isAdditionalComplete(form)}
+          onToggle={() => setOpenSection(openSection === 4 ? -1 : 4)}
+        >
+          <p className="text-xs mb-4 leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+            Select all that apply. Provincial Nomination alone awards 600 points.
+          </p>
+
+          <CheckboxItem
+            id="sibling"
+            label="Brother or sister living in Canada (+15 pts)"
+            description="Who is a Canadian citizen or permanent resident aged 18 or older."
+            checked={form.siblingInCanada}
+            onChange={(v) => update("siblingInCanada", v)}
+          />
+
+          <SelectGroup
+            label="French language ability bonus"
+            name="frenchClb"
+            options={FRENCH_CLB_OPTIONS}
+            value={form.frenchClb}
+            onChange={(v) => update("frenchClb", v)}
+          />
+
+          <SelectGroup
+            label="Post-secondary education completed in Canada"
+            name="postSecondaryCanada"
+            options={POST_SECONDARY_CANADA_OPTIONS}
+            value={form.postSecondaryCanada}
+            onChange={(v) => update("postSecondaryCanada", v)}
+          />
+
+          <SelectGroup
+            label="Arranged employment in Canada"
+            name="arrangedEmployment"
+            options={ARRANGED_EMPLOYMENT_OPTIONS}
+            value={form.arrangedEmployment}
+            onChange={(v) => update("arrangedEmployment", v)}
+          />
+
+          <CheckboxItem
+            id="provNom"
+            label="Provincial or Territorial Nomination (+600 pts)"
+            description="A valid nomination certificate from a Canadian province or territory."
+            checked={form.provincialNomination}
+            onChange={(v) => update("provincialNomination", v)}
+          />
+        </AccordionSection>
+
+        {/* Disclaimer */}
+        <div
+          className="rounded-xl p-4 mb-6 mt-2 text-xs leading-relaxed"
+          style={{ backgroundColor: "var(--color-accent-bg)", color: "var(--color-text-muted)", borderLeft: "3px solid var(--color-accent)" }}
+        >
+          <strong style={{ color: "var(--color-text-main)" }}>Disclaimer:</strong>{" "}
+          This tool uses the official IRCC CRS grid. Results are indicative only and may not reflect actual draw cut-offs, which vary by draw type and date.
+          For personalised immigration advice, contact an MG Visa licensed advisor.
+        </div>
+
+        {/* Submit */}
+        <button
+          type="button"
+          onClick={handleSubmit}
+          disabled={!canSubmit}
+          id="calculate-crs-button"
+          aria-label="Calculate my Canada CRS Score"
+          className="w-full py-4 px-8 rounded-2xl font-bold text-base tracking-wide transition-all duration-200 flex items-center justify-center gap-3"
+          style={{
+            backgroundColor: canSubmit ? "var(--color-primary)" : "var(--color-surface-3)",
+            color: canSubmit ? "#FFFFFF" : "var(--color-text-light)",
+            fontFamily: "var(--font-montserrat)",
+            cursor: canSubmit ? "pointer" : "not-allowed",
+            boxShadow: canSubmit ? "0 4px 20px rgba(40,56,64,0.3)" : "none",
+          }}
+        >
+          {canSubmit ? (
+            <>
+              <span>🍁</span>
+              Calculate My CRS Score
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 opacity-70">
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+              </svg>
+            </>
+          ) : (
+            <>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+              </svg>
+              Complete Step 1 (Profile) and Step 2 (Core Factors) to continue
+            </>
+          )}
+        </button>
+      </div>
     </>
   );
 }
