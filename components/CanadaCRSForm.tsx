@@ -278,67 +278,55 @@ const SPOUSE_ABILITIES: Array<{ key: keyof CRSForm; label: string }> = [
   { key: "spouse_lang1_listening", label: "Listening" },
 ];
 
-// Test selector options
-const LANG1_TEST_OPTIONS: { value: LangTestType; label: string }[] = [
+export type EnglishTestType = "IELTS" | "PTE_Core" | "CELPIP_G";
+export type FrenchTestType = "TEF_Canada" | "TCF_Canada";
+
+const ENGLISH_TEST_OPTIONS: { value: EnglishTestType; label: string }[] = [
   { value: "IELTS", label: "IELTS" },
   { value: "PTE_Core", label: "PTE Core" },
-  { value: "TCF_Canada", label: "TCF Canada" },
-  { value: "TEF_Canada", label: "TEF Canada" },
   { value: "CELPIP_G", label: "CELPIP-G" },
-  { value: "CLB_Direct", label: "CLB (Direct Input)" },
 ];
 
-const LANG2_TEST_OPTIONS: { value: LangTestType | "none"; label: string }[] = [
-  { value: "none", label: "None / No Second Language" },
-  { value: "IELTS", label: "IELTS" },
-  { value: "PTE_Core", label: "PTE Core" },
-  { value: "TCF_Canada", label: "TCF Canada" },
+const FRENCH_TEST_OPTIONS: { value: FrenchTestType | "none"; label: string }[] = [
+  { value: "none", label: "None / No French Test" },
   { value: "TEF_Canada", label: "TEF Canada" },
-  { value: "CELPIP_G", label: "CELPIP-G" },
-  { value: "CLB_Direct", label: "CLB (Direct Input)" },
+  { value: "TCF_Canada", label: "TCF Canada" },
 ];
 
 type RawScores = Record<LangAbility, string>;
 
 // ─────────────────────────────────────────────────────────────────
-// TestLangSection — test selector + dynamic per-ability dropdowns
+// English & French Language Components
 // ─────────────────────────────────────────────────────────────────
-interface TestLangSectionProps {
-  sectionId: "lang1" | "lang2";
-  testType: LangTestType | "none";
+interface EnglishLangSectionProps {
+  testType: EnglishTestType | "";
   rawScores: RawScores;
-  onTestChange: (t: LangTestType | "none") => void;
+  onTestChange: (t: EnglishTestType | "") => void;
   onScoreChange: (ability: LangAbility, rawValue: string) => void;
 }
 
-function TestLangSection({
-  sectionId,
+function EnglishLangSection({
   testType,
   rawScores,
   onTestChange,
   onScoreChange,
-}: TestLangSectionProps) {
-  const isLang1 = sectionId === "lang1";
-  const testOptions = isLang1 ? LANG1_TEST_OPTIONS : LANG2_TEST_OPTIONS;
-  const hasTest = testType !== "none";
+}: EnglishLangSectionProps) {
+  const hasTest = !!testType;
 
   return (
     <div className="mb-2">
-      {/* Test selector */}
       <div className="mb-4">
         <label
-          htmlFor={`${sectionId}-test-select`}
+          htmlFor="english-test-select"
           className="block text-sm font-semibold mb-1.5"
           style={{ color: "var(--color-text-main)", fontFamily: "var(--font-montserrat)" }}
         >
-          {isLang1
-            ? "Which language test did you take for your first official language?"
-            : "Which language test did you take for your second official language?"}
+          Which English test did you take?
         </label>
         <select
-          id={`${sectionId}-test-select`}
+          id="english-test-select"
           value={testType}
-          onChange={(e) => onTestChange(e.target.value as LangTestType | "none")}
+          onChange={(e) => onTestChange(e.target.value as EnglishTestType | "")}
           className="w-full px-4 py-3 rounded-xl border-2 text-sm transition-all duration-150"
           style={{
             borderColor: hasTest ? "var(--color-primary)" : "var(--color-border-light)",
@@ -348,14 +336,104 @@ function TestLangSection({
             outline: "none",
           }}
         >
-          {isLang1 && <option value="" disabled>Select test...</option>}
-          {testOptions.map((opt) => (
+          <option value="" disabled>Select English test...</option>
+          {ENGLISH_TEST_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
       </div>
 
-      {/* Per-ability score dropdowns — hidden when no test selected */}
+      {hasTest && (
+        <div className="grid grid-cols-2 gap-3">
+          {LANG_ABILITIES.map((ability) => {
+            const activeTest = testType as LangTestType;
+            const opts = getTestScoreOptions(activeTest, ability);
+            const currentVal = rawScores[ability];
+            return (
+              <div key={ability}>
+                <label
+                  className="block text-xs font-semibold mb-1"
+                  style={{ color: "var(--color-text-muted)" }}
+                >
+                  {ABILITY_LABELS[ability]}
+                </label>
+                <select
+                  value={currentVal}
+                  onChange={(e) => onScoreChange(ability, e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl border-2 text-sm transition-all duration-150"
+                  style={{
+                    borderColor: currentVal ? "var(--color-primary)" : "var(--color-border-light)",
+                    backgroundColor: "var(--color-surface)",
+                    color: "var(--color-text-main)",
+                    fontFamily: "var(--font-montserrat)",
+                    outline: "none",
+                  }}
+                >
+                  <option value="" disabled>Select score...</option>
+                  {opts.map((opt) => (
+                    <option key={opt.rawValue} value={opt.rawValue}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+                {currentVal && (
+                  <p className="text-[10px] mt-1" style={{ color: "var(--color-text-muted)" }}>
+                    CLB {convertTestScoreToCLB(activeTest, ability, currentVal)}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+interface FrenchLangSectionProps {
+  testType: FrenchTestType | "none";
+  rawScores: RawScores;
+  onTestChange: (t: FrenchTestType | "none") => void;
+  onScoreChange: (ability: LangAbility, rawValue: string) => void;
+}
+
+function FrenchLangSection({
+  testType,
+  rawScores,
+  onTestChange,
+  onScoreChange,
+}: FrenchLangSectionProps) {
+  const hasTest = testType !== "none";
+
+  return (
+    <div className="mb-2">
+      <div className="mb-4">
+        <label
+          htmlFor="french-test-select"
+          className="block text-sm font-semibold mb-1.5"
+          style={{ color: "var(--color-text-main)", fontFamily: "var(--font-montserrat)" }}
+        >
+          Which French test did you take?
+        </label>
+        <select
+          id="french-test-select"
+          value={testType}
+          onChange={(e) => onTestChange(e.target.value as FrenchTestType | "none")}
+          className="w-full px-4 py-3 rounded-xl border-2 text-sm transition-all duration-150"
+          style={{
+            borderColor: hasTest ? "var(--color-primary)" : "var(--color-border-light)",
+            backgroundColor: "var(--color-surface)",
+            color: hasTest ? "var(--color-text-main)" : "var(--color-text-muted)",
+            fontFamily: "var(--font-montserrat)",
+            outline: "none",
+          }}
+        >
+          {FRENCH_TEST_OPTIONS.map((opt) => (
+            <option key={opt.value} value={opt.value}>{opt.label}</option>
+          ))}
+        </select>
+      </div>
+
       {hasTest && (
         <div className="grid grid-cols-2 gap-3">
           {LANG_ABILITIES.map((ability) => {
@@ -428,8 +506,8 @@ function useCountUp(target: number, duration = 1800) {
 const BREAKDOWN_ITEMS: Array<{ key: keyof CRSBreakdown; label: string; maxPoints: number; icon: string }> = [
   { key: "ageScore", label: "Age", maxPoints: 110, icon: "🧑" },
   { key: "educationScore", label: "Education", maxPoints: 150, icon: "🎓" },
-  { key: "lang1Score", label: "Official Language 1", maxPoints: 136, icon: "🗣️" },
-  { key: "lang2Score", label: "Official Language 2", maxPoints: 24, icon: "🌐" },
+  { key: "lang1Score", label: "English Language", maxPoints: 136, icon: "🗣️" },
+  { key: "lang2Score", label: "French Language", maxPoints: 24, icon: "🌐" },
   { key: "canWorkExpScore", label: "Canadian Work Experience", maxPoints: 80, icon: "💼" },
   { key: "spouseScore", label: "Spouse / Partner Factors", maxPoints: 40, icon: "💍" },
   { key: "skillTransferScore", label: "Skill Transferability (max 100)", maxPoints: 100, icon: "⚡" },
@@ -739,15 +817,15 @@ function CRSResults({ form, breakdown, onEdit, lang1TestType, lang2TestType, lan
                 { label: "Education Level", max: 150, earned: breakdown.educationScore },
                 {
                   label: lang1TestType
-                    ? `Official Language 1 — ${testTypeName(lang1TestType)} (4 abilities × CLB scale)`
-                    : "Official Language 1 (4 abilities × CLB scale)",
+                    ? `English Language — ${testTypeName(lang1TestType)} (4 abilities × CLB scale)`
+                    : "English Language (4 abilities × CLB scale)",
                   max: 136,
                   earned: breakdown.lang1Score,
                 },
                 {
                   label: lang2TestType
-                    ? `Official Language 2 — ${testTypeName(lang2TestType)} (4 abilities × CLB scale)`
-                    : "Official Language 2 (4 abilities × CLB scale)",
+                    ? `French Language — ${testTypeName(lang2TestType)} (4 abilities × CLB scale)`
+                    : "French Language (4 abilities × CLB scale)",
                   max: 24,
                   earned: breakdown.lang2Score,
                 },
@@ -962,8 +1040,8 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
   const [profileComplete, setProfileComplete] = useState(false);
 
   // ── Language test state ──────────────────────────────────────────
-  const [lang1TestType, setLang1TestType] = useState<LangTestType | "none">("IELTS");
-  const [lang2TestType, setLang2TestType] = useState<LangTestType | "none">("none");
+  const [lang1TestType, setLang1TestType] = useState<EnglishTestType | "">("");
+  const [lang2TestType, setLang2TestType] = useState<FrenchTestType | "none">("none");
   const [lang1RawScores, setLang1RawScores] = useState<RawScores>(DEFAULT_RAW_SCORES);
   const [lang2RawScores, setLang2RawScores] = useState<RawScores>(DEFAULT_RAW_SCORES);
 
@@ -974,8 +1052,17 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
 
   // ── Sync raw lang1 scores → CRS form keys ───────────────────────
   const syncLang1 = useCallback(
-    (testType: LangTestType | "none", scores: RawScores) => {
-      if (testType === "none") return;
+    (testType: EnglishTestType | "", scores: RawScores) => {
+      if (!testType) {
+        setForm((prev) => ({
+          ...prev,
+          lang1_reading: "less_than_clb4",
+          lang1_writing: "less_than_clb4",
+          lang1_speaking: "less_than_clb4",
+          lang1_listening: "less_than_clb4",
+        }));
+        return;
+      }
       setForm((prev) => ({
         ...prev,
         lang1_reading: rawScoreToLang1Key(testType, "reading", scores.reading),
@@ -989,9 +1076,9 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
 
   // ── Sync raw lang2 scores → CRS form keys ───────────────────────
   const syncLang2 = useCallback(
-    (testType: LangTestType | "none", scores: RawScores) => {
+    (testType: FrenchTestType | "none", scores: RawScores) => {
       if (testType === "none") {
-        // No second language — zero out lang2 in form
+        // No French test — zero out lang2 in form
         setForm((prev) => ({
           ...prev,
           lang2_reading: "clb4_or_less",
@@ -1013,7 +1100,7 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
   );
 
   // Handle lang1 test type change
-  function handleLang1TestChange(t: LangTestType | "none") {
+  function handleLang1TestChange(t: EnglishTestType | "") {
     setLang1TestType(t);
     // Reset raw scores when test changes
     const fresh = DEFAULT_RAW_SCORES;
@@ -1031,7 +1118,7 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
   }
 
   // Handle lang2 test type change
-  function handleLang2TestChange(t: LangTestType | "none") {
+  function handleLang2TestChange(t: FrenchTestType | "none") {
     setLang2TestType(t);
     const fresh = DEFAULT_RAW_SCORES;
     setLang2RawScores(fresh);
@@ -1075,7 +1162,7 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
         form={form}
         breakdown={breakdown}
         onEdit={handleEdit}
-        lang1TestType={lang1TestType !== "none" ? lang1TestType : undefined}
+        lang1TestType={lang1TestType || undefined}
         lang2TestType={lang2TestType !== "none" ? lang2TestType : undefined}
         lang1RawScores={lang1RawScores}
         lang2RawScores={lang2RawScores}
@@ -1203,39 +1290,35 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
             onChange={(v) => update("education", v)}
           />
 
-          <SectionDivider label="First Official Language" />
+          <SectionDivider label="English Language" />
           <p className="text-xs mb-3 -mt-2 leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
-            Select your language test and scores for your first official language (English or French).
-            Scores are automatically converted to CLB levels.
+            Select your English language test and score bands. Scores are automatically converted to CLB levels.
           </p>
-          <TestLangSection
-            sectionId="lang1"
+          <EnglishLangSection
             testType={lang1TestType}
             rawScores={lang1RawScores}
             onTestChange={handleLang1TestChange}
             onScoreChange={handleLang1ScoreChange}
           />
 
-          <SectionDivider label="Second Official Language" />
+          <SectionDivider label="French Language" />
           <p className="text-xs mb-3 -mt-2 leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
-            If you were tested in a second official language, select the test and enter your scores.
-            Select &quot;None&quot; if not applicable.
+            If you have taken an official French test, select the test and score bands. Select &quot;None&quot; if you do not have French results.
           </p>
-          <TestLangSection
-            sectionId="lang2"
+          <FrenchLangSection
             testType={lang2TestType}
             rawScores={lang2RawScores}
             onTestChange={handleLang2TestChange}
             onScoreChange={handleLang2ScoreChange}
           />
 
-          <SectionDivider label="Canadian Work Experience" />
+          <SectionDivider label="Foreign Work Experience" />
           <SelectGroup
-            label="How many years of skilled Canadian work experience do you have?"
-            name="canWorkExp"
-            options={CAN_WORK_EXP_OPTIONS}
-            value={form.canWorkExp}
-            onChange={(v) => update("canWorkExp", v)}
+            label="How many years of skilled foreign work experience do you have outside Canada?"
+            name="foreignWorkExp"
+            options={FOREIGN_WORK_EXP_OPTIONS}
+            value={form.foreignWorkExp}
+            onChange={(v) => update("foreignWorkExp", v)}
           />
 
           <div className="flex justify-end">
@@ -1312,12 +1395,13 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
             These factors reward combinations of skills. Points are calculated automatically from your answers above plus the fields below.
           </p>
 
+          <SectionDivider label="Canadian Work Experience" />
           <SelectGroup
-            label="Foreign Work Experience outside Canada"
-            name="foreignWorkExp"
-            options={FOREIGN_WORK_EXP_OPTIONS}
-            value={form.foreignWorkExp}
-            onChange={(v) => update("foreignWorkExp", v)}
+            label="How many years of skilled Canadian work experience do you have in Canada?"
+            name="canWorkExp"
+            options={CAN_WORK_EXP_OPTIONS}
+            value={form.canWorkExp}
+            onChange={(v) => update("canWorkExp", v)}
           />
 
           <CheckboxItem

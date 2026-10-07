@@ -418,8 +418,8 @@ export const SPOUSE_LANG1_OPTIONS = [
 
 export const FOREIGN_WORK_EXP_OPTIONS = [
   { value: "none", label: "None" },
-  { value: "1_2_years", label: "1–2 years" },
-  { value: "3_plus_years", label: "3 or more years" },
+  { value: "1_2_years", label: "1 to 2 years" },
+  { value: "3_plus_years", label: "3 years or more" },
 ];
 
 export const FRENCH_CLB_OPTIONS = [
@@ -477,8 +477,7 @@ export type LangTestType =
   | "PTE_Core"
   | "TCF_Canada"
   | "TEF_Canada"
-  | "CELPIP_G"
-  | "CLB_Direct";
+  | "CELPIP_G";
 
 export type LangAbility = "reading" | "writing" | "speaking" | "listening";
 
@@ -727,8 +726,7 @@ export function getTestScoreOptions(
     case "TCF_Canada": return TCF_SCORES[ability];
     case "TEF_Canada": return TEF_SCORES[ability];
     case "CELPIP_G": return CELPIP_SCORES[ability];
-    case "CLB_Direct": return CLB_DIRECT_SCORES;
-    default: return CLB_DIRECT_SCORES;
+    default: return IELTS_SCORES[ability];
   }
 }
 
@@ -772,7 +770,6 @@ export function testTypeName(t: LangTestType): string {
     TCF_Canada: "TCF Canada",
     TEF_Canada: "TEF Canada",
     CELPIP_G: "CELPIP-G",
-    CLB_Direct: "CLB (Direct)",
   };
   return names[t] ?? t;
 }

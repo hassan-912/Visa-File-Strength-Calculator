@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import CanadaCRSForm from "@/components/CanadaCRSForm";
-import AustraliaPlaceholder from "@/components/AustraliaPlaceholder";
+import AustraliaGSMForm from "@/components/AustraliaGSMForm";
 
 type ImmigrationSubTab = "canada" | "australia";
 
@@ -37,7 +37,7 @@ export default function ImmigrationPage() {
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--color-accent-hover)" }} />
-            MG Immigration Assessment
+            Mg-visa Score
           </div>
 
           <h1
@@ -52,7 +52,7 @@ export default function ImmigrationPage() {
           </h1>
 
           <p className="text-sm sm:text-base max-w-xl mx-auto mb-8" style={{ color: "var(--color-text-muted)" }}>
-            Canada Express Entry Comprehensive Ranking System, powered by the official IRCC scoring grid.
+            Canada Express Entry Comprehensive Ranking System, powered by Mg-visa Score.
           </p>
 
           {/* Canada / Australia sub-tab toggle */}
@@ -98,7 +98,7 @@ export default function ImmigrationPage() {
           {subTab === "canada" ? (
             <CanadaCRSForm />
           ) : (
-            <AustraliaPlaceholder />
+            <AustraliaGSMForm />
           )}
         </div>
       </main>

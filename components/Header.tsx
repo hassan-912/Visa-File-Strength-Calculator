@@ -29,7 +29,7 @@ export default function Header() {
             Visa File Strength Calculator
           </p>
           <p className="text-[11px]" style={{ color: "rgba(255,255,255,0.35)" }}>
-            Powered by MG AI Scoring Engine
+            Powered by MG-visa Score
           </p>
         </div>
 
