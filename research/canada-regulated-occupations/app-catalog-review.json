@@ -1,0 +1,92 @@
+{
+  "reviewedOn": "2026-10-23",
+  "publishedOccupationCount": 165,
+  "coveragePolicy": "Positive-only, role-scoped findings. Confirmed locations are not exhaustive. Ontario-only paralegal scope is explicitly sourced. No-match is not a definitive unregulated finding.",
+  "isExhaustiveLegalOccupationList": false,
+  "excludedUnresolvedProfiles": [
+    {
+      "profileId": "212",
+      "directoryTitle": "Auto body collision, refinishing and glass technicians and damage repair estimators",
+      "reasons": [
+        "No regulatory scope statement supplied."
+      ]
+    },
+    {
+      "profileId": "203",
+      "directoryTitle": "Computer engineers (except software engineers and designers)",
+      "reasons": [
+        "Source has unclassified jurisdiction cells; missing data is not an unregulated finding."
+      ]
+    },
+    {
+      "profileId": "205",
+      "directoryTitle": "Data scientists",
+      "reasons": [
+        "Directory title Data scientists conflicts with engineering scope narrative; do not classify data scientists as regulated from this record."
+      ]
+    },
+    {
+      "profileId": "432",
+      "directoryTitle": "Heavy equipment operators",
+      "reasons": [
+        "Source has unclassified jurisdiction cells; missing data is not an unregulated finding."
+      ]
+    },
+    {
+      "profileId": "361",
+      "directoryTitle": "Nurse aides, orderlies and patient service associates",
+      "reasons": [
+        "Narrative describes unregulated work despite inclusion in the regulated search; resolve with current regulator."
+      ]
+    },
+    {
+      "profileId": "529",
+      "directoryTitle": "Nursing coordinators and supervisors",
+      "reasons": [
+        "Source explicitly says its regulatory content is still being adjusted."
+      ]
+    },
+    {
+      "profileId": "456",
+      "directoryTitle": "Other sales related occupations",
+      "reasons": [
+        "Narrative describes unregulated work despite inclusion in the regulated search; resolve with current regulator."
+      ]
+    },
+    {
+      "profileId": "85",
+      "directoryTitle": "Physician assistants, midwives and allied health professionals",
+      "reasons": [
+        "Directory title Physician assistants, midwives and allied health professionals conflicts with counselling scope narrative; split and verify actual roles."
+      ]
+    },
+    {
+      "profileId": "14",
+      "directoryTitle": "Professional occupations in business management consulting",
+      "reasons": [
+        "No regulatory scope statement supplied."
+      ]
+    },
+    {
+      "profileId": "143",
+      "directoryTitle": "Sheriffs and bailiffs",
+      "reasons": [
+        "Source explicitly says its regulatory content is still being adjusted."
+      ]
+    },
+    {
+      "profileId": "217",
+      "directoryTitle": "Storekeepers and partspersons",
+      "reasons": [
+        "Narrative describes unregulated work despite inclusion in the regulated search; resolve with current regulator."
+      ]
+    },
+    {
+      "profileId": "314",
+      "directoryTitle": "Water and waste treatment plant operators",
+      "reasons": [
+        "Source explicitly says its regulatory content is still being adjusted."
+      ]
+    }
+  ]
+}

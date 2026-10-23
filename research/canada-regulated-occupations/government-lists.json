@@ -1,0 +1,2007 @@
+{
+  "retrievedAtUtc": "2026-10-23T20:28:33.363917+00:00",
+  "purpose": "Supplement and cross-check the CICIC search; source labels are preserved without silently converting groups into regulated individual jobs.",
+  "productionReady": false,
+  "isExhaustiveLegalOccupationList": false,
+  "sources": [
+    {
+      "jurisdiction": "Manitoba",
+      "sourceUrl": "https://immigratemanitoba.com/work/regulated-occupations/",
+      "sourceType": "government",
+      "retrievalMethod": "Official page content returned by web search; direct retrieval returned HTTP 403",
+      "status": "collected-via-indexed-source",
+      "entries": [
+        {
+          "labelAsPublished": "Accountant",
+          "authorityAsPublished": "Chartered Professional Accountants of Manitoba (CPA)"
+        },
+        {
+          "labelAsPublished": "Agrologist",
+          "authorityAsPublished": "Agrologists Manitoba"
+        },
+        {
+          "labelAsPublished": "Architect",
+          "authorityAsPublished": "Manitoba Association of Architects (MAA)"
+        },
+        {
+          "labelAsPublished": "Audiologist and speech-language pathologist",
+          "authorityAsPublished": "College of Audiologists and Speech-Language Pathologists of Manitoba (CASLPM)"
+        },
+        {
+          "labelAsPublished": "Child care worker",
+          "authorityAsPublished": "Early Learning and Child Care Program"
+        },
+        {
+          "labelAsPublished": "Chiropractor",
+          "authorityAsPublished": "Manitoba Chiropractors Association"
+        },
+        {
+          "labelAsPublished": "Dental assistant",
+          "authorityAsPublished": "Manitoba Dental Association (MDA)"
+        },
+        {
+          "labelAsPublished": "Dental hygienist",
+          "authorityAsPublished": "College of Dental Hygienists of Manitoba (CDHM)"
+        },
+        {
+          "labelAsPublished": "Dentist",
+          "authorityAsPublished": "Manitoba Dental Association (MDA)"
+        },
+        {
+          "labelAsPublished": "Denturist",
+          "authorityAsPublished": "Denturist Association of Manitoba"
+        },
+        {
+          "labelAsPublished": "Dietitian",
+          "authorityAsPublished": "College of Dietitians of Manitoba"
+        },
+        {
+          "labelAsPublished": "Engineer",
+          "authorityAsPublished": "Engineers Geoscientists Manitoba"
+        },
+        {
+          "labelAsPublished": "Engineering technician & technologist",
+          "authorityAsPublished": "Certified Technicians and Technologists Association of Manitoba (CTTAM)"
+        },
+        {
+          "labelAsPublished": "Geoscientist",
+          "authorityAsPublished": "Engineers Geoscientists Manitoba"
+        },
+        {
+          "labelAsPublished": "Land surveyor",
+          "authorityAsPublished": "Association of Manitoba Land Surveyors (AMLS)"
+        },
+        {
+          "labelAsPublished": "Lawyer",
+          "authorityAsPublished": "Law Society of Manitoba (LSM)"
+        },
+        {
+          "labelAsPublished": "Licensed practical nurse (LPN)",
+          "authorityAsPublished": "College of Licensed Practical Nurses of Manitoba (CLPNM)"
+        },
+        {
+          "labelAsPublished": "Medical laboratory technologist",
+          "authorityAsPublished": "College of Medical Laboratory Technologists of Manitoba (CMLTM)"
+        },
+        {
+          "labelAsPublished": "Midwife",
+          "authorityAsPublished": "College of Midwives of Manitoba (CMM)"
+        },
+        {
+          "labelAsPublished": "Naturopath",
+          "authorityAsPublished": "Manitoba Naturopathic Association (MNA)"
+        },
+        {
+          "labelAsPublished": "Occupational therapist",
+          "authorityAsPublished": "College of Occupational Therapists of Manitoba (COTM)"
+        },
+        {
+          "labelAsPublished": "Optician",
+          "authorityAsPublished": "Opticians of Manitoba (OOM)"
+        },
+        {
+          "labelAsPublished": "Optometrist",
+          "authorityAsPublished": "Manitoba Association of Optometrists (MAO)"
+        },
+        {
+          "labelAsPublished": "Pharmacist",
+          "authorityAsPublished": "College of Pharmacists of Manitoba (CPhM)"
+        },
+        {
+          "labelAsPublished": "Physician",
+          "authorityAsPublished": "College of Physicians & Surgeons of Manitoba (CPSM)"
+        },
+        {
+          "labelAsPublished": "Physiotherapist",
+          "authorityAsPublished": "College of Physiotherapists of Manitoba (CPM)"
+        },
+        {
+          "labelAsPublished": "Podiatrist",
+          "authorityAsPublished": "College of Podiatrists of Manitoba (COPOM)"
+        },
+        {
+          "labelAsPublished": "Psychologist",
+          "authorityAsPublished": "Psychological Association of Manitoba (PAM)"
+        },
+        {
+          "labelAsPublished": "Respiratory therapist",
+          "authorityAsPublished": "Manitoba Association of Registered Respiratory Therapists (MARRT)"
+        },
+        {
+          "labelAsPublished": "Registered nurse (RN)",
+          "authorityAsPublished": "College of Registered Nurses of Manitoba (CRNM)"
+        },
+        {
+          "labelAsPublished": "Registered psychiatric nurse (RPN)",
+          "authorityAsPublished": "College of Registered Psychiatric Nurses of Manitoba (CRPNM)"
+        },
+        {
+          "labelAsPublished": "Social worker",
+          "authorityAsPublished": "Manitoba College of Social Workers (MCSW)"
+        },
+        {
+          "labelAsPublished": "Teacher (K-12)",
+          "authorityAsPublished": "Professional Certification Unit (PCU)"
+        },
+        {
+          "labelAsPublished": "Veterinarian",
+          "authorityAsPublished": "Manitoba Veterinary Medical Association (MVMA)"
+        },
+        {
+          "labelAsPublished": "Registered Veterinary Technologist",
+          "authorityAsPublished": "Manitoba Veterinary Medical Association (MVMA)"
+        },
+        {
+          "labelAsPublished": "Construction Electrician",
+          "nocAsPublished": "72200",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Crane and Hoisting Equipment Operator",
+          "nocAsPublished": "72500",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Industrial Electrician",
+          "nocAsPublished": "72201",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Refrigeration and Air Conditioning Mechanic",
+          "nocAsPublished": "72402",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Sprinkler Fitter",
+          "nocAsPublished": "72301",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Steamfitter-Pipefitter",
+          "nocAsPublished": "72301",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Electrologist",
+          "nocAsPublished": "63211",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Esthetician",
+          "nocAsPublished": "63211",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Hairstylist",
+          "nocAsPublished": "63210",
+          "section": "Compulsory trades"
+        }
+      ],
+      "productionReady": false
+    },
+    {
+      "jurisdiction": "Saskatchewan",
+      "sourceUrl": "https://www.saskatchewan.ca/residents/moving-to-saskatchewan/live-in-saskatchewan/to-work/regulated-occupations-and-licensing-requirements/saskatchewan-regulatory-bodies",
+      "sourceType": "government",
+      "status": "collected",
+      "entries": [
+        {
+          "labelAsPublished": "Accountant",
+          "secondColumnAsPublished": "Institute of Chartered Professional Accountants",
+          "linkedAuthorityUrls": [
+            "https://www.cpask.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Agrologist",
+          "secondColumnAsPublished": "Saskatchewan Institute of Agrologists",
+          "linkedAuthorityUrls": [
+            "https://sia.sk.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Applied Science Technologist and Technician",
+          "secondColumnAsPublished": "Technology Professionals Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.tpsk.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Architect",
+          "secondColumnAsPublished": "Saskatchewan Association of Architects",
+          "linkedAuthorityUrls": [
+            "https://saskarchitects.com"
+          ]
+        },
+        {
+          "labelAsPublished": "Audiologist",
+          "secondColumnAsPublished": "College of Speech-Language Pathologists and Audiologists of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://csask.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Blaster, Mines",
+          "secondColumnAsPublished": "Your employer must apply to the Chief Mine Inspector on your behalf.",
+          "linkedAuthorityUrls": []
+        },
+        {
+          "labelAsPublished": "Blaster, Oil and Gas",
+          "secondColumnAsPublished": "Petroleum Development Division (Seismic Explosive Permit)",
+          "linkedAuthorityUrls": [
+            "https://www.saskatchewan.ca/business/agriculture-natural-resources-and-industry/oil-and-gas/oil-and-gas-licensing-operations-and-requirements/licence-for-use-of-explosives-in-seismic-exploration"
+          ]
+        },
+        {
+          "labelAsPublished": "Building Official",
+          "secondColumnAsPublished": "Saskatchewan Ministry of Government Relations",
+          "linkedAuthorityUrls": [
+            "https://www.saskatchewan.ca/residents/jobs-working-and-training/becoming-a-licensed-professional/building-official-licensing"
+          ]
+        },
+        {
+          "labelAsPublished": "Chiropractor",
+          "secondColumnAsPublished": "Chiropractors' Association of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://saskchiro.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Community Urban Planner",
+          "secondColumnAsPublished": "Saskatchewan Professional Planners Institute",
+          "linkedAuthorityUrls": [
+            "https://sppi.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Crane and Hoist Operator",
+          "secondColumnAsPublished": "Saskatchewan Apprenticeship and Trade Certification Commission",
+          "linkedAuthorityUrls": [
+            "https://saskapprenticeship.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Dental Assistant",
+          "secondColumnAsPublished": "Saskatchewan Dental Assistants' Association",
+          "linkedAuthorityUrls": [
+            "https://sdaa.sk.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Dental Hygienist",
+          "secondColumnAsPublished": "College of Dental Hygienists of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://cdhsk.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Dental Technicians and Technologists",
+          "secondColumnAsPublished": "Dental Technicians Association of Saskatchewan [email protected]",
+          "linkedAuthorityUrls": [
+            "https://www.facebook.com/people/Dental-Technicians-Association-of-Saskatchewan/100090662765112/?_rdr",
+            "https://www.saskatchewan.ca/cdn-cgi/l/email-protection#90e3f1e3fbf4e4f1e3d0f8ffe4fdf1f9fcbef3fffd"
+          ]
+        },
+        {
+          "labelAsPublished": "Dental Therapist",
+          "secondColumnAsPublished": "Saskatchewan Dental Therapists Association",
+          "linkedAuthorityUrls": [
+            "https://sdta.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Dentist",
+          "secondColumnAsPublished": "College of Dental Surgeons of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://saskdentists.com"
+          ]
+        },
+        {
+          "labelAsPublished": "Denturist",
+          "secondColumnAsPublished": "The Denturist Society of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://saskdenturists.com"
+          ]
+        },
+        {
+          "labelAsPublished": "Dietitian",
+          "secondColumnAsPublished": "Saskatchewan Dietitians Association",
+          "linkedAuthorityUrls": [
+            "https://www.saskdietitians.org"
+          ]
+        },
+        {
+          "labelAsPublished": "Early Childhood Educator",
+          "secondColumnAsPublished": "Saskatchewan Ministry of Education",
+          "linkedAuthorityUrls": [
+            "https://www.saskatchewan.ca/government/education-and-child-care-facility-administration/early-childhood-educator/early-childhood-educator-certification"
+          ]
+        },
+        {
+          "labelAsPublished": "Electrical Licensing",
+          "secondColumnAsPublished": "Technical Safety Authority of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.tsask.ca/licensing-applications/electrical/"
+          ]
+        },
+        {
+          "labelAsPublished": "Electrician",
+          "secondColumnAsPublished": "Saskatchewan Apprenticeship and Trade Certification Commission",
+          "linkedAuthorityUrls": [
+            "https://saskapprenticeship.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Embalmer",
+          "secondColumnAsPublished": "Funeral and Cremation Services Council of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://fcscs.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Engineer",
+          "secondColumnAsPublished": "Association of Professional Engineers and Geoscientists of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.apegs.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Forester",
+          "secondColumnAsPublished": "Association of Saskatchewan Forestry Professionals",
+          "linkedAuthorityUrls": [
+            "https://www.asfp.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Funeral Director",
+          "secondColumnAsPublished": "Funeral and Cremation Services Council of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://fcscs.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Gas-Fitter Licensing",
+          "secondColumnAsPublished": "Technical Safety Authority of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.tsask.ca/licensing-applications/gas/gas-fitter/"
+          ]
+        },
+        {
+          "labelAsPublished": "Geoscientist",
+          "secondColumnAsPublished": "Association of Professional Engineers and Geoscientists of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.apegs.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Hairstylist",
+          "secondColumnAsPublished": "Saskatchewan Apprenticeship and Trade Certification Commission",
+          "linkedAuthorityUrls": [
+            "https://saskapprenticeship.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Hearing Instrument Practitioner",
+          "secondColumnAsPublished": "Saskatchewan Ministry of Health",
+          "linkedAuthorityUrls": [
+            "https://www.saskatchewan.ca/residents/health/accessing-health-care-services/therapies"
+          ]
+        },
+        {
+          "labelAsPublished": "Information Systems Professional",
+          "secondColumnAsPublished": "CIPS Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://sk.cips.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Information Technology Professional",
+          "secondColumnAsPublished": "CIPS Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://sk.cips.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Insurance Adjuster/Agent",
+          "secondColumnAsPublished": "Insurance Councils of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.skcouncil.sk.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Interior Designer",
+          "secondColumnAsPublished": "Interior Designers Association of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://idas.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Lawyer",
+          "secondColumnAsPublished": "The Law Society of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.lawsociety.sk.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Medical Laboratory Technologist",
+          "secondColumnAsPublished": "College of Medical Laboratory Professionals of Saskatchewan (formerly known as the Saskatchewan Society of Medical Laboratory Technologists)",
+          "linkedAuthorityUrls": [
+            "https://cmlpsk.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Medical Radiation Technologist",
+          "secondColumnAsPublished": "College of Medical Radiation and Imaging Professionals of Saskatchewan (formerly Saskatchewan Association of Medical Radiation Technologists)",
+          "linkedAuthorityUrls": [
+            "https://cmrips.org/"
+          ]
+        },
+        {
+          "labelAsPublished": "Midwife",
+          "secondColumnAsPublished": "Saskatchewan College of Midwives",
+          "linkedAuthorityUrls": [
+            "https://skcollegeofmidwives.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Municipal Administrator",
+          "secondColumnAsPublished": "Urban Municipal Administrators Association of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://umaas.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Naturopathic Practitioner",
+          "secondColumnAsPublished": "Saskatchewan Association of Naturopathic Practitioners",
+          "linkedAuthorityUrls": [
+            "https://cndsask.clubexpress.com"
+          ]
+        },
+        {
+          "labelAsPublished": "Nurse, Licensed Practical",
+          "secondColumnAsPublished": "College of Licensed Practical Nurses of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://clpns.com/"
+          ]
+        },
+        {
+          "labelAsPublished": "Nurse, Registered",
+          "secondColumnAsPublished": "College of Registered Nurses of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.crns.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Nurse, Registered Psychiatric",
+          "secondColumnAsPublished": "College of Registered Psychiatric Nurses of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://crpns.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Occupational Therapist",
+          "secondColumnAsPublished": "Saskatchewan College of Occupational Therapists",
+          "linkedAuthorityUrls": [
+            "https://scotsk.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Optician",
+          "secondColumnAsPublished": "Saskatchewan College of Opticians",
+          "linkedAuthorityUrls": [
+            "https://scoptic.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Optometrist",
+          "secondColumnAsPublished": "Saskatchewan Association of Optometrists",
+          "linkedAuthorityUrls": [
+            "https://optometrists.sk.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Paramedic",
+          "secondColumnAsPublished": "Saskatchewan College of Paramedics",
+          "linkedAuthorityUrls": [
+            "https://collegeofparamedics.sk.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Pharmacist",
+          "secondColumnAsPublished": "Saskatchewan College of Pharmacy Professionals",
+          "linkedAuthorityUrls": [
+            "https://www.saskpharm.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Pharmacy Technicians",
+          "secondColumnAsPublished": "Saskatchewan College of Pharmacy Professionals",
+          "linkedAuthorityUrls": [
+            "https://www.saskpharm.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Physical Therapist",
+          "secondColumnAsPublished": "Saskatchewan College of Physical Therapists",
+          "linkedAuthorityUrls": [
+            "https://scpt.org"
+          ]
+        },
+        {
+          "labelAsPublished": "Physician",
+          "secondColumnAsPublished": "College of Physicians and Surgeons of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.cps.sk.ca/imis"
+          ]
+        },
+        {
+          "labelAsPublished": "Plumber",
+          "secondColumnAsPublished": "Saskatchewan Apprenticeship and Trade Certification Commission",
+          "linkedAuthorityUrls": [
+            "https://saskapprenticeship.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Podiatric Surgeon",
+          "secondColumnAsPublished": "College of Physicians and Surgeons of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.cps.sk.ca/imis"
+          ]
+        },
+        {
+          "labelAsPublished": "Podiatrist",
+          "secondColumnAsPublished": "Saskatchewan College of Podiatrists",
+          "linkedAuthorityUrls": [
+            "https://scop.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Power Engineer",
+          "secondColumnAsPublished": "Technical Safety Authority of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.tsask.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Pressure Equipment Inspector",
+          "secondColumnAsPublished": "Technical Safety Authority of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.tsask.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Private Investigator",
+          "secondColumnAsPublished": "Saskatchewan Ministry of Justice",
+          "linkedAuthorityUrls": [
+            "https://www.saskatchewan.ca/residents/justice-crime-and-the-law/careers-in-law-enforcement/provincial-protective-services/private-investigators-and-security-guards-program"
+          ]
+        },
+        {
+          "labelAsPublished": "Psychiatrist",
+          "secondColumnAsPublished": "College of Physicians and Surgeons of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.cps.sk.ca/imis"
+          ]
+        },
+        {
+          "labelAsPublished": "Psychologist",
+          "secondColumnAsPublished": "Saskatchewan College of Psychologists",
+          "linkedAuthorityUrls": [
+            "https://skcp.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Real Estate Agent",
+          "secondColumnAsPublished": "Saskatchewan Real Estate Commission",
+          "linkedAuthorityUrls": [
+            "https://srec.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Refrigeration Mechanic",
+          "secondColumnAsPublished": "Saskatchewan Apprenticeship and Trade Certification Commission",
+          "linkedAuthorityUrls": [
+            "https://saskapprenticeship.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Registered Music Teacher",
+          "secondColumnAsPublished": "Saskatchewan Registered Music Teachers' Association",
+          "linkedAuthorityUrls": [
+            "https://srmta.com/"
+          ]
+        },
+        {
+          "labelAsPublished": "Respiratory Therapist",
+          "secondColumnAsPublished": "Saskatchewan College of Respiratory Therapists",
+          "linkedAuthorityUrls": [
+            "https://scrt.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Securities Agent/Investment Dealer and Broker",
+          "secondColumnAsPublished": "Financial and Consumer Affairs Authority",
+          "linkedAuthorityUrls": [
+            "https://fcaa.gov.sk.ca/regulated-businesses-persons/businesses/securities-industry-participants/securities-laws"
+          ]
+        },
+        {
+          "labelAsPublished": "Security Guard",
+          "secondColumnAsPublished": "Saskatchewan Ministry of Justice",
+          "linkedAuthorityUrls": [
+            "https://www.saskatchewan.ca/residents/justice-crime-and-the-law/careers-in-law-enforcement/provincial-protective-services/private-investigators-and-security-guards-program"
+          ]
+        },
+        {
+          "labelAsPublished": "Sheet Metal Worker",
+          "secondColumnAsPublished": "Saskatchewan Apprenticeship and Trade Certification Commission",
+          "linkedAuthorityUrls": [
+            "https://saskapprenticeship.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Social Worker",
+          "secondColumnAsPublished": "Saskatchewan Association of Social Workers",
+          "linkedAuthorityUrls": [
+            "https://www.sasw.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Software Engineer",
+          "secondColumnAsPublished": "Association of Professional Engineers and Geoscientists of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://www.apegs.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Software Designer",
+          "secondColumnAsPublished": "CIPS Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://sk.cips.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Speech Language Pathologist",
+          "secondColumnAsPublished": "College of Speech-Language Pathologists and Audiologists of Saskatchewan",
+          "linkedAuthorityUrls": [
+            "https://csask.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Surveyor",
+          "secondColumnAsPublished": "Saskatchewan Land Surveyors Association",
+          "linkedAuthorityUrls": [
+            "https://www.slsa.sk.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Teacher",
+          "secondColumnAsPublished": "Saskatchewan Professional Teachers Regulatory Board",
+          "linkedAuthorityUrls": [
+            "https://sptrb.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Veterinarian",
+          "secondColumnAsPublished": "Saskatchewan Veterinary Medical Association",
+          "linkedAuthorityUrls": [
+            "https://svma.sk.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Veterinary Technologist",
+          "secondColumnAsPublished": "Saskatchewan Veterinary Medical Association",
+          "linkedAuthorityUrls": [
+            "https://svma.sk.ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Water and Wastewater Operator",
+          "secondColumnAsPublished": "Saskatchewan Operator Certification Board",
+          "linkedAuthorityUrls": [
+            "https://saskocb.ca"
+          ]
+        }
+      ],
+      "productionReady": false
+    },
+    {
+      "jurisdiction": "New Brunswick",
+      "sourceUrl": "https://www2.gnb.ca/content/gnb/en/departments/post-secondary_education_training_and_labour/Jobs/content/LabourMobility/CertifiedOccupations.html",
+      "sourceType": "government",
+      "retrievalMethod": "Official page content returned by web search; direct retrieval returned HTTP 403",
+      "status": "collected-via-indexed-source",
+      "entries": [
+        {
+          "labelAsPublished": "Agrologist",
+          "authorityAsPublished": "New Brunswick Institute of Agrologists"
+        },
+        {
+          "labelAsPublished": "Architect",
+          "authorityAsPublished": "Architects' Association of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Barber",
+          "authorityAsPublished": "New Brunswick Registered Barbers' Association"
+        },
+        {
+          "labelAsPublished": "Building Official",
+          "authorityAsPublished": "The New Brunswick Building Officials Association"
+        },
+        {
+          "labelAsPublished": "Cardiology Technologist",
+          "authorityAsPublished": "New Brunswick Society of Cardiology Technologists"
+        },
+        {
+          "labelAsPublished": "Chartered Professional Accountants",
+          "authorityAsPublished": "Chartered Professional Accountants New Brunswick"
+        },
+        {
+          "labelAsPublished": "Chiropractor",
+          "authorityAsPublished": "New Brunswick Chiropractors' Association"
+        },
+        {
+          "labelAsPublished": "Cosmetologist",
+          "authorityAsPublished": "Cosmetology Association of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Counselling Therapist",
+          "authorityAsPublished": "College of Counselling Therapists of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Dental Assistant",
+          "authorityAsPublished": "New Brunswick Dental Society"
+        },
+        {
+          "labelAsPublished": "Dental Hygienist",
+          "authorityAsPublished": "New Brunswick College of Dental Hygienists"
+        },
+        {
+          "labelAsPublished": "Dental Specialist",
+          "authorityAsPublished": "New Brunswick Dental Society"
+        },
+        {
+          "labelAsPublished": "Dental Technician",
+          "authorityAsPublished": "New Brunswick Dental Technicians' Association"
+        },
+        {
+          "labelAsPublished": "Dentist",
+          "authorityAsPublished": "New Brunswick Dental Society"
+        },
+        {
+          "labelAsPublished": "Denturist",
+          "authorityAsPublished": "New Brunswick Denturists' Society"
+        },
+        {
+          "labelAsPublished": "Dietitian",
+          "authorityAsPublished": "New Brunswick Association of Dietitians"
+        },
+        {
+          "labelAsPublished": "Early Childhood Educator",
+          "authorityAsPublished": "The Department of Education and Early Childhood Development"
+        },
+        {
+          "labelAsPublished": "Engineer",
+          "authorityAsPublished": "Association of Professional Engineers and Geoscientists of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Engineering Technician or Technologist",
+          "authorityAsPublished": "New Brunswick Society of Certified Engineering Technicians and Technologists"
+        },
+        {
+          "labelAsPublished": "Forester",
+          "authorityAsPublished": "Association of Registered Professional Foresters of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Funeral Director and Embalmer",
+          "authorityAsPublished": "New Brunswick Funeral Directors' and Embalmers' Association"
+        },
+        {
+          "labelAsPublished": "Geoscientist",
+          "authorityAsPublished": "Association of Professional Engineers and Geoscientists of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Home Economist",
+          "authorityAsPublished": "New Brunswick Home Economists' Association"
+        },
+        {
+          "labelAsPublished": "Interior Designer",
+          "authorityAsPublished": "The Association of Registered Interior Designers of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Land Surveyor",
+          "authorityAsPublished": "Association of New Brunswick Land Surveyors"
+        },
+        {
+          "labelAsPublished": "Lawyer",
+          "authorityAsPublished": "Law Society of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Licensed Practical Nurse",
+          "authorityAsPublished": "Association of New Brunswick Licensed Practical Nurses"
+        },
+        {
+          "labelAsPublished": "Massage Therapist",
+          "authorityAsPublished": "College of Massage Therapy New Brunswick"
+        },
+        {
+          "labelAsPublished": "Medical Laboratory Technologist",
+          "authorityAsPublished": "New Brunswick Society of Medical Laboratory Technologists"
+        },
+        {
+          "labelAsPublished": "Medical Radiation Technologist",
+          "authorityAsPublished": "New Brunswick Association of Medical Radiation Technologists"
+        },
+        {
+          "labelAsPublished": "Nurse",
+          "authorityAsPublished": "Nurses' Association of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Midwife",
+          "authorityAsPublished": "Midwifery Council of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Mortgage Broker",
+          "authorityAsPublished": "Financial and Consumer Services Commission"
+        },
+        {
+          "labelAsPublished": "Occupational Therapist",
+          "authorityAsPublished": "New Brunswick Association of Occupational Therapists"
+        },
+        {
+          "labelAsPublished": "Optician",
+          "authorityAsPublished": "Opticians' Association of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Optometrist",
+          "authorityAsPublished": "New Brunswick Association of Optometrists"
+        },
+        {
+          "labelAsPublished": "Paramedic",
+          "authorityAsPublished": "The Paramedic Association of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Pharmacist/Pharmacy Technician",
+          "authorityAsPublished": "New Brunswick College of Pharmacists"
+        },
+        {
+          "labelAsPublished": "Physician",
+          "authorityAsPublished": "College of Physicians and Surgeons of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Physiotherapist",
+          "authorityAsPublished": "College of Physiotherapists of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Podiatrist",
+          "authorityAsPublished": "New Brunswick Podiatry Association"
+        },
+        {
+          "labelAsPublished": "Psychologist",
+          "authorityAsPublished": "College of Psychologists of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Real Estate Agent",
+          "authorityAsPublished": "New Brunswick Real Estate Association"
+        },
+        {
+          "labelAsPublished": "Respiratory Therapist",
+          "authorityAsPublished": "New Brunswick Association of Respiratory Therapists"
+        },
+        {
+          "labelAsPublished": "Skilled Trades",
+          "authorityAsPublished": "New Brunswick Department of Post-Secondary Education, Training and Labour"
+        },
+        {
+          "labelAsPublished": "Social Worker",
+          "authorityAsPublished": "The New Brunswick Association of Social Workers"
+        },
+        {
+          "labelAsPublished": "Speech-Language Pathologist/Audiologist",
+          "authorityAsPublished": "Association of Speech-Language Pathologists and Audiologists"
+        },
+        {
+          "labelAsPublished": "Teacher",
+          "authorityAsPublished": "Department of Education and Early Childhood Development"
+        },
+        {
+          "labelAsPublished": "Translator/Terminologist/Interpreter",
+          "authorityAsPublished": "Corporation of Translators, Terminologists and Interpreters of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Veterinarian",
+          "authorityAsPublished": "New Brunswick Veterinary Medical Association"
+        }
+      ],
+      "productionReady": false
+    },
+    {
+      "jurisdiction": "Prince Edward Island",
+      "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations",
+      "sourceType": "government",
+      "retrievalMethod": "Official page content returned by web open; raw HTTP response did not expose its tables",
+      "status": "collected-via-web-source",
+      "entries": [
+        {
+          "labelAsPublished": "Accountant",
+          "authorityAsPublished": "Chartered Professional Accountants of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Acupuncturist",
+          "authorityAsPublished": "College of Acupuncture of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Agrologist",
+          "authorityAsPublished": "Prince Edward Island Institute of Agrologists",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Architect",
+          "authorityAsPublished": "The Architects Association of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Audiologist",
+          "authorityAsPublished": "College of Audiology & Speech Language Pathology Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Chiropractor",
+          "authorityAsPublished": "Prince Edward Island Chiropractic Association",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Counselling Therapist",
+          "authorityAsPublished": "College of Counselling Therapy Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Dental Assistant",
+          "authorityAsPublished": "Prince Edward Island Dental College",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Dental Hygienist",
+          "authorityAsPublished": "College of Dental Hygienists Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Dentist",
+          "authorityAsPublished": "Prince Edward Island Dental College",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Denturist",
+          "authorityAsPublished": "Denturist Society of Prince Edward Island For more information contact: briannaesquires@gov.pe.ca",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Dietitian",
+          "authorityAsPublished": "College of Dietitians of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Engineer",
+          "authorityAsPublished": "Engineers PEI",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Engineering Technician / Technologist",
+          "authorityAsPublished": "Island Technology Professionals",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Funeral Director / Embalmer",
+          "authorityAsPublished": "Prince Edward Island Funeral Services and Professions Board",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Hairdresser",
+          "authorityAsPublished": "Prince Edward Island Hair Dressers Association",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Land Surveyor",
+          "authorityAsPublished": "Association of Prince Edward Island Land Surveyors",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Lawyer",
+          "authorityAsPublished": "Law Society of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Licensed Practical Nurse",
+          "authorityAsPublished": "Prince Edward Island College of Nursing and Midwifery",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Massage Therapist",
+          "authorityAsPublished": "College of Massage Therapists of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Medical Laboratory Technologist",
+          "authorityAsPublished": "College of Allied Health Professionals of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Medical Radiation Technologist",
+          "authorityAsPublished": "College of Allied Health Professionals of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Midwife",
+          "authorityAsPublished": "Prince Edward Island College of Nursing and Midwifery",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Occupational Therapist",
+          "authorityAsPublished": "Prince Edward Island College of Occupational Therapists",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Optician",
+          "authorityAsPublished": "College of Opticians of Prince Edward Island For more information contact: briannaesquires@gov.pe.ca",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Optometrist",
+          "authorityAsPublished": "Prince Edward Island College of Optometrists",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Paramedic",
+          "authorityAsPublished": "College of Paramedicine Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Pharmacist",
+          "authorityAsPublished": "Prince Edward Island College of Pharmacy",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Pharmacy Technician",
+          "authorityAsPublished": "Prince Edward Island College of Pharmacy",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Physician",
+          "authorityAsPublished": "College of Physicians & Surgeons of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Physician Assistant",
+          "authorityAsPublished": "College of Physicians & Surgeons of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Podiatrist",
+          "authorityAsPublished": "College of Physicians & Surgeons of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Psychologist",
+          "authorityAsPublished": "Prince Edward Island Psychologists Registration Board",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Registered Nurse / Registered Psychiatric Nurse",
+          "authorityAsPublished": "Prince Edward Island College of Nursing and Midwifery",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Registered Planner",
+          "authorityAsPublished": "Prince Edward Island Institute of Professional Planners",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Respiratory Therapist",
+          "authorityAsPublished": "College of Allied Health Professionals of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Social Worker",
+          "authorityAsPublished": "Prince Edward Island Social Work Registration Board",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Speech Language Pathologist",
+          "authorityAsPublished": "College of Audiology & Speech Language Pathology Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Veterinarian",
+          "authorityAsPublished": "Prince Edward Island Veterinary Medical Association",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Early Childhood Educator",
+          "authorityAsPublished": "Department of Education and Early Years",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Elevator Mechanic",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Home Heat Tank Installer",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Insurance Adjustor",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Insurance Agent",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Investment Dealers / Brokers",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Petroleum Storage Tank Contractor",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Power Engineer",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Private Investigator",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Real Estate Agent",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Security Guard",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Septic Contractor",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Site Assessor",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Teacher",
+          "authorityAsPublished": "Department of Education and Early Years",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Wastewater Operator",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Well Driller",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "For more information about designated trades, apprenticeship, and certification requirements, visit: 【45†Designated Trades in PEI",
+          "authorityAsPublished": "Government of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Automotive Service Technician",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations",
+          "section": "Certified compulsory trades"
+        },
+        {
+          "labelAsPublished": "Construction Electrician",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations",
+          "section": "Certified compulsory trades"
+        },
+        {
+          "labelAsPublished": "Plumber",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations",
+          "section": "Certified compulsory trades"
+        },
+        {
+          "labelAsPublished": "Steamfitter / Pipefitter",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations",
+          "section": "Certified compulsory trades"
+        }
+      ],
+      "productionReady": false
+    },
+    {
+      "jurisdiction": "Ontario",
+      "sourceUrl": "https://www.ontario.ca/page/work-your-profession-or-trade",
+      "sourceType": "government",
+      "status": "collected",
+      "entries": [
+        {
+          "labelAsPublished": "Accounting",
+          "secondColumnAsPublished": "Chartered Professional Accountants of Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.cpaontario.ca/home"
+          ]
+        },
+        {
+          "labelAsPublished": "Agrology/Agriculture/Agri-food",
+          "secondColumnAsPublished": "Ontario Institute of Agrologists",
+          "linkedAuthorityUrls": [
+            "http://oia.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Alignment and Brakes Technician",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Architecture",
+          "secondColumnAsPublished": "Ontario Association of Architects",
+          "linkedAuthorityUrls": [
+            "http://www.oaa.on.ca/client/oaa/OAAHome.nsf/web/Information+for+Internationally-trained+Professionals?OpenDocument"
+          ]
+        },
+        {
+          "labelAsPublished": "Audiology and Speech-Language Pathology",
+          "secondColumnAsPublished": "College of Audiologists and Speech-Language Pathologists of Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.caslpo.com/"
+          ]
+        },
+        {
+          "labelAsPublished": "Auto Body and Collision Damage Repairer",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Auto Body Repairer",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Automotive Electronic Accessory Technician",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Automotive Service Technician",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Chiropody and Podiatry",
+          "secondColumnAsPublished": "College of Chiropodists of Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.cocoo.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Chiropractic",
+          "secondColumnAsPublished": "College of Chiropractors of Ontario",
+          "linkedAuthorityUrls": [
+            "https://cco.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Dental Hygiene",
+          "secondColumnAsPublished": "College of Dental Hygienists of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.cdho.org/"
+          ]
+        },
+        {
+          "labelAsPublished": "Dental Technology",
+          "secondColumnAsPublished": "College of Dental Technologists of Ontario",
+          "linkedAuthorityUrls": [
+            "http://cdto.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Dentistry",
+          "secondColumnAsPublished": "Royal College of Dental Surgeons of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.rcdso.org/"
+          ]
+        },
+        {
+          "labelAsPublished": "Denturism",
+          "secondColumnAsPublished": "College of Denturists of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.denturists-cdo.com/"
+          ]
+        },
+        {
+          "labelAsPublished": "Dietitian",
+          "secondColumnAsPublished": "College of Dietitians of Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.collegeofdietitians.org/"
+          ]
+        },
+        {
+          "labelAsPublished": "Electrician - Construction and Maintenance",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Electrician - Domestic and Rural",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Engineering: Engineering and Applied Science Technicians and Technologists",
+          "secondColumnAsPublished": "Ontario Association of Certified Engineering Technicians & Technologists",
+          "linkedAuthorityUrls": [
+            "http://www.oacett.org/"
+          ]
+        },
+        {
+          "labelAsPublished": "Engineering: Professional Engineering",
+          "secondColumnAsPublished": "Professional Engineers Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.peo.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Environment",
+          "secondColumnAsPublished": "Some are regulated. Contact Global Experience Ontario for more information.",
+          "linkedAuthorityUrls": []
+        },
+        {
+          "labelAsPublished": "Financial Services",
+          "secondColumnAsPublished": "Some are regulated. Contact Global Experience Ontario for more information.",
+          "linkedAuthorityUrls": []
+        },
+        {
+          "labelAsPublished": "Forestry",
+          "secondColumnAsPublished": "Ontario Professional Foresters Association",
+          "linkedAuthorityUrls": [
+            "https://opfa.ca/practising-forestry/#:~:text=Becoming%20a%20Professional%20Forester,-If%20you%20are&text=The%20most%20straightforward%20way%20to,post%2Dsecondary%20university%20forestry%20program."
+          ]
+        },
+        {
+          "labelAsPublished": "Geoscience",
+          "secondColumnAsPublished": "Professional Geoscientists Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.pgo.ca/home"
+          ]
+        },
+        {
+          "labelAsPublished": "Hairstylist",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Hoisting Engineer - Mobile Crane Operator 1",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Hoisting Engineer - Mobile Crane Operator 2",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Hoisting Engineer - Tower Crane Operator",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Homeopathy",
+          "secondColumnAsPublished": "College of Homeopaths of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.collegeofhomeopaths.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Human Resources",
+          "secondColumnAsPublished": "Human Resource Professional Association",
+          "linkedAuthorityUrls": [
+            "https://www.hrpa.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Information Technology",
+          "secondColumnAsPublished": "Some are regulated. Contact Global Experience Ontario for more information.",
+          "linkedAuthorityUrls": []
+        },
+        {
+          "labelAsPublished": "Kinesiology",
+          "secondColumnAsPublished": "College of Kinesiologists of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.coko.ca/en/home"
+          ]
+        },
+        {
+          "labelAsPublished": "Land Surveying",
+          "secondColumnAsPublished": "Association of Ontario Land Surveyors",
+          "linkedAuthorityUrls": [
+            "http://www.aols.org/"
+          ]
+        },
+        {
+          "labelAsPublished": "Law (Lawyer and Paralegal)",
+          "secondColumnAsPublished": "The Law Society of Ontario",
+          "linkedAuthorityUrls": [
+            "https://lso.ca/home?lang=en-ca"
+          ]
+        },
+        {
+          "labelAsPublished": "Massage Therapy",
+          "secondColumnAsPublished": "College of Massage Therapists of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.cmto.com/"
+          ]
+        },
+        {
+          "labelAsPublished": "Medical Graduates",
+          "secondColumnAsPublished": "College of Physicians and Surgeons of Ontario (CPSO)",
+          "linkedAuthorityUrls": [
+            "http://www.cpso.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Medical Laboratory Technology",
+          "secondColumnAsPublished": "College of Medical Laboratory Technologists of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.cmlto.com/"
+          ]
+        },
+        {
+          "labelAsPublished": "Medical Radiation Technology",
+          "secondColumnAsPublished": "College of Medical Radiation and Imaging Technologists of Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.cmrito.org/"
+          ]
+        },
+        {
+          "labelAsPublished": "Midwifery",
+          "secondColumnAsPublished": "College of Midwives of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.cmo.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Motorcycle Technician",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Naturopathy",
+          "secondColumnAsPublished": "College of Naturopaths of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.collegeofnaturopaths.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Nursing",
+          "secondColumnAsPublished": "College of Nurses of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.cno.org/en/become-a-nurse/"
+          ]
+        },
+        {
+          "labelAsPublished": "Occupational Therapy",
+          "secondColumnAsPublished": "College of Occupational Therapists of Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.coto.org/"
+          ]
+        },
+        {
+          "labelAsPublished": "Opticianry",
+          "secondColumnAsPublished": "The College of Opticians of Ontario (COO)",
+          "linkedAuthorityUrls": [
+            "http://www.coptont.org/BECOMING/non-accredited.php"
+          ]
+        },
+        {
+          "labelAsPublished": "Optometry",
+          "secondColumnAsPublished": "College of Optometrists of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.collegeoptom.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Personal Support Worker",
+          "secondColumnAsPublished": "Health and Supportive Care Providers Oversight Authority",
+          "linkedAuthorityUrls": [
+            "https://hscpoa.com/"
+          ]
+        },
+        {
+          "labelAsPublished": "Pharmacy",
+          "secondColumnAsPublished": "Ontario College of Pharmacists",
+          "linkedAuthorityUrls": [
+            "https://www.ocpinfo.com/about/"
+          ]
+        },
+        {
+          "labelAsPublished": "Physiotherapy",
+          "secondColumnAsPublished": "College of Physiotherapists of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.collegept.org/home"
+          ]
+        },
+        {
+          "labelAsPublished": "Plumbers",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Psychology",
+          "secondColumnAsPublished": "College of Psychologists and Behaviour Analysts of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.cpo.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Psychotherapy",
+          "secondColumnAsPublished": "College of Registered Psychotherapists of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.crpo.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Refrigeration and Air Conditioning Systems Mechanics",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Residential (Low Rise) Sheet Metal Installer",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Residential Air Conditioning Systems Mechanic",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Respiratory Therapist",
+          "secondColumnAsPublished": "The College of Respiratory Therapists of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.crto.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Sheet Metal Worker",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Social Service Work",
+          "secondColumnAsPublished": "Ontario College of Social Workers and Social Service Workers",
+          "linkedAuthorityUrls": [
+            "https://www.ocswssw.org/about-us/"
+          ]
+        },
+        {
+          "labelAsPublished": "Social Work",
+          "secondColumnAsPublished": "Ontario College of Social Workers & Social Service Workers",
+          "linkedAuthorityUrls": [
+            "http://www.ocswssw.org/"
+          ]
+        },
+        {
+          "labelAsPublished": "Sprinkler and Fire Protection Installer",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Steamfitter",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Teaching",
+          "secondColumnAsPublished": "Ontario College of Teachers",
+          "linkedAuthorityUrls": [
+            "http://www.oct.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Teaching: Early Childhood Educators",
+          "secondColumnAsPublished": "College of Early Childhood Educators",
+          "linkedAuthorityUrls": [
+            "https://www.college-ece.ca/about-us/"
+          ]
+        },
+        {
+          "labelAsPublished": "Traditional Chinese Medicine Practitioners and Acupuncturists",
+          "secondColumnAsPublished": "College of Traditional Chinese Medicine Practitioners and Acupuncturists of Ontario",
+          "linkedAuthorityUrls": [
+            "http://www.ctcmpao.on.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Transmission Technician",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Truck and Coach Technician",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Truck-Trailer Service Technician",
+          "secondColumnAsPublished": "Skilled Trades Ontario",
+          "linkedAuthorityUrls": [
+            "https://www.skilledtradesontario.ca/"
+          ]
+        },
+        {
+          "labelAsPublished": "Veterinary Medicine",
+          "secondColumnAsPublished": "College of Veterinarians of Ontario",
+          "linkedAuthorityUrls": [
+            "http://cvo.org/"
+          ]
+        }
+      ],
+      "productionReady": false
+    },
+    {
+      "jurisdiction": "Quebec",
+      "sourceUrl": "https://www.quebec.ca/emploi/informer-metier-profession/ordres-professionnels/liste-repertoire-membres",
+      "sourceType": "government",
+      "status": "collected",
+      "entries": [
+        {
+          "labelAsPublished": "Acupuncteurs",
+          "linkedAuthorityUrls": [
+            "http://www.o-a-q.org/fr/trouver-un-acupuncteur.aspx"
+          ]
+        },
+        {
+          "labelAsPublished": "Administrateurs agréés",
+          "linkedAuthorityUrls": [
+            "https://www.adma.qc.ca/repertoire/"
+          ]
+        },
+        {
+          "labelAsPublished": "Agronomes",
+          "linkedAuthorityUrls": [
+            "https://membres.oaq.qc.ca/Thinclient/Public/PR/FR/#/forms/new/?table=0x800000000000003D&form=0x8000000000000036&command=0x8000000000000C3B"
+          ]
+        },
+        {
+          "labelAsPublished": "Architectes",
+          "linkedAuthorityUrls": [
+            "https://www.oaq.com/travailler_avec_un_architecte/membres_de_lordre/tableau_des_architectes.html"
+          ]
+        },
+        {
+          "labelAsPublished": "Arpenteurs-géomètres",
+          "linkedAuthorityUrls": [
+            "http://www.oagq.qc.ca/index.php?id=28"
+          ]
+        },
+        {
+          "labelAsPublished": "Audioprothésistes",
+          "linkedAuthorityUrls": [
+            "https://audioprothesistes.org/trouver-un-audioprothesiste/"
+          ]
+        },
+        {
+          "labelAsPublished": "Avocats",
+          "linkedAuthorityUrls": [
+            "https://www.barreau.qc.ca/fr/bottin-des-avocats/#!/search"
+          ]
+        },
+        {
+          "labelAsPublished": "Chimistes",
+          "linkedAuthorityUrls": [
+            "https://membres.ocq.qc.ca/fr/repertoire-des-membres"
+          ]
+        },
+        {
+          "labelAsPublished": "Chiropraticiens",
+          "linkedAuthorityUrls": [
+            "https://www.ordredeschiropraticiens.ca/fr/trouver-un-chiropraticien/"
+          ]
+        },
+        {
+          "labelAsPublished": "Comptables professionnels agréés",
+          "linkedAuthorityUrls": [
+            "http://cpaquebec.ca/fr/trouver-un-cpa/"
+          ]
+        },
+        {
+          "labelAsPublished": "Conseillers et conseillères d'orientation",
+          "linkedAuthorityUrls": [
+            "http://orientation.qc.ca/repertoire-des-membres"
+          ]
+        },
+        {
+          "labelAsPublished": "Conseillers en ressources humaines et en relations industrielles agréés",
+          "linkedAuthorityUrls": [
+            "https://dossier.ordrecrha.org/protection-du-public/repertoire-des-membres"
+          ]
+        },
+        {
+          "labelAsPublished": "Criminologues",
+          "linkedAuthorityUrls": [
+            "https://ordrecrim.ca/public/protection-public/trouver-un-criminologue/"
+          ]
+        },
+        {
+          "labelAsPublished": "Dentistes",
+          "linkedAuthorityUrls": [
+            "http://www.odq.qc.ca/Protectiondupublic/Trouverundentiste/tabid/200/language/fr-CA/Default.aspx"
+          ]
+        },
+        {
+          "labelAsPublished": "Denturologistes",
+          "linkedAuthorityUrls": [
+            "https://www.odq.com/trouver-un-denturologiste"
+          ]
+        },
+        {
+          "labelAsPublished": "Diététistes-nutritionnistes",
+          "linkedAuthorityUrls": [
+            "http://opdq.org/"
+          ]
+        },
+        {
+          "labelAsPublished": "Ergothérapeutes",
+          "linkedAuthorityUrls": [
+            "https://www.oeq.org/m-informer/trouver-un-ergotherapeute.html"
+          ]
+        },
+        {
+          "labelAsPublished": "Évaluateurs agréés",
+          "linkedAuthorityUrls": [
+            "https://w12.eudonet.com/ccm/xtranet/oeaq/members"
+          ]
+        },
+        {
+          "labelAsPublished": "Géologues",
+          "linkedAuthorityUrls": [
+            "https://ogq.connexence.com/ext/ogq/repertoire/index.html#/"
+          ]
+        },
+        {
+          "labelAsPublished": "Huissiers de justice",
+          "linkedAuthorityUrls": [
+            "https://chjq.ca/bottin-des-huissiers-de-justice/"
+          ]
+        },
+        {
+          "labelAsPublished": "Hygiénistes dentaires",
+          "linkedAuthorityUrls": [
+            "https://ohdq.com/public/la-profession/rechercher-un-membre/"
+          ]
+        },
+        {
+          "labelAsPublished": "Infirmières et infirmiers",
+          "linkedAuthorityUrls": [
+            "https://www.oiiq.org/verifier-le-droit-d-exercice"
+          ]
+        },
+        {
+          "labelAsPublished": "Infirmières et infirmiers auxiliaires",
+          "linkedAuthorityUrls": [
+            "https://www.oiiaq.org/public/trouver-une-infirmiere-auxiliaire"
+          ]
+        },
+        {
+          "labelAsPublished": "Ingénieurs",
+          "linkedAuthorityUrls": [
+            "https://membres.oiq.qc.ca/OIQ/Public/Fr/Bottin/Recherche.aspx"
+          ]
+        },
+        {
+          "labelAsPublished": "Ingénieurs forestiers",
+          "linkedAuthorityUrls": [
+            "https://portail.oifq.com/ext/oifq/trouverMembre/trouverMembre.zul"
+          ]
+        },
+        {
+          "labelAsPublished": "Inhalothérapeutes",
+          "linkedAuthorityUrls": [
+            "https://prive.opiq.qc.ca/webprive/Tableau_Acces.aspx"
+          ]
+        },
+        {
+          "labelAsPublished": "Optométristes",
+          "linkedAuthorityUrls": [
+            "https://ooq.connexence.com/holo/pub/ext/ooq/tdm/repertoire/trouverOptometriste"
+          ]
+        },
+        {
+          "labelAsPublished": "Orthophonistes et audiologistes",
+          "linkedAuthorityUrls": [
+            "https://www.ooaq.qc.ca/consulter/verifier-membres-ooaq/"
+          ]
+        },
+        {
+          "labelAsPublished": "Médecins",
+          "linkedAuthorityUrls": [
+            "https://www.cmq.org/fr/bottin"
+          ]
+        },
+        {
+          "labelAsPublished": "Médecins vétérinaires",
+          "linkedAuthorityUrls": [
+            "https://www.omvq.qc.ca/trouver-medecin-veterinaire.html"
+          ]
+        },
+        {
+          "labelAsPublished": "Notaires",
+          "linkedAuthorityUrls": [
+            "https://trouverunnotaire.cnq.org/"
+          ]
+        },
+        {
+          "labelAsPublished": "Opticiens d'ordonnances",
+          "linkedAuthorityUrls": [
+            "https://oodq.connexence.com/ext/oodq/repertoire/index.html#/"
+          ]
+        },
+        {
+          "labelAsPublished": "Pharmaciens",
+          "linkedAuthorityUrls": [
+            "http://www.opq.org/fr-CA/grand-public/trouvez-votre-pharmacien"
+          ]
+        },
+        {
+          "labelAsPublished": "Physiothérapeutes et technologues en physiothérapie",
+          "linkedAuthorityUrls": [
+            "http://oppq.qc.ca/trouver-un-professionnel/"
+          ]
+        },
+        {
+          "labelAsPublished": "Podiatres",
+          "linkedAuthorityUrls": [
+            "http://www.ordredespodiatres.qc.ca/trouver-un-podiatre/"
+          ]
+        },
+        {
+          "labelAsPublished": "Psychoéducateurs et psychoéducatrices",
+          "linkedAuthorityUrls": [
+            "https://ordrepsed.qc.ca/trouver-un-psychoeducateur/tableau-des-membres/"
+          ]
+        },
+        {
+          "labelAsPublished": "Psychologues",
+          "linkedAuthorityUrls": [
+            "https://www.ordrepsy.qc.ca/verifier-le-droit-d-exercice"
+          ]
+        },
+        {
+          "labelAsPublished": "Sages-femmes",
+          "linkedAuthorityUrls": [
+            "https://www.osfq.org/fr/repertoire-des-membres"
+          ]
+        },
+        {
+          "labelAsPublished": "Sexologues",
+          "linkedAuthorityUrls": [
+            "https://www.opsq.org/fr/tableau-de-lordre"
+          ]
+        },
+        {
+          "labelAsPublished": "Technologues en prothèses et appareils dentaires",
+          "linkedAuthorityUrls": [
+            "http://www.ottdq.com/recherche.php"
+          ]
+        },
+        {
+          "labelAsPublished": "Technologistes médicaux",
+          "linkedAuthorityUrls": [
+            "http://optmq.org/a-propos-de-lordre/repertoire-des-membres/"
+          ]
+        },
+        {
+          "labelAsPublished": "Technologues en imagerie médicale, en radio-oncologie et en électrophysiologie médicale",
+          "linkedAuthorityUrls": [
+            "https://otimroepmq.ca/protection-du-public/repertoire-des-membres/?_gl=1*1vz76qi*_up*MQ..*_ga*MTY0MzYxODc2NS4xNzcwNjYyMzU4*_ga_3XZRV2638K*czE3NzA2NjIzNTckbzEkZzAkdDE3NzA2NjIzNTckajYwJGwwJGgw"
+          ]
+        },
+        {
+          "labelAsPublished": "Technologues professionnels",
+          "linkedAuthorityUrls": [
+            "https://cloud6.eudonet.com/specif/EUDO_07458/pages/public/bottin-des-membres"
+          ]
+        },
+        {
+          "labelAsPublished": "Traducteurs, terminologues et interprètes agréés",
+          "linkedAuthorityUrls": [
+            "https://ottiaq.org/repertoire"
+          ]
+        },
+        {
+          "labelAsPublished": "Travailleurs sociaux, thérapeutes conjugaux et familiaux",
+          "linkedAuthorityUrls": [
+            "https://www1.otstcfq.org/public/verifier-le-droit-dexercice/"
+          ]
+        },
+        {
+          "labelAsPublished": "Urbanistes",
+          "linkedAuthorityUrls": [
+            "https://espacemembre.ouq.qc.ca/bottin"
+          ]
+        }
+      ],
+      "productionReady": false
+    }
+  ],
+  "fallbackSnapshotReviewedOn": "2026-10-23"
+}

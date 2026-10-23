@@ -1,0 +1,65 @@
+{
+  "reviewedOn": "2026-10-23",
+  "sourceUrl": "https://www.privatetraininginstitutions.gov.bc.ca/node/146",
+  "jurisdiction": "British Columbia",
+  "sourceType": "government",
+  "productionReady": false,
+  "notes": [
+    "The source separately lists non-regulator organizations; those rows are excluded here.",
+    "Professional titles and legal scopes must be retained when creating client-facing choices."
+  ],
+  "entries": [
+    {
+      "authorityAsPublished": "BC College of Nurses and Midwives†www.bccnm.ca (BCCNM)",
+      "rolesAsPublished": "Practical Nurse; Registered Nurse; Psychiatric Nurse"
+    },
+    {
+      "authorityAsPublished": "College of Pharmacists of BC†www.bcpharmacists.org (CPBC)",
+      "rolesAsPublished": "Pharmacy Technician"
+    },
+    {
+      "authorityAsPublished": "College of Complementary Health Professionals of BC†cchpbc.ca (CCHPBC)",
+      "rolesAsPublished": "Acupuncturists; Chiropractors; Massage Therapists; Naturopathic Physicians; Traditional Chinese Medicine Practitioners"
+    },
+    {
+      "authorityAsPublished": "College of Health and Care Professionals of BC†chcpbc.org (CHCPBC)",
+      "rolesAsPublished": "Audiologists; Dietitians; Hearing Instrument Practitioners; Occupational Therapists; Opticians; Optometrists; Physical Therapists; Psychologists; Speech-Language Pathologists"
+    },
+    {
+      "authorityAsPublished": "BC College of Oral Health Professionals of BC†oralhealthbc.ca (BCCOHP)",
+      "rolesAsPublished": "Certified Dental Assistants; Dental Hygienists; Dental Therapists; Dental Technicians; Dentists; Denturists"
+    },
+    {
+      "authorityAsPublished": "Engineers and Geoscientists BC†www.egbc.ca (EGBC)",
+      "rolesAsPublished": "Engineers (including but not limited to Software Engineers, Firmware Engineers, Data Engineers, Etc.); Geoscientists"
+    },
+    {
+      "authorityAsPublished": "Chartered Professional Accountants of British Columbia†www.bccpa.ca (CPABC)",
+      "rolesAsPublished": "Chartered Professional Accountants; Professional Accountants"
+    },
+    {
+      "authorityAsPublished": "Diver Certification Board of Canada†divercertification.com (DCBC)",
+      "rolesAsPublished": "Restricted/Unrestricted Scuba Diver; Restricted/Unrestricted Surface-Supplied Diver; Closed Bell Diver"
+    },
+    {
+      "authorityAsPublished": "Emergency Medical Assistants Licensing Board†www2.gov.bc.ca (EMALB)",
+      "rolesAsPublished": "Emergency Medical Assistant; First Responder"
+    },
+    {
+      "authorityAsPublished": "College of Immigration and Citizenship Consultants†college-ic.ca (CICC)",
+      "rolesAsPublished": "Immigration Consultant; Immigration Practitioner"
+    },
+    {
+      "authorityAsPublished": "Transport Canada†tc.canada.ca (TC)",
+      "rolesAsPublished": "Flight Training – Commercial Pilot; Multi Engine Rating, Instrument Flight Rating; Airline Transport Pilot; Maritime/Marine Training"
+    },
+    {
+      "authorityAsPublished": "SkilledTradesBC†skilledtradesbc.ca",
+      "rolesAsPublished": "Skilled Trades Certification is required for: Construction Electrician; Industrial Electrician; Powerline Technician; Refrigeration and Air Conditioning Mechanic; Gasfitter Class A & B; Steamfitter/Pipefitter; Sheet Metal Worker. SkilledTradesBC also sets program standards for Qualification and Red Seal for many other trades programs."
+    },
+    {
+      "authorityAsPublished": "BC College of Social Workers†bccsw.ca (BCCSW)",
+      "rolesAsPublished": "Social Worker; Registered Social Worker; Registered Clinical Social Worker"
+    }
+  ]
+}

@@ -1,0 +1,720 @@
+{
+  "reviewedOn": "2026-10-23",
+  "sources": [
+    {
+      "jurisdiction": "Manitoba",
+      "sourceUrl": "https://immigratemanitoba.com/work/regulated-occupations/",
+      "sourceType": "government",
+      "retrievalMethod": "Official page content returned by web search; direct retrieval returned HTTP 403",
+      "status": "collected-via-indexed-source",
+      "entries": [
+        {
+          "labelAsPublished": "Accountant",
+          "authorityAsPublished": "Chartered Professional Accountants of Manitoba (CPA)"
+        },
+        {
+          "labelAsPublished": "Agrologist",
+          "authorityAsPublished": "Agrologists Manitoba"
+        },
+        {
+          "labelAsPublished": "Architect",
+          "authorityAsPublished": "Manitoba Association of Architects (MAA)"
+        },
+        {
+          "labelAsPublished": "Audiologist and speech-language pathologist",
+          "authorityAsPublished": "College of Audiologists and Speech-Language Pathologists of Manitoba (CASLPM)"
+        },
+        {
+          "labelAsPublished": "Child care worker",
+          "authorityAsPublished": "Early Learning and Child Care Program"
+        },
+        {
+          "labelAsPublished": "Chiropractor",
+          "authorityAsPublished": "Manitoba Chiropractors Association"
+        },
+        {
+          "labelAsPublished": "Dental assistant",
+          "authorityAsPublished": "Manitoba Dental Association (MDA)"
+        },
+        {
+          "labelAsPublished": "Dental hygienist",
+          "authorityAsPublished": "College of Dental Hygienists of Manitoba (CDHM)"
+        },
+        {
+          "labelAsPublished": "Dentist",
+          "authorityAsPublished": "Manitoba Dental Association (MDA)"
+        },
+        {
+          "labelAsPublished": "Denturist",
+          "authorityAsPublished": "Denturist Association of Manitoba"
+        },
+        {
+          "labelAsPublished": "Dietitian",
+          "authorityAsPublished": "College of Dietitians of Manitoba"
+        },
+        {
+          "labelAsPublished": "Engineer",
+          "authorityAsPublished": "Engineers Geoscientists Manitoba"
+        },
+        {
+          "labelAsPublished": "Engineering technician & technologist",
+          "authorityAsPublished": "Certified Technicians and Technologists Association of Manitoba (CTTAM)"
+        },
+        {
+          "labelAsPublished": "Geoscientist",
+          "authorityAsPublished": "Engineers Geoscientists Manitoba"
+        },
+        {
+          "labelAsPublished": "Land surveyor",
+          "authorityAsPublished": "Association of Manitoba Land Surveyors (AMLS)"
+        },
+        {
+          "labelAsPublished": "Lawyer",
+          "authorityAsPublished": "Law Society of Manitoba (LSM)"
+        },
+        {
+          "labelAsPublished": "Licensed practical nurse (LPN)",
+          "authorityAsPublished": "College of Licensed Practical Nurses of Manitoba (CLPNM)"
+        },
+        {
+          "labelAsPublished": "Medical laboratory technologist",
+          "authorityAsPublished": "College of Medical Laboratory Technologists of Manitoba (CMLTM)"
+        },
+        {
+          "labelAsPublished": "Midwife",
+          "authorityAsPublished": "College of Midwives of Manitoba (CMM)"
+        },
+        {
+          "labelAsPublished": "Naturopath",
+          "authorityAsPublished": "Manitoba Naturopathic Association (MNA)"
+        },
+        {
+          "labelAsPublished": "Occupational therapist",
+          "authorityAsPublished": "College of Occupational Therapists of Manitoba (COTM)"
+        },
+        {
+          "labelAsPublished": "Optician",
+          "authorityAsPublished": "Opticians of Manitoba (OOM)"
+        },
+        {
+          "labelAsPublished": "Optometrist",
+          "authorityAsPublished": "Manitoba Association of Optometrists (MAO)"
+        },
+        {
+          "labelAsPublished": "Pharmacist",
+          "authorityAsPublished": "College of Pharmacists of Manitoba (CPhM)"
+        },
+        {
+          "labelAsPublished": "Physician",
+          "authorityAsPublished": "College of Physicians & Surgeons of Manitoba (CPSM)"
+        },
+        {
+          "labelAsPublished": "Physiotherapist",
+          "authorityAsPublished": "College of Physiotherapists of Manitoba (CPM)"
+        },
+        {
+          "labelAsPublished": "Podiatrist",
+          "authorityAsPublished": "College of Podiatrists of Manitoba (COPOM)"
+        },
+        {
+          "labelAsPublished": "Psychologist",
+          "authorityAsPublished": "Psychological Association of Manitoba (PAM)"
+        },
+        {
+          "labelAsPublished": "Respiratory therapist",
+          "authorityAsPublished": "Manitoba Association of Registered Respiratory Therapists (MARRT)"
+        },
+        {
+          "labelAsPublished": "Registered nurse (RN)",
+          "authorityAsPublished": "College of Registered Nurses of Manitoba (CRNM)"
+        },
+        {
+          "labelAsPublished": "Registered psychiatric nurse (RPN)",
+          "authorityAsPublished": "College of Registered Psychiatric Nurses of Manitoba (CRPNM)"
+        },
+        {
+          "labelAsPublished": "Social worker",
+          "authorityAsPublished": "Manitoba College of Social Workers (MCSW)"
+        },
+        {
+          "labelAsPublished": "Teacher (K-12)",
+          "authorityAsPublished": "Professional Certification Unit (PCU)"
+        },
+        {
+          "labelAsPublished": "Veterinarian",
+          "authorityAsPublished": "Manitoba Veterinary Medical Association (MVMA)"
+        },
+        {
+          "labelAsPublished": "Registered Veterinary Technologist",
+          "authorityAsPublished": "Manitoba Veterinary Medical Association (MVMA)"
+        },
+        {
+          "labelAsPublished": "Construction Electrician",
+          "nocAsPublished": "72200",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Crane and Hoisting Equipment Operator",
+          "nocAsPublished": "72500",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Industrial Electrician",
+          "nocAsPublished": "72201",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Refrigeration and Air Conditioning Mechanic",
+          "nocAsPublished": "72402",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Sprinkler Fitter",
+          "nocAsPublished": "72301",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Steamfitter-Pipefitter",
+          "nocAsPublished": "72301",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Electrologist",
+          "nocAsPublished": "63211",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Esthetician",
+          "nocAsPublished": "63211",
+          "section": "Compulsory trades"
+        },
+        {
+          "labelAsPublished": "Hairstylist",
+          "nocAsPublished": "63210",
+          "section": "Compulsory trades"
+        }
+      ],
+      "productionReady": false
+    },
+    {
+      "jurisdiction": "New Brunswick",
+      "sourceUrl": "https://www2.gnb.ca/content/gnb/en/departments/post-secondary_education_training_and_labour/Jobs/content/LabourMobility/CertifiedOccupations.html",
+      "sourceType": "government",
+      "retrievalMethod": "Official page content returned by web search; direct retrieval returned HTTP 403",
+      "status": "collected-via-indexed-source",
+      "entries": [
+        {
+          "labelAsPublished": "Agrologist",
+          "authorityAsPublished": "New Brunswick Institute of Agrologists"
+        },
+        {
+          "labelAsPublished": "Architect",
+          "authorityAsPublished": "Architects' Association of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Barber",
+          "authorityAsPublished": "New Brunswick Registered Barbers' Association"
+        },
+        {
+          "labelAsPublished": "Building Official",
+          "authorityAsPublished": "The New Brunswick Building Officials Association"
+        },
+        {
+          "labelAsPublished": "Cardiology Technologist",
+          "authorityAsPublished": "New Brunswick Society of Cardiology Technologists"
+        },
+        {
+          "labelAsPublished": "Chartered Professional Accountants",
+          "authorityAsPublished": "Chartered Professional Accountants New Brunswick"
+        },
+        {
+          "labelAsPublished": "Chiropractor",
+          "authorityAsPublished": "New Brunswick Chiropractors' Association"
+        },
+        {
+          "labelAsPublished": "Cosmetologist",
+          "authorityAsPublished": "Cosmetology Association of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Counselling Therapist",
+          "authorityAsPublished": "College of Counselling Therapists of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Dental Assistant",
+          "authorityAsPublished": "New Brunswick Dental Society"
+        },
+        {
+          "labelAsPublished": "Dental Hygienist",
+          "authorityAsPublished": "New Brunswick College of Dental Hygienists"
+        },
+        {
+          "labelAsPublished": "Dental Specialist",
+          "authorityAsPublished": "New Brunswick Dental Society"
+        },
+        {
+          "labelAsPublished": "Dental Technician",
+          "authorityAsPublished": "New Brunswick Dental Technicians' Association"
+        },
+        {
+          "labelAsPublished": "Dentist",
+          "authorityAsPublished": "New Brunswick Dental Society"
+        },
+        {
+          "labelAsPublished": "Denturist",
+          "authorityAsPublished": "New Brunswick Denturists' Society"
+        },
+        {
+          "labelAsPublished": "Dietitian",
+          "authorityAsPublished": "New Brunswick Association of Dietitians"
+        },
+        {
+          "labelAsPublished": "Early Childhood Educator",
+          "authorityAsPublished": "The Department of Education and Early Childhood Development"
+        },
+        {
+          "labelAsPublished": "Engineer",
+          "authorityAsPublished": "Association of Professional Engineers and Geoscientists of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Engineering Technician or Technologist",
+          "authorityAsPublished": "New Brunswick Society of Certified Engineering Technicians and Technologists"
+        },
+        {
+          "labelAsPublished": "Forester",
+          "authorityAsPublished": "Association of Registered Professional Foresters of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Funeral Director and Embalmer",
+          "authorityAsPublished": "New Brunswick Funeral Directors' and Embalmers' Association"
+        },
+        {
+          "labelAsPublished": "Geoscientist",
+          "authorityAsPublished": "Association of Professional Engineers and Geoscientists of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Home Economist",
+          "authorityAsPublished": "New Brunswick Home Economists' Association"
+        },
+        {
+          "labelAsPublished": "Interior Designer",
+          "authorityAsPublished": "The Association of Registered Interior Designers of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Land Surveyor",
+          "authorityAsPublished": "Association of New Brunswick Land Surveyors"
+        },
+        {
+          "labelAsPublished": "Lawyer",
+          "authorityAsPublished": "Law Society of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Licensed Practical Nurse",
+          "authorityAsPublished": "Association of New Brunswick Licensed Practical Nurses"
+        },
+        {
+          "labelAsPublished": "Massage Therapist",
+          "authorityAsPublished": "College of Massage Therapy New Brunswick"
+        },
+        {
+          "labelAsPublished": "Medical Laboratory Technologist",
+          "authorityAsPublished": "New Brunswick Society of Medical Laboratory Technologists"
+        },
+        {
+          "labelAsPublished": "Medical Radiation Technologist",
+          "authorityAsPublished": "New Brunswick Association of Medical Radiation Technologists"
+        },
+        {
+          "labelAsPublished": "Nurse",
+          "authorityAsPublished": "Nurses' Association of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Midwife",
+          "authorityAsPublished": "Midwifery Council of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Mortgage Broker",
+          "authorityAsPublished": "Financial and Consumer Services Commission"
+        },
+        {
+          "labelAsPublished": "Occupational Therapist",
+          "authorityAsPublished": "New Brunswick Association of Occupational Therapists"
+        },
+        {
+          "labelAsPublished": "Optician",
+          "authorityAsPublished": "Opticians' Association of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Optometrist",
+          "authorityAsPublished": "New Brunswick Association of Optometrists"
+        },
+        {
+          "labelAsPublished": "Paramedic",
+          "authorityAsPublished": "The Paramedic Association of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Pharmacist/Pharmacy Technician",
+          "authorityAsPublished": "New Brunswick College of Pharmacists"
+        },
+        {
+          "labelAsPublished": "Physician",
+          "authorityAsPublished": "College of Physicians and Surgeons of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Physiotherapist",
+          "authorityAsPublished": "College of Physiotherapists of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Podiatrist",
+          "authorityAsPublished": "New Brunswick Podiatry Association"
+        },
+        {
+          "labelAsPublished": "Psychologist",
+          "authorityAsPublished": "College of Psychologists of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Real Estate Agent",
+          "authorityAsPublished": "New Brunswick Real Estate Association"
+        },
+        {
+          "labelAsPublished": "Respiratory Therapist",
+          "authorityAsPublished": "New Brunswick Association of Respiratory Therapists"
+        },
+        {
+          "labelAsPublished": "Skilled Trades",
+          "authorityAsPublished": "New Brunswick Department of Post-Secondary Education, Training and Labour"
+        },
+        {
+          "labelAsPublished": "Social Worker",
+          "authorityAsPublished": "The New Brunswick Association of Social Workers"
+        },
+        {
+          "labelAsPublished": "Speech-Language Pathologist/Audiologist",
+          "authorityAsPublished": "Association of Speech-Language Pathologists and Audiologists"
+        },
+        {
+          "labelAsPublished": "Teacher",
+          "authorityAsPublished": "Department of Education and Early Childhood Development"
+        },
+        {
+          "labelAsPublished": "Translator/Terminologist/Interpreter",
+          "authorityAsPublished": "Corporation of Translators, Terminologists and Interpreters of New Brunswick"
+        },
+        {
+          "labelAsPublished": "Veterinarian",
+          "authorityAsPublished": "New Brunswick Veterinary Medical Association"
+        }
+      ],
+      "productionReady": false
+    },
+    {
+      "jurisdiction": "Prince Edward Island",
+      "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations",
+      "sourceType": "government",
+      "retrievalMethod": "Official page content returned by web open; raw HTTP response did not expose its tables",
+      "status": "collected-via-web-source",
+      "entries": [
+        {
+          "labelAsPublished": "Accountant",
+          "authorityAsPublished": "Chartered Professional Accountants of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Acupuncturist",
+          "authorityAsPublished": "College of Acupuncture of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Agrologist",
+          "authorityAsPublished": "Prince Edward Island Institute of Agrologists",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Architect",
+          "authorityAsPublished": "The Architects Association of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Audiologist",
+          "authorityAsPublished": "College of Audiology & Speech Language Pathology Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Chiropractor",
+          "authorityAsPublished": "Prince Edward Island Chiropractic Association",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Counselling Therapist",
+          "authorityAsPublished": "College of Counselling Therapy Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Dental Assistant",
+          "authorityAsPublished": "Prince Edward Island Dental College",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Dental Hygienist",
+          "authorityAsPublished": "College of Dental Hygienists Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Dentist",
+          "authorityAsPublished": "Prince Edward Island Dental College",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Denturist",
+          "authorityAsPublished": "Denturist Society of Prince Edward Island For more information contact: briannaesquires@gov.pe.ca",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Dietitian",
+          "authorityAsPublished": "College of Dietitians of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Engineer",
+          "authorityAsPublished": "Engineers PEI",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Engineering Technician / Technologist",
+          "authorityAsPublished": "Island Technology Professionals",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Funeral Director / Embalmer",
+          "authorityAsPublished": "Prince Edward Island Funeral Services and Professions Board",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Hairdresser",
+          "authorityAsPublished": "Prince Edward Island Hair Dressers Association",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Land Surveyor",
+          "authorityAsPublished": "Association of Prince Edward Island Land Surveyors",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Lawyer",
+          "authorityAsPublished": "Law Society of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Licensed Practical Nurse",
+          "authorityAsPublished": "Prince Edward Island College of Nursing and Midwifery",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Massage Therapist",
+          "authorityAsPublished": "College of Massage Therapists of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Medical Laboratory Technologist",
+          "authorityAsPublished": "College of Allied Health Professionals of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Medical Radiation Technologist",
+          "authorityAsPublished": "College of Allied Health Professionals of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Midwife",
+          "authorityAsPublished": "Prince Edward Island College of Nursing and Midwifery",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Occupational Therapist",
+          "authorityAsPublished": "Prince Edward Island College of Occupational Therapists",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Optician",
+          "authorityAsPublished": "College of Opticians of Prince Edward Island For more information contact: briannaesquires@gov.pe.ca",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Optometrist",
+          "authorityAsPublished": "Prince Edward Island College of Optometrists",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Paramedic",
+          "authorityAsPublished": "College of Paramedicine Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Pharmacist",
+          "authorityAsPublished": "Prince Edward Island College of Pharmacy",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Pharmacy Technician",
+          "authorityAsPublished": "Prince Edward Island College of Pharmacy",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Physician",
+          "authorityAsPublished": "College of Physicians & Surgeons of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Physician Assistant",
+          "authorityAsPublished": "College of Physicians & Surgeons of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Podiatrist",
+          "authorityAsPublished": "College of Physicians & Surgeons of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Psychologist",
+          "authorityAsPublished": "Prince Edward Island Psychologists Registration Board",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Registered Nurse / Registered Psychiatric Nurse",
+          "authorityAsPublished": "Prince Edward Island College of Nursing and Midwifery",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Registered Planner",
+          "authorityAsPublished": "Prince Edward Island Institute of Professional Planners",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Respiratory Therapist",
+          "authorityAsPublished": "College of Allied Health Professionals of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Social Worker",
+          "authorityAsPublished": "Prince Edward Island Social Work Registration Board",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Speech Language Pathologist",
+          "authorityAsPublished": "College of Audiology & Speech Language Pathology Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Veterinarian",
+          "authorityAsPublished": "Prince Edward Island Veterinary Medical Association",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Early Childhood Educator",
+          "authorityAsPublished": "Department of Education and Early Years",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Elevator Mechanic",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Home Heat Tank Installer",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Insurance Adjustor",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Insurance Agent",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Investment Dealers / Brokers",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Petroleum Storage Tank Contractor",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Power Engineer",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Private Investigator",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Real Estate Agent",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Security Guard",
+          "authorityAsPublished": "Department of Justice and Public Safety",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Septic Contractor",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Site Assessor",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Teacher",
+          "authorityAsPublished": "Department of Education and Early Years",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Wastewater Operator",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Well Driller",
+          "authorityAsPublished": "Department of Land and Environment",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "For more information about designated trades, apprenticeship, and certification requirements, visit: 【45†Designated Trades in PEI",
+          "authorityAsPublished": "Government of Prince Edward Island",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+        },
+        {
+          "labelAsPublished": "Automotive Service Technician",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations",
+          "section": "Certified compulsory trades"
+        },
+        {
+          "labelAsPublished": "Construction Electrician",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations",
+          "section": "Certified compulsory trades"
+        },
+        {
+          "labelAsPublished": "Plumber",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations",
+          "section": "Certified compulsory trades"
+        },
+        {
+          "labelAsPublished": "Steamfitter / Pipefitter",
+          "sourceUrl": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations",
+          "section": "Certified compulsory trades"
+        }
+      ],
+      "productionReady": false
+    }
+  ]
+}

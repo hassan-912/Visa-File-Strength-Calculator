@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import CanadaCRSForm from "@/components/CanadaCRSForm";
 import AustraliaGSMForm from "@/components/AustraliaGSMForm";
+import CanadaOccupationChecker from "@/components/CanadaOccupationChecker";
 
 type ImmigrationSubTab = "canada" | "australia";
 
@@ -96,7 +97,10 @@ export default function ImmigrationPage() {
       <main className="flex-1">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {subTab === "canada" ? (
-            <CanadaCRSForm />
+            <>
+              <CanadaOccupationChecker />
+              <CanadaCRSForm />
+            </>
           ) : (
             <AustraliaGSMForm />
           )}

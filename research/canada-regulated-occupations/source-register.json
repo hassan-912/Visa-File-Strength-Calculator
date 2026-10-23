@@ -1,0 +1,181 @@
+{
+  "reviewedOn": "2026-10-23",
+  "policy": "Official government, intergovernmental and statutory-regulator sources only. Inclusion is evidence of the stated scope, not an exhaustive current inventory for a jurisdiction.",
+  "sources": [
+    {
+      "jurisdiction": "CA",
+      "title": "CICIC directory coverage",
+      "url": "https://www.cicic.ca/936/get_more_information_about_the_directory_of_occupational_profiles.canada",
+      "authority": "CMEC/CICIC",
+      "scope": "Defines coverage and cautions that current regulatory changes may not yet appear."
+    },
+    {
+      "jurisdiction": "CA",
+      "title": "CICIC advanced occupation search",
+      "url": "https://www.cicic.ca/935/perform_an_advanced_search_in_the_directory_of_occupational_profiles.canada",
+      "authority": "CMEC/CICIC",
+      "scope": "Official directory search; raw 135-result regulated snapshot is saved separately."
+    },
+    {
+      "jurisdiction": "CA",
+      "title": "Foreign credential recognition",
+      "url": "https://www.canada.ca/en/employment-social-development/programs/foreign-credential-recognition.html",
+      "authority": "Government of Canada",
+      "scope": "Credential recognition and licensing depend on the occupation and place of work."
+    },
+    {
+      "jurisdiction": "AB",
+      "title": "Qualifications recognition: regulatory bodies",
+      "url": "https://www.alberta.ca/regulatory-bodies",
+      "authority": "Government of Alberta",
+      "scope": "Current government regulator list; regulator membership does not by itself establish compulsory practice licensing for every related job."
+    },
+    {
+      "jurisdiction": "AB",
+      "title": "Regulated professions in scope of review",
+      "url": "https://www.alberta.ca/system/files/jus-list-regulated-professions-under-review.pdf",
+      "authority": "Government of Alberta",
+      "scope": "Published October 2024. Historical government occupation inventory; requires current regulator checks before classification."
+    },
+    {
+      "jurisdiction": "BC",
+      "title": "Professional regulatory authorities",
+      "url": "https://www2.gov.bc.ca/gov/content/governments/organizational-structure/ministries-organizations/regulatory-authorities/list",
+      "authority": "Government of British Columbia",
+      "scope": "Regulatory authority directory, grouped by sector."
+    },
+    {
+      "jurisdiction": "BC",
+      "title": "Career occupations and other regulators",
+      "url": "https://www.privatetraininginstitutions.gov.bc.ca/node/146",
+      "authority": "Government of British Columbia",
+      "scope": "Includes provincial and federal regulators; distinguishes additional organizations that are not regulatory bodies. Thirteen regulator rows saved."
+    },
+    {
+      "jurisdiction": "MB",
+      "title": "Regulated occupations",
+      "url": "https://immigratemanitoba.com/work/regulated-occupations/",
+      "authority": "Government of Manitoba",
+      "scope": "Regulated-profession list and nine compulsory trades. Official indexed page used when direct retrieval returned HTTP 403."
+    },
+    {
+      "jurisdiction": "NB",
+      "title": "Certified occupations",
+      "url": "https://www2.gnb.ca/content/gnb/en/departments/post-secondary_education_training_and_labour/Jobs/content/LabourMobility/CertifiedOccupations.html",
+      "authority": "Government of New Brunswick",
+      "scope": "Fifty occupation/regulator rows from official indexed content; direct retrieval returned HTTP 403."
+    },
+    {
+      "jurisdiction": "NS",
+      "title": "Regulated health profession regulators",
+      "url": "https://www.novascotia.ca/sites/default/files/documents/1-3973/health-profession-regulators-en.pdf",
+      "authority": "Government of Nova Scotia",
+      "scope": "Current health regulator inventory; includes medical laboratory assistants and combined laboratory/x-ray technologists."
+    },
+    {
+      "jurisdiction": "NS",
+      "title": "Fair registration practices: regulatory bodies",
+      "url": "https://novascotia.ca/lae/fair-registration-practices/regulatory-bodies.asp",
+      "authority": "Government of Nova Scotia",
+      "scope": "Self-regulating bodies and government-regulated occupations; some regulator names have since changed."
+    },
+    {
+      "jurisdiction": "NL",
+      "title": "Regulatory bodies under fair registration",
+      "url": "https://www.gov.nl.ca/jgrd/fair-registration/regulatory-bodies/",
+      "authority": "Government of Newfoundland and Labrador",
+      "scope": "Official regulator list; scope is the Fair Registration Practices Act, not all occupational licensing."
+    },
+    {
+      "jurisdiction": "PE",
+      "title": "Regulated occupations",
+      "url": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations",
+      "authority": "Government of Prince Edward Island",
+      "scope": "Official page published 8 October 2026; English occupation tables and four compulsory trades are saved."
+    },
+    {
+      "jurisdiction": "ON",
+      "title": "Work in your profession or trade",
+      "url": "https://www.ontario.ca/page/work-your-profession-or-trade",
+      "authority": "Government of Ontario",
+      "scope": "Contains regulated professions, compulsory trades, protected designations and mixed sectors. Explicit unregulated rows were excluded from the saved source inventory."
+    },
+    {
+      "jurisdiction": "ON",
+      "title": "Regulated health professions",
+      "url": "https://www.ontario.ca/page/regulated-health-professions",
+      "authority": "Government of Ontario",
+      "scope": "Health profession descriptions and legislative links."
+    },
+    {
+      "jurisdiction": "ON",
+      "title": "Behaviour Analyst registration and title restrictions",
+      "url": "https://cpbao.ca/aba/aba-information-and-updates/",
+      "authority": "College of Psychologists and Behaviour Analysts of Ontario (statutory regulator)",
+      "scope": "The title Behaviour Analyst is restricted from 1 July 2024; ABA activities themselves are not controlled acts."
+    },
+    {
+      "jurisdiction": "QC",
+      "title": "Professions and member directories",
+      "url": "https://www.quebec.ca/emploi/informer-metier-profession/ordres-professionnels/liste-repertoire-membres",
+      "authority": "Government of Quebec",
+      "scope": "Forty-six linked profession groups collected in their original French labels; several groups contain more than one profession."
+    },
+    {
+      "jurisdiction": "QC",
+      "title": "Regulated trades and occupations",
+      "url": "https://www.quebec.ca/en/employment/learn-trade-occupation/practising-regulated-trade-occupation/learn-regulated-trades-occupations",
+      "authority": "Government of Quebec",
+      "scope": "Separates professional orders, construction, compulsory qualifications, finance and teaching."
+    },
+    {
+      "jurisdiction": "QC",
+      "title": "Compulsory certificates of qualification",
+      "url": "https://www.quebec.ca/en/employment/learn-trade-occupation/practising-regulated-trade-occupation/compulsory-certificates-qualification",
+      "authority": "Government of Quebec",
+      "scope": "Official entry point for compulsory qualification outside the construction-sector system."
+    },
+    {
+      "jurisdiction": "QC",
+      "title": "Construction trades, occupations and job prospects",
+      "url": "https://www.ccq.org/en/qualification-acces-industrie/metiers-emplois",
+      "authority": "Commission de la construction du Quebec (statutory body)",
+      "scope": "Describes 25 trades, six specialized occupations and 30 occupations; scope and collective-agreement exceptions must be retained."
+    },
+    {
+      "jurisdiction": "SK",
+      "title": "Saskatchewan regulatory bodies",
+      "url": "https://www.saskatchewan.ca/residents/moving-to-saskatchewan/live-in-saskatchewan/to-work/regulated-occupations-and-licensing-requirements/saskatchewan-regulatory-bodies",
+      "authority": "Government of Saskatchewan",
+      "scope": "Seventy-four source occupation/regulator rows collected; title/practice scope still needs review."
+    },
+    {
+      "jurisdiction": "YT",
+      "title": "Professional licensing",
+      "url": "https://yukon.ca/en/doing-business/professional-licensing",
+      "authority": "Government of Yukon",
+      "scope": "Government licensing directory, including health and business professions; includes organizations and permit types, not only individual occupations."
+    },
+    {
+      "jurisdiction": "NT",
+      "title": "Professional licensing",
+      "url": "https://www.hss.gov.nt.ca/en/services/professional-licensing",
+      "authority": "Government of the Northwest Territories",
+      "scope": "Health and social-service licensing office; page identifies the professions it administers. Does not cover every occupation in the territory."
+    },
+    {
+      "jurisdiction": "NU",
+      "title": "Medical Profession Act",
+      "url": "https://www.nunavutlegislation.ca/en/file-download/download/public/340",
+      "authority": "Official Nunavut legislation",
+      "scope": "Confirms medical registration/licensing in Nunavut; retrieved consolidation is current to 25 January 2013, so it is not a current full inventory."
+    },
+    {
+      "jurisdiction": "FED",
+      "title": "Aircraft maintenance engineer licensing",
+      "url": "https://tc.canada.ca/en/aviation/licensing-aircraft-maintenance-engineers-ames/obtaining-aircraft-maintenance-engineer-ame-licence",
+      "authority": "Transport Canada",
+      "scope": "Federal AME licensing concerns certification of maintenance. Do not classify every aircraft mechanic as needing an AME licence."
+    }
+  ]
+}

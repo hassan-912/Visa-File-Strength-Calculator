@@ -1,0 +1,3869 @@
+{
+  "reviewedOn": "2026-10-23",
+  "sources": {
+    "ontario": {
+      "label": "Government of Ontario",
+      "url": "https://www.ontario.ca/page/work-your-profession-or-trade"
+    },
+    "manitoba": {
+      "label": "Government of Manitoba",
+      "url": "https://immigratemanitoba.com/work/regulated-occupations/"
+    },
+    "saskatchewan": {
+      "label": "Government of Saskatchewan",
+      "url": "https://www.saskatchewan.ca/residents/moving-to-saskatchewan/live-in-saskatchewan/to-work/regulated-occupations-and-licensing-requirements/saskatchewan-regulatory-bodies"
+    },
+    "new-brunswick": {
+      "label": "Government of New Brunswick",
+      "url": "https://www2.gnb.ca/content/gnb/en/departments/post-secondary_education_training_and_labour/Jobs/content/LabourMobility/CertifiedOccupations.html"
+    },
+    "pei": {
+      "label": "Government of Prince Edward Island",
+      "url": "https://www.princeedwardisland.ca/fr/information/main-doeuvre-et-etudes-superieures/regulated-occupations"
+    },
+    "quebec": {
+      "label": "Government of Quebec",
+      "url": "https://www.quebec.ca/emploi/informer-metier-profession/ordres-professionnels/liste-repertoire-membres"
+    },
+    "bc": {
+      "label": "Government of British Columbia",
+      "url": "https://www.privatetraininginstitutions.gov.bc.ca/node/146"
+    },
+    "nova-scotia": {
+      "label": "Government of Nova Scotia — health regulators",
+      "url": "https://www.novascotia.ca/sites/default/files/documents/1-3973/health-profession-regulators-en.pdf"
+    },
+    "ns-other": {
+      "label": "Government of Nova Scotia — regulated occupations",
+      "url": "https://novascotia.ca/lae/fair-registration-practices/regulatory-bodies.asp"
+    },
+    "nwt": {
+      "label": "Government of the Northwest Territories",
+      "url": "https://www.hss.gov.nt.ca/en/services/professional-licensing"
+    },
+    "yukon": {
+      "label": "Government of Yukon — professional licensing",
+      "url": "https://yukon.ca/en/doing-business/professional-licensing"
+    },
+    "tc-ame": {
+      "label": "Transport Canada — aircraft maintenance engineer licensing",
+      "url": "https://tc.canada.ca/en/aviation/licensing-aircraft-maintenance-engineers-ames/obtaining-aircraft-maintenance-engineer-ame-licence"
+    },
+    "ircc-representatives": {
+      "label": "Government of Canada — authorized representatives",
+      "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigration-citizenship-representative/choose/authorized.html"
+    },
+    "cpbao": {
+      "label": "College of Psychologists and Behaviour Analysts of Ontario",
+      "url": "https://cpbao.ca/aba/aba-information-and-updates/"
+    },
+    "jobbank-kinesiologist": {
+      "label": "Government of Canada Job Bank — kinesiologist",
+      "url": "https://www.jobbank.gc.ca/marketreport/requirements/25168/ca"
+    },
+    "yukon-psychology": {
+      "label": "Government of Yukon — psychologist certification",
+      "url": "https://yukon.ca/en/doing-business/professional-licensing/apply-psychologist-certificate"
+    },
+    "jobbank-np": {
+      "label": "Government of Canada Job Bank — nurse practitioner",
+      "url": "https://www.jobbank.gc.ca/marketreport/requirements/26454/ca"
+    },
+    "ccq": {
+      "label": "Commission de la construction du Quebec — trade qualification examinations",
+      "url": "https://www.ccq.org/en/qualification-acces-industrie/examen-qualification-2/fiches-renseignements"
+    },
+    "engineers-canada": {
+      "label": "Engineers Canada — protected professional titles",
+      "url": "https://engineerscanada.ca/become-an-engineer/use-of-professional-title-and-designations"
+    },
+    "alberta-role-inventory": {
+      "label": "Government of Alberta — regulated professions inventory",
+      "url": "https://www.alberta.ca/system/files/jus-list-regulated-professions-under-review.pdf"
+    },
+    "jobbank-pharmacy-tech": {
+      "label": "Government of Canada Job Bank — pharmacy technician",
+      "url": "https://www.jobbank.gc.ca/marketreport/requirements/25660/ca"
+    },
+    "jobbank-respiratory": {
+      "label": "Government of Canada Job Bank — respiratory therapist",
+      "url": "https://www.jobbank.gc.ca/marketreport/requirements/22796/ca"
+    },
+    "ontario-financial-titles": {
+      "label": "Ontario legislation — financial professional titles",
+      "url": "https://www.ontario.ca/laws/statute/19f07b"
+    },
+    "quebec-psychotherapy": {
+      "label": "Government of Quebec — psychotherapy permits",
+      "url": "https://www.quebec.ca/emploi/informer-metier-profession/profession-metier-reglemente/connaitre-professions-metiers-reglementes"
+    },
+    "cicic-43": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/General_practitioners_and_family_physicians.canada?id=43"
+    },
+    "cicic-42": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Specialists_in_clinical_and_laboratory_medicine.canada?id=42"
+    },
+    "cicic-56": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Registered_nurses_and_registered_psychiatric_nurses.canada?id=56"
+    },
+    "cicic-70": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Licensed_practical_nurses.canada?id=70"
+    },
+    "cicic-44": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Dentists.canada?id=44"
+    },
+    "cicic-66": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Dental_hygienists_and_dental_therapists.canada?id=66"
+    },
+    "cicic-65": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Denturists.canada?id=65"
+    },
+    "cicic-46": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Optometrists.canada?id=46"
+    },
+    "cicic-50": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Pharmacists.canada?id=50"
+    },
+    "cicic-83": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Psychologists.canada?id=83"
+    },
+    "cicic-52": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Audiologists_and_speech-language_pathologists.canada?id=52"
+    },
+    "cicic-54": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Occupational_therapists.canada?id=54"
+    },
+    "cicic-53": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Physiotherapists.canada?id=53"
+    },
+    "cicic-47": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Chiropractors.canada?id=47"
+    },
+    "cicic-157": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Massage_therapists.canada?id=157"
+    },
+    "cicic-51": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Dietitians_and_nutritionists.canada?id=51"
+    },
+    "cicic-58": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Medical_laboratory_technologists.canada?id=58"
+    },
+    "cicic-61": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Medical_radiation_technologists.canada?id=61"
+    },
+    "cicic-62": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Medical_sonographers.canada?id=62"
+    },
+    "cicic-144": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Cardiology_technologists_and_electrophysiological_diagnostic_technologists.canada?id=144"
+    },
+    "cicic-137": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Dental_assistants_and_dental_laboratory_assistants.canada?id=137"
+    },
+    "cicic-67": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Dental_technologists_and_technicians.canada?id=67"
+    },
+    "cicic-68": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Opticians.canada?id=68"
+    },
+    "cicic-71": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Paramedical_occupations.canada?id=71"
+    },
+    "cicic-25": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Aerospace_engineers.canada?id=25"
+    },
+    "cicic-193": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Chemical_engineers.canada?id=193"
+    },
+    "cicic-188": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Civil_engineers.canada?id=188"
+    },
+    "cicic-192": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Electrical_and_electronics_engineers.canada?id=192"
+    },
+    "cicic-197": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Geological_engineers.canada?id=197"
+    },
+    "cicic-194": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Industrial_and_manufacturing_engineers.canada?id=194"
+    },
+    "cicic-191": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Mechanical_engineers.canada?id=191"
+    },
+    "cicic-195": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Metallurgical_and_materials_engineers.canada?id=195"
+    },
+    "cicic-196": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Mining_engineers.canada?id=196"
+    },
+    "cicic-199": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Petroleum_engineers.canada?id=199"
+    },
+    "cicic-26": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Other_professional_engineers.canada?id=26"
+    },
+    "cicic-27": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Architects.canada?id=27"
+    },
+    "cicic-28": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Landscape_architects.canada?id=28"
+    },
+    "cicic-30": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Land_surveyors.canada?id=30"
+    },
+    "cicic-29": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Urban_and_land_use_planners.canada?id=29"
+    },
+    "cicic-20": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Biologists_and_related_scientists.canada?id=20"
+    },
+    "cicic-18": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Chemists.canada?id=18"
+    },
+    "cicic-115": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Elementary_school_and_kindergarten_teachers.canada?id=115"
+    },
+    "cicic-80": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Secondary_school_teachers.canada?id=80"
+    },
+    "cicic-578": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Early_childhood_educators_and_assistants.canada?id=578"
+    },
+    "cicic-84": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Social_workers.canada?id=84"
+    },
+    "cicic-75": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Lawyers_and_Quebec_notaries.canada?id=75"
+    },
+    "cicic-152": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Paralegals_and_related_occupations.canada?id=152"
+    },
+    "cicic-10": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Financial_auditors_and_accountants.canada?id=10"
+    },
+    "cicic-148": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Insurance_adjusters_and_claims_examiners.canada?id=148"
+    },
+    "cicic-98": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Insurance_agents_and_brokers.canada?id=98"
+    },
+    "cicic-12": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Securities_agents,_investment_dealers_and_brokers.canada?id=12"
+    },
+    "cicic-99": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Real_estate_agents_and_salespersons.canada?id=99"
+    },
+    "cicic-16": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Assessors,_business_valuators_and_appraisers.canada?id=16"
+    },
+    "qc-regulated-work": {
+      "label": "Government of Quebec — regulated financial occupations",
+      "url": "https://www.quebec.ca/en/employment/learn-trade-occupation/practising-regulated-trade-occupation/learn-regulated-trades-occupations"
+    },
+    "cicic-13": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Human_resources_professionals.canada?id=13"
+    },
+    "cicic-37": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Air_pilots,_flight_engineers_and_flying_instructors.canada?id=37"
+    },
+    "cicic-38": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Air_traffic_controllers_and_related_occupations.canada?id=38"
+    },
+    "cicic-22": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Agricultural_representatives,_consultants_and_specialists.canada?id=22"
+    },
+    "cicic-21": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Forestry_professionals.canada?id=21"
+    },
+    "cicic-45": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Veterinarians.canada?id=45"
+    },
+    "cicic-59": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Animal_health_technologists_and_veterinary_technicians.canada?id=59"
+    },
+    "cicic-94": {
+      "label": "CICIC / Council of Ministers of Education, Canada",
+      "url": "https://www.cicic.ca/938/Translators,_terminologists_and_interpreters.canada?id=94"
+    }
+  },
+  "occupations": [
+    {
+      "id": "accredited-chartered-property-assessor",
+      "title": "Accredited / chartered property assessor",
+      "sector": "finance",
+      "family": "Real estate and property",
+      "profession": "Property assessment",
+      "jurisdictions": [
+        "AB",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "cicic-16"
+      ]
+    },
+    {
+      "id": "acupuncturist",
+      "title": "Acupuncturist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "BC",
+        "ON",
+        "PE",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "bc",
+        "ontario",
+        "pei",
+        "quebec"
+      ]
+    },
+    {
+      "id": "aerospace-engineer",
+      "title": "Aerospace engineer",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "Professional engineering practice and titles are regulated. Supervised-work exceptions may apply.",
+      "sourceIds": [
+        "cicic-25"
+      ]
+    },
+    {
+      "id": "air-traffic-controller",
+      "title": "Air traffic controller",
+      "sector": "transport",
+      "family": "Aviation",
+      "profession": "Aviation",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "federal",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-38"
+      ]
+    },
+    {
+      "id": "aircraft-maintenance-engineer-ame",
+      "title": "Aircraft maintenance engineer (AME)",
+      "sector": "transport",
+      "family": "Aviation",
+      "profession": "Aircraft maintenance",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "federal",
+      "regulation": "practice-or-title",
+      "note": "The AME licence authorizes certification of maintenance; not every aircraft mechanic role requires it.",
+      "sourceIds": [
+        "tc-ame"
+      ]
+    },
+    {
+      "id": "alignment-and-brakes-technician",
+      "title": "Alignment and brakes technician",
+      "sector": "trades",
+      "family": "Vehicles and equipment",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "architect",
+      "title": "Architect",
+      "sector": "science",
+      "family": "Architecture and surveying",
+      "profession": "Science and design",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-27"
+      ]
+    },
+    {
+      "id": "audiologist",
+      "title": "Audiologist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-52",
+        "nova-scotia",
+        "pei"
+      ]
+    },
+    {
+      "id": "auto-body-collision-repairer",
+      "title": "Auto body / collision repairer",
+      "sector": "trades",
+      "family": "Vehicles and equipment",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "automotive-electronic-accessory-technician",
+      "title": "Automotive electronic accessory technician",
+      "sector": "trades",
+      "family": "Vehicles and equipment",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "automotive-service-technician",
+      "title": "Automotive service technician",
+      "sector": "trades",
+      "family": "Vehicles and equipment",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON",
+        "PE"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario",
+        "pei"
+      ]
+    },
+    {
+      "id": "behaviour-analyst",
+      "title": "Behaviour analyst",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "Ontario protects the title Behaviour Analyst. Related ABA activities are not themselves controlled acts.",
+      "sourceIds": [
+        "cpbao"
+      ]
+    },
+    {
+      "id": "boilermaker",
+      "title": "Boilermaker",
+      "sector": "trades",
+      "family": "Plumbing and metalwork",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "bricklayer-mason-construction",
+      "title": "Bricklayer-mason — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "building-official",
+      "title": "Building official",
+      "sector": "other",
+      "family": "Inspection and administration",
+      "profession": "Building inspection",
+      "jurisdictions": [
+        "NB",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "new-brunswick",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "carpenter-joiner-construction",
+      "title": "Carpenter-joiner — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "cement-finisher-construction",
+      "title": "Cement finisher — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "certified-dental-assistant",
+      "title": "Certified dental assistant",
+      "sector": "health",
+      "family": "Dental and vision",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "PE",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-137"
+      ]
+    },
+    {
+      "id": "certified-engineering-technologist",
+      "title": "Certified engineering technologist",
+      "sector": "science",
+      "family": "Science and professional titles",
+      "profession": "Technical professional title",
+      "jurisdictions": [
+        "AB"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "Registration protects the specified designation. General technician or technologist work is not automatically restricted.",
+      "sourceIds": [
+        "alberta-role-inventory"
+      ]
+    },
+    {
+      "id": "certified-human-resources-professional-designation",
+      "title": "Certified human resources professional designation",
+      "sector": "finance",
+      "family": "Other protected professional titles",
+      "profession": "Human resources",
+      "jurisdictions": [
+        "ON",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "Only the protected professional designation is classified here; general HR and recruitment work is not automatically regulated.",
+      "sourceIds": [
+        "cicic-13"
+      ]
+    },
+    {
+      "id": "certified-interpreter",
+      "title": "Certified interpreter",
+      "sector": "other",
+      "family": "Language professional titles",
+      "profession": "Language services",
+      "jurisdictions": [
+        "BC",
+        "NB",
+        "ON",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "The certified professional title is protected; this does not classify all translation or interpreting work as restricted.",
+      "sourceIds": [
+        "cicic-94"
+      ]
+    },
+    {
+      "id": "certified-technician",
+      "title": "Certified technician",
+      "sector": "science",
+      "family": "Science and professional titles",
+      "profession": "Technical professional title",
+      "jurisdictions": [
+        "AB"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "Registration protects the specified designation. General technician or technologist work is not automatically restricted.",
+      "sourceIds": [
+        "alberta-role-inventory"
+      ]
+    },
+    {
+      "id": "certified-terminologist",
+      "title": "Certified terminologist",
+      "sector": "other",
+      "family": "Language professional titles",
+      "profession": "Language services",
+      "jurisdictions": [
+        "BC",
+        "NB",
+        "ON",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "The certified professional title is protected; this does not classify all translation or interpreting work as restricted.",
+      "sourceIds": [
+        "cicic-94"
+      ]
+    },
+    {
+      "id": "certified-translator",
+      "title": "Certified translator",
+      "sector": "other",
+      "family": "Language professional titles",
+      "profession": "Language services",
+      "jurisdictions": [
+        "BC",
+        "NB",
+        "ON",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "The certified professional title is protected; this does not classify all translation or interpreting work as restricted.",
+      "sourceIds": [
+        "cicic-94"
+      ]
+    },
+    {
+      "id": "chartered-administrator",
+      "title": "Chartered administrator",
+      "sector": "finance",
+      "family": "Other protected professional titles",
+      "profession": "Administration",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "quebec"
+      ]
+    },
+    {
+      "id": "chartered-professional-accountant-cpa",
+      "title": "Chartered professional accountant (CPA)",
+      "sector": "finance",
+      "family": "Accounting and financial services",
+      "profession": "Accounting",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "title",
+      "note": "CPA is a protected professional designation; ordinary bookkeeping is not classified by this entry.",
+      "sourceIds": [
+        "cicic-10"
+      ]
+    },
+    {
+      "id": "chemical-engineer",
+      "title": "Chemical engineer",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "Professional engineering practice and titles are regulated. Supervised-work exceptions may apply.",
+      "sourceIds": [
+        "cicic-193"
+      ]
+    },
+    {
+      "id": "chiropractor",
+      "title": "Chiropractor",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-47"
+      ]
+    },
+    {
+      "id": "civil-engineer",
+      "title": "Civil engineer",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "Professional engineering practice and titles are regulated. Supervised-work exceptions may apply.",
+      "sourceIds": [
+        "cicic-188"
+      ]
+    },
+    {
+      "id": "combined-laboratory-and-x-ray-technologist",
+      "title": "Combined laboratory and X-ray technologist",
+      "sector": "health",
+      "family": "Pharmacy and diagnostics",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "NS"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "nova-scotia"
+      ]
+    },
+    {
+      "id": "commercial-pilot-flight-instructor",
+      "title": "Commercial pilot / flight instructor",
+      "sector": "transport",
+      "family": "Aviation",
+      "profession": "Aviation",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "federal",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-37"
+      ]
+    },
+    {
+      "id": "computer-engineer",
+      "title": "Computer engineer",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "This entry concerns professional engineering practice and protected engineering titles.",
+      "sourceIds": [
+        "engineers-canada"
+      ]
+    },
+    {
+      "id": "construction-maintenance-electrician",
+      "title": "Construction / maintenance electrician",
+      "sector": "trades",
+      "family": "Electrical and building systems",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "BC",
+        "MB",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario",
+        "manitoba",
+        "pei",
+        "bc",
+        "ccq",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "cosmetologist",
+      "title": "Cosmetologist",
+      "sector": "other",
+      "family": "Personal care",
+      "profession": "Personal care",
+      "jurisdictions": [
+        "NB",
+        "NS"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "new-brunswick",
+        "ns-other"
+      ]
+    },
+    {
+      "id": "counselling-therapist",
+      "title": "Counselling therapist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "NB",
+        "NS",
+        "PE"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "new-brunswick",
+        "nova-scotia",
+        "pei"
+      ]
+    },
+    {
+      "id": "crane-hoisting-equipment-operator",
+      "title": "Crane / hoisting equipment operator",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "MB",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario",
+        "manitoba",
+        "ccq",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "criminologist-protected-professional-title",
+      "title": "Criminologist — protected professional title",
+      "sector": "law",
+      "family": "Legal professions",
+      "profession": "Criminology",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "quebec"
+      ]
+    },
+    {
+      "id": "dental-hygienist",
+      "title": "Dental hygienist",
+      "sector": "health",
+      "family": "Dental and vision",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-66"
+      ]
+    },
+    {
+      "id": "dental-therapist",
+      "title": "Dental therapist",
+      "sector": "health",
+      "family": "Dental and vision",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "BC",
+        "NT",
+        "SK",
+        "YT"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "bc",
+        "saskatchewan",
+        "yukon",
+        "nwt"
+      ]
+    },
+    {
+      "id": "dentist",
+      "title": "Dentist",
+      "sector": "health",
+      "family": "Dental and vision",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-44"
+      ]
+    },
+    {
+      "id": "denturist",
+      "title": "Denturist",
+      "sector": "health",
+      "family": "Dental and vision",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-65"
+      ]
+    },
+    {
+      "id": "diagnostic-medical-sonographer",
+      "title": "Diagnostic medical sonographer",
+      "sector": "health",
+      "family": "Pharmacy and diagnostics",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-62",
+        "nova-scotia"
+      ]
+    },
+    {
+      "id": "domestic-rural-electrician",
+      "title": "Domestic / rural electrician",
+      "sector": "trades",
+      "family": "Electrical and building systems",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "early-childhood-educator",
+      "title": "Early childhood educator",
+      "sector": "education",
+      "family": "Teaching and childcare",
+      "profession": "Early childhood education",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "SK",
+        "YT"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Requirements for assistants and related childcare jobs may differ.",
+      "sourceIds": [
+        "cicic-578",
+        "new-brunswick",
+        "pei"
+      ]
+    },
+    {
+      "id": "electrical-electronics-engineer",
+      "title": "Electrical / electronics engineer",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "Professional engineering practice and titles are regulated. Supervised-work exceptions may apply.",
+      "sourceIds": [
+        "cicic-192"
+      ]
+    },
+    {
+      "id": "electroencephalograph-electroneurophysiology-technologist",
+      "title": "Electroencephalograph / electroneurophysiology technologist",
+      "sector": "health",
+      "family": "Pharmacy and diagnostics",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-144"
+      ]
+    },
+    {
+      "id": "electrologist",
+      "title": "Electrologist",
+      "sector": "other",
+      "family": "Personal care",
+      "profession": "Personal care",
+      "jurisdictions": [
+        "MB"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "manitoba"
+      ]
+    },
+    {
+      "id": "elementary-school-kindergarten-teacher",
+      "title": "Elementary school / kindergarten teacher",
+      "sector": "education",
+      "family": "Teaching and childcare",
+      "profession": "Education",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-115"
+      ]
+    },
+    {
+      "id": "elevator-constructor-mechanic",
+      "title": "Elevator constructor / mechanic",
+      "sector": "trades",
+      "family": "Electrical and building systems",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON",
+        "PE",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario",
+        "pei",
+        "ccq"
+      ]
+    },
+    {
+      "id": "embalmer",
+      "title": "Embalmer",
+      "sector": "other",
+      "family": "Funeral services",
+      "profession": "Funeral services",
+      "jurisdictions": [
+        "NB",
+        "NS",
+        "PE",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "new-brunswick",
+        "ns-other",
+        "pei",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "erector-mechanic-glazier-construction",
+      "title": "Erector mechanic / glazier — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "esthetician",
+      "title": "Esthetician",
+      "sector": "other",
+      "family": "Personal care",
+      "profession": "Personal care",
+      "jurisdictions": [
+        "MB"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "manitoba"
+      ]
+    },
+    {
+      "id": "family-physician-general-practitioner",
+      "title": "Family physician / general practitioner",
+      "sector": "health",
+      "family": "Medicine and nursing",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-43"
+      ]
+    },
+    {
+      "id": "financial-advisor-protected-professional-title",
+      "title": "Financial advisor — protected professional title",
+      "sector": "finance",
+      "family": "Accounting and financial services",
+      "profession": "Financial advice",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "ontario-financial-titles"
+      ]
+    },
+    {
+      "id": "financial-planner-regulated-professional-title",
+      "title": "Financial planner — regulated professional title",
+      "sector": "finance",
+      "family": "Accounting and financial services",
+      "profession": "Financial planning",
+      "jurisdictions": [
+        "ON",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "ontario-financial-titles",
+        "qc-regulated-work"
+      ]
+    },
+    {
+      "id": "funeral-director",
+      "title": "Funeral director",
+      "sector": "other",
+      "family": "Funeral services",
+      "profession": "Funeral services",
+      "jurisdictions": [
+        "MB",
+        "NB",
+        "NS",
+        "PE",
+        "SK",
+        "YT"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "manitoba",
+        "new-brunswick",
+        "ns-other",
+        "pei",
+        "saskatchewan",
+        "yukon"
+      ]
+    },
+    {
+      "id": "gasfitter",
+      "title": "Gasfitter",
+      "sector": "trades",
+      "family": "Electrical and building systems",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "BC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "bc",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "geological-engineer",
+      "title": "Geological engineer",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "Professional engineering practice and titles are regulated. Supervised-work exceptions may apply.",
+      "sourceIds": [
+        "cicic-197"
+      ]
+    },
+    {
+      "id": "guidance-counsellor-protected-professional-title",
+      "title": "Guidance counsellor — protected professional title",
+      "sector": "education",
+      "family": "Social and community services",
+      "profession": "Counselling",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "quebec"
+      ]
+    },
+    {
+      "id": "hairstylist-hairdresser",
+      "title": "Hairstylist / hairdresser",
+      "sector": "other",
+      "family": "Personal care",
+      "profession": "Personal care",
+      "jurisdictions": [
+        "MB",
+        "NS",
+        "ON",
+        "PE"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "manitoba",
+        "ns-other",
+        "ontario",
+        "pei"
+      ]
+    },
+    {
+      "id": "hearing-instrument-practitioner",
+      "title": "Hearing instrument practitioner",
+      "sector": "health",
+      "family": "Dental and vision",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "BC",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "bc",
+        "quebec",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "heavy-equipment-mechanic-construction",
+      "title": "Heavy equipment mechanic — construction",
+      "sector": "trades",
+      "family": "Vehicles and equipment",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "homeopath",
+      "title": "Homeopath",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "hunting-fishing-guide",
+      "title": "Hunting / fishing guide",
+      "sector": "environment",
+      "family": "Agriculture and forestry",
+      "profession": "Environment and utilities",
+      "jurisdictions": [
+        "NS"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "ns-other"
+      ]
+    },
+    {
+      "id": "industrial-manufacturing-engineer",
+      "title": "Industrial / manufacturing engineer",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "Professional engineering practice and titles are regulated. Supervised-work exceptions may apply.",
+      "sourceIds": [
+        "cicic-194"
+      ]
+    },
+    {
+      "id": "industrial-electrician",
+      "title": "Industrial electrician",
+      "sector": "trades",
+      "family": "Electrical and building systems",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "BC",
+        "MB",
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario",
+        "manitoba",
+        "bc"
+      ]
+    },
+    {
+      "id": "information-systems-professional-i-s-p",
+      "title": "Information Systems Professional (I.S.P.)",
+      "sector": "science",
+      "family": "Science and professional titles",
+      "profession": "Information technology",
+      "jurisdictions": [
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "This is a protected professional designation, not a licence requirement for every developer or IT role.",
+      "sourceIds": [
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "insulator-construction",
+      "title": "Insulator — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "insurance-agent-broker",
+      "title": "Insurance agent / broker",
+      "sector": "finance",
+      "family": "Accounting and financial services",
+      "profession": "Insurance",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-98"
+      ]
+    },
+    {
+      "id": "interior-systems-installer-construction",
+      "title": "Interior systems installer — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "ironworker",
+      "title": "Ironworker",
+      "sector": "trades",
+      "family": "Plumbing and metalwork",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "kinesiologist",
+      "title": "Kinesiologist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Job Bank identifies Ontario registration for the kinesiologist profession.",
+      "sourceIds": [
+        "jobbank-kinesiologist",
+        "ontario"
+      ]
+    },
+    {
+      "id": "land-surveyor",
+      "title": "Land surveyor",
+      "sector": "science",
+      "family": "Architecture and surveying",
+      "profession": "Science and design",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-30"
+      ]
+    },
+    {
+      "id": "landscape-architect",
+      "title": "Landscape architect",
+      "sector": "science",
+      "family": "Architecture and surveying",
+      "profession": "Science and design",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-28"
+      ]
+    },
+    {
+      "id": "lawyer",
+      "title": "Lawyer",
+      "sector": "law",
+      "family": "Legal professions",
+      "profession": "Law",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-75"
+      ]
+    },
+    {
+      "id": "licensed-insurance-adjuster",
+      "title": "Licensed insurance adjuster",
+      "sector": "finance",
+      "family": "Accounting and financial services",
+      "profession": "Insurance",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "This entry is for licensed adjusting work, not every insurance claims-processing job.",
+      "sourceIds": [
+        "cicic-148"
+      ]
+    },
+    {
+      "id": "licensed-practical-nurse",
+      "title": "Licensed practical nurse",
+      "sector": "health",
+      "family": "Medicine and nursing",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-70"
+      ]
+    },
+    {
+      "id": "marriage-and-family-therapist",
+      "title": "Marriage and family therapist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "This entry concerns the protected professional title in the cited jurisdiction.",
+      "sourceIds": [
+        "quebec"
+      ]
+    },
+    {
+      "id": "mechanical-engineer",
+      "title": "Mechanical engineer",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "Professional engineering practice and titles are regulated. Supervised-work exceptions may apply.",
+      "sourceIds": [
+        "cicic-191"
+      ]
+    },
+    {
+      "id": "medical-laboratory-assistant",
+      "title": "Medical laboratory assistant",
+      "sector": "health",
+      "family": "Pharmacy and diagnostics",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "NS"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "The Nova Scotia government lists laboratory assistants under its medical laboratory regulator.",
+      "sourceIds": [
+        "nova-scotia"
+      ]
+    },
+    {
+      "id": "medical-laboratory-technologist",
+      "title": "Medical laboratory technologist",
+      "sector": "health",
+      "family": "Pharmacy and diagnostics",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-58",
+        "nova-scotia",
+        "pei"
+      ]
+    },
+    {
+      "id": "medical-radiation-technologist",
+      "title": "Medical radiation technologist",
+      "sector": "health",
+      "family": "Pharmacy and diagnostics",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "NB",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-61",
+        "pei"
+      ]
+    },
+    {
+      "id": "metallurgical-materials-engineer",
+      "title": "Metallurgical / materials engineer",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "Professional engineering practice and titles are regulated. Supervised-work exceptions may apply.",
+      "sourceIds": [
+        "cicic-195"
+      ]
+    },
+    {
+      "id": "midwife",
+      "title": "Midwife",
+      "sector": "health",
+      "family": "Medicine and nursing",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "BC",
+        "MB",
+        "NB",
+        "NS",
+        "NT",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "bc",
+        "manitoba",
+        "new-brunswick",
+        "nova-scotia",
+        "nwt",
+        "ontario",
+        "pei",
+        "quebec",
+        "saskatchewan",
+        "yukon"
+      ]
+    },
+    {
+      "id": "millwright-construction",
+      "title": "Millwright — construction",
+      "sector": "trades",
+      "family": "Vehicles and equipment",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "mining-engineer",
+      "title": "Mining engineer",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "Professional engineering practice and titles are regulated. Supervised-work exceptions may apply.",
+      "sourceIds": [
+        "cicic-196"
+      ]
+    },
+    {
+      "id": "mortgage-broker",
+      "title": "Mortgage broker",
+      "sector": "finance",
+      "family": "Real estate and property",
+      "profession": "Mortgage services",
+      "jurisdictions": [
+        "NB",
+        "NS"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "new-brunswick",
+        "ns-other"
+      ]
+    },
+    {
+      "id": "motorcycle-technician",
+      "title": "Motorcycle technician",
+      "sector": "trades",
+      "family": "Vehicles and equipment",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "municipal-administrator",
+      "title": "Municipal administrator",
+      "sector": "other",
+      "family": "Inspection and administration",
+      "profession": "Municipal administration",
+      "jurisdictions": [
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "naturopathic-doctor-practitioner",
+      "title": "Naturopathic doctor / practitioner",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "BC",
+        "MB",
+        "NS",
+        "NT",
+        "ON",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "bc",
+        "manitoba",
+        "nova-scotia",
+        "nwt",
+        "ontario",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "nurse-practitioner",
+      "title": "Nurse practitioner",
+      "sector": "health",
+      "family": "Medicine and nursing",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "jobbank-np"
+      ]
+    },
+    {
+      "id": "occupational-therapist",
+      "title": "Occupational therapist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-54"
+      ]
+    },
+    {
+      "id": "optician",
+      "title": "Optician",
+      "sector": "health",
+      "family": "Dental and vision",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-68"
+      ]
+    },
+    {
+      "id": "optometrist",
+      "title": "Optometrist",
+      "sector": "health",
+      "family": "Dental and vision",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-46"
+      ]
+    },
+    {
+      "id": "painter-construction",
+      "title": "Painter — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "paralegal",
+      "title": "Paralegal",
+      "sector": "law",
+      "family": "Legal professions",
+      "profession": "Law",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "exclusive",
+      "regulation": "practice-or-title",
+      "note": "The licensed independent paralegal profession has an Ontario-specific scope of practice.",
+      "sourceIds": [
+        "ircc-representatives",
+        "cicic-152"
+      ]
+    },
+    {
+      "id": "paramedic",
+      "title": "Paramedic",
+      "sector": "health",
+      "family": "Medicine and nursing",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-71"
+      ]
+    },
+    {
+      "id": "pesticide-applicator",
+      "title": "Pesticide applicator",
+      "sector": "environment",
+      "family": "Utilities and environmental safety",
+      "profession": "Environment and utilities",
+      "jurisdictions": [
+        "NS"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "ns-other"
+      ]
+    },
+    {
+      "id": "petroleum-engineer",
+      "title": "Petroleum engineer",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "Professional engineering practice and titles are regulated. Supervised-work exceptions may apply.",
+      "sourceIds": [
+        "cicic-199"
+      ]
+    },
+    {
+      "id": "petroleum-storage-tank-installer",
+      "title": "Petroleum storage tank installer",
+      "sector": "environment",
+      "family": "Utilities and environmental safety",
+      "profession": "Environment and utilities",
+      "jurisdictions": [
+        "NS",
+        "PE"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "ns-other",
+        "pei"
+      ]
+    },
+    {
+      "id": "pharmacist",
+      "title": "Pharmacist",
+      "sector": "health",
+      "family": "Pharmacy and diagnostics",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-50"
+      ]
+    },
+    {
+      "id": "pharmacy-technician",
+      "title": "Pharmacy technician",
+      "sector": "health",
+      "family": "Pharmacy and diagnostics",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "The regulated technician role is different from a pharmacy assistant.",
+      "sourceIds": [
+        "jobbank-pharmacy-tech",
+        "bc",
+        "new-brunswick",
+        "nova-scotia",
+        "pei",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "physician-assistant",
+      "title": "Physician assistant",
+      "sector": "health",
+      "family": "Medicine and nursing",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "NS",
+        "PE"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Requirements depend on the jurisdiction and permitted scope of practice.",
+      "sourceIds": [
+        "alberta-role-inventory",
+        "pei",
+        "nova-scotia"
+      ]
+    },
+    {
+      "id": "physiotherapist",
+      "title": "Physiotherapist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-53"
+      ]
+    },
+    {
+      "id": "plasterer-construction",
+      "title": "Plasterer — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "plumber",
+      "title": "Plumber",
+      "sector": "trades",
+      "family": "Plumbing and metalwork",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario",
+        "pei",
+        "ccq",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "podiatrist-chiropodist",
+      "title": "Podiatrist / chiropodist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "MB",
+        "NB",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "The permitted professional title and activities differ by jurisdiction.",
+      "sourceIds": [
+        "manitoba",
+        "new-brunswick",
+        "nova-scotia",
+        "ontario",
+        "pei",
+        "quebec",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "power-engineer",
+      "title": "Power engineer",
+      "sector": "environment",
+      "family": "Utilities and environmental safety",
+      "profession": "Environment and utilities",
+      "jurisdictions": [
+        "PE",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "saskatchewan",
+        "pei"
+      ]
+    },
+    {
+      "id": "powerline-technician",
+      "title": "Powerline technician",
+      "sector": "trades",
+      "family": "Electrical and building systems",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "BC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "bc"
+      ]
+    },
+    {
+      "id": "pressure-equipment-inspector",
+      "title": "Pressure equipment inspector",
+      "sector": "environment",
+      "family": "Utilities and environmental safety",
+      "profession": "Environment and utilities",
+      "jurisdictions": [
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "private-investigator",
+      "title": "Private investigator",
+      "sector": "other",
+      "family": "Security and investigation",
+      "profession": "Investigation",
+      "jurisdictions": [
+        "PE",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "saskatchewan",
+        "pei"
+      ]
+    },
+    {
+      "id": "professional-chartered-chemist",
+      "title": "Professional / chartered chemist",
+      "sector": "science",
+      "family": "Science and professional titles",
+      "profession": "Science and design",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "ON",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "cicic-18"
+      ]
+    },
+    {
+      "id": "professional-agrologist",
+      "title": "Professional agrologist",
+      "sector": "environment",
+      "family": "Agriculture and forestry",
+      "profession": "Agrology",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "cicic-22"
+      ]
+    },
+    {
+      "id": "professional-engineer-other-discipline",
+      "title": "Professional engineer — other discipline",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "Professional engineering practice and titles are regulated. Supervised-work exceptions may apply.",
+      "sourceIds": [
+        "cicic-26"
+      ]
+    },
+    {
+      "id": "professional-geoscientist-geologist",
+      "title": "Professional geoscientist / geologist",
+      "sector": "science",
+      "family": "Science and professional titles",
+      "profession": "Geoscience",
+      "jurisdictions": [
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "manitoba",
+        "new-brunswick",
+        "ontario",
+        "quebec",
+        "saskatchewan",
+        "bc"
+      ]
+    },
+    {
+      "id": "professional-technologist",
+      "title": "Professional technologist",
+      "sector": "science",
+      "family": "Science and professional titles",
+      "profession": "Technical professional title",
+      "jurisdictions": [
+        "AB"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "Registration protects the specified designation. General technician or technologist work is not automatically restricted.",
+      "sourceIds": [
+        "alberta-role-inventory"
+      ]
+    },
+    {
+      "id": "psychoeducator",
+      "title": "Psychoeducator",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "quebec"
+      ]
+    },
+    {
+      "id": "psychologist",
+      "title": "Psychologist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-83",
+        "yukon-psychology"
+      ]
+    },
+    {
+      "id": "quebec-notary",
+      "title": "Quebec notary",
+      "sector": "law",
+      "family": "Legal professions",
+      "profession": "Notarial law",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "quebec",
+        "ircc-representatives"
+      ]
+    },
+    {
+      "id": "real-estate-agent-broker",
+      "title": "Real estate agent / broker",
+      "sector": "finance",
+      "family": "Real estate and property",
+      "profession": "Real estate",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-99"
+      ]
+    },
+    {
+      "id": "refrigeration-air-conditioning-mechanic",
+      "title": "Refrigeration / air conditioning mechanic",
+      "sector": "trades",
+      "family": "Electrical and building systems",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "BC",
+        "MB",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario",
+        "manitoba",
+        "bc",
+        "ccq",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "registered-barber",
+      "title": "Registered barber",
+      "sector": "other",
+      "family": "Personal care",
+      "profession": "Personal care",
+      "jurisdictions": [
+        "NB",
+        "NS"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "new-brunswick",
+        "ns-other"
+      ]
+    },
+    {
+      "id": "registered-dental-technologist-technician",
+      "title": "Registered dental technologist / technician",
+      "sector": "health",
+      "family": "Dental and vision",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-67"
+      ]
+    },
+    {
+      "id": "registered-dietitian",
+      "title": "Registered dietitian",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-51"
+      ]
+    },
+    {
+      "id": "registered-interior-designer",
+      "title": "Registered interior designer",
+      "sector": "science",
+      "family": "Architecture and surveying",
+      "profession": "Interior design",
+      "jurisdictions": [
+        "NB",
+        "NS",
+        "ON",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "Protected professional designations do not mean every interior decorator needs a practice licence.",
+      "sourceIds": [
+        "new-brunswick",
+        "saskatchewan",
+        "ontario",
+        "ns-other"
+      ]
+    },
+    {
+      "id": "registered-massage-therapist",
+      "title": "Registered massage therapist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "BC",
+        "NB",
+        "NL",
+        "ON",
+        "PE",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-157",
+        "pei"
+      ]
+    },
+    {
+      "id": "registered-music-teacher",
+      "title": "Registered music teacher",
+      "sector": "education",
+      "family": "Teaching and childcare",
+      "profession": "Music education",
+      "jurisdictions": [
+        "NS",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "This concerns the registered title; it does not classify all private music teaching as regulated.",
+      "sourceIds": [
+        "saskatchewan",
+        "ns-other"
+      ]
+    },
+    {
+      "id": "registered-nurse",
+      "title": "Registered nurse",
+      "sector": "health",
+      "family": "Medicine and nursing",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-56"
+      ]
+    },
+    {
+      "id": "registered-professional-biologist",
+      "title": "Registered professional biologist",
+      "sector": "science",
+      "family": "Science and professional titles",
+      "profession": "Science and design",
+      "jurisdictions": [
+        "AB",
+        "BC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "cicic-20"
+      ]
+    },
+    {
+      "id": "registered-professional-forester",
+      "title": "Registered professional forester",
+      "sector": "environment",
+      "family": "Agriculture and forestry",
+      "profession": "Forestry",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "cicic-21"
+      ]
+    },
+    {
+      "id": "registered-professional-planner",
+      "title": "Registered professional planner",
+      "sector": "science",
+      "family": "Architecture and surveying",
+      "profession": "Science and design",
+      "jurisdictions": [
+        "AB",
+        "NS",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "cicic-29"
+      ]
+    },
+    {
+      "id": "registered-psychiatric-nurse",
+      "title": "Registered psychiatric nurse",
+      "sector": "health",
+      "family": "Medicine and nursing",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "SK",
+        "YT"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "A distinct nursing designation; this does not classify every psychiatric-care role.",
+      "sourceIds": [
+        "alberta-role-inventory",
+        "manitoba",
+        "saskatchewan",
+        "bc",
+        "yukon"
+      ]
+    },
+    {
+      "id": "registered-psychotherapist",
+      "title": "Registered psychotherapist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "ON",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Quebec also regulates psychotherapy through a psychotherapist permit; check the exact permitted title.",
+      "sourceIds": [
+        "ontario",
+        "quebec-psychotherapy"
+      ]
+    },
+    {
+      "id": "registered-social-service-worker",
+      "title": "Registered social service worker",
+      "sector": "education",
+      "family": "Social and community services",
+      "profession": "Social services",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "registered-social-worker",
+      "title": "Registered social worker",
+      "sector": "education",
+      "family": "Social and community services",
+      "profession": "Social work",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "cicic-84"
+      ]
+    },
+    {
+      "id": "registered-veterinary-technologist-technician",
+      "title": "Registered veterinary technologist / technician",
+      "sector": "environment",
+      "family": "Veterinary care",
+      "profession": "Veterinary technology",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "ON",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "cicic-59"
+      ]
+    },
+    {
+      "id": "regulated-canadian-immigration-consultant",
+      "title": "Regulated Canadian immigration consultant",
+      "sector": "law",
+      "family": "Immigration services",
+      "profession": "Immigration advice",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "federal",
+      "regulation": "practice-or-title",
+      "note": "Paid immigration or citizenship advice must be provided by an authorized representative.",
+      "sourceIds": [
+        "ircc-representatives"
+      ]
+    },
+    {
+      "id": "reinforcing-steel-erector",
+      "title": "Reinforcing steel erector",
+      "sector": "trades",
+      "family": "Plumbing and metalwork",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "residential-air-conditioning-systems-mechanic",
+      "title": "Residential air conditioning systems mechanic",
+      "sector": "trades",
+      "family": "Electrical and building systems",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "residential-sheet-metal-installer",
+      "title": "Residential sheet metal installer",
+      "sector": "trades",
+      "family": "Plumbing and metalwork",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "resilient-flooring-layer-construction",
+      "title": "Resilient flooring layer — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "respiratory-therapist",
+      "title": "Respiratory therapist",
+      "sector": "health",
+      "family": "Pharmacy and diagnostics",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "jobbank-respiratory",
+        "manitoba",
+        "new-brunswick",
+        "nova-scotia",
+        "ontario",
+        "pei",
+        "quebec",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "roofer-construction",
+      "title": "Roofer — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "secondary-school-teacher",
+      "title": "Secondary school teacher",
+      "sector": "education",
+      "family": "Teaching and childcare",
+      "profession": "Education",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-80"
+      ]
+    },
+    {
+      "id": "securities-dealer-registered-investment-representative",
+      "title": "Securities dealer / registered investment representative",
+      "sector": "finance",
+      "family": "Accounting and financial services",
+      "profession": "Investment services",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-12"
+      ]
+    },
+    {
+      "id": "security-guard",
+      "title": "Security guard",
+      "sector": "other",
+      "family": "Security and investigation",
+      "profession": "Security",
+      "jurisdictions": [
+        "PE",
+        "SK",
+        "YT"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "saskatchewan",
+        "pei",
+        "yukon"
+      ]
+    },
+    {
+      "id": "security-systems-installer-construction",
+      "title": "Security systems installer — construction",
+      "sector": "trades",
+      "family": "Electrical and building systems",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "septic-system-contractor",
+      "title": "Septic system contractor",
+      "sector": "environment",
+      "family": "Utilities and environmental safety",
+      "profession": "Environment and utilities",
+      "jurisdictions": [
+        "NS",
+        "PE"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "ns-other",
+        "pei"
+      ]
+    },
+    {
+      "id": "sexologist",
+      "title": "Sexologist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "",
+      "sourceIds": [
+        "quebec"
+      ]
+    },
+    {
+      "id": "sheet-metal-worker",
+      "title": "Sheet metal worker",
+      "sector": "trades",
+      "family": "Plumbing and metalwork",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "BC",
+        "ON",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario",
+        "bc",
+        "ccq",
+        "saskatchewan"
+      ]
+    },
+    {
+      "id": "shovel-heavy-equipment-operator-construction",
+      "title": "Shovel / heavy equipment operator — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "software-engineer-protected-engineering-title",
+      "title": "Software engineer — protected engineering title",
+      "sector": "science",
+      "family": "Professional engineering",
+      "profession": "Engineering",
+      "jurisdictions": [
+        "BC",
+        "ON",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "title",
+      "note": "Ordinary software development is generally unregulated. Alberta has a software-engineer title exception; professional engineering activities may still be regulated.",
+      "sourceIds": [
+        "bc",
+        "ontario",
+        "saskatchewan",
+        "engineers-canada"
+      ]
+    },
+    {
+      "id": "specialist-physician-surgeon",
+      "title": "Specialist physician / surgeon",
+      "sector": "health",
+      "family": "Medicine and nursing",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK",
+        "YT"
+      ],
+      "coverage": "canada-wide",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-42"
+      ]
+    },
+    {
+      "id": "speech-language-pathologist",
+      "title": "Speech-language pathologist",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-52",
+        "nova-scotia",
+        "pei"
+      ]
+    },
+    {
+      "id": "sprinkler-fire-protection-installer",
+      "title": "Sprinkler / fire protection installer",
+      "sector": "trades",
+      "family": "Plumbing and metalwork",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "MB",
+        "ON",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario",
+        "manitoba",
+        "ccq"
+      ]
+    },
+    {
+      "id": "steamfitter-pipefitter",
+      "title": "Steamfitter / pipefitter",
+      "sector": "trades",
+      "family": "Plumbing and metalwork",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "BC",
+        "MB",
+        "ON",
+        "PE",
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario",
+        "manitoba",
+        "pei",
+        "bc",
+        "ccq"
+      ]
+    },
+    {
+      "id": "tilesetter-construction",
+      "title": "Tilesetter — construction",
+      "sector": "trades",
+      "family": "Construction and site work",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "QC"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ccq"
+      ]
+    },
+    {
+      "id": "timber-scaler",
+      "title": "Timber scaler",
+      "sector": "environment",
+      "family": "Agriculture and forestry",
+      "profession": "Environment and utilities",
+      "jurisdictions": [
+        "NS"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "ns-other"
+      ]
+    },
+    {
+      "id": "traditional-chinese-medicine-practitioner",
+      "title": "Traditional Chinese medicine practitioner",
+      "sector": "health",
+      "family": "Therapy and mental health",
+      "profession": "Healthcare",
+      "jurisdictions": [
+        "BC",
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "bc",
+        "ontario"
+      ]
+    },
+    {
+      "id": "transmission-technician",
+      "title": "Transmission technician",
+      "sector": "trades",
+      "family": "Vehicles and equipment",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "truck-and-coach-technician",
+      "title": "Truck and coach technician",
+      "sector": "trades",
+      "family": "Vehicles and equipment",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "truck-trailer-service-technician",
+      "title": "Truck-trailer service technician",
+      "sector": "trades",
+      "family": "Vehicles and equipment",
+      "profession": "Skilled trade",
+      "jurisdictions": [
+        "ON"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "Certification may require registration as an apprentice or a qualified tradesperson. Quebec entries concern construction work within the CCQ system; exemptions and work scope matter.",
+      "sourceIds": [
+        "ontario"
+      ]
+    },
+    {
+      "id": "veterinarian",
+      "title": "Veterinarian",
+      "sector": "environment",
+      "family": "Veterinary care",
+      "profession": "Veterinary medicine",
+      "jurisdictions": [
+        "AB",
+        "BC",
+        "MB",
+        "NB",
+        "NL",
+        "NS",
+        "NT",
+        "NU",
+        "ON",
+        "PE",
+        "QC",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "cicic-45"
+      ]
+    },
+    {
+      "id": "water-wastewater-operator",
+      "title": "Water / wastewater operator",
+      "sector": "environment",
+      "family": "Utilities and environmental safety",
+      "profession": "Environment and utilities",
+      "jurisdictions": [
+        "NS",
+        "PE",
+        "SK"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "saskatchewan",
+        "pei",
+        "ns-other"
+      ]
+    },
+    {
+      "id": "well-driller",
+      "title": "Well driller",
+      "sector": "environment",
+      "family": "Utilities and environmental safety",
+      "profession": "Environment and utilities",
+      "jurisdictions": [
+        "NS",
+        "PE"
+      ],
+      "coverage": "confirmed",
+      "regulation": "practice-or-title",
+      "note": "",
+      "sourceIds": [
+        "ns-other",
+        "pei"
+      ]
+    }
+  ]
+}
