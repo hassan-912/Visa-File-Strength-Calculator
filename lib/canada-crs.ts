@@ -45,6 +45,8 @@ const EDUCATION_POINTS: Record<string, [number, number]> = {
 const LANG1_PER_ABILITY: Record<string, [number, number]> = {
   "less_than_clb4": [0, 0],
   "clb4_5": [6, 6],
+  "clb4": [6, 6],
+  "clb5": [6, 6],
   "clb6": [9, 8],
   "clb7": [17, 16],
   "clb8": [23, 22],
@@ -101,7 +103,7 @@ export const SPOUSE_CAN_WORK_EXP_POINTS: Record<string, number> = {
 function clbRank(key: string): number {
   const order: Record<string, number> = {
     "less_than_clb4": 0, "clb4_or_less": 0,
-    "clb4_5": 1,
+    "clb4_5": 1, "clb4": 1, "clb5": 2,
     "clb5_6": 2,
     "clb6": 3,
     "clb7": 4, "clb7_8": 4,
@@ -169,7 +171,8 @@ export interface CRSForm {
 
   // Additional Points
   siblingInCanada: boolean;
-  frenchClb: string;                 // "none" | "clb7_plus_english_low" | "clb7_plus_english_high"
+  /** @deprecated Ignored. The French bonus is calculated from the language abilities. */
+  frenchClb?: string;
   postSecondaryCanada: string;       // "none" | "1_2_years" | "3_plus_years"
   arrangedEmployment: string;        // "none" | "noc00" | "other_noc"
   provincialNomination: boolean;
@@ -186,6 +189,7 @@ export interface CRSBreakdown {
   spouseLangScore: number;
   spouseExpScore: number;
   skillTransferScore: number;
+  frenchBonusScore: number;
   additionalScore: number;
   total: number;
 }
@@ -312,8 +316,13 @@ export function calculateCRS(form: CRSForm): CRSBreakdown {
 
   if (form.siblingInCanada) additional += 15;
 
-  if (form.frenchClb === "clb7_plus_english_low") additional += 25;
-  else if (form.frenchClb === "clb7_plus_english_high") additional += 50;
+  // lang1 contains English results; lang2 contains French results in this form.
+  // All four French abilities must be NCLC 7+. All four English abilities
+  // must be CLB 5+ for the 50-point tier; otherwise the bonus is 25 points.
+  const frenchBonusScore = lowestClb(lang2Abilities) >= clbRank("clb7_8")
+    ? lowestLang1 >= clbRank("clb5") ? 50 : 25
+    : 0;
+  additional += frenchBonusScore;
 
   if (form.postSecondaryCanada === "1_2_years") additional += 15;
   else if (form.postSecondaryCanada === "3_plus_years") additional += 30;
@@ -343,6 +352,7 @@ export function calculateCRS(form: CRSForm): CRSBreakdown {
     spouseLangScore,
     spouseExpScore,
     skillTransferScore,
+    frenchBonusScore,
     additionalScore,
     total,
   };
@@ -385,7 +395,8 @@ export const EDUCATION_OPTIONS = [
 
 export const LANG1_OPTIONS = [
   { value: "less_than_clb4", label: "Less than CLB 4" },
-  { value: "clb4_5", label: "CLB 4 or 5" },
+  { value: "clb4", label: "CLB 4" },
+  { value: "clb5", label: "CLB 5" },
   { value: "clb6", label: "CLB 6" },
   { value: "clb7", label: "CLB 7" },
   { value: "clb8", label: "CLB 8" },
@@ -422,12 +433,6 @@ export const FOREIGN_WORK_EXP_OPTIONS = [
   { value: "3_plus_years", label: "3 years or more" },
 ];
 
-export const FRENCH_CLB_OPTIONS = [
-  { value: "none", label: "Not applicable / Below CLB 7" },
-  { value: "clb7_plus_english_low", label: "French CLB 7+ and English CLB 4 or below" },
-  { value: "clb7_plus_english_high", label: "French CLB 7+ and English CLB 5 or above" },
-];
-
 export const POST_SECONDARY_CANADA_OPTIONS = [
   { value: "none", label: "None" },
   { value: "1_2_years", label: "1 or 2 years" },
@@ -462,7 +467,6 @@ export const DEFAULT_CRS_FORM: CRSForm = {
   foreignWorkExp: "none",
   tradesCertificate: false,
   siblingInCanada: false,
-  frenchClb: "none",
   postSecondaryCanada: "none",
   arrangedEmployment: "none",
   provincialNomination: false,
@@ -494,7 +498,8 @@ export function clbNumberToLang1Key(clb: number): string {
   if (clb === 8) return "clb8";
   if (clb === 7) return "clb7";
   if (clb === 6) return "clb6";
-  if (clb >= 4) return "clb4_5";
+  if (clb === 5) return "clb5";
+  if (clb === 4) return "clb4";
   return "less_than_clb4";
 }
 

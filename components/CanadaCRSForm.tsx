@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import {
   calculateCRS,
   DEFAULT_CRS_FORM,
@@ -9,7 +9,6 @@ import {
   CAN_WORK_EXP_OPTIONS,
   SPOUSE_LANG1_OPTIONS,
   FOREIGN_WORK_EXP_OPTIONS,
-  FRENCH_CLB_OPTIONS,
   POST_SECONDARY_CANADA_OPTIONS,
   ARRANGED_EMPLOYMENT_OPTIONS,
   getTestScoreOptions,
@@ -1037,18 +1036,13 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
   const [openSection, setOpenSection] = useState<number>(0);
   const [step, setStep] = useState<AppStep>("form");
   const [breakdown, setBreakdown] = useState<CRSBreakdown | null>(null);
-  const [profileComplete, setProfileComplete] = useState(false);
+  const profileComplete = form.withSpouse !== undefined;
 
   // ── Language test state ──────────────────────────────────────────
   const [lang1TestType, setLang1TestType] = useState<EnglishTestType | "">("");
   const [lang2TestType, setLang2TestType] = useState<FrenchTestType | "none">("none");
   const [lang1RawScores, setLang1RawScores] = useState<RawScores>(DEFAULT_RAW_SCORES);
   const [lang2RawScores, setLang2RawScores] = useState<RawScores>(DEFAULT_RAW_SCORES);
-
-  // Profile section is step 0 — required before anything else
-  useEffect(() => {
-    setProfileComplete(form.withSpouse !== undefined);
-  }, [form.withSpouse]);
 
   // ── Sync raw lang1 scores → CRS form keys ───────────────────────
   const syncLang1 = useCallback(
@@ -1135,7 +1129,8 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
   }
 
   // ── Real-time live score (recalculated on every render) ──────────
-  const liveScore = calculateCRS(form).total;
+  const liveBreakdown = calculateCRS(form);
+  const liveScore = liveBreakdown.total;
 
   function update(key: keyof CRSForm, value: string | boolean) {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -1445,13 +1440,22 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
             onChange={(v) => update("siblingInCanada", v)}
           />
 
-          <SelectGroup
-            label="French language ability bonus"
-            name="frenchClb"
-            options={FRENCH_CLB_OPTIONS}
-            value={form.frenchClb}
-            onChange={(v) => update("frenchClb", v)}
-          />
+          <div
+            className="rounded-xl border p-4 my-4 text-sm"
+            style={{ borderColor: "var(--color-border-light)", backgroundColor: "var(--color-surface-2)" }}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <p className="font-semibold" style={{ color: "var(--color-text-main)" }}>
+              French language bonus: +{liveBreakdown.frenchBonusScore} points
+            </p>
+            <p className="mt-1 text-xs leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+              Calculated automatically from your English and French test scores.
+              French NCLC 7 or higher in all four skills earns 25 points, or 50 points
+              with English CLB 5 or higher in all four skills.
+            </p>
+          </div>
 
           <SelectGroup
             label="Post-secondary education completed in Canada"
