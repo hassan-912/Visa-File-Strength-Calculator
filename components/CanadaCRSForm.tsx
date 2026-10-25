@@ -687,15 +687,6 @@ function CRSResults({ form, breakdown, onEdit, lang1TestType, lang2TestType, lan
           </div>
         </div>
 
-        {/* Disclaimer */}
-        <div
-          className="rounded-xl p-4 mb-6 text-xs leading-relaxed"
-          style={{ backgroundColor: "var(--color-accent-bg)", color: "var(--color-text-muted)", borderLeft: "3px solid var(--color-primary)" }}
-        >
-          <strong style={{ color: "var(--color-text-main)" }}>Disclaimer:</strong>{" "}
-          CRS scores are calculated based on IRCC&apos;s official grid. Actual draw cut-offs vary. This is indicative only and does not constitute immigration advice.
-        </div>
-
         {/* Buttons */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <button
@@ -1440,23 +1431,6 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
             onChange={(v) => update("siblingInCanada", v)}
           />
 
-          <div
-            className="rounded-xl border p-4 my-4 text-sm"
-            style={{ borderColor: "var(--color-border-light)", backgroundColor: "var(--color-surface-2)" }}
-            role="status"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            <p className="font-semibold" style={{ color: "var(--color-text-main)" }}>
-              French language bonus: +{liveBreakdown.frenchBonusScore} points
-            </p>
-            <p className="mt-1 text-xs leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
-              Calculated automatically from your English and French test scores.
-              French NCLC 7 or higher in all four skills earns 25 points, or 50 points
-              with English CLB 5 or higher in all four skills.
-            </p>
-          </div>
-
           <SelectGroup
             label="Post-secondary education completed in Canada"
             name="postSecondaryCanada"
@@ -1481,16 +1455,6 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
             onChange={(v) => update("provincialNomination", v)}
           />
         </AccordionSection>
-
-        {/* Disclaimer */}
-        <div
-          className="rounded-xl p-4 mb-6 mt-2 text-xs leading-relaxed"
-          style={{ backgroundColor: "var(--color-accent-bg)", color: "var(--color-text-muted)", borderLeft: "3px solid var(--color-accent)" }}
-        >
-          <strong style={{ color: "var(--color-text-main)" }}>Disclaimer:</strong>{" "}
-          This tool uses the official IRCC CRS grid. Results are indicative only and may not reflect actual draw cut-offs, which vary by draw type and date.
-          For personalised immigration advice, contact an MG Visa licensed advisor.
-        </div>
 
         {/* Submit */}
         <button
