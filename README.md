@@ -2,6 +2,18 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Visa portals
+
+- `/` — Tourism visa file assessment.
+- `/immigration` — Canada and Australia immigration calculators.
+- `/job-seeker` — Germany Opportunity Card, Austria Job Seeker Visa, Sweden work/business search, and Germany vocational training search.
+
+The job seeker portal uses the shared MG theme. Its assessments run locally in the browser and do not submit applications. Official source links are included beside each pathway; requirements were checked on 28 October 2026. Germany uses €1,091/month (2026), and Sweden uses SEK 13,000/month plus return travel. Austria's €7,850.34 is a client-provided planning estimate that requires consular confirmation.
+
+Each portal has a standalone URL with no shared portal navigation. Job Seeker is English only. Its proof-of-funds card also shows an EGP equivalent using daily indicative ExchangeRate-API rates. `/api/exchange-rates` validates the provider data, caches the upstream fetch for one hour and rejects rates older than 48 hours. The open page checks every 15 minutes and when refocused; changing the program or stay length recalculates the EGP amount immediately. No fixed conversion rate or API key is used. If the provider is unavailable, the original currency amount remains and EGP is shown as unavailable.
+
+Run `npm run test:job-seeker` for scoring, age boundary, document and funding checks. Run `npm run build` for the production build. Publishing the existing app makes the new portal available at `<your-app-domain>/job-seeker`.
+
 First, run the development server:
 
 ```bash

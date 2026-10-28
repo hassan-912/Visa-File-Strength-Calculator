@@ -1,4 +1,4 @@
-export default function Header() {
+export default function Header({ title = "Visa File Strength Calculator" }: { title?: string }) {
   return (
     <header
       className="sticky top-0 z-50 shadow-md"
@@ -26,7 +26,7 @@ export default function Header() {
         {/* Centre label */}
         <div className="hidden md:block text-center">
           <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.85)", fontFamily: "var(--font-montserrat)" }}>
-            Visa File Strength Calculator
+            {title}
           </p>
           <p className="text-[11px]" style={{ color: "rgba(255,255,255,0.35)" }}>
             Powered by MG-visa Score

@@ -118,6 +118,67 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Job seeker portal — uses the shared MG palette and typography. */
+.js-hero { background: linear-gradient(180deg, var(--color-accent-bg), var(--color-bg)); border-bottom: 1px solid var(--color-border-light); border-top: 2px solid var(--color-accent-border); }
+.js-hero h1 { color: var(--color-primary); line-height: 1.2; letter-spacing: -.045em; }
+.js-hero-accent { color: var(--color-accent); }
+.js-eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--color-accent-border); border-radius: 30px; color: var(--color-accent); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; }
+.js-eyebrow > span { width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); }
+.js-destinations { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 26px; }
+.js-country { display: flex; align-items: center; gap: 12px; padding: 20px 16px; text-align: left; background: var(--color-surface); border: 1px solid var(--color-border-light); border-radius: 16px; cursor: pointer; transition: background .2s, border-color .2s; }
+.js-country.is-active { background: var(--color-accent-bg); border-color: var(--color-primary); box-shadow: 0 2px 0 var(--color-primary); }
+.js-country:hover { border-color: var(--color-accent); }
+.js-country-code { display: grid; place-items: center; flex-shrink: 0; width: 38px; height: 38px; border: 1px solid var(--color-accent-border); border-radius: 10px; font-size: 12px; font-weight: 800; color: var(--color-primary); }
+.js-country strong { display: block; font-size: 14px; color: var(--color-primary); }
+.js-country small { display: block; margin-top: 5px; font-size: 10px; color: var(--color-text-muted); line-height: 1.5; }
+.js-country-indicator { margin-left: auto; color: var(--color-accent); }
+.js-pathways { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+.js-pathways button { padding: 10px 16px; font-size: 12px; font-weight: 600; border: 1px solid var(--color-border); border-radius: 9px; cursor: pointer; }
+.js-pathways button[aria-pressed="true"] { background: var(--color-primary); border-color: var(--color-primary); color: white; }
+.js-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 26px; align-items: start; }
+.js-form, .js-result { border: 1px solid var(--color-border-light); border-radius: 20px; background: var(--color-surface); overflow: hidden; box-shadow: 0 4px 24px #28384005; }
+.js-form-heading { padding: 28px; border-bottom: 1px solid var(--color-border-light); }
+.js-kicker { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; }
+.js-form-heading .js-kicker { color: var(--color-text-muted); }
+.js-form-heading h2, .js-result h2 { margin-top: 9px; color: var(--color-primary); font-size: 23px; font-weight: 800; letter-spacing: -.03em; }
+.js-form-heading > p { margin-top: 8px; color: var(--color-text-muted); font-size: 13px; text-align: left; }
+.js-section { padding: 26px 28px; border-bottom: 1px solid var(--color-border-light); }
+.js-section h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; font-size: 13px; font-weight: 700; color: var(--color-primary); }
+.js-section h3 > span { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 8px; background: var(--color-accent-bg); font-size: 10px; }
+.js-field label { display: block; font-size: 12px; font-weight: 650; line-height: 1.7; color: var(--color-text-main); }
+.js-field p { margin-top: 5px; font-size: 11px; line-height: 1.8; color: var(--color-text-muted); }
+.js-field input, .js-field select { display: block; width: 100%; min-width: 0; min-height: 46px; margin-top: 9px; padding: 10px 12px; font-size: 12px; line-height: 1.6; border: 1px solid var(--color-border); background: var(--color-surface-2); border-radius: 9px; color: var(--color-text-main); }
+.js-field option { color: var(--color-text-main); }
+.js-note { padding: 12px 14px; background: var(--color-surface-2); border-radius: 9px; color: var(--color-text-muted); font-size: 11px; line-height: 1.9; }
+.js-form-actions { padding: 25px 28px; }
+.js-form-actions > p { font-size: 10px; color: var(--color-text-muted); line-height: 1.9; margin-bottom: 16px; }
+.js-primary { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 14px 20px; border-radius: 10px; color: white; background: var(--color-primary); cursor: pointer; font-size: 12px; font-weight: 700; }
+.js-primary:hover { background: var(--color-primary-mid); }
+.js-reset { padding: 12px 16px; font-size: 12px; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; color: var(--color-text-muted); }
+.js-sidebar { display: grid; gap: 18px; }
+.js-funding { padding: 27px 24px; border-radius: 18px; background: var(--color-primary); color: white; }
+.js-funding .js-kicker { color: #bcc9cf; }
+.js-duration { font-size: 25px; font-weight: 700; margin-top: 10px; letter-spacing: -.03em; }
+.js-funding-divider { height: 1px; background: #ffffff26; margin: 22px 0; }
+.js-amount { font-size: 31px; font-weight: 800; margin-top: 9px; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.js-egp { margin-top: 20px; padding-top: 20px; border-top: 1px solid #ffffff26; }
+.js-egp-amount { margin-top: 9px; font-size: 25px; font-weight: 750; letter-spacing: -.025em; overflow-wrap: anywhere; }
+.js-info-card { padding: 23px; background: var(--color-surface); border: 1px solid var(--color-border-light); border-radius: 16px; }
+.js-info-card h3 { font-size: 13px; color: var(--color-primary); font-weight: 700; margin-bottom: 18px; }
+.js-checklist { display: grid; gap: 14px; }
+.js-checklist li { display: flex; gap: 9px; font-size: 11px; line-height: 1.8; }
+.js-checklist li > span { color: var(--color-accent); }
+.js-source { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; line-height: 1.8; font-weight: 600; color: var(--color-accent); padding: 10px 0; text-decoration: underline; text-underline-offset: 4px; }
+.js-result { margin-top: 24px; padding: 28px; border-top: 4px solid var(--color-primary); }
+.js-score { margin-top: 16px; font-size: 42px; font-weight: 800; color: var(--color-primary); }
+.js-score span { font-size: 12px; font-weight: 500; color: var(--color-text-muted); }
+.js-breakdown { margin-top: 20px; }
+.js-breakdown > div { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--color-border-light); font-size: 12px; }
+.js-breakdown dd { font-weight: 700; }
+@media (max-width: 900px) { .js-layout { grid-template-columns: minmax(0, 1fr) 260px; gap: 18px; } .js-country { padding: 16px 12px; gap: 8px; } .js-country-indicator { display: none; } }
+@media (max-width: 700px) { .js-layout { grid-template-columns: minmax(0, 1fr); } .js-sidebar { grid-template-columns: minmax(0, 1fr); } .js-destinations { gap: 8px; } .js-country { flex-direction: column; align-items: flex-start; padding: 13px 10px; } .js-country small { font-size: 9px; } .js-country strong { font-size: 12px; } .js-form-heading, .js-section, .js-form-actions, .js-result { padding: 22px 18px; } .js-form-heading h2 { font-size: 21px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .js-country { transition: none; } }
+
 /* ─── Scrollbar ─────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--color-surface-2); }

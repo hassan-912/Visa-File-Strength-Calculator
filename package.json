@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:crs": "node --test tests/canada-crs-french-bonus.test.mjs"
+    "test:crs": "node --test tests/canada-crs-french-bonus.test.mjs",
+    "test:job-seeker": "node --test tests/job-seeker.test.mjs tests/exchange-rates.test.mjs"
   },
   "dependencies": {
     "next": "16.3.0",
