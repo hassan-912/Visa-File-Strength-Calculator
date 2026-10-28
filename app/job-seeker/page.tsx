@@ -11,6 +11,9 @@ export default function JobSeekerPage() {
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: "var(--color-bg)" }}>
       <Header title="Job Seeker Portal" />
+      <div role="status" className="border-b px-4 py-4 text-center text-sm font-bold sm:px-6" style={{ backgroundColor: "var(--color-accent-bg)", borderColor: "var(--color-accent-border)", color: "var(--color-primary)" }}>
+        Under processing — do not use yet. This portal is still being prepared and checked.
+      </div>
       <JobSeekerPortal />
       <footer className="mt-auto px-6 py-10 text-center text-sm" style={{ backgroundColor: "var(--color-primary)", color: "var(--color-text-on-dark)" }}>
         <p className="font-bold">MG International Visa Consultancy</p>
