@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   CATEGORIES,
   PENALTIES,
@@ -16,25 +16,6 @@ interface ResultsDashboardProps {
   onEdit: () => void;
 }
 
-function useCountUp(target: number, duration = 1600) {
-  const [current, setCurrent] = useState(0);
-  useEffect(() => {
-    let start = 0;
-    const step = target / (duration / 16);
-    const interval = setInterval(() => {
-      start += step;
-      if (start >= target) {
-        setCurrent(target);
-        clearInterval(interval);
-      } else {
-        setCurrent(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(interval);
-  }, [target, duration]);
-  return current;
-}
-
 export default function ResultsDashboard({
   selections,
   activePenalties,
@@ -45,24 +26,27 @@ export default function ResultsDashboard({
     calculateScore(selections, activePenalties, age);
 
   const status = getScoreStatus(finalScore);
-  const displayScore = useCountUp(finalScore, 1800);
-  const [barsVisible, setBarsVisible] = useState(false);
+  const displayScore = finalScore;
   const [showModal, setShowModal] = useState(false);
   const [clientName, setClientName] = useState("");
   const [reportDate, setReportDate] = useState("");
+  const [reportId, setReportId] = useState("");
+  const reportDialog = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    const dialog = reportDialog.current;
+    if (showModal && dialog && !dialog.open) dialog.showModal();
+    if (!showModal && dialog?.open) dialog.close();
+  }, [showModal]);
 
   const handleGeneratePdf = () => {
+    setReportId(crypto.randomUUID().slice(0, 8));
     setReportDate(new Date().toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' }));
     setShowModal(false);
     setTimeout(() => {
       window.print();
     }, 100);
   };
-
-  useEffect(() => {
-    const t = setTimeout(() => setBarsVisible(true), 500);
-    return () => clearTimeout(t);
-  }, []);
 
   // SVG arc gauge (navy-themed)
   const SIZE = 200;
@@ -120,6 +104,7 @@ export default function ResultsDashboard({
                   MG Visa AI Analysis — Complete
                 </p>
                 <h2
+                  id="assessment-results" tabIndex={-1}
                   className="text-xl font-bold text-white"
                   style={{ fontFamily: "var(--font-montserrat)" }}
                 >
@@ -255,8 +240,7 @@ export default function ResultsDashboard({
                     <div
                       className="h-full rounded-full transition-all ease-out"
                       style={{
-                        width: barsVisible ? `${pct}%` : "0%",
-                        transitionDuration: `${600 + idx * 100}ms`,
+                        width: `${pct}%`,
                         backgroundColor: pct >= 70 ? "var(--color-strong)" : pct >= 40 ? "var(--color-moderate)" : pct > 0 ? "var(--color-weak)" : "var(--color-border)",
                       }}
                     />
@@ -324,14 +308,15 @@ export default function ResultsDashboard({
         </div>
 
         {/* ── PDF Generation Modal ── */}
-        {showModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4" style={{ backgroundColor: "rgba(0,0,0,0.6)" }}>
-            <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl animate-fadeInUp">
-              <h3 className="text-xl font-bold text-slate-800 mb-2">Generate PDF Report</h3>
-              <p className="text-sm text-slate-500 mb-6">Enter the client's full name to generate an official MG Visa assessment document.</p>
-
+          <dialog ref={reportDialog} aria-labelledby="report-dialog-title" onClose={() => setShowModal(false)} className="report-dialog">
+            <form onSubmit={(event) => { event.preventDefault(); if (clientName.trim()) handleGeneratePdf(); }} className="p-6 sm:p-8">
+              <h3 id="report-dialog-title" className="text-xl font-bold text-slate-800 mb-2">Generate PDF Report</h3>
+              <p className="text-sm text-slate-600 mb-6">Enter the client&apos;s full name to generate an official MG Visa assessment document.</p>
+              <label htmlFor="report-client-name" className="block text-sm font-semibold mb-2">Client name</label>
               <input
+                id="report-client-name"
                 type="text"
+                required maxLength={150}
                 placeholder="e.g. John Doe"
                 value={clientName}
                 onChange={(e) => setClientName(e.target.value)}
@@ -340,13 +325,14 @@ export default function ResultsDashboard({
 
               <div className="flex gap-3">
                 <button
+                  type="button"
                   onClick={() => setShowModal(false)}
                   className="flex-1 py-3 rounded-xl font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors"
                 >
                   Cancel
                 </button>
                 <button
-                  onClick={handleGeneratePdf}
+                  type="submit"
                   disabled={!clientName.trim()}
                   className="flex-1 py-3 rounded-xl font-semibold text-white transition-colors disabled:opacity-50"
                   style={{ backgroundColor: "var(--color-primary)" }}
@@ -354,9 +340,8 @@ export default function ResultsDashboard({
                   Generate
                 </button>
               </div>
-            </div>
-          </div>
-        )}
+            </form>
+          </dialog>
       </div>
 
       {/* ── Print Layout (Hidden on Screen, Invoice Structure) ── */}
@@ -387,7 +372,7 @@ export default function ResultsDashboard({
               </div>
               <div className="flex justify-between text-sm text-slate-600 mt-1">
                 <span className="font-semibold">Report ID:</span>
-                <span className="uppercase">{Math.random().toString(36).substr(2, 8)}</span>
+                <span className="uppercase">{reportId}</span>
               </div>
             </div>
           </div>

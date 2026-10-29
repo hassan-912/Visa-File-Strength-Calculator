@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import useStepFocus from "@/components/useStepFocus";
+
+import { useState, useRef } from "react";
 import {
   calculateAustraliaGSM,
   DEFAULT_AUSTRALIA_GSM_FORM,
@@ -20,30 +22,6 @@ import type {
 } from "@/lib/australia-gsm";
 
 // ─────────────────────────────────────────────────────────────────
-// Count-Up Hook for Numerical Transitions
-// ─────────────────────────────────────────────────────────────────
-function useCountUp(target: number, duration = 1200) {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const step = target / (duration / 16);
-    const interval = setInterval(() => {
-      start += step;
-      if (start >= target) {
-        setCurrent(target);
-        clearInterval(interval);
-      } else {
-        setCurrent(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(interval);
-  }, [target, duration]);
-
-  return current;
-}
-
-// ─────────────────────────────────────────────────────────────────
 // Clickable Radio Card Option Component (Snappy #283840 Theme)
 // ─────────────────────────────────────────────────────────────────
 interface RadioOptionCardProps<T> {
@@ -61,7 +39,7 @@ function RadioOptionCard<T extends string>({
 }: RadioOptionCardProps<T>) {
   return (
     <label
-      className={`relative flex items-center justify-between p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:scale-[1.008] active:scale-[0.995] ${
+      className={`relative flex items-center justify-between p-4 rounded-xl border-2 cursor-pointer transition-all duration-300  ${
         isSelected
           ? "border-[#283840] bg-[#283840] text-white shadow-md"
           : "border-slate-200 bg-white text-slate-800 hover:border-slate-300 hover:bg-slate-50/60"
@@ -145,7 +123,7 @@ function BinaryRadio({
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
       {/* Yes Option */}
       <label
-        className={`flex items-center justify-between p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:scale-[1.008] active:scale-[0.995] ${
+        className={`relative flex items-center justify-between p-4 rounded-xl border-2 cursor-pointer transition-all duration-300  ${
           value === true
             ? "border-[#283840] bg-[#283840] text-white shadow-md"
             : "border-slate-200 bg-white text-slate-800 hover:border-slate-300 hover:bg-slate-50/60"
@@ -188,7 +166,7 @@ function BinaryRadio({
 
       {/* No Option */}
       <label
-        className={`flex items-center justify-between p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:scale-[1.008] active:scale-[0.995] ${
+        className={`relative flex items-center justify-between p-4 rounded-xl border-2 cursor-pointer transition-all duration-300  ${
           value === false
             ? "border-[#283840] bg-[#283840] text-white shadow-md"
             : "border-slate-200 bg-white text-slate-800 hover:border-slate-300 hover:bg-slate-50/60"
@@ -271,7 +249,7 @@ function AustraliaGSMResultsView({
   const [clientName, setClientName] = useState("");
   const [reportDate, setReportDate] = useState("");
 
-  const displayScore = useCountUp(breakdown.total, 1600);
+  const displayScore = breakdown.total;
   const status = getAustraliaGSMStatus(breakdown.total);
 
   const handleGeneratePdf = () => {
@@ -325,7 +303,7 @@ function AustraliaGSMResultsView({
                 <p className="text-xs font-bold uppercase tracking-widest mb-1 text-white/50">
                   Australia Skilled Migration — Points Test
                 </p>
-                <h2 className="text-xl font-bold text-white" style={{ fontFamily: "var(--font-montserrat)" }}>
+                <h2 id="gsm-results-heading" tabIndex={-1} className="text-xl font-bold text-white" style={{ fontFamily: "var(--font-montserrat)" }}>
                   Your GSM Points Score Result
                 </h2>
               </div>
@@ -826,6 +804,7 @@ function AustraliaGSMResultsView({
 export default function AustraliaGSMForm() {
   const [form, setForm] = useState<FormState>(DEFAULT_AUSTRALIA_GSM_FORM);
   const [step, setStep] = useState<"form" | "results">("form");
+  useStepFocus(step, step === "form" ? "gsm-form-heading" : "gsm-results-heading");
   const [breakdown, setBreakdown] = useState<AustraliaGSMBreakdown | null>(null);
 
   // 12 Card Refs for ultra-smooth sequential auto-advance
@@ -835,50 +814,15 @@ export default function AustraliaGSMForm() {
   // Live score updated on every change
   const liveBreakdown: AustraliaGSMBreakdown = calculateAustraliaGSM(form);
 
-  // ── Auto-scroll handler on option selection with 300ms delay ────
-  function handleSelectAndAutoScroll<K extends keyof FormState>(
-    cardIndex: number,
-    key: K,
-    value: FormState[K]
-  ) {
-    const updatedForm = { ...form, [key]: value };
-    setForm(updatedForm);
+  function handleSelect<K extends keyof FormState>(key: K, value: FormState[K]) {
+    setForm(previous => ({ ...previous, [key]: value }));
+  }
 
-    // Apply 300ms delay to allow user to see selection state change smoothly
-    setTimeout(() => {
-      let nextUnansweredIdx = -1;
-
-      // Scan forward from cardIndex + 1 to 11
-      for (let i = cardIndex + 1; i < 12; i++) {
-        if (!isCardAnswered(i, updatedForm)) {
-          nextUnansweredIdx = i;
-          break;
-        }
-      }
-
-      // If not found forward, wrap around from 0 to cardIndex - 1
-      if (nextUnansweredIdx === -1) {
-        for (let i = 0; i < cardIndex; i++) {
-          if (!isCardAnswered(i, updatedForm)) {
-            nextUnansweredIdx = i;
-            break;
-          }
-        }
-      }
-
-      if (nextUnansweredIdx !== -1 && cardRefs.current[nextUnansweredIdx]) {
-        cardRefs.current[nextUnansweredIdx]?.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      } else {
-        // All 12 cards answered! Center the Calculate Official Score button
-        submitBtnRef.current?.scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
-      }
-    }, 300);
+  function goToNextUnanswered() {
+    const index = Array.from({ length: 12 }, (_, i) => i).find(i => !isCardAnswered(i, form));
+    const target = index === undefined ? submitBtnRef.current : cardRefs.current[index];
+    target?.focus({ preventScroll: true });
+    target?.scrollIntoView({ behavior: "instant", block: "start" });
   }
 
   function handleSubmit() {
@@ -886,12 +830,10 @@ export default function AustraliaGSMForm() {
     setBreakdown(result);
     // Instant unmount of the form & mount of the Results Dashboard
     setStep("results");
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function handleRecalculate() {
     setStep("form");
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   // If in results mode, render the dedicated Results Dashboard view
@@ -908,11 +850,11 @@ export default function AustraliaGSMForm() {
   // ── Form View with Live Score Badge and Auto-Scrolling Cards ───
   return (
     <>
-      {/* ── Fixed Real-Time Header Badge (Top-4 Left-4) ── */}
+      {/* ── Fixed live GSM score ── */}
       <div
         id="live-gsm-badge"
         aria-live="polite"
-        className="fixed top-4 left-4 z-50 flex flex-col items-start"
+        className="immigration-live-score"
         style={{ pointerEvents: "none" }}
       >
         <div
@@ -954,7 +896,7 @@ export default function AustraliaGSMForm() {
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--color-accent-hover)" }} />
             🇦🇺 Australia Skilled Migration
           </div>
-          <h2
+          <h2 id="gsm-form-heading" tabIndex={-1}
             className="text-2xl sm:text-3xl font-bold leading-tight mb-2"
             style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
           >
@@ -962,14 +904,16 @@ export default function AustraliaGSMForm() {
           </h2>
           <p className="text-sm leading-relaxed text-slate-500">
             Calculate your points for Subclasses 189, 190, and 491 under the official Department of
-            Home Affairs points test. As you select each answer, the page automatically advances to
-            the next criterion. Passing cutoff is <strong>65 points</strong>.
+            Home Affairs points test. Review answers at your own pace, or jump to the next unanswered section. Passing cutoff is <strong>65 points</strong>.
           </p>
         </div>
+
+        <button type="button" onClick={goToNextUnanswered} className="immigration-next">Next unanswered section</button>
 
         {/* ── 01. Visa Subclass ── */}
         <section
           ref={(el) => { cardRefs.current[0] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1001,7 +945,7 @@ export default function AustraliaGSMForm() {
                 key={opt.value}
                 option={opt}
                 isSelected={form.subclass === opt.value}
-                onSelect={(val) => handleSelectAndAutoScroll(0, "subclass", val)}
+                onSelect={(val) => handleSelect("subclass", val)}
                 name="subclass"
               />
             ))}
@@ -1011,6 +955,7 @@ export default function AustraliaGSMForm() {
         {/* ── 02. Age ── */}
         <section
           ref={(el) => { cardRefs.current[1] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1042,7 +987,7 @@ export default function AustraliaGSMForm() {
                 key={opt.value}
                 option={opt}
                 isSelected={form.age === opt.value}
-                onSelect={(val) => handleSelectAndAutoScroll(1, "age", val)}
+                onSelect={(val) => handleSelect("age", val)}
                 name="age"
               />
             ))}
@@ -1052,6 +997,7 @@ export default function AustraliaGSMForm() {
         {/* ── 03. English Language Ability ── */}
         <section
           ref={(el) => { cardRefs.current[2] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1083,7 +1029,7 @@ export default function AustraliaGSMForm() {
                 key={opt.value}
                 option={opt}
                 isSelected={form.english === opt.value}
-                onSelect={(val) => handleSelectAndAutoScroll(2, "english", val)}
+                onSelect={(val) => handleSelect("english", val)}
                 name="english"
               />
             ))}
@@ -1093,6 +1039,7 @@ export default function AustraliaGSMForm() {
         {/* ── 04. Overseas Skilled Employment ── */}
         <section
           ref={(el) => { cardRefs.current[3] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1124,7 +1071,7 @@ export default function AustraliaGSMForm() {
                 key={opt.value}
                 option={opt}
                 isSelected={form.overseasExp === opt.value}
-                onSelect={(val) => handleSelectAndAutoScroll(3, "overseasExp", val)}
+                onSelect={(val) => handleSelect("overseasExp", val)}
                 name="overseasExp"
               />
             ))}
@@ -1142,6 +1089,7 @@ export default function AustraliaGSMForm() {
         {/* ── 05. Australian Skilled Employment ── */}
         <section
           ref={(el) => { cardRefs.current[4] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1173,7 +1121,7 @@ export default function AustraliaGSMForm() {
                 key={opt.value}
                 option={opt}
                 isSelected={form.australianExp === opt.value}
-                onSelect={(val) => handleSelectAndAutoScroll(4, "australianExp", val)}
+                onSelect={(val) => handleSelect("australianExp", val)}
                 name="australianExp"
               />
             ))}
@@ -1186,6 +1134,7 @@ export default function AustraliaGSMForm() {
         {/* ── 06. Educational Qualifications ── */}
         <section
           ref={(el) => { cardRefs.current[5] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1217,7 +1166,7 @@ export default function AustraliaGSMForm() {
                 key={opt.value}
                 option={opt}
                 isSelected={form.qualification === opt.value}
-                onSelect={(val) => handleSelectAndAutoScroll(5, "qualification", val)}
+                onSelect={(val) => handleSelect("qualification", val)}
                 name="qualification"
               />
             ))}
@@ -1227,6 +1176,7 @@ export default function AustraliaGSMForm() {
         {/* ── 07. Specialist Education Qualification ── */}
         <section
           ref={(el) => { cardRefs.current[6] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1257,7 +1207,7 @@ export default function AustraliaGSMForm() {
             description="At least 2 academic years of study in eligible STEM/ICT disciplines"
             points={10}
             value={form.specialistEducation}
-            onChange={(v) => handleSelectAndAutoScroll(6, "specialistEducation", v)}
+            onChange={(v) => handleSelect("specialistEducation", v)}
             name="specialistEducation"
           />
         </section>
@@ -1265,6 +1215,7 @@ export default function AustraliaGSMForm() {
         {/* ── 08. Australian Study Requirement ── */}
         <section
           ref={(el) => { cardRefs.current[7] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1295,7 +1246,7 @@ export default function AustraliaGSMForm() {
             description="Studied in English while physically present in Australia"
             points={5}
             value={form.australianStudy}
-            onChange={(v) => handleSelectAndAutoScroll(7, "australianStudy", v)}
+            onChange={(v) => handleSelect("australianStudy", v)}
             name="australianStudy"
           />
         </section>
@@ -1303,6 +1254,7 @@ export default function AustraliaGSMForm() {
         {/* ── 09. Professional Year in Australia ── */}
         <section
           ref={(el) => { cardRefs.current[8] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1333,7 +1285,7 @@ export default function AustraliaGSMForm() {
             description="Approved 12-month program in Accounting, Engineering, or ICT"
             points={5}
             value={form.professionalYear}
-            onChange={(v) => handleSelectAndAutoScroll(8, "professionalYear", v)}
+            onChange={(v) => handleSelect("professionalYear", v)}
             name="professionalYear"
           />
         </section>
@@ -1341,6 +1293,7 @@ export default function AustraliaGSMForm() {
         {/* ── 10. Credentialled Community Language ── */}
         <section
           ref={(el) => { cardRefs.current[9] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1371,7 +1324,7 @@ export default function AustraliaGSMForm() {
             description="Passed NAATI CCL test or accredited translator/interpreter"
             points={5}
             value={form.communityLanguage}
-            onChange={(v) => handleSelectAndAutoScroll(9, "communityLanguage", v)}
+            onChange={(v) => handleSelect("communityLanguage", v)}
             name="communityLanguage"
           />
         </section>
@@ -1379,6 +1332,7 @@ export default function AustraliaGSMForm() {
         {/* ── 11. Study in Regional Australia ── */}
         <section
           ref={(el) => { cardRefs.current[10] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1409,7 +1363,7 @@ export default function AustraliaGSMForm() {
             description="Campus and residence both located in designated regional postcodes"
             points={5}
             value={form.regionalStudy}
-            onChange={(v) => handleSelectAndAutoScroll(10, "regionalStudy", v)}
+            onChange={(v) => handleSelect("regionalStudy", v)}
             name="regionalStudy"
           />
         </section>
@@ -1417,6 +1371,7 @@ export default function AustraliaGSMForm() {
         {/* ── 12. Partner Skills ── */}
         <section
           ref={(el) => { cardRefs.current[11] = el; }}
+          tabIndex={-1}
           className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6 transition-all duration-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-4 mb-3 pb-3 border-b border-slate-100">
@@ -1448,7 +1403,7 @@ export default function AustraliaGSMForm() {
                 key={opt.value}
                 option={opt}
                 isSelected={form.partnerSkills === opt.value}
-                onSelect={(val) => handleSelectAndAutoScroll(11, "partnerSkills", val)}
+                onSelect={(val) => handleSelect("partnerSkills", val)}
                 name="partnerSkills"
               />
             ))}

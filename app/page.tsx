@@ -1,13 +1,12 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import ScoreForm from "@/components/ScoreForm";
-import LoadingOverlay from "@/components/LoadingOverlay";
 import ResultsDashboard from "@/components/ResultsDashboard";
 import type { SelectionsMap, PenaltiesMap } from "@/lib/scoring";
 
-type AppStep = "form" | "loading" | "results";
+type AppStep = "form" | "results";
 
 export default function HomePage() {
   const [step, setStep] = useState<AppStep>("form");
@@ -40,26 +39,23 @@ export default function HomePage() {
     []
   );
 
-  const handleSubmit = useCallback(() => {
-    setStep("loading");
-  }, []);
+  const previousStep = useRef<AppStep>("form");
+  useEffect(() => {
+    if (previousStep.current === step) return;
+    previousStep.current = step;
+    const target = document.getElementById(step === "results" ? "assessment-results" : "profile-title");
+    target?.focus({ preventScroll: true });
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [step]);
 
-  const handleLoadingComplete = useCallback(() => {
-    setStep("results");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+  const handleSubmit = useCallback(() => setStep("results"), []);
 
   const handleEdit = useCallback(() => {
     setStep("form");
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
     <>
-      {step === "loading" && (
-        <LoadingOverlay onComplete={handleLoadingComplete} durationMs={6000} />
-      )}
-
       <div className="min-h-screen flex flex-col" style={{ backgroundColor: "var(--color-bg)" }}>
         <Header />
 
@@ -74,18 +70,7 @@ export default function HomePage() {
             className="absolute top-0 left-0 right-0 h-0.5"
             style={{ background: "linear-gradient(90deg, transparent, var(--color-accent), transparent)" }}
           />
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-            <div
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-4"
-              style={{
-                backgroundColor: "var(--color-accent-bg)",
-                color: "var(--color-accent)",
-                border: "1px solid var(--color-accent-border)",
-              }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--color-accent-hover)" }} />
-              MG Visa Assessment Tool
-            </div>
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
             <h1
               className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4"
               style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
@@ -103,8 +88,8 @@ export default function HomePage() {
         </section>
 
         <main className="flex-1">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            {step === "form" || step === "loading" ? (
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {step === "form" ? (
               <ScoreForm
                 selections={selections}
                 activePenalties={activePenalties}

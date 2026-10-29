@@ -24,25 +24,15 @@ export default function ScoreForm({
   const totalSections = CATEGORIES.length;
   const answeredCount = answeredCategories;
   const isComplete = answeredCount === totalSections;
+  const nextSection = CATEGORIES.find((category) => !selections[category.id]?.length);
 
   return (
-    <div className="animate-fadeInUp relative">
+    <div className="profile-layout">
       {/* Section Header */}
-      <div className="mb-8">
-        <div
-          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3"
-          style={{
-            backgroundColor: "var(--color-accent-bg)",
-            color: "var(--color-accent)",
-            border: "1px solid var(--color-accent-border)",
-          }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--color-accent-hover)" }} />
-          Complete Your Profile
-        </div>
-
+      <aside className="profile-sidebar" aria-label="Profile completion">
         <h2
-          className="text-2xl sm:text-3xl font-bold leading-tight mb-2"
+          id="profile-title" tabIndex={-1}
+          className="text-2xl font-bold leading-tight mb-3"
           style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
         >
           Tourism Visa Profile
@@ -54,7 +44,7 @@ export default function ScoreForm({
         {/* Progress bar */}
         <div className="mt-5">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-xs font-medium" style={{ color: "var(--color-text-muted)" }}>
+            <span className="text-sm font-medium" style={{ color: "var(--color-text-muted)" }}>
               {answeredCount} of {totalSections} sections completed
             </span>
             <span
@@ -64,9 +54,9 @@ export default function ScoreForm({
               {Math.round((answeredCount / totalSections) * 100)}%
             </span>
           </div>
-          <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: "var(--color-surface-3)" }}>
+          <div role="progressbar" aria-label="Profile sections completed" aria-valuemin={0} aria-valuemax={totalSections} aria-valuenow={answeredCount} className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: "var(--color-surface-3)" }}>
             <div
-              className="h-full rounded-full transition-all duration-500 ease-out"
+              className="h-full rounded-full"
               style={{
                 width: `${(answeredCount / totalSections) * 100}%`,
                 backgroundColor: isComplete ? "var(--color-strong)" : "var(--color-accent)",
@@ -74,17 +64,24 @@ export default function ScoreForm({
             />
           </div>
         </div>
-      </div>
+        <p className="profile-nav-heading">Jump to a section</p>
+        <nav className="profile-section-nav" aria-label="Jump to a profile section">
+          {CATEGORIES.map((category, index) => (
+            <a key={category.id} href={`#profile-${category.id}`} data-complete={!!selections[category.id]?.length}>
+              <span className="profile-nav-marker" aria-hidden="true">{selections[category.id]?.length ? <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="m7.5 13.2-3.4-3.4-1.2 1.3 4.6 4.6 9.6-9.6-1.3-1.3z" /></svg> : index + 1}</span>
+              <span>{category.title}</span>
+              <span className="sr-only">{selections[category.id]?.length ? ": answered" : ": not answered"}</span>
+            </a>
+          ))}
+        </nav>
+        <p className="profile-next" aria-live="polite">
+          {nextSection ? <a href={`#profile-${nextSection.id}`}>Next unanswered: {nextSection.title} <span aria-hidden="true">→</span></a> : <a href="#profile-submit">All sections answered. Review risk factors and analyse your file.</a>}
+        </p>
+      </aside>
+
+      <div className="profile-fields">
 
       {/* Application Parameters Divider */}
-      <div className="flex items-center gap-3 mb-5">
-        <div className="h-px flex-1" style={{ background: "linear-gradient(to right, var(--color-accent), transparent)" }} />
-        <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "var(--color-accent)" }}>
-          Application Parameters
-        </span>
-        <div className="h-px flex-1" style={{ background: "linear-gradient(to left, var(--color-accent), transparent)" }} />
-      </div>
-
       {/* Base Score Categories */}
       <div className="space-y-4 mb-8">
         {CATEGORIES.map((category, catIdx) => {
@@ -94,33 +91,28 @@ export default function ScoreForm({
           return (
             <div
               key={category.id}
-              className="rounded-2xl border transition-all duration-200"
+              id={`profile-${category.id}`}
+              tabIndex={-1}
+              role="group" aria-labelledby={`heading-${category.id}`}
+              className="profile-section rounded-2xl border"
               style={{
                 borderColor: isAnswered ? "var(--color-accent)" : "var(--color-border-light)",
                 backgroundColor: "var(--color-surface)",
-                boxShadow: isAnswered
-                  ? "0 0 0 3px rgba(30,58,138,0.08)"
-                  : "0 1px 3px rgba(0,0,0,0.05)",
-                animationDelay: `${catIdx * 50}ms`,
               }}
             >
               {/* Card header */}
               <div className="flex items-center justify-between px-5 pt-5 pb-3">
                 <div className="flex items-center gap-3">
-                  <div
-                    className="flex items-center justify-center w-9 h-9 rounded-xl text-lg shrink-0"
-                    style={{ backgroundColor: isAnswered ? "var(--color-accent-bg)" : "var(--color-surface-2)" }}
-                  >
-                    {category.icon}
-                  </div>
+                  <span className="profile-section-number" aria-hidden="true">{catIdx + 1}</span>
                   <div>
                     <h3
-                      className="font-bold text-sm leading-tight"
+                      id={`heading-${category.id}`} tabIndex={-1}
+                      className="font-bold text-base leading-tight"
                       style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
                     >
                       {category.title}
                     </h3>
-                    <p className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
+                    <p className="text-sm mt-1" style={{ color: "var(--color-text-muted)" }}>
                       {category.description}
                     </p>
                   </div>
@@ -142,12 +134,12 @@ export default function ScoreForm({
               <div className="px-5 pb-5 space-y-2">
                 {category.options.map((option) => {
                   const isChecked = selectedIds.includes(option.id);
-                  const isRadio = (category as any).inputType === "radio";
+                  const isRadio = category.inputType === "radio";
                   return (
                     <label
                       key={option.id}
                       htmlFor={option.id}
-                      className="flex items-start gap-3 px-4 py-3 rounded-xl border cursor-pointer transition-all duration-150"
+                      className="profile-option flex items-start gap-3 px-4 py-3 rounded-xl border cursor-pointer"
                       style={{
                         backgroundColor: isChecked ? "var(--color-accent-bg)" : "var(--color-surface-2)",
                         borderColor: isChecked ? "var(--color-accent)" : "var(--color-border-light)",
@@ -178,7 +170,7 @@ export default function ScoreForm({
                         </div>
                       </div>
                       <span
-                        className="text-sm leading-snug"
+                        className="text-sm leading-relaxed"
                         style={{
                           color: isChecked ? "var(--color-accent)" : "var(--color-text-body)",
                           fontWeight: isChecked ? "600" : "400",
@@ -196,12 +188,10 @@ export default function ScoreForm({
       </div>
 
       {/* Risk Factors Divider */}
-      <div className="flex items-center gap-3 mb-5">
-        <div className="h-px flex-1" style={{ background: "linear-gradient(to right, #DC2626, transparent)" }} />
-        <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#DC2626" }}>
+      <div className="mb-3">
+        <h3 className="text-lg font-bold" style={{ color: "var(--color-text-main)" }}>
           Risk Factors
-        </span>
-        <div className="h-px flex-1" style={{ background: "linear-gradient(to left, #DC2626, transparent)" }} />
+        </h3>
       </div>
 
       <p className="text-sm mb-4" style={{ color: "var(--color-text-muted)" }}>
@@ -223,7 +213,7 @@ export default function ScoreForm({
             <label
               key={penalty.id}
               htmlFor={`penalty-${penalty.id}`}
-              className="flex items-start gap-4 px-5 py-4 cursor-pointer transition-colors duration-150"
+              className="profile-option flex items-start gap-4 px-5 py-4 cursor-pointer"
               style={{
                 backgroundColor: isActive ? "rgba(220,38,38,0.04)" : idx % 2 === 0 ? "var(--color-surface)" : "var(--color-surface-2)",
                 borderBottom: idx < PENALTIES.length - 1 ? "1px solid var(--color-border-light)" : "none",
@@ -272,11 +262,10 @@ export default function ScoreForm({
 
       {/* Disclaimer */}
       <div
-        className="rounded-xl p-4 mb-8 text-xs leading-relaxed"
+        className="rounded-xl p-4 mb-6 text-sm leading-relaxed"
         style={{
           backgroundColor: "var(--color-accent-bg)",
           color: "var(--color-text-muted)",
-          borderLeft: "3px solid var(--color-accent)",
         }}
       >
         <strong style={{ color: "var(--color-text-main)" }}>Disclaimer:</strong>{" "}
@@ -287,6 +276,7 @@ export default function ScoreForm({
       </div>
 
       {/* Submit Button */}
+      <div id="profile-submit" className="profile-section">
       <button
         type="button"
         onClick={onSubmit}
@@ -321,6 +311,8 @@ export default function ScoreForm({
           </>
         )}
       </button>
+      </div>
+      </div>
     </div>
   );
 }

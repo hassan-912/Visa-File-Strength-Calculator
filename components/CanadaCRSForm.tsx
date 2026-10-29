@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import useStepFocus from "@/components/useStepFocus";
+
+import { useState, useCallback } from "react";
 import {
   calculateCRS,
   DEFAULT_CRS_FORM,
@@ -57,7 +59,7 @@ function RadioGroup({ label, name, options, value, onChange, hint }: RadioGroupP
           return (
             <label
               key={opt.value}
-              className="flex items-center gap-3 px-4 py-2.5 rounded-xl border cursor-pointer transition-all duration-150"
+              className="relative flex items-center gap-3 px-4 py-2.5 rounded-xl border cursor-pointer transition-all duration-150"
               style={{
                 backgroundColor: isChecked ? "var(--color-accent-bg)" : "var(--color-surface-2)",
                 borderColor: isChecked ? "var(--color-primary)" : "var(--color-border-light)",
@@ -150,7 +152,7 @@ function CheckboxItem({ label, description, checked, onChange, id }: CheckboxIte
   return (
     <label
       htmlFor={id}
-      className="flex items-start gap-3 px-4 py-3 rounded-xl border cursor-pointer transition-all duration-150 mb-2"
+      className="relative flex items-start gap-3 px-4 py-3 rounded-xl border cursor-pointer transition-all duration-150 mb-2"
       style={{
         backgroundColor: checked ? "var(--color-accent-bg)" : "var(--color-surface-2)",
         borderColor: checked ? "var(--color-primary)" : "var(--color-border-light)",
@@ -212,6 +214,9 @@ function AccordionSection({ stepNum, title, icon, isOpen, isComplete, onToggle, 
         type="button"
         className="w-full flex items-center gap-4 px-5 py-4 text-left"
         onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={`crs-section-${stepNum}`}
+        id={`crs-heading-${stepNum}`}
       >
         <div
           className="flex items-center justify-center w-9 h-9 rounded-xl text-base font-bold shrink-0 transition-all"
@@ -250,7 +255,7 @@ function AccordionSection({ stepNum, title, icon, isOpen, isComplete, onToggle, 
 
       {/* Body */}
       {isOpen && (
-        <div className="px-5 pb-6 border-t" style={{ borderColor: "var(--color-border-light)" }}>
+        <div id={`crs-section-${stepNum}`} role="region" aria-labelledby={`crs-heading-${stepNum}`} className="px-5 pb-6 border-t" style={{ borderColor: "var(--color-border-light)" }}>
           <div className="pt-5">{children}</div>
         </div>
       )}
@@ -351,12 +356,14 @@ function EnglishLangSection({
             return (
               <div key={ability}>
                 <label
+                  htmlFor={`crs-english-${ability}`}
                   className="block text-xs font-semibold mb-1"
                   style={{ color: "var(--color-text-muted)" }}
                 >
                   {ABILITY_LABELS[ability]}
                 </label>
                 <select
+                  id={`crs-english-${ability}`}
                   value={currentVal}
                   onChange={(e) => onScoreChange(ability, e.target.value)}
                   className="w-full px-3 py-2 rounded-xl border-2 text-sm transition-all duration-150"
@@ -442,12 +449,14 @@ function FrenchLangSection({
             return (
               <div key={ability}>
                 <label
+                  htmlFor={`crs-french-${ability}`}
                   className="block text-xs font-semibold mb-1"
                   style={{ color: "var(--color-text-muted)" }}
                 >
                   {ABILITY_LABELS[ability]}
                 </label>
                 <select
+                  id={`crs-french-${ability}`}
                   value={currentVal}
                   onChange={(e) => onScoreChange(ability, e.target.value)}
                   className="w-full px-3 py-2 rounded-xl border-2 text-sm transition-all duration-150"
@@ -483,25 +492,6 @@ function FrenchLangSection({
 // ─────────────────────────────────────────────────────────────────
 // Results Dashboard
 // ─────────────────────────────────────────────────────────────────
-function useCountUp(target: number, duration = 1800) {
-  const [current, setCurrent] = useState(0);
-  useEffect(() => {
-    let start = 0;
-    const step = target / (duration / 16);
-    const interval = setInterval(() => {
-      start += step;
-      if (start >= target) {
-        setCurrent(target);
-        clearInterval(interval);
-      } else {
-        setCurrent(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(interval);
-  }, [target, duration]);
-  return current;
-}
-
 const BREAKDOWN_ITEMS: Array<{ key: keyof CRSBreakdown; label: string; maxPoints: number; icon: string }> = [
   { key: "ageScore", label: "Age", maxPoints: 110, icon: "🧑" },
   { key: "educationScore", label: "Education", maxPoints: 150, icon: "🎓" },
@@ -530,18 +520,14 @@ interface ResultsProps {
 }
 
 function CRSResults({ form, breakdown, onEdit, lang1TestType, lang2TestType, lang1RawScores, lang2RawScores }: ResultsProps) {
-  const [barsVisible, setBarsVisible] = useState(false);
+  const barsVisible = true;
   const [showModal, setShowModal] = useState(false);
   const [clientName, setClientName] = useState("");
   const [reportDate, setReportDate] = useState("");
 
-  const displayScore = useCountUp(breakdown.total, 1800);
+  const displayScore = breakdown.total;
   const status = getCRSStatus(breakdown.total);
 
-  useEffect(() => {
-    const t = setTimeout(() => setBarsVisible(true), 500);
-    return () => clearTimeout(t);
-  }, []);
 
   const handleGeneratePdf = () => {
     setReportDate(new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }));
@@ -581,7 +567,7 @@ function CRSResults({ form, breakdown, onEdit, lang1TestType, lang2TestType, lan
                 <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "rgba(255,255,255,0.45)" }}>
                   Canada Express Entry — CRS Assessment
                 </p>
-                <h2 className="text-xl font-bold text-white" style={{ fontFamily: "var(--font-montserrat)" }}>
+                <h2 id="crs-results-heading" tabIndex={-1} className="text-xl font-bold text-white" style={{ fontFamily: "var(--font-montserrat)" }}>
                   Your CRS Score Result
                 </h2>
               </div>
@@ -1026,6 +1012,7 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
   const [form, setForm] = useState<CRSForm>(DEFAULT_CRS_FORM);
   const [openSection, setOpenSection] = useState<number>(0);
   const [step, setStep] = useState<AppStep>("form");
+  useStepFocus(step, step === "form" ? "crs-form-heading" : "crs-results-heading");
   const [breakdown, setBreakdown] = useState<CRSBreakdown | null>(null);
   const profileComplete = form.withSpouse !== undefined;
 
@@ -1132,12 +1119,10 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
     setBreakdown(result);
     // Instant transition — no overlay, no artificial delay.
     setStep("results");
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function handleEdit() {
     setStep("form");
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   const canSubmit = isCoreComplete(form) && isSpouseComplete(form);
@@ -1161,13 +1146,13 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
 
   return (
     <>
-      {/* ── Fixed real-time CRS badge (top-left) ── */}
+      {/* ── Fixed real-time CRS badge ── */}
       <div
         id="live-crs-badge"
         aria-live="polite"
         aria-label={`Live CRS Score: ${liveScore} out of 1200`}
-        className="fixed z-50 flex flex-col items-start"
-        style={{ top: "80px", left: "16px", pointerEvents: "none" }}
+        className="immigration-live-score"
+        style={{ pointerEvents: "none" }}
       >
         <div
           className="rounded-xl px-3 py-2 shadow-2xl"
@@ -1208,7 +1193,7 @@ export default function CanadaCRSForm(_props: CanadaCRSFormProps = {}) {
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--color-accent-hover)" }} />
             🍁 Canada Express Entry
           </div>
-          <h2
+          <h2 id="crs-form-heading" tabIndex={-1}
             className="text-2xl sm:text-3xl font-bold leading-tight mb-2"
             style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
           >

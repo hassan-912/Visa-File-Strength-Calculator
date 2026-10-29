@@ -12,7 +12,7 @@ export default function Header({ title = "Visa File Strength Calculator" }: { ti
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
         {/* Logo mark + wordmark */}
         {/* Logo */}
         <div className="flex items-center">
@@ -28,7 +28,7 @@ export default function Header({ title = "Visa File Strength Calculator" }: { ti
           <p className="text-sm font-semibold" style={{ color: "rgba(255,255,255,0.85)", fontFamily: "var(--font-montserrat)" }}>
             {title}
           </p>
-          <p className="text-[11px]" style={{ color: "rgba(255,255,255,0.35)" }}>
+          <p className="text-xs" style={{ color: "#c4d0d6" }}>
             Powered by MG-visa Score
           </p>
         </div>
@@ -38,7 +38,7 @@ export default function Header({ title = "Visa File Strength Calculator" }: { ti
           href="https://mg-visa.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 hover:scale-105 active:scale-95 text-white"
+          className="inline-flex min-h-11 items-center gap-2 px-3 py-2 rounded-lg text-xs sm:text-sm font-semibold text-white"
           style={{
             backgroundColor: "var(--color-accent)",
             fontFamily: "var(--font-montserrat)",

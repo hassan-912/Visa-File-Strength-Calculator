@@ -12,12 +12,12 @@ export default function ImmigrationPage() {
   const [subTab, setSubTab] = useState<ImmigrationSubTab>("canada");
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "var(--color-bg)" }}>
-      <Header />
+    <div className="immigration-page min-h-screen flex flex-col" style={{ backgroundColor: "var(--color-bg)" }}>
+      <Header title="Immigration calculators" />
 
       {/* Hero Banner */}
       <section
-        className="relative overflow-hidden border-b"
+        className="immigration-hero relative overflow-hidden border-b"
         style={{
           borderColor: "var(--color-border-light)",
           background: "linear-gradient(180deg, var(--color-accent-bg) 0%, var(--color-bg) 100%)",
@@ -28,36 +28,26 @@ export default function ImmigrationPage() {
           style={{ background: "linear-gradient(90deg, transparent, var(--color-accent), transparent)" }}
         />
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-          <div
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-4"
-            style={{
-              backgroundColor: "var(--color-accent-bg)",
-              color: "var(--color-accent)",
-              border: "1px solid var(--color-accent-border)",
-            }}
-          >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--color-accent-hover)" }} />
-            Mg-visa Score
-          </div>
-
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
           <h1
             className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4"
             style={{ color: "var(--color-primary)", fontFamily: "var(--font-montserrat)" }}
           >
-            Immigration{" "}
+            {subTab === "canada" ? "Canada" : "Australia"}{" "}
             <span style={{ color: "var(--color-accent)", borderBottom: "3px solid var(--color-accent)", paddingBottom: "2px" }}>
-              CRS
+              {subTab === "canada" ? "CRS" : "GSM"}
             </span>{" "}
             Calculator
           </h1>
 
           <p className="text-sm sm:text-base max-w-xl mx-auto mb-8" style={{ color: "var(--color-text-muted)" }}>
-            Canada Express Entry Comprehensive Ranking System, powered by Mg-visa Score.
+            {subTab === "canada"
+              ? "Estimate your Express Entry score and review the factors that contribute to it."
+              : "Estimate your skilled migration points for subclasses 189, 190 and 491."}
           </p>
 
           {/* Canada / Australia sub-tab toggle */}
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center" role="group" aria-label="Immigration destination">
             <div
               className="inline-flex rounded-2xl p-1 gap-1"
               style={{
@@ -73,6 +63,8 @@ export default function ImmigrationPage() {
                     key={tab}
                     type="button"
                     id={`immigration-subtab-${tab}`}
+                    aria-pressed={isActive}
+                    aria-controls={`immigration-panel-${tab}`}
                     onClick={() => setSubTab(tab)}
                     className="relative px-7 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-all duration-200"
                     style={{
@@ -90,20 +82,20 @@ export default function ImmigrationPage() {
               })}
             </div>
           </div>
+          <p className="mt-4 text-xs leading-6" style={{ color: "var(--color-text-muted)" }}>Switch countries to compare. Answers stay available while this page is open.</p>
         </div>
       </section>
 
       {/* Main Content */}
       <main className="flex-1">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          {subTab === "canada" ? (
-            <>
+        <div className="immigration-content max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <section id="immigration-panel-canada" aria-label="Canada calculator" hidden={subTab !== "canada"}>
               <CanadaOccupationChecker />
               <CanadaCRSForm />
-            </>
-          ) : (
+            </section>
+            <section id="immigration-panel-australia" aria-label="Australia calculator" hidden={subTab !== "australia"}>
             <AustraliaGSMForm />
-          )}
+            </section>
         </div>
       </main>
 
