@@ -20,6 +20,7 @@ import type {
   AustraliaGSMBreakdown,
   GSMOptionMeta,
 } from "@/lib/australia-gsm";
+import ImmigrationReport, { makeReportReference, printReport } from "@/components/ImmigrationReport";
 
 // ─────────────────────────────────────────────────────────────────
 // Clickable Radio Card Option Component (Snappy #283840 Theme)
@@ -240,6 +241,13 @@ interface ResultsDashboardProps {
   onRecalculate: () => void;
 }
 
+const todayLabel = () => new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+const optionLabel = (options: Array<{ value: string; label: string }>, value: string) =>
+  options.find((o) => o.value === value)?.label ?? "Not provided";
+
+const yesNo = (value: boolean | null) => (value === null ? "Not answered" : value ? "Yes" : "No");
+
 function AustraliaGSMResultsView({
   form,
   breakdown,
@@ -248,20 +256,15 @@ function AustraliaGSMResultsView({
   const [showPdfModal, setShowPdfModal] = useState(false);
   const [clientName, setClientName] = useState("");
   const [reportDate, setReportDate] = useState("");
+  const [reportRef] = useState(() => makeReportReference("GSM"));
 
   const displayScore = breakdown.total;
   const status = getAustraliaGSMStatus(breakdown.total);
 
   const handleGeneratePdf = () => {
-    setReportDate(
-      new Date().toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    );
+    setReportDate(todayLabel());
     setShowPdfModal(false);
-    setTimeout(() => window.print(), 100);
+    printReport("gsm");
   };
 
   // Circular gauge setup
@@ -544,256 +547,83 @@ function AustraliaGSMResultsView({
         )}
       </div>
 
-      {/* ── Fixed Background Watermark for PDF ── */}
-      <div className="hidden print:block pdf-watermark-bg">
-        <img src="/Logo W.png" alt="" aria-hidden="true" className="filter invert" />
-      </div>
-
-      {/* ── Printable Official PDF Document ── */}
-      <div
-        id="printable-gsm-pdf"
-        className="hidden print:flex w-full bg-transparent text-slate-900 font-sans"
-        style={{ printColorAdjust: "exact", flexDirection: "column" } as React.CSSProperties}
-      >
-        {/* PDF Header */}
-        <div className="pdf-content-layer flex justify-between items-end border-b-4 border-slate-800 pb-4 mb-6 pt-2 print-avoid-break">
-          <div className="flex flex-col">
-            <img src="/Logo W.png" alt="MG Visa" className="h-10 object-contain filter invert mb-2 w-24" />
-            <p className="text-base font-black text-slate-800 tracking-wider">MG International Visa Consultancy</p>
-            <p className="text-[10px] text-slate-500 mt-0.5">Cairo | Dubai | Zayed &nbsp;·&nbsp; Info@mg-visa.com</p>
-          </div>
-          <div className="text-right">
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Immigration Assessment</p>
-            <h1 className="text-xl font-black text-slate-900 uppercase tracking-widest mb-1">Australia Skilled Migration</h1>
-            <p className="text-sm font-bold text-slate-600">General Skilled Migration (GSM) Report</p>
-          </div>
-        </div>
-
-        {/* PDF Content */}
-        <div className="print-content-flow">
-          {/* Client Info Banner */}
-          <div className="flex justify-between items-center bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6 print-avoid-break">
-            <div>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Prepared For</p>
-              <p className="text-lg font-black text-black">{clientName || "Client"}</p>
-            </div>
-            <div className="text-right">
-              <p className="text-xs text-slate-500 mb-1">
-                <span className="font-semibold">Assessment Date:</span> {reportDate}
-              </p>
-              <p className="text-xs text-slate-500">
-                <span className="font-semibold">Target Subclass:</span>{" "}
-                <span className="font-black text-slate-900">
-                  {form.subclass === "189"
-                    ? "Subclass 189 (Independent)"
-                    : form.subclass === "190"
-                    ? "Subclass 190 (Nominated)"
-                    : form.subclass === "491"
-                    ? "Subclass 491 (Regional)"
-                    : "Not specified"}
-                </span>
-              </p>
-            </div>
-          </div>
-
-          {/* Score Summary Banner */}
-          <div className="pdf-content-layer bg-slate-800 text-white rounded-lg px-5 py-4 mb-8 flex items-center justify-between print-avoid-break">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">Total Points Earned</p>
-              <p className="text-4xl font-black" style={{ color: status.color }}>
-                {breakdown.total}
-              </p>
-              <p className="text-xs opacity-50 mt-0.5">Department of Home Affairs statutory cutoff: 65 points</p>
-            </div>
-            <div className="text-right">
-              <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">Assessment</p>
-              <p className="text-xl font-black" style={{ color: status.color }}>
-                {status.label}
-              </p>
-              <p className="text-xs opacity-50 mt-1 max-w-xs">{status.description}</p>
-            </div>
-          </div>
-
-          {/* Itemized Table */}
-          <div className="print-avoid-break mb-6">
-            <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider mb-3">
-              Official Points Test Criteria Summary
-            </h3>
-            <table className="w-full text-xs border border-slate-200">
-              <thead>
-                <tr className="bg-slate-800 text-white font-bold">
-                  <th className="p-2 text-left">Category / Criterion</th>
-                  <th className="p-2 text-left">Candidate Claim</th>
-                  <th className="p-2 text-right">Max</th>
-                  <th className="p-2 text-right">Awarded</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200 text-slate-700">
-                <tr>
-                  <td className="p-2 font-semibold">Visa Subclass Nomination</td>
-                  <td className="p-2">
-                    {form.subclass === "189"
-                      ? "Subclass 189 (Independent)"
-                      : form.subclass === "190"
-                      ? "Subclass 190 (State Nominated)"
-                      : form.subclass === "491"
-                      ? "Subclass 491 (Regional Nominated/Sponsored)"
-                      : "Unselected"}
-                  </td>
-                  <td className="p-2 text-right">15</td>
-                  <td className="p-2 text-right font-bold">{breakdown.subclassScore}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-semibold">Age Bracket</td>
-                  <td className="p-2">
-                    {form.age === "18_24"
-                      ? "18 to 24 years"
-                      : form.age === "25_32"
-                      ? "25 to 32 years"
-                      : form.age === "33_39"
-                      ? "33 to 39 years"
-                      : form.age === "40_44"
-                      ? "40 to 44 years"
-                      : form.age === "45_plus"
-                      ? "45+ years (ineligible)"
-                      : "Unselected"}
-                  </td>
-                  <td className="p-2 text-right">30</td>
-                  <td className="p-2 text-right font-bold">{breakdown.ageScore}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-semibold">English Language Proficiency</td>
-                  <td className="p-2 capitalize">{form.english ? `${form.english} English` : "Unselected"}</td>
-                  <td className="p-2 text-right">20</td>
-                  <td className="p-2 text-right font-bold">{breakdown.englishScore}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-semibold">Overseas Skilled Employment</td>
-                  <td className="p-2">
-                    {form.overseasExp === "less_than_3"
-                      ? "< 3 years"
-                      : form.overseasExp === "3_4_years"
-                      ? "3 to 4 years"
-                      : form.overseasExp === "5_7_years"
-                      ? "5 to 7 years"
-                      : form.overseasExp === "8_plus_years"
-                      ? "8+ years"
-                      : "Unselected"}
-                  </td>
-                  <td className="p-2 text-right">15</td>
-                  <td className="p-2 text-right font-bold">{breakdown.overseasExpScore}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-semibold">Australian Skilled Employment</td>
-                  <td className="p-2">
-                    {form.australianExp === "less_than_1"
-                      ? "< 1 year"
-                      : form.australianExp === "1_2_years"
-                      ? "1 to 2 years"
-                      : form.australianExp === "3_4_years"
-                      ? "3 to 4 years"
-                      : form.australianExp === "5_7_years"
-                      ? "5 to 7 years"
-                      : form.australianExp === "8_plus_years"
-                      ? "8+ years"
-                      : "Unselected"}
-                  </td>
-                  <td className="p-2 text-right">20</td>
-                  <td className="p-2 text-right font-bold">{breakdown.australianExpScore}</td>
-                </tr>
-                {breakdown.employmentCappedDeduction > 0 && (
-                  <tr className="bg-amber-50 text-amber-900">
-                    <td className="p-2 italic" colSpan={2}>
-                      Combined Employment Cap Adjustment (overseas + Australian capped at 20)
-                    </td>
-                    <td className="p-2 text-right">20 cap</td>
-                    <td className="p-2 text-right font-bold">-{breakdown.employmentCappedDeduction}</td>
-                  </tr>
-                )}
-                <tr>
-                  <td className="p-2 font-semibold">Educational Qualification</td>
-                  <td className="p-2">
-                    {form.qualification === "doctorate"
-                      ? "Doctorate / PhD"
-                      : form.qualification === "bachelor_master"
-                      ? "Bachelor or Master's Degree"
-                      : form.qualification === "diploma_trade" || form.qualification === "recognized_award"
-                      ? "Australian Diploma / Trade / Recognized Award"
-                      : form.qualification === "none"
-                      ? "None"
-                      : "Unselected"}
-                  </td>
-                  <td className="p-2 text-right">20</td>
-                  <td className="p-2 text-right font-bold">{breakdown.qualificationScore}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-semibold">Specialist STEM / ICT Research Degree</td>
-                  <td className="p-2">{form.specialistEducation === true ? "Yes" : "No"}</td>
-                  <td className="p-2 text-right">10</td>
-                  <td className="p-2 text-right font-bold">{breakdown.specialistEducationScore}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-semibold">Australian Study Requirement</td>
-                  <td className="p-2">{form.australianStudy === true ? "Yes" : "No"}</td>
-                  <td className="p-2 text-right">5</td>
-                  <td className="p-2 text-right font-bold">{breakdown.australianStudyScore}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-semibold">Professional Year in Australia</td>
-                  <td className="p-2">{form.professionalYear === true ? "Yes" : "No"}</td>
-                  <td className="p-2 text-right">5</td>
-                  <td className="p-2 text-right font-bold">{breakdown.professionalYearScore}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-semibold">Credentialled Community Language (NAATI CCL)</td>
-                  <td className="p-2">{form.communityLanguage === true ? "Yes" : "No"}</td>
-                  <td className="p-2 text-right">5</td>
-                  <td className="p-2 text-right font-bold">{breakdown.communityLanguageScore}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-semibold">Study in Regional Australia</td>
-                  <td className="p-2">{form.regionalStudy === true ? "Yes" : "No"}</td>
-                  <td className="p-2 text-right">5</td>
-                  <td className="p-2 text-right font-bold">{breakdown.regionalStudyScore}</td>
-                </tr>
-                <tr>
-                  <td className="p-2 font-semibold">Partner Skills</td>
-                  <td className="p-2">
-                    {form.partnerSkills === "single_or_citizen"
-                      ? "Single OR Partner is Aus Citizen/PR"
-                      : form.partnerSkills === "partner_skills_english"
-                      ? "Partner with Competent English + Skills"
-                      : form.partnerSkills === "partner_english_only"
-                      ? "Partner with Competent English only"
-                      : "None of the above"}
-                  </td>
-                  <td className="p-2 text-right">10</td>
-                  <td className="p-2 text-right font-bold">{breakdown.partnerSkillsScore}</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr className="bg-slate-100 font-bold border-t-2 border-slate-400">
-                  <td className="p-2.5 text-slate-900" colSpan={2}>
-                    TOTAL GENERAL SKILLED MIGRATION POINTS
-                  </td>
-                  <td className="p-2.5 text-right text-slate-500">65 min</td>
-                  <td className="p-2.5 text-right text-base text-slate-900">{breakdown.total}</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-
-          {/* Legal / Department of Home Affairs Disclaimer */}
-          <div className="bg-slate-50 border border-slate-200 rounded p-3 text-[10px] text-slate-500 leading-relaxed print-avoid-break">
-            <strong className="text-slate-700">Official Disclaimer:</strong> Points calculated above
-            reflect the Department of Home Affairs General Skilled Migration (GSM) points table.
-            Achieving 65 points establishes statutory eligibility to lodge an Expression of Interest
-            (EOI) via SkillSelect, but does not guarantee an Invitation to Apply (ITA). State
-            nominations have distinct occupation lists, employment criteria, and invitation rounds.
-            For full case evaluation, please contact MG International Visa Consultancy.
-          </div>
-        </div>
-      </div>
+      <ImmigrationReport
+        kind="gsm"
+        programme="Australia General Skilled Migration · Points Test"
+        title="GSM Points Assessment"
+        clientName={clientName.trim() || "Client"}
+        date={reportDate || todayLabel()}
+        reference={reportRef}
+        score={breakdown.total}
+        scoreContext="Points claimed · 65 is the minimum to lodge an Expression of Interest"
+        scale={{
+          max: Math.max(100, breakdown.total),
+          endLabel: breakdown.total > 100 ? String(breakdown.total) : "100+",
+          marks: [{ value: 65, label: "Minimum · 65" }, { value: 85, label: "Highly competitive · 85" }],
+        }}
+        status={status}
+        facts={[
+          { label: "Target visa", value: optionLabel(GSM_SUBCLASS_OPTIONS, form.subclass) },
+          { label: "Age", value: optionLabel(GSM_AGE_OPTIONS, form.age) },
+          { label: "English", value: optionLabel(GSM_ENGLISH_OPTIONS, form.english) },
+          { label: "Qualification", value: optionLabel(GSM_QUALIFICATION_OPTIONS, form.qualification) },
+          { label: "Overseas employment", value: optionLabel(GSM_OVERSEAS_EXP_OPTIONS, form.overseasExp) },
+          { label: "Australian employment", value: optionLabel(GSM_AUSTRALIAN_EXP_OPTIONS, form.australianExp) },
+          { label: "Partner", value: optionLabel(GSM_PARTNER_OPTIONS, form.partnerSkills) },
+        ]}
+        sections={[
+          {
+            key: "A",
+            title: "Core eligibility",
+            caption: "Visa pathway, age and English language ability",
+            rows: [
+              { label: "Visa subclass nomination", claim: optionLabel(GSM_SUBCLASS_OPTIONS, form.subclass), max: 15, earned: breakdown.subclassScore },
+              { label: "Age at invitation", claim: optionLabel(GSM_AGE_OPTIONS, form.age), max: 30, earned: breakdown.ageScore },
+              { label: "English language ability", claim: optionLabel(GSM_ENGLISH_OPTIONS, form.english), max: 20, earned: breakdown.englishScore },
+            ],
+          },
+          {
+            key: "B",
+            title: "Skilled employment",
+            caption: "Nominated-occupation employment in the last 10 years, capped at 20 combined",
+            max: 20,
+            rows: [
+              { label: "Overseas skilled employment", claim: optionLabel(GSM_OVERSEAS_EXP_OPTIONS, form.overseasExp), max: 15, earned: breakdown.overseasExpScore },
+              { label: "Australian skilled employment", claim: optionLabel(GSM_AUSTRALIAN_EXP_OPTIONS, form.australianExp), max: 20, earned: breakdown.australianExpScore },
+              ...(breakdown.employmentCappedDeduction > 0
+                ? [{ label: "Combined employment cap", claim: "Overseas and Australian employment together count for at most 20 points", earned: -breakdown.employmentCappedDeduction }]
+                : []),
+            ],
+          },
+          {
+            key: "C",
+            title: "Education and Australian study",
+            caption: "Highest qualification and study completed in Australia",
+            rows: [
+              { label: "Educational qualification", claim: optionLabel(GSM_QUALIFICATION_OPTIONS, form.qualification), max: 20, earned: breakdown.qualificationScore },
+              { label: "Specialist STEM / ICT research degree", claim: yesNo(form.specialistEducation), max: 10, earned: breakdown.specialistEducationScore },
+              { label: "Australian study requirement", claim: yesNo(form.australianStudy), max: 5, earned: breakdown.australianStudyScore },
+              { label: "Study in regional Australia", claim: yesNo(form.regionalStudy), max: 5, earned: breakdown.regionalStudyScore },
+            ],
+          },
+          {
+            key: "D",
+            title: "Other factors",
+            caption: "Professional Year, community language and partner skills",
+            rows: [
+              { label: "Professional Year in Australia", claim: yesNo(form.professionalYear), max: 5, earned: breakdown.professionalYearScore },
+              { label: "Credentialled community language (NAATI CCL)", claim: yesNo(form.communityLanguage), max: 5, earned: breakdown.communityLanguageScore },
+              { label: "Partner skills", claim: optionLabel(GSM_PARTNER_OPTIONS, form.partnerSkills), max: 10, earned: breakdown.partnerSkillsScore },
+            ],
+          },
+        ]}
+        totalLabel="Total GSM points"
+        totalMaxLabel="points · 65 minimum"
+        notes={[
+          "Points shown reflect the Department of Home Affairs General Skilled Migration points table. Reaching 65 points establishes eligibility to lodge an Expression of Interest (EOI) through SkillSelect, but does not guarantee an Invitation to Apply.",
+          "State and territory nominations have their own occupation lists, employment criteria and invitation rounds. For a full case evaluation, contact MG International Visa Consultancy.",
+        ]}
+      />
     </>
   );
 }

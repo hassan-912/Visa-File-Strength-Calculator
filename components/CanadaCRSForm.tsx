@@ -20,6 +20,7 @@ import {
   testTypeName,
 } from "@/lib/canada-crs";
 import type { CRSForm, CRSBreakdown, LangTestType, LangAbility } from "@/lib/canada-crs";
+import ImmigrationReport, { makeReportReference, printReport } from "@/components/ImmigrationReport";
 
 // ─────────────────────────────────────────────────────────────────
 // Tiny reusable components
@@ -503,6 +504,20 @@ const BREAKDOWN_ITEMS: Array<{ key: keyof CRSBreakdown; label: string; maxPoints
   { key: "additionalScore", label: "Additional Points (max 600)", maxPoints: 600, icon: "🏆" },
 ];
 
+const todayLabel = () => new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+const optionLabel = (options: Array<{ value: string; label: string }>, value: string) =>
+  options.find((o) => o.value === value)?.label ?? "Not provided";
+
+function langClaim(test?: LangTestType, raw?: RawScores) {
+  if (!test) return "No test provided";
+  const scores = LANG_ABILITIES.map((a) => {
+    const band = getTestScoreOptions(test, a).find((o) => o.rawValue === raw?.[a]);
+    return `${ABILITY_LABELS[a]} ${band ? band.label.replace(/\s+/g, " ") : "–"}`;
+  }).join(" · ");
+  return `${testTypeName(test)} — ${scores}`;
+}
+
 function getCRSStatus(score: number) {
   if (score >= 470) return { label: "Competitive", color: "#16A34A", emoji: "🟢", sublabel: "Your CRS score is competitive for recent Express Entry draws." };
   if (score >= 380) return { label: "Moderate", color: "#EA580C", emoji: "🟡", sublabel: "Your profile has potential. Consider boosting language scores or gaining Canadian experience." };
@@ -524,15 +539,24 @@ function CRSResults({ form, breakdown, onEdit, lang1TestType, lang2TestType, lan
   const [showModal, setShowModal] = useState(false);
   const [clientName, setClientName] = useState("");
   const [reportDate, setReportDate] = useState("");
+  const [reportRef] = useState(() => makeReportReference("CRS"));
 
   const displayScore = breakdown.total;
   const status = getCRSStatus(breakdown.total);
+  const ws = form.withSpouse;
+  const additionalClaim = [
+    form.provincialNomination && "Provincial nomination",
+    form.arrangedEmployment !== "none" && optionLabel(ARRANGED_EMPLOYMENT_OPTIONS, form.arrangedEmployment).replace(/^Yes — /, "Arranged employment, "),
+    form.postSecondaryCanada !== "none" && `Canadian study, ${optionLabel(POST_SECONDARY_CANADA_OPTIONS, form.postSecondaryCanada)}`,
+    form.siblingInCanada && "Sibling in Canada",
+    breakdown.frenchBonusScore > 0 && `French-language ability (${breakdown.frenchBonusScore} pts)`,
+  ].filter(Boolean).join(" · ") || "None claimed";
 
 
   const handleGeneratePdf = () => {
-    setReportDate(new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }));
+    setReportDate(todayLabel());
     setShowModal(false);
-    setTimeout(() => window.print(), 100);
+    printReport("crs");
   };
 
   // Gauge
@@ -724,202 +748,85 @@ function CRSResults({ form, breakdown, onEdit, lang1TestType, lang2TestType, lan
         )}
       </div>
 
-      {/* ── Fixed Background Watermark ── */}
-      <div className="hidden print:block pdf-watermark-bg">
-        <img src="/Logo W.png" alt="" aria-hidden="true" className="filter invert" />
-      </div>
-
-      <div
-        id="printable-crs-pdf"
-        className="hidden print:flex w-full bg-transparent text-slate-900 font-sans"
-        style={{ printColorAdjust: "exact", flexDirection: "column" } as React.CSSProperties}
-      >
-        {/* ── PDF Header ── */}
-        <div className="pdf-content-layer flex justify-between items-end border-b-4 border-slate-800 pb-4 mb-6 pt-2 print-avoid-break">
-          <div className="flex flex-col">
-            <img src="/Logo W.png" alt="MG Visa" className="h-10 object-contain filter invert mb-2 w-24" />
-            <p className="text-base font-black text-slate-800 tracking-wider">MG International Visa Consultancy</p>
-            <p className="text-[10px] text-slate-500 mt-0.5">Cairo | Dubai | Zayed &nbsp;·&nbsp; Info@mg-visa.com</p>
-          </div>
-          <div className="text-right">
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Immigration Assessment</p>
-            <h1 className="text-xl font-black text-slate-900 uppercase tracking-widest mb-1">Canada Express Entry</h1>
-            <p className="text-sm font-bold text-slate-600">Comprehensive Ranking System (CRS) Report</p>
-          </div>
-        </div>
-
-        {/* ── PDF Content ── */}
-        <div className="print-content-flow">
-          {/* Client Info Banner */}
-          <div className="flex justify-between items-center bg-slate-50 border border-slate-200 rounded-lg p-4 mb-6 print-avoid-break">
-            <div>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Prepared For</p>
-              <p className="text-lg font-black text-black">{clientName || "Client"}</p>
-            </div>
-            <div className="text-right">
-              <p className="text-xs text-slate-500 mb-1">
-                <span className="font-semibold">Assessment Date:</span> {reportDate}
-              </p>
-              <p className="text-xs text-slate-500">
-                <span className="font-semibold">Total CRS Score:</span> <span className="font-black text-slate-900">{breakdown.total} / 1,200</span>
-              </p>
-            </div>
-          </div>
-
-          {/* Score Summary Banner */}
-          <div className="pdf-content-layer bg-slate-800 text-white rounded-lg px-5 py-4 mb-8 flex items-center justify-between print-avoid-break">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">Total CRS Score</p>
-              <p className="text-4xl font-black" style={{ color: getCRSStatus(breakdown.total).color }}>{breakdown.total}</p>
-              <p className="text-xs opacity-50 mt-0.5">out of 1,200 maximum points</p>
-            </div>
-            <div className="text-right">
-              <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">Assessment</p>
-              <p className="text-xl font-black" style={{ color: getCRSStatus(breakdown.total).color }}>
-                {getCRSStatus(breakdown.total).label}
-              </p>
-              <p className="text-xs opacity-50 mt-1 max-w-xs">{getCRSStatus(breakdown.total).sublabel}</p>
-            </div>
-          </div>
-
-          {/* Section Tables */}
-          {[
+        <ImmigrationReport
+        kind="crs"
+          programme="Canada Express Entry · Comprehensive Ranking System"
+          title="CRS Score Assessment"
+          clientName={clientName.trim() || "Client"}
+          date={reportDate || todayLabel()}
+          reference={reportRef}
+          score={breakdown.total}
+          scoreContext="CRS points, out of a maximum 1,200"
+          scale={{
+            max: breakdown.total > 600 ? 1200 : 600,
+            endLabel: breakdown.total > 600 ? "1,200" : "600+",
+            marks: [{ value: 380, label: "Moderate · 380" }, { value: 470, label: "Competitive · 470" }],
+          }}
+          status={{ label: status.label, color: status.color, description: status.sublabel }}
+          facts={[
+            { label: "Application", value: ws ? "With accompanying spouse or partner" : "Single applicant" },
+            { label: "Age", value: optionLabel(AGE_OPTIONS, form.age) },
+            { label: "Education", value: optionLabel(EDUCATION_OPTIONS, form.education) },
+            { label: "First language", value: lang1TestType ? testTypeName(lang1TestType) : "Not provided" },
+            { label: "Second language", value: lang2TestType ? testTypeName(lang2TestType) : "None" },
+            { label: "Canadian experience", value: optionLabel(CAN_WORK_EXP_OPTIONS, form.canWorkExp) },
+            { label: "Foreign experience", value: optionLabel(FOREIGN_WORK_EXP_OPTIONS, form.foreignWorkExp) },
+          ]}
+          sections={[
             {
-              section: "A",
-              title: "Core / Human Capital Factors",
-              subtitle: "Scored on a per-applicant basis (single or with spouse scale)",
+              key: "A",
+              title: "Core / human capital",
+              caption: ws ? "Scored on the with-spouse scale" : "Scored on the single-applicant scale",
               rows: [
-                { label: "Age", max: 110, earned: breakdown.ageScore },
-                { label: "Education Level", max: 150, earned: breakdown.educationScore },
-                {
-                  label: lang1TestType
-                    ? `English Language — ${testTypeName(lang1TestType)} (4 abilities × CLB scale)`
-                    : "English Language (4 abilities × CLB scale)",
-                  max: 136,
-                  earned: breakdown.lang1Score,
-                },
-                {
-                  label: lang2TestType
-                    ? `French Language — ${testTypeName(lang2TestType)} (4 abilities × CLB scale)`
-                    : "French Language (4 abilities × CLB scale)",
-                  max: 24,
-                  earned: breakdown.lang2Score,
-                },
-                { label: "Canadian Work Experience", max: 80, earned: breakdown.canWorkExpScore },
+                { label: "Age", claim: optionLabel(AGE_OPTIONS, form.age), max: ws ? 100 : 110, earned: breakdown.ageScore },
+                { label: "Level of education", claim: optionLabel(EDUCATION_OPTIONS, form.education), max: ws ? 140 : 150, earned: breakdown.educationScore },
+                { label: "First official language", claim: langClaim(lang1TestType, lang1RawScores), max: ws ? 128 : 136, earned: breakdown.lang1Score },
+                { label: "Second official language", claim: langClaim(lang2TestType, lang2RawScores), max: ws ? 22 : 24, earned: breakdown.lang2Score },
+                { label: "Canadian work experience", claim: optionLabel(CAN_WORK_EXP_OPTIONS, form.canWorkExp), max: ws ? 70 : 80, earned: breakdown.canWorkExpScore },
               ],
             },
-            ...(form.withSpouse ? [{
-              section: "B",
-              title: "Spouse / Common-Law Partner Factors",
-              subtitle: "Applicable only when applying with an accompanying partner",
+            ...(ws ? [{
+              key: "B",
+              title: "Spouse or common-law partner",
+              caption: "Applies when the partner accompanies the applicant",
               rows: [
-                { label: "Spouse Education Level", max: 10, earned: breakdown.spouseEduScore },
-                { label: "Spouse Official Language 1 (4 abilities)", max: 20, earned: breakdown.spouseLangScore },
-                { label: "Spouse Canadian Work Experience", max: 10, earned: breakdown.spouseExpScore },
+                { label: "Partner's education", claim: optionLabel(EDUCATION_OPTIONS, form.spouse_education), max: 10, earned: breakdown.spouseEduScore },
+                {
+                  label: "Partner's first official language",
+                  claim: SPOUSE_ABILITIES.map((a) => `${a.label} ${optionLabel(SPOUSE_LANG1_OPTIONS, String(form[a.key])).replace("CLB ", "")}`).join(" · ") + " (CLB)",
+                  max: 20,
+                  earned: breakdown.spouseLangScore,
+                },
+                { label: "Partner's Canadian work experience", claim: optionLabel(CAN_WORK_EXP_OPTIONS, form.spouse_canWorkExp), max: 10, earned: breakdown.spouseExpScore },
               ],
             }] : []),
             {
-              section: form.withSpouse ? "C" : "B",
-              title: "Skill Transferability Factors",
-              subtitle: "Combinations of education, language & experience (capped at 100 pts)",
+              key: ws ? "C" : "B",
+              title: "Skill transferability",
+              caption: "Combinations of education, language and work experience, capped at 100",
               rows: [
-                { label: "Skill Transferability (combined sub-factors)", max: 100, earned: breakdown.skillTransferScore },
+                {
+                  label: "Combined transferability factors",
+                  claim: `Foreign experience: ${optionLabel(FOREIGN_WORK_EXP_OPTIONS, form.foreignWorkExp)} · Trade certificate: ${form.tradesCertificate ? "Yes" : "No"}`,
+                  max: 100,
+                  earned: breakdown.skillTransferScore,
+                },
               ],
             },
             {
-              section: form.withSpouse ? "D" : "C",
-              title: "Additional Points",
-              subtitle: "Sibling in Canada, French bonus, arranged employment, provincial nomination (capped at 600 pts)",
-              rows: [
-                { label: "Additional Points (combined sub-factors)", max: 600, earned: breakdown.additionalScore },
-              ],
+              key: ws ? "D" : "C",
+              title: "Additional points",
+              caption: "Nomination, arranged employment, Canadian study, sibling and French ability, capped at 600",
+              rows: [{ label: "Additional factors", claim: additionalClaim, max: 600, earned: breakdown.additionalScore }],
             },
-          ].map((sec) => {
-            const secTotal = sec.rows.reduce((s, r) => s + r.earned, 0);
-            const secMax = sec.rows.reduce((s, r) => s + r.max, 0);
-            return (
-              <div key={sec.section} className="pdf-content-layer print-avoid-break mb-7">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="flex items-center justify-center w-7 h-7 rounded bg-slate-800 text-white text-xs font-black shrink-0">
-                    {sec.section}
-                  </div>
-                  <div>
-                    <p className="text-sm font-black text-slate-800 uppercase tracking-wide">{sec.title}</p>
-                    <p className="text-[10px] text-slate-400">{sec.subtitle}</p>
-                  </div>
-                </div>
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr style={{ backgroundColor: "#283840", color: "white" }}>
-                      <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider w-1/2">Factor</th>
-                      <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider text-center">Max</th>
-                      <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider text-center">Score</th>
-                      <th className="py-2 px-3 text-xs font-bold uppercase tracking-wider text-right">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {sec.rows.map((row, i) => {
-                      const pct = row.max > 0 ? (row.earned / row.max) * 100 : 0;
-                      const status = pct === 100 ? "Full" : pct >= 70 ? "Strong" : pct >= 40 ? "Moderate" : row.earned === 0 ? "—" : "Low";
-                      return (
-                        <tr key={row.label} className={`border-b border-slate-100 ${i % 2 === 0 ? "" : "bg-slate-50"}`}>
-                          <td className="py-2.5 px-3 text-xs font-semibold text-slate-800">{row.label}</td>
-                          <td className="py-2.5 px-3 text-xs text-slate-500 text-center">{row.max}</td>
-                          <td className="py-2.5 px-3 text-xs font-black text-slate-900 text-center">{row.earned}</td>
-                          <td className="py-2.5 px-3 text-[10px] font-bold text-slate-400 uppercase text-right">{status}</td>
-                        </tr>
-                      );
-                    })}
-                    <tr style={{ backgroundColor: "#f1f5f9" }}>
-                      <td className="py-2 px-3 text-xs font-black text-slate-700 uppercase">Section {sec.section} Sub-total</td>
-                      <td className="py-2 px-3 text-xs font-bold text-slate-500 text-center">{secMax}</td>
-                      <td className="py-2 px-3 text-xs font-black text-slate-900 text-center">{secTotal}</td>
-                      <td />
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            );
-          })}
-
-          {/* Grand Total */}
-          <div className="pdf-content-layer flex justify-end mt-4 mb-2 print-avoid-break">
-            <div className="w-1/2 border-t-4 border-slate-800 pt-3">
-              <div className="flex justify-between items-center">
-                <span className="text-base font-black uppercase text-slate-900">Total CRS Score</span>
-                <span className="text-3xl font-black" style={{ color: getCRSStatus(breakdown.total).color }}>{breakdown.total}</span>
-              </div>
-              <div className="flex justify-between mt-1">
-                <span className="text-xs text-slate-400 font-semibold">Maximum possible</span>
-                <span className="text-xs font-bold text-slate-600">1,200 points</span>
-              </div>
-              <div className="text-right mt-1">
-                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: getCRSStatus(breakdown.total).color }}>
-                  {getCRSStatus(breakdown.total).label}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* end .print-content-flow */}
-
-        {/* ── PDF Footer ── */}
-        <div className="pdf-content-layer border-t-2 border-slate-200 pt-3 mt-6 pb-2 flex justify-between items-end print-avoid-break">
-          <div className="text-left max-w-2xl">
-            <p className="text-[10px] font-bold text-slate-600 tracking-widest uppercase mb-1">
-              Confidential — Prepared for {clientName || "Client"}
-            </p>
-            <p className="text-[9px] text-slate-400 leading-relaxed">
-              This CRS assessment is indicative only and relies on the official IRCC Comprehensive Ranking System grid.
-              It does not constitute legal or immigration advice. For personalised guidance, contact an MG Visa licensed advisor.
-              <br /><strong>mg-visa.com</strong> · Info@mg-visa.com · 17621
-            </p>
-          </div>
-          <div className="text-right">
-            <p className="text-[10px] font-bold text-slate-500 mb-1">MG International Visa Consultancy</p>
-          </div>
-        </div>
-      </div>
+          ]}
+          totalLabel="Total CRS score"
+          totalMaxLabel="/ 1,200"
+          notes={[
+            "This CRS assessment is indicative only and is based on the official IRCC Comprehensive Ranking System grid. It does not constitute legal or immigration advice, and it does not guarantee an Invitation to Apply.",
+            "The score reflects the information provided on the date above. Re-check it whenever a detail changes, such as new language results, a birthday, or additional work experience. For personalised guidance, contact a licensed MG Visa advisor.",
+          ]}
+        />
     </>
   );
 }
