@@ -20,7 +20,7 @@ import type {
   AustraliaGSMBreakdown,
   GSMOptionMeta,
 } from "@/lib/australia-gsm";
-import ImmigrationReport, { makeReportReference, printReport } from "@/components/ImmigrationReport";
+import ClientReport, { makeReportReference, printReport } from "@/components/ClientReport";
 
 // ─────────────────────────────────────────────────────────────────
 // Clickable Radio Card Option Component (Snappy #283840 Theme)
@@ -547,7 +547,7 @@ function AustraliaGSMResultsView({
         )}
       </div>
 
-      <ImmigrationReport
+      <ClientReport
         kind="gsm"
         programme="Australia General Skilled Migration · Points Test"
         title="GSM Points Assessment"
@@ -617,8 +617,8 @@ function AustraliaGSMResultsView({
             ],
           },
         ]}
-        totalLabel="Total GSM points"
-        totalMaxLabel="points · 65 minimum"
+        detailsHeading="Detailed points breakdown"
+        total={{ label: "Total GSM points", value: breakdown.total.toLocaleString("en-US"), context: "points · 65 minimum" }}
         notes={[
           "Points shown reflect the Department of Home Affairs General Skilled Migration points table. Reaching 65 points establishes eligibility to lodge an Expression of Interest (EOI) through SkillSelect, but does not guarantee an Invitation to Apply.",
           "State and territory nominations have their own occupation lists, employment criteria and invitation rounds. For a full case evaluation, contact MG International Visa Consultancy.",

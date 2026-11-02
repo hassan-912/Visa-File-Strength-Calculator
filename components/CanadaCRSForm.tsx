@@ -20,7 +20,7 @@ import {
   testTypeName,
 } from "@/lib/canada-crs";
 import type { CRSForm, CRSBreakdown, LangTestType, LangAbility } from "@/lib/canada-crs";
-import ImmigrationReport, { makeReportReference, printReport } from "@/components/ImmigrationReport";
+import ClientReport, { makeReportReference, printReport } from "@/components/ClientReport";
 
 // ─────────────────────────────────────────────────────────────────
 // Tiny reusable components
@@ -748,7 +748,7 @@ function CRSResults({ form, breakdown, onEdit, lang1TestType, lang2TestType, lan
         )}
       </div>
 
-        <ImmigrationReport
+        <ClientReport
         kind="crs"
           programme="Canada Express Entry · Comprehensive Ranking System"
           title="CRS Score Assessment"
@@ -820,8 +820,8 @@ function CRSResults({ form, breakdown, onEdit, lang1TestType, lang2TestType, lan
               rows: [{ label: "Additional factors", claim: additionalClaim, max: 600, earned: breakdown.additionalScore }],
             },
           ]}
-          totalLabel="Total CRS score"
-          totalMaxLabel="/ 1,200"
+          detailsHeading="Detailed points breakdown"
+          total={{ label: "Total CRS score", value: breakdown.total.toLocaleString("en-US"), context: "/ 1,200" }}
           notes={[
             "This CRS assessment is indicative only and is based on the official IRCC Comprehensive Ranking System grid. It does not constitute legal or immigration advice, and it does not guarantee an Invitation to Apply.",
             "The score reflects the information provided on the date above. Re-check it whenever a detail changes, such as new language results, a birthday, or additional work experience. For personalised guidance, contact a licensed MG Visa advisor.",
