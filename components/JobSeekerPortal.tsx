@@ -138,7 +138,6 @@ export default function JobSeekerPortal() {
           {route === "austria" && <>
             <Section number="01" title="Qualifications & skills">
               {select("education", "Highest qualifying education", [["none", "None of these"], ["degree", "Higher education, 4+ years"], ["mint", "MINT degree, 4+ years"], ["phd", "PhD / habilitation"]])}
-              {yesNo("research", "Documented research / innovation?")}{yesNo("awards", "Recognised awards?")}
             </Section>
             <Section number="02" title="Age & relevant experience">
               {numeric("age", "Age", 18, 100)}{numeric("years", "Relevant work experience (years)", 0, 60, 0.5)}

@@ -11,7 +11,7 @@ vm.runInNewContext(compiled, context);
 const { assessJobSeeker: assess, fundingFor, checkBankFunds, parseBankBalance } = context.exports;
 const fx = { rates: { EUR: 62.5, SEK: 6 }, updatedAt: new Date().toISOString(), nextUpdateAt: new Date(Date.now() + 86400000).toISOString() };
 const german = { recognitionSource: "anabin", anabinInstitutionId: "111111111111111111111111", anabinDegreeId: "222222222222222222222222", anabinDegreeAssociation: "institution", institutionStatus: "hplus", degreeStatus: "equivalent", age: "25", experience: "two", language: "german", languageLevel: "b1", bankCurrency: "EUR", bankBalance: "13,092" };
-const austria = { education: "mint", research: "no", awards: "no", age: "34", years: "5", austrianExperience: "no", language: "german", languageLevel: "a2", bankCurrency: "EUR", bankBalance: "7850.34" };
+const austria = { education: "mint", age: "34", years: "5", austrianExperience: "no", language: "german", languageLevel: "a2", bankCurrency: "EUR", bankBalance: "7850.34" };
 const training = { age: "34", german: "b2", school: "diploma", bankCurrency: "EUR", bankBalance: "9819" };
 const sweden = { secondCycle: "yes", outsideSweden: "yes", years: "3", bankCurrency: "SEK", bankBalance: "117000" };
 const points = (result, prefix) => result.breakdown.find(item => item.label.startsWith(prefix)).points;
@@ -80,10 +80,20 @@ test("a six-month balance becomes insufficient when switching to nine months", (
 test("recognised university and degree still show every profile point", () => {
   const result = assess("germany", german);
   assert.equal(result.direct, true);
-  assert.equal(result.total, 6);
-  assert.equal(result.breakdown.length, 3);
+  assert.equal(result.total, 10);
+  assert.equal(result.breakdown.length, 4);
   assert.equal(result.threshold, null);
   assert.equal(result.meetsCriteria, true);
+});
+test("an H+ university with an equivalent degree linked to it adds four Anabin points", () => {
+  assert.equal(points(assess("germany", german), "Anabin"), 4);
+  assert.equal(assess("germany", { ...german, degreeStatus: "", anabinDegreeId: "" }).total, 6);
+});
+test("partial, conditional, country-level or unselected Anabin records add no recognition points", () => {
+  for (const changes of [{ degreeStatus: "partial" }, { institutionStatus: "conditional" }, { anabinDegreeAssociation: "country" }, { degreeStatus: "unknown" }, { institutionStatus: "negative" }, { recognitionSource: "manual" }, { anabinInstitutionId: "" }, { anabinDegreeId: "" }]) {
+    assert.equal(points(assess("germany", { ...german, ...changes }), "Anabin"), 0);
+  }
+  assert.equal(points(assess("germany", {}), "Anabin"), 0);
 });
 test("a university listing alone cannot establish degree recognition", () => {
   for (const changes of [{ degreeStatus: "unknown" }, { degreeStatus: "negative" }, { institutionStatus: "unknown" }, { institutionStatus: "negative" }, { degreeStatus: "partial" }, { institutionStatus: "conditional" }]) {
@@ -108,17 +118,22 @@ test("German language follows the requested table and never counts a second lang
 });
 test("removed German bonus inputs and experience tiers cannot stack hidden points", () => {
   const result = assess("germany", { ...german, experience: "five", partial: "yes", shortage: "yes", previousStay: "yes", partner: "yes" });
-  assert.equal(result.total, 7);
+  assert.equal(result.total, 11);
   assert.equal(points(result, "Relevant"), 3);
 });
 test("Austria has no salary or Austrian study points, but retains experience and qualification caps", () => {
   assert.equal(assess("austria", austria).total, 70);
   assert.equal(assess("austria", { ...austria, salary: "upper", austrianStudies: "completed" }).total, 70);
-  const maximum = assess("austria", { ...austria, education: "phd", research: "yes", awards: "yes", years: "30", austrianExperience: "yes" });
+  const maximum = assess("austria", { ...austria, education: "phd", years: "30", austrianExperience: "yes" });
   assert.equal(maximum.total, 90);
   assert.equal(points(maximum, "Qualifications"), 40);
   assert.equal(points(maximum, "Relevant"), 20);
   assert.equal(points(assess("austria", { ...austria, years: "3.5" }), "Relevant"), 7);
+});
+test("Austria no longer awards points for documented research or recognised awards", () => {
+  for (const [education, expected] of [["none", 0], ["degree", 20], ["mint", 30], ["phd", 40]]) {
+    assert.equal(points(assess("austria", { ...austria, education, research: "yes", awards: "yes" }), "Qualifications"), expected);
+  }
 });
 test("Austria permits exactly one language, with the requested thresholds and ten-point cap", () => {
   for (const language of ["german", "english"]) {

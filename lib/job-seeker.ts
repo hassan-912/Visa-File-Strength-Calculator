@@ -105,6 +105,7 @@ export function assessJobSeeker(route: JobSeekerRoute, form: JobSeekerAnswers, f
     if (!direct && ((form.language === "german" && selectedLevel < 1) || (form.language === "english" && selectedLevel < 4))) issues.push("For the points route, document German A1 or English B2 or higher in your selected language.");
     if (!form.languageLevel) issues.push("Select your language level.");
     if (!["none", "two", "five"].includes(form.experience)) issues.push("Select your relevant experience.");
+    add("Anabin recognition", direct ? 4 : 0);
     add("Age", age >= 18 && age <= 35 ? 2 : age > 35 && age < 40 ? 1 : 0);
     add("Relevant experience", form.experience === "five" ? 3 : form.experience === "two" ? 2 : 0);
     const languagePoints = form.language === "german" ? (selectedLevel >= 4 ? 3 : selectedLevel === 3 ? 2 : selectedLevel === 2 ? 1 : 0) : form.language === "english" && selectedLevel >= 5 ? 1 : 0;
@@ -113,7 +114,7 @@ export function assessJobSeeker(route: JobSeekerRoute, form: JobSeekerAnswers, f
     threshold = 70;
     if (!Number.isInteger(age) || age < 18 || age > 100) issues.push("Enter a valid adult age.");
     const education = { none: 0, degree: 20, mint: 30, phd: 40 }[form.education] ?? 0;
-    add("Qualifications & skills", Math.min(40, education + (form.research === "yes" ? 20 : 0) + (form.awards === "yes" ? 20 : 0)));
+    add("Qualifications & skills", education);
     const years = number(form.years);
     if (years < 0 || years > 60) issues.push("Enter relevant experience between 0 and 60 years.");
     add("Relevant experience", Math.min(20, Math.floor(Math.max(0, Math.min(years, 60)) * 2) + (form.austrianExperience === "yes" ? 10 : 0)));
