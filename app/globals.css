@@ -293,7 +293,7 @@ body {
   .js-report-table thead { display: none; }
   .js-report-table tbody tr { padding: 14px 10px; border-bottom: 1px solid var(--color-border-light); }
   .js-report-table tbody th, .js-report-table td { padding: 0; border: 0; }
-  .js-report-table tbody th { margin-bottom: 6px; }
+  .js-report-table tbody th { width: auto; margin-bottom: 6px; }
   .js-report-table .js-report-points { text-align: left; margin-top: 10px; }
   .js-report-table .js-report-points::before { content: "Points: "; }
   .js-report-table tfoot { padding: 12px; }
